@@ -9,7 +9,6 @@ import '../css/styles/MecCarousel.scss';
 import {
     Card,
     CardMedia,
-    Typography,
     Grid
 } from '@material-ui/core';
 
