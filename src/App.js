@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {Container} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
+import SignInSide from './component/SignInSide.js'
+import SignUp from './component/SignUp.js'
 
 function App() {
   return (
@@ -18,7 +21,24 @@ function App() {
         >
           Learn React
         </a>
+        
       </header>
+      <BrowserRouter>
+          <Switch>
+            <Route
+            path="/singin"
+            exact
+            strict
+            component={SignInSide}
+            >
+            </Route>
+            <Route
+              path="/singup"
+              exact
+              strict
+            component={SignUp}/>
+          </Switch>
+          </BrowserRouter>
     </div>
   );
 }
