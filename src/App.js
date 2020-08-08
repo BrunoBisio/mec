@@ -4,9 +4,11 @@ import MecCarousel from './components/MecCarousel.js';
 import ContactButton from './components/ContactButtons';
 import SignInSide from './components/SignInSide.js';
 import SignUp from './components/SignUp.js';
-
+import Header from './components/Header.js';
+import Footer from './components/Footer.js';
 import './App.css';
-import Header from './components/Header.js'
+
+
 function App() {
   return (
     <div className="App">
@@ -17,6 +19,7 @@ function App() {
             <MecCarousel></MecCarousel>
             <ContactButton></ContactButton>
           </div>
+          <Footer></Footer>
         </Route>
         <Route path="/singin" exact strict component={SignInSide}></Route>
         <Route path="/singup" exact strict component={SignUp}></Route>

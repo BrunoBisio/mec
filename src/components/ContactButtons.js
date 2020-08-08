@@ -3,7 +3,7 @@ import { Button, Grid } from '@material-ui/core';
 import CallIcon from '@material-ui/icons/Call';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import EmailIcon from '@material-ui/icons/Email';
-import '../css/ContactButton.scss'
+import '../css/styles/ContactButton.scss'
 
 function CallButton() {
     const text = 'Telefono';

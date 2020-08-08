@@ -4,7 +4,7 @@ import autoBind from "auto-bind"
 import clientExp from '../css/img/exp_cliente.png';
 import sucExp from '../css/img/exp_sucur.png';
 import aboutUs from '../css/img/sobre_nosotros.png';
-import '../css/MecCarousel.scss';
+import '../css/styles/MecCarousel.scss';
 
 import {
     Card,
@@ -15,15 +15,15 @@ import {
 
 const items = [
     {
-        Name: 'Red dragon',
+        Name: 'Experiencia de nuestros clientes',
         Image: clientExp
     },
     {
-        Name: 'Blue dragon',
+        Name: 'Experiencia de sucursal',
         Image: sucExp
     },
     {
-        Name: 'The migthy one',
+        Name: 'Sobre nosotros',
         Image: aboutUs
     }
 ]
@@ -34,9 +34,7 @@ function Banner(props) {
     return (
         <Card raised className="Banner">
             <Grid item className="BannerGrid">
-                <CardMedia className="Media" image={item.Image} title={item.Name} >
-                    <Typography className="MediaCaption"> {item.Name} </Typography>
-                </CardMedia>
+                <CardMedia className="Media" image={item.Image} title={item.Name} ></CardMedia>
             </Grid>
         </Card>
     )

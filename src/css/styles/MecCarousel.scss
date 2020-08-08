@@ -5,7 +5,7 @@
     width: 90%;
 
     .Carousel-indicators-2 {
-        margin-top: -35px;
+        margin-top: -38px;
         position: relative;
 
         .Carousel-indicator-3 {
@@ -24,11 +24,12 @@
 
     .Media
     {
-        background-color: white;
+        background-color: $gray;
         height: 100%;
         overflow: hidden;
         object-fit: cover;
         position: relative;
+        background-size: contain;
 
         .MediaCaption
         {
