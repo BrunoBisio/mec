@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
-import logo from '../logo.svg';
+import logo from '../Logo-nombre.png';
 import '../css/Header.scss'
 import Grid from '@material-ui/core/Grid';
 import {Link} from 'react-router-dom';
