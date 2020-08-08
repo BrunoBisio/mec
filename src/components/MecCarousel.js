@@ -28,20 +28,12 @@ const items = [
 function Banner(props) {
     const item = props.item;
 
-    const media = (
-        <Grid item xs={12} key={item.Name}>
-            <CardMedia className="Media" image={item.Image} title={item.Name} >
-                <Typography className="MediaCaption">
-                    {item.Name}
-                </Typography>
-            </CardMedia>
-        </Grid>
-    )
-
     return (
         <Card raised className="Banner">
-            <Grid container spacing={0} className="BannerGrid">
-                {media}
+            <Grid item className="BannerGrid">
+                <CardMedia className="Media" image={item.Image} title={item.Name} >
+                    <Typography className="MediaCaption"> {item.Name} </Typography>
+                </CardMedia>
             </Grid>
         </Card>
     )

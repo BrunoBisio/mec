@@ -1,0 +1,24 @@
+@import 'global';
+
+.ContactButtonsContainer {
+    
+    .ContactButtons {
+        
+        margin-top: 0px;
+
+        Button.ContactButton {
+            display: block;
+            height: 70px;
+            width: 150px;
+
+            .MuiButton-startIcon {
+                margin-left: 0;
+                margin-right: 0;
+                
+                .MuiSvgIcon-root {
+                    color: $golden;
+                }
+            }
+        }
+    }
+}
