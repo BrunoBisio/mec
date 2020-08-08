@@ -1,6 +1,9 @@
 import React from 'react';
 import Carousel from "react-material-ui-carousel"
 import autoBind from "auto-bind"
+import clientExp from '../css/img/exp_cliente.png';
+import sucExp from '../css/img/exp_sucur.png';
+import aboutUs from '../css/img/sobre_nosotros.png';
 import '../css/MecCarousel.scss';
 
 import {
@@ -13,15 +16,15 @@ import {
 const items = [
     {
         Name: 'Red dragon',
-        Image: 'https://i.pinimg.com/originals/35/de/24/35de2403ada4d0d4d305691e6ceff9f8.jpg'
+        Image: clientExp
     },
     {
         Name: 'Blue dragon',
-        Image: 'https://steamuserimages-a.akamaihd.net/ugc/922548032614832812/EED29166C2CC87B0000464B7EA51AA57B91182D7/?imw=1024&imh=724&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true'
+        Image: sucExp
     },
     {
         Name: 'The migthy one',
-        Image: 'https://1.bp.blogspot.com/-yxXN_pODr78/UCT003ILnrI/AAAAAAAACE4/GRKVs2DPJvs/s1600/SpongeBob%2Bgigantic%2B33lb%2Bcat%2Bdies%2Bjust%2B%2Btwo%2Bmonths%2Bafter%2Bbeing%2Badopted%2Bnew%2Bfamily%2B5.jpg'
+        Image: aboutUs
     }
 ]
 
