@@ -1,17 +1,25 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {Switch, Route} from 'react-router-dom';
 import MecCarousel from './components/MecCarousel.js';
 import SignInSide from './components/SignInSide.js';
 import SignUp from './components/SignUp.js';
+
 import './App.css';
+import Header from './components/Header.js'
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <MecCarousel/>
-      </header>
-      <BrowserRouter>
+      
+      
           <Switch>
+          <Route
+              path="/"
+              exact
+              strict
+            >
+            <Header></Header>
+      <MecCarousel/>
+            </Route>
             <Route
               path="/singin"
               exact
@@ -25,7 +33,6 @@ function App() {
               strict
             component={SignUp}/>
           </Switch>
-          </BrowserRouter>
     </div>
   );
 }
