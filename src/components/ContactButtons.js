@@ -34,8 +34,8 @@ class ContactButtons extends React.Component {
         return (
             <div className="ContactButtonsContainer">
                 <Grid container spacing={6} justify="center" alignItems="center" direction="row" className="ContactButtons">
-                    <CallButton></CallButton>
                     <LocationButton></LocationButton>
+                    <CallButton></CallButton>
                     <EmailButton></EmailButton>
                 </Grid>
             </div>

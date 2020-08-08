@@ -2,14 +2,19 @@
 
 .ContactButtonsContainer {
     
+    margin: 20px 0;
+
     .ContactButtons {
         
         margin-top: 0px;
+        margin-bottom: 0px;
 
         Button.ContactButton {
             display: block;
             height: 70px;
             width: 150px;
+            border: $golden solid 2px;
+            margin: 0 5px;
 
             .MuiButton-startIcon {
                 margin-left: 0;
