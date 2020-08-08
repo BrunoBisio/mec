@@ -1,26 +1,22 @@
-import React, {Container} from 'react';
-import logo from './logo.svg';
-import MyCarrousel from './components/myComponent.js';
-import SecondExample from './components/secondExample.js';
-import {Card, CardMedia} from '@material-ui/core';
+import React from 'react';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import MecCarousel from './components/MecCarousel.js';
+import SignInSide from './components/SignInSide.js';
+import SignUp from './components/SignUp.js';
 import './App.css';
-import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
-import SignInSide from './component/SignInSide.js'
-import SignUp from './component/SignUp.js'
-
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <SecondExample/>
+        <MecCarousel/>
       </header>
       <BrowserRouter>
           <Switch>
             <Route
-            path="/singin"
-            exact
-            strict
-            component={SignInSide}
+              path="/singin"
+              exact
+              strict
+              component={SignInSide}
             >
             </Route>
             <Route
