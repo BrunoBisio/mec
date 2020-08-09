@@ -1,0 +1,26 @@
+.FooterContainer {
+    height: 20vh;
+
+    div.FooterGridContainer {
+        padding: 0;
+    }
+
+    .FooterDisclaimerDiv {
+        text-align: left;
+    }
+
+    .FooterGridContainerDisclaimer {
+        align-self: center;
+    }
+
+    .FooterContactInfoTitle {
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    .FooterInfo {
+        padding-top: 20px;
+        padding-bottom: 10px;
+        height: 100%;
+    }
+}

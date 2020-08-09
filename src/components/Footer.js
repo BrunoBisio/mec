@@ -5,6 +5,7 @@ import Logo from '../css/img/Logo.png';
 import CallIcon from '@material-ui/icons/Call';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import EmailIcon from '@material-ui/icons/Email';
+import '../css/styles/Footer.scss';
 
 const items = [
     {
@@ -25,7 +26,7 @@ function ContactListItem(props) {
     return (
         <ListItem>
             <ListItemIcon>{props.item.Icon}</ListItemIcon>
-            <ListItemText primary={props.item.Text}></ListItemText>
+            <ListItemText primary={props.item.Text} primaryTypographyProps={{ variant: 'caption' }} alignItems="center"></ListItemText>
         </ListItem>
     )
 }
@@ -55,17 +56,18 @@ class Footer extends React.Component {
     render() {
         return (
             <footer>
-                <Grid container xs={12}>
+                <Grid container xs={12} className="FooterContainer">
                     <Grid item xs={2}><img src={Logo}></img></Grid>
                     <Divider variant="fullWidth"/>
-                    <Grid container spacing={2} xs={10}>
-                        <Grid item xs={4} md={6}>
-                            <Typography variant="h6" className="FooterContactInfo">Conoce mas sobre nosotros</Typography>
+                    <Grid container spacing={2} xs={10} className="FooterInfo">
+                        <Grid item xs={6} sm={3} className="FooterGridContainer"></Grid>
+                        <Grid item xs={6} sm={3} justify="flex-start" className="FooterGridContainer">
+                            <div className="FooterContactInfoTitle"><Typography variant="h8" className="FooterContactInfo" align="left">Conoce mas sobre nosotros</Typography></div>
                             <ContactList></ContactList>
                         </Grid>
-                        <Grid xs={8}>
-                            <Typography variant="h8" className="FooterDisclaimer">{this.state.disclaimerBody}</Typography>
-                            <Typography variant="h8" className="FooterDisclaimer">{this.state.disclaimerFinisher}</Typography>
+                        <Grid xs={12} sm={6} justify="flex-start" alignItems="center" className="FooterGridContainerDisclaimer">
+                            <div className="FooterDisclaimerDiv"><Typography variant="caption" className="FooterDisclaimer" align="left">{this.state.disclaimerBody}</Typography></div>
+                            <div className="FooterDisclaimerDiv"><Typography variant="caption" className="FooterDisclaimer" align="left">{this.state.disclaimerFinisher}</Typography></div>
                         </Grid>
                     </Grid>
                 </Grid>

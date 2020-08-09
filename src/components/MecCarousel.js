@@ -32,7 +32,7 @@ function Banner(props) {
 
     return (
         <Card raised className="Banner">
-            <Grid item className="BannerGrid">
+            <Grid item className="BannerGrid" xs={12}>
                 <CardMedia className="Media" image={item.Image} title={item.Name} ></CardMedia>
             </Grid>
         </Card>
