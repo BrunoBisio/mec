@@ -7,6 +7,7 @@ import SignUp from './components/SignUp.js';
 import Header from './components/Header.js';
 import Footer from './components/Footer.js';
 import './App.css';
+import NewsContainer from './components/NewsContainer'
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <div className="AppBody">
             <MecCarousel></MecCarousel>
             <ContactButton></ContactButton>
+            <NewsContainer></NewsContainer>
           </div>
           <Footer></Footer>
         </Route>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
-import logo from '../Logo-nombre.png';
 import '../css/styles/Header.scss'
+import logo from '../css/img/Logo-nombre.png';
 import Grid from '@material-ui/core/Grid';
 import {Link} from 'react-router-dom';
 
