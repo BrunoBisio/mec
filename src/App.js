@@ -8,6 +8,8 @@ import Header from './components/Header.js';
 import Footer from './components/Footer.js';
 import './App.css';
 import NewsContainer from './components/NewsContainer'
+import LoggedIn from './components/LoggedIn.js';
+import PrivateRoute from './components/Security.js';
 
 
 function App() {
@@ -23,8 +25,11 @@ function App() {
           </div>
           <Footer></Footer>
         </Route>
-        <Route path="/singin" exact strict component={SignInSide}></Route>
-        <Route path="/singup" exact strict component={SignUp}></Route>
+        <Route path="/login" exact strict component={SignInSide}></Route>
+        <Route path="/singup" exact strict component={SignUp}></Route> 
+        <PrivateRoute path="/loggedin" exact strict>
+        <LoggedIn></LoggedIn>
+        </PrivateRoute> 
       </Switch>
     </div>
   );
