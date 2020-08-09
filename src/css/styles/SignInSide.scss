@@ -1,0 +1,31 @@
+@import 'global.scss';
+
+.SingInContainer {
+    height: 100vh;
+
+    .SingInImage {
+        background-image: url("../img/login.png");
+        background-repeat: no-repeat;
+        background-color: $gray;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .SingInFormContainer {
+        background-color: $gray;
+    }
+
+    .SingInButton {
+        width: 90%;
+        margin: 6px 0 4px 0;
+        background-color: $golden;
+    }
+
+    .SingInLinkText {
+        padding-top: 5px;
+        a {
+            color: black;
+        }
+    }
+
+}
