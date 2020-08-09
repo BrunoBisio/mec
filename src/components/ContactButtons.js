@@ -5,27 +5,24 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import EmailIcon from '@material-ui/icons/Email';
 import '../css/styles/ContactButton.scss'
 
-function CallButton() {
-    const text = 'Telefono';
-    
-    return (
-        <Button className="ContactButton" startIcon={<CallIcon />}>{text}</Button>
-    )
-}
+const items = [
+    {
+        text: 'Telefono',
+        icon: <CallIcon/>
+    },
+    {
+        text: 'Sucursales',
+        icon: <LocationOnIcon />
+    },
+    {
+        text: 'Mail',
+        icon: <EmailIcon />
+    }
+]
 
-function LocationButton() {
-    const text = 'Sucursales';
-    
+function CustomButton(props) {
     return (
-        <Button className="ContactButton" startIcon={<LocationOnIcon />}>{text}</Button>
-    )
-}
-
-function EmailButton() {
-    const text = 'Mail';
-
-    return (
-        <Button className="ContactButton" startIcon={<EmailIcon />}>{text}</Button>
+        <Button className="ContactButton" startIcon={props.item.icon}>{props.item.text}</Button>
     )
 }
 
@@ -34,9 +31,7 @@ class ContactButtons extends React.Component {
         return (
             <div className="ContactButtonsContainer">
                 <Grid container spacing={6} justify="center" alignItems="center" direction="row" className="ContactButtons">
-                    <LocationButton></LocationButton>
-                    <CallButton></CallButton>
-                    <EmailButton></EmailButton>
+                    { items.map((item, index) => { return <CustomButton item={item} key={index}></CustomButton>}) }
                 </Grid>
             </div>
         )
