@@ -1,9 +1,9 @@
 import React from 'react';
 import NewsCard from './NewsCard.js';
 import Grid from '@material-ui/core/Grid';
-import Nazgul from '../css/img/Nazgul.png';
-import MinasMoria from '../css/img/minas_moria.png';
-import Addicciones from '../css/img/addicciones_v2.png';
+import Nazgul from '../css/img/nazgul_sin_texto.png';
+import MinasMoria from '../css/img/Moria_sin_texto.png';
+import Addicciones from '../css/img/gollum_sin_texto.png';
 import Typography from '@material-ui/core/Typography';
 import '../css/styles/NewsContainer.scss'
 class NewsContainer extends React.Component {

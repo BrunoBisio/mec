@@ -56,9 +56,10 @@ class Footer extends React.Component {
     render() {
         return (
             <footer>
+                <Divider variant="fullWidth"/>
                 <Grid container xs={12} className="FooterContainer">
                     <Grid item xs={2}><img src={Logo}></img></Grid>
-                    <Divider variant="fullWidth"/>
+                    <Divider orientation="vertical"/>
                     <Grid container spacing={2} xs={10} className="FooterInfo">
                         <Grid item xs={6} sm={3} className="FooterGridContainer"></Grid>
                         <Grid item xs={6} sm={3} justify="flex-start" className="FooterGridContainer">
