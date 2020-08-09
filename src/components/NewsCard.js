@@ -10,23 +10,20 @@ class NewsCard extends React.Component {
     render() {
      
         return <Card>
-             <CardHeader
-              title={this.props.Title}>
-             </CardHeader>
-             <Divider variant="fullWidth"/>
+             {/*<Divider variant="fullWidth"/>
              <div style={{height: 10 + 'px'}}></div>
-             <Divider variant="fullWidth"/>
+    <Divider variant="fullWidth"/>*/}
              {this.props.Image && <CardMedia
                  className="Media"
                 image={this.props.Image}
                 title="Paella dish"
             /> }
-            {this.props.Content && 
+            {/*this.props.Content && 
              <CardContent>
              
              {this.props.Content}
-            </CardContent> }
-            <CardContent/>
+            </CardContent> 
+            <CardContent/>*/}
         </Card>
 
     }

@@ -3,7 +3,7 @@ import NewsCard from './NewsCard.js';
 import Grid from '@material-ui/core/Grid';
 import Nazgul from '../css/img/Nazgul.png';
 import MinasMoria from '../css/img/minas_moria.png';
-import Addicciones from '../css/img/addicciones.png';
+import Addicciones from '../css/img/addicciones_v2.png';
 import Typography from '@material-ui/core/Typography';
 class NewsContainer extends React.Component {
   
