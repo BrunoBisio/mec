@@ -5,6 +5,7 @@ import {Redirect, Route} from 'react-router-dom';
 export const fakeAuth = {
   isAuthenticated: false,
   authenticate(cb) {
+    debugger
     fakeAuth.isAuthenticated = true;
     setTimeout(cb, 100); // fake async
   },

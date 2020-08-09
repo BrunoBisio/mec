@@ -13,6 +13,11 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import '../css/styles/SignInSide.scss';
+import {fakeAuth} from './Security.js';
+import {
+  useHistory,
+  useLocation
+} from "react-router-dom";
 
 function Copyright() {
   return (
@@ -46,6 +51,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide() {
   const classes = useStyles();
+  let history = useHistory();
+  let location = useLocation();
+  let { from } = location.state || { from: { pathname: "/" } };
+  console.log(from);
+  console.log(location);
+  let login = () => {
+    fakeAuth.authenticate(() => {
+      history.replace(from);
+    });
+  };
 
   return (
     <Grid container component="main" className="SingInContainer">
@@ -61,7 +76,7 @@ export default function SignInSide() {
             <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus />
             <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
             <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me"/>
-            <Button type="submit" variant="contained" color="primary" className="SingInButton"> Sign In</Button>
+            <Button onClick={login} type="button" variant="contained" color="primary" className="SingInButton"> Sign In</Button>
             <Grid container justify="center">
               <Grid item xs={12} md={6} className="SingInLinkText">
                 <Link href="#" variant="body2">{ "¿Olvidaste tu contraseña?" }</Link>
