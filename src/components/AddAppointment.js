@@ -1,12 +1,13 @@
 import React from 'react';
 import { Typography, Grid, Paper, List, ListItem, TextField } from '@material-ui/core';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import MecAutocomplete from './MecAutocomplete.js';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 
 const dropDownLists = {
     specilityList: {
         title: 'Especialidad',
+        label: 'text',
         values: [
             { text: 'Adicciones' },
             { text: 'Clinica medica' },
@@ -18,6 +19,7 @@ const dropDownLists = {
     },
     clinicList: {
         title: 'Clinica',
+        label: 'text',
         values: [
             { text: 'Gondor' },
             { text: 'La Comarca' },
@@ -27,6 +29,7 @@ const dropDownLists = {
     },
     medicList: {
         title: 'Medico',
+        label: 'text',
         values: [
             { text: 'Aragon' },
             { text: 'Arwen' },
@@ -48,27 +51,7 @@ function AutoCompleteList(){
 
     return (
         <List>
-            <ListItem>
-                <Autocomplete 
-                    options={dropDownLists.specilityList.values}
-                    getOptionLabel={(option) => option.text}
-                    renderInput={(params) => <TextField {...params} label={dropDownLists.specilityList.title} variant="outlined" />}>
-                </Autocomplete>
-            </ListItem>
-            <ListItem>
-                <Autocomplete 
-                    options={dropDownLists.clinicList.values}
-                    getOptionLabel={(option) => option.text}
-                    renderInput={(params) => <TextField {...params} label={dropDownLists.clinicList.title} variant="outlined" />}>
-                </Autocomplete>
-            </ListItem>
-            <ListItem>
-                <Autocomplete 
-                    options={dropDownLists.medicList.values}
-                    getOptionLabel={(option) => option.text}
-                    renderInput={(params) => <TextField {...params} label={dropDownLists.medicList.title} variant="outlined" />}>
-                </Autocomplete>
-            </ListItem>
+            { dropDownLists.map( (listObj, index) => { return <ListItem><MecAutocomplete listObject={listObj} key={index}></MecAutocomplete></ListItem>}) }
             <ListItem>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker variant="inline" format="dd/MM/yyyy" margin="normal" value={selectedDate} onChange={handleDateChange}></KeyboardDatePicker>
