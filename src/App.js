@@ -11,6 +11,7 @@ import NewsContainer from './components/NewsContainer'
 import LoggedIn from './components/LoggedIn.js';
 import PrivateRoute from './components/Security.js';
 import Appointment from './components/Appointment';
+import User from './components/User.js'
 
 
 function App() {
@@ -31,7 +32,6 @@ function App() {
         <PrivateRoute path="/loggedin" exact strict>
         <LoggedIn></LoggedIn>
         </PrivateRoute> 
-        <Route path="/appointment"><Appointment></Appointment></Route>
       </Switch>
     </div>
   );
