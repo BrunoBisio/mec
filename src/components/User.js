@@ -1,18 +1,24 @@
 import React from 'react';
 import Dashboard from './Dashboard.js'
+import Appointment from './Appointment.js'
 
 const items = [
     {
-        text: 'Cuentas'
+        text: 'Cuentas',
+        route: 'account'
     },
     {
-        text: 'Turnos'
+        text: 'Turnos',
+        route: 'appointment',
+        component: Appointment
     },
     {
-        text: 'Recetas'
+        text: 'Recetas',
+        route: 'recipes'
     },
     {
-        text: 'Historial'
+        text: 'Historial',
+        route: 'history'
     }
 ]
 

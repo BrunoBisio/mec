@@ -32,7 +32,7 @@ function App() {
         <PrivateRoute path="/loggedin" exact strict>
         <LoggedIn></LoggedIn>
         </PrivateRoute> 
-        <PrivateRoute path="/user" exact strict><User></User></PrivateRoute>
+        <PrivateRoute path="/user"><User></User></PrivateRoute>
         <Route path="/appointment"><Appointment></Appointment></Route>
       </Switch>
     </div>

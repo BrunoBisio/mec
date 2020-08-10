@@ -2,14 +2,20 @@ import React from 'react';
 import autoBind from 'auto-bind';
 import '../css/styles/MecDrawer.scss';
 import { Drawer, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-
+import {
+    Link,
+    useRouteMatch
+  } from "react-router-dom";
 function DrawerItems(props){
+    let { path } = useRouteMatch();
     return (
         <List>
             {props.items.map((item, index) => (
                 <ListItem button key={index}>
+                <Link to={`${path}/${item.route}`}>
                     <ListItemIcon>{item.icon}</ListItemIcon>
                     <ListItemText primary={item.text} />
+                    </Link>
                 </ListItem>
             ))}
         </List>
