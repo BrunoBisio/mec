@@ -1,14 +1,12 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
 import '../css/styles/Header.scss'
-import logo from '../css/img/Logo-nombre.png';
 import Grid from '@material-ui/core/Grid';
-import {Link} from 'react-router-dom';
 import MaterialTable from "material-table";
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import '../css/styles/Appointment.scss'
 
-function arrayRemove(arr, value) { return arr.filter(function(ele){ return ele != value; });}
+function arrayRemove(array, value) { return array.filter(function(item){ return item !== value; });}
 
 
 class Appointment extends React.Component {
@@ -44,7 +42,7 @@ class Appointment extends React.Component {
     }
     render() {
         return (
-            <Grid container xs={12}>
+            <Grid container xs={12} className="AppointmentGrid">
                 <Grid item xs={6}>
                  <MaterialTable 
                 
@@ -54,6 +52,11 @@ class Appointment extends React.Component {
             { title: "Especialidad", field: "specialty" },
             { title: "Medico", field: "medicName" },
           ]}
+          localization={{
+            header: {
+              actions: 'Acciones'
+          },
+          }}
           data={this.state.data}
           actions={[
             {
