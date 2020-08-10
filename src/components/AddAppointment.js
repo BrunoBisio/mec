@@ -1,5 +1,8 @@
 import React from 'react';
-import { Typography, Grid, Paper, Autocomplete } from '@material-ui/core';
+import { Typography, Grid, Paper, List, ListItem, TextField } from '@material-ui/core';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 
 const dropDownLists = {
     specilityList: {
@@ -39,11 +42,38 @@ const dropDownLists = {
 }
 
 function AutoCompleteList(){
+    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+
+    const handleDateChange = (date) => { setSelectedDate(date); };
+
     return (
         <List>
-            <ListItem><AutoComplete options={dropDownLists.specilityList.values}></AutoComplete></ListItem>
-            <ListItem><AutoComplete options={dropDownLists.clinicList.values}></AutoComplete></ListItem>
-            <ListItem><AutoComplete options={dropDownLists.medicList.values}></AutoComplete></ListItem>
+            <ListItem>
+                <Autocomplete 
+                    options={dropDownLists.specilityList.values}
+                    getOptionLabel={(option) => option.text}
+                    renderInput={(params) => <TextField {...params} label={dropDownLists.specilityList.title} variant="outlined" />}>
+                </Autocomplete>
+            </ListItem>
+            <ListItem>
+                <Autocomplete 
+                    options={dropDownLists.clinicList.values}
+                    getOptionLabel={(option) => option.text}
+                    renderInput={(params) => <TextField {...params} label={dropDownLists.clinicList.title} variant="outlined" />}>
+                </Autocomplete>
+            </ListItem>
+            <ListItem>
+                <Autocomplete 
+                    options={dropDownLists.medicList.values}
+                    getOptionLabel={(option) => option.text}
+                    renderInput={(params) => <TextField {...params} label={dropDownLists.medicList.title} variant="outlined" />}>
+                </Autocomplete>
+            </ListItem>
+            <ListItem>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <KeyboardDatePicker variant="inline" format="dd/MM/yyyy" margin="normal" value={selectedDate} onChange={handleDateChange}></KeyboardDatePicker>
+                </MuiPickersUtilsProvider>
+            </ListItem>
         </List>
     )
 }
@@ -52,7 +82,7 @@ class AddApointment extends React.Component {
     
     render() {
         return (
-            <Grid xs={12} spacing={8}>
+            <Grid xs={12} spacing={8} direction="row" justify="center" alignItems="center" >
                 <Grid xs={12} sm={6}>
                     <Paper>
                         <Typography variant="h2">Turnos para: Usuario</Typography>
@@ -68,3 +98,5 @@ class AddApointment extends React.Component {
         )
     }
 }
+
+export default AddApointment;
