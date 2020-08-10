@@ -1,7 +1,5 @@
 import React from 'react';
-import MecDrawer from './MecDrawer.js';
-import Header from './Header.js';
-import '../css/styles/Header.scss';
+import Dashboard from './Dashboard.js'
 
 const items = [
     {
@@ -21,12 +19,7 @@ const items = [
 class User extends React.Component {
 
     render() {
-        return (
-            <div>
-                <Header></Header>
-                <MecDrawer items={items}></MecDrawer>
-            </div>
-        )
+        return (<Dashboard drawerItems={items}></Dashboard>)
     }
 }
 

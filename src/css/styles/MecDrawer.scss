@@ -1,0 +1,10 @@
+@import './global.scss';
+
+.DashboardDrawer {
+
+    > div {
+        top: auto;
+        background-color: $gray;
+        border-right: 2px solid $golden;
+    }
+}

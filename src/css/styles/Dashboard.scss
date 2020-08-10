@@ -1,0 +1,26 @@
+@import './global.scss';
+
+.DashboardContainer {
+    height: 100vh;
+    overflow: hidden;
+
+    .DashboardDivider {
+        background-color: $golden;
+        height: 2px;
+    }
+
+    .DashboardBody {
+        height: 80vh;
+        display: flex;
+    }
+
+    .DashboardNav {
+        height: 100%;
+        width: 8%;
+    }
+
+    .DashboardMain {
+        height: 100%;
+        width: 92%;
+    }
+}

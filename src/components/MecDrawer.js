@@ -1,6 +1,6 @@
 import React from 'react';
 import autoBind from 'auto-bind';
-import '../css/styles/Header.scss';
+import '../css/styles/MecDrawer.scss';
 import { Drawer, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 
 function DrawerItems(props){
@@ -29,7 +29,7 @@ class MecDrawer extends React.Component {
 
     render() {
         return (
-            <Drawer variant="permanent" open>
+            <Drawer variant="permanent" open className="DashboardDrawer">
                 <DrawerItems items={this.state.items}></DrawerItems>
             </Drawer>
         )
