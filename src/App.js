@@ -32,6 +32,7 @@ function App() {
         <PrivateRoute path="/loggedin" exact strict>
         <LoggedIn></LoggedIn>
         </PrivateRoute> 
+        <PrivateRoute path="/user" exact strict><User></User></PrivateRoute>
       </Switch>
     </div>
   );
