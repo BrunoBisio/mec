@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Grid, Paper, List, ListItem, Button } from '@material-ui/core';
+import { Grid, List, ListItem, } from '@material-ui/core';
 import MecAutocomplete from './MecAutocomplete.js';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
@@ -86,7 +86,7 @@ function generateAppointments() {
     }
 }
 
-function arrayRemove(array, value) { return array.filter(function(item){ return item !== value; });}
+// function arrayRemove(array, value) { return array.filter(function(item){ return item !== value; });}
 
 class AutoCompleteList extends React.Component {
     constructor (props) {

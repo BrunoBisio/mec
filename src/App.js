@@ -12,8 +12,7 @@ import LoggedIn from './components/LoggedIn.js';
 import PrivateRoute from './components/Security.js';
 import Appointment from './components/Appointment';
 import User from './components/User.js';
-import AddAppointment from './components/AddAppointment.js';
-import Dashboard from './components/Dashboard.js';
+import MyAccount from './components/MyAccount.js';
 
 function App() {
   return (
@@ -35,8 +34,7 @@ function App() {
         </PrivateRoute> 
         <PrivateRoute path="/user"><User></User></PrivateRoute>
         <Route path="/appointment"><Appointment></Appointment></Route>
-        <Route path="/addAppointment"><AddAppointment></AddAppointment></Route>
-        <Route path="/dashboard"><Dashboard></Dashboard></Route>
+        <Route path="/MyAccount"><MyAccount></MyAccount></Route>
       </Switch>
     </div>
   );

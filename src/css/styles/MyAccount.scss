@@ -1,0 +1,34 @@
+.MyAccountForm {
+    display: flex;
+    margin: 0 20%;
+    justify-content: center;
+  }
+  
+  .MyAccountCol {
+    display: grid;
+  }
+  
+  .MyAccountCol div {
+    width: 15vw;
+    margin: 5px;
+  }
+  
+  .MyAccountCol button {
+    width: 5vw;
+    justify-self: right;
+    padding: 0;
+  }
+  
+  .MyAccountCol.ColRight {
+    margin-left: 5vw;
+  }
+  
+  .MyAccountHeader {
+    display: flex;
+     margin: 0 20%;
+    justify-content: center;
+  }
+  
+  /*.MyAccountHeader h4 {
+      
+  }*/

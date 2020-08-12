@@ -1,5 +1,4 @@
 import React from 'react';
-import autoBind from 'auto-bind';
 import { TextField } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
@@ -16,8 +15,6 @@ class MecAutocomplete extends React.Component {
             changeEvent: props.changeEvent || function(){},
         }
         
-        // this.onValueChange = this.onValueChange.bind(this);
-        // autoBind(this);
     }
 
     onValueChange = (event, value) => {
