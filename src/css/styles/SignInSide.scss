@@ -6,13 +6,13 @@
     .SingInImage {
         background-image: url("../img/login.png");
         background-repeat: no-repeat;
-        background-color: $gray;
+        background-color: $mecBackground;
         background-size: cover;
         background-position: center;
     }
 
     .SingInFormContainer {
-        background-color: $gray;
+        background-color: $mecBackground;
     }
 
     .SingInButton {

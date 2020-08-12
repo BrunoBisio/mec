@@ -6,7 +6,7 @@ import SignInSide from './components/SignInSide.js';
 import SignUp from './components/SignUp.js';
 import Header from './components/Header.js';
 import Footer from './components/Footer.js';
-import './App.css';
+import './css/styles/App.scss';
 import NewsContainer from './components/NewsContainer'
 import LoggedIn from './components/LoggedIn.js';
 import PrivateRoute from './components/Security.js';

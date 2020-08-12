@@ -55,7 +55,7 @@ const matTableOpt = {
         { title: "Asignado", field: "assignedTo", type:"numeric", hidden: true }
     ],
     localization: { header: { actions: 'Acciones' } },
-    options: { actionsColumnIndex: -1, filtering: true }
+    options: { actionsColumnIndex: -1 }
 }
 
 // example: { date: "29/02/1992 15:00:00", doctor: { id: 1, name: "Aragon", specialty: "Traumatologia" }, assignedTo: /* Id del paciente */ }
@@ -164,14 +164,10 @@ class AddApointment extends React.Component {
         return (
             <Grid container direction="row" justify="center" alignItems="center" >
                 <Grid item xs={12} sm={6} direction="row" justify="center" alignItems="center">
-                    <Paper>
-                        <Typography variant="h6">Turnos para: Usuario</Typography>
-                        <AutoCompleteList></AutoCompleteList>
-                    </Paper>
+                    <div><AutoCompleteList></AutoCompleteList></div>
                 </Grid>
                 <Grid item xs={12} sm={6} direction="row" justify="center" alignItems="center">
-                    <Paper>
-                        <Typography variant="h6">Turnos Disponibles</Typography>
+                    <div className="tableContainer">
                         <MaterialTable title="Turnos disponibles" 
                             data={this.state.data}
                             columns={matTableOpt.columns}
@@ -185,7 +181,7 @@ class AddApointment extends React.Component {
                               ]}
                             options={matTableOpt.options} >
                         </MaterialTable>
-                    </Paper>
+                    </div>
                 </Grid>
             </Grid>
         )
