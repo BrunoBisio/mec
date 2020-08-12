@@ -35,6 +35,11 @@ class Appointment extends React.Component {
           ]};
     }
 
+    addAppointment(newAppointment) {
+      let localArray = this.state.data;
+      localArray.push(newAppointment);
+      this.setState((state,props) => state.data = localArray);
+    }
 
     removeAppointment(row) {
         const newData = arrayRemove(this.state.data, row);
