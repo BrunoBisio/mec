@@ -1,6 +1,7 @@
 import React from 'react';
 import Dashboard from './Dashboard.js'
 import Appointment from './Appointment.js'
+import AddAppointment from './AddAppointment.js'
 import Recipes from './Recipes.js'
 import MedicalHistory from './MedicalHistory.js'
 
@@ -24,6 +25,10 @@ const items = [
         text: 'Historial',
         route: 'history',
         component: MedicalHistory
+    },
+    {
+        route: 'appointment/addapointment',
+        component: AddAppointment
     }
 ]
 

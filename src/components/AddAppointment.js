@@ -6,6 +6,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import MaterialTable from "material-table";
 import AddIcon from '@material-ui/icons/Add';
 import '../css/styles/AddAppointment.scss';
+import {push} from '../services/AppointmentRepository.js';
 
 const dropDownLists = [
     {
@@ -76,7 +77,7 @@ function generateAppointments() {
     for (let i = 0; i < doctors.length; i++) {
         for (let j = 0; j < appointmentDates.length; j++) {
             appointments.push({ 
-                date: appointmentDates[j].toLocaleDateString(),
+                date: appointmentDates[j],
                 time: appointmentDates[j].toLocaleTimeString(),
                 doctor: doctors[i],
                 assignedTo: -1
@@ -155,9 +156,10 @@ class AddApointment extends React.Component {
     }
 
     addAppointment(row) {
-        // const newData = arrayRemove(this.state.data, row);
-        // this.setState((state,props) => state.data = newData);
-        console.log("add")
+        row.specialty = row.doctor.specialty
+        row.doctor = row.doctor.name
+        push(row);
+
     }
 
     render() {

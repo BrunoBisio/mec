@@ -4,46 +4,22 @@ import '../css/styles/Header.scss'
 import Grid from '@material-ui/core/Grid';
 import MaterialTable from "material-table";
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
-import '../css/styles/Appointment.scss'
+import '../css/styles/Appointment.scss';
+import RelativeLink from './RelativeLink.js';
+import {get, remove} from '../services/AppointmentRepository.js';
 
-function arrayRemove(array, value) { return array.filter(function(item){ return item !== value; });}
+
 
 
 class Appointment extends React.Component {
     constructor(props){
         super(props);
-        this.state = {data:[
-            {   
-                id: 1,
-                date: new Date(),
-                specialty: "Oncologia",
-                medicName: "Wilson"
-            },
-            {
-                id: 2,
-                date: new Date(),
-                specialty: "Problemas Generales",
-                medicName: "House"
-            },
-            {
-                id: 3,
-                date: new Date(),
-                specialty: "neurología",
-                medicName: "Trece"
-            },
-            
-          ]};
-    }
-
-    addAppointment(newAppointment) {
-      let localArray = this.state.data;
-      localArray.push(newAppointment);
-      this.setState((state,props) => state.data = localArray);
+        this.state = {data:get()};
     }
 
     removeAppointment(row) {
-        const newData = arrayRemove(this.state.data, row);
-        this.setState((state,props) => state.data = newData);
+      remove(row);
+        this.setState((state,props) => state.data = get());
     }
 
     render() {
@@ -56,7 +32,7 @@ class Appointment extends React.Component {
                  columns={[
             { title: "Fecha", field: "date", type: "datetime" },
             { title: "Especialidad", field: "specialty" },
-            { title: "Medico", field: "medicName" },
+            { title: "Medico", field: "doctor" },
           ]}
           localization={{
             header: {
@@ -76,7 +52,8 @@ class Appointment extends React.Component {
           }}
         /></Grid>
         <Grid item xs={6}>
-        <Button variant="contained" color="primary" className ="NewAppointment">Nuevo Turno</Button></Grid>
+        <RelativeLink route="addapointment"><Button variant="contained" color="primary" className ="NewAppointment">Nuevo Turno</Button></RelativeLink>
+        </Grid>
             </Grid>)
     }
 }

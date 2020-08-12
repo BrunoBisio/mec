@@ -13,7 +13,7 @@ import {
 function RenderRoutes(props){
     const { path } = useRouteMatch();
     const routes = props.items.map((item,index)=> 
-        <Route key={index} path={`${path}/${item.route}`} component={item.component}></Route>
+        <Route key={index} path={`${path}/${item.route}`} component={item.component} exact></Route>
     )
     return  (<div>{routes}</div>);
 }

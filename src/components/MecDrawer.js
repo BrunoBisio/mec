@@ -10,7 +10,7 @@ function DrawerItems(props){
     let { path } = useRouteMatch();
     return (
         <List>
-            {props.items.map((item, index) => (
+            {props.items && props.items.filter((item)=> item.text).map((item, index) => (
                 <ListItem button key={index}>
                 <Link to={`${path}/${item.route}`}>
                     <ListItemIcon>{item.icon}</ListItemIcon>
