@@ -1,0 +1,39 @@
+.RequestPrescriptionContainer {
+    box-shadow: none !important;
+    margin: 20px;
+
+    .DisclaimerContainer {
+        border: solid 3px red;
+        width: fit-content;
+        display: inline-grid;
+        margin: 20px;
+        padding: 10px;
+        color: red;
+        text-align: left;
+    }
+
+    .InputContainer {
+        display: flex;
+        justify-content: center;
+
+        .DetailsContainer {
+            width: 50%;
+            
+            .MuiTextField-root {
+                width: 30vw;
+                margin: 10px;
+            }
+        }
+        
+        .CommentContainer {
+            width: 50%;
+            margin-left: 50px;
+            
+            div {
+                width: 30vw;
+            }
+        }
+    }
+}
+  
+  

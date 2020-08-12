@@ -5,19 +5,23 @@ let appointments = [
       id: 1,
       date: new Date(),
       specialty: "Oncologia",
-      doctor: "Wilson"
+      doctor: "Wilson",
+      patient: "lu"
   },
   {
       id: 2,
       date: new Date(),
       specialty: "Problemas Generales",
-      doctor: "House"
+      doctor: "House",
+      patient: "alexis"
+      
   },
   {
       id: 3,
       date: new Date(),
       specialty: "neurología",
-      doctor: "Trece"
+      doctor: "Trece",
+      patient: "bruno"
   },
   
 ];

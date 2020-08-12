@@ -1,11 +1,11 @@
 import React from 'react';
 import Dashboard from './Dashboard.js'
-import Appointment from './Appointment.js'
+import UserAppointment from './UserAppointment.js'
 import AddAppointment from './AddAppointment.js'
-import Recipes from './Recipes.js'
+import Prescription from './Prescription.js'
 import MedicalHistory from './MedicalHistory.js'
 import MyAccount from './MyAccount.js'
-
+import RequestPrescription from './RequestPrescription.js'
 
 const items = [
     {
@@ -16,12 +16,12 @@ const items = [
     {
         text: 'Turnos',
         route: 'appointment',
-        component: Appointment
+        component: UserAppointment
     },
     {
         text: 'Recetas',
-        route: 'recipes',
-        component: Recipes
+        route: 'prescription',
+        component: Prescription
     },
     {
         text: 'Historial',
@@ -29,8 +29,12 @@ const items = [
         component: MedicalHistory
     },
     {
-        route: 'appointment/addapointment',
+        route: 'appointment/add',
         component: AddAppointment
+    },
+    {
+        route: 'prescription/request',
+        component: RequestPrescription
     }
 ]
 

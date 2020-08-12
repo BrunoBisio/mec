@@ -79,7 +79,7 @@ class MyAccount extends React.Component {
             <Paper className="MyAccountPaper">
                 <div className="MyAccountHeader">
                     <div className="MyAccountTitle"><Typography variant="h4">Hola {this.state.name}</Typography></div>
-                    <div className="MyAccountDelete"><Button variant="contained">Solicitar baja</Button></div>
+                    <div className="MyAccountDelete"><Button variant="contained" color="primary">Solicitar baja</Button></div>
                 </div>
                 <form noValidate className="MyAccountForm" autoComplete="off">
                     <div className="MyAccountCol ColLeft">
@@ -106,7 +106,7 @@ class MyAccount extends React.Component {
                         </div>
                     </div>
                 </form>
-                <div className="MyAccountButton"><Button variant="contained" onClick={this.updateUser}>Guardar</Button></div>
+                <div className="MyAccountButton"><Button variant="contained" color="primary" onClick={this.updateUser}>Guardar</Button></div>
             </Paper>
         );
     }
