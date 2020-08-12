@@ -3,72 +3,62 @@ import { Button } from '@material-ui/core';
 import '../css/styles/Header.scss'
 import Grid from '@material-ui/core/Grid';
 import MaterialTable from "material-table";
-import DeleteOutline from '@material-ui/icons/DeleteOutline';
+import SaveAltIcon from '@material-ui/icons/SaveAlt';
 import '../css/styles/Appointment.scss'
 
 function arrayRemove(array, value) { return array.filter(function(item){ return item !== value; });}
 
 
-class Appointment extends React.Component {
+class Recipes extends React.Component {
     constructor(props){
         super(props);
         this.state = {data:[
             {   
                 id: 1,
                 date: new Date(),
-                specialty: "Oncologia",
-                medicName: "Wilson"
+                description: "Paracetamol x200"
             },
-            {
-                id: 2,
-                date: new Date(),
-                specialty: "Problemas Generales",
-                medicName: "House"
-            },
-            {
-                id: 3,
-                date: new Date(),
-                specialty: "neurología",
-                medicName: "Trece"
-            },
+            {   
+              id: 1,
+              date: new Date(),
+              description: "Marihuana x200kg por dia"
+          },
+          {   
+            id: 1,
+            date: new Date(),
+            description: "Morfina x200cc x hora"
+        },
             
           ]};
     }
 
-    addAppointment(newAppointment) {
-      let localArray = this.state.data;
-      localArray.push(newAppointment);
-      this.setState((state,props) => state.data = localArray);
-    }
 
     removeAppointment(row) {
         const newData = arrayRemove(this.state.data, row);
         this.setState((state,props) => state.data = newData);
     }
-
     render() {
         return (
             <Grid container xs={12} className="AppointmentGrid">
                 <Grid item xs={6}>
                  <MaterialTable 
                 
-                 title="Turnos"
+                 title="Recetas"
                  columns={[
             { title: "Fecha", field: "date", type: "datetime" },
-            { title: "Especialidad", field: "specialty" },
-            { title: "Medico", field: "medicName" },
+            { title: "Descripcion", field: "description" },
           ]}
           localization={{
             header: {
-              actions: 'Acciones'
+              actions: 'Descargar'
           },
           }}
           data={this.state.data}
           actions={[
             {
-              icon: DeleteOutline,
-              tooltip: 'Borrar Turno',
-              onClick: (event, rowData) => this.removeAppointment(rowData)
+              icon: SaveAltIcon,
+              tooltip: 'Descargar receta',
+              onClick: (event, rowData) => alert("descargando receta: " + rowData.description)
             }
           ]}
           options={{
@@ -76,9 +66,9 @@ class Appointment extends React.Component {
           }}
         /></Grid>
         <Grid item xs={6}>
-        <Button variant="contained" color="primary" className ="NewAppointment">Nuevo Turno</Button></Grid>
+        <Button variant="contained" color="primary" className ="NewAppointment">Nueva Receta</Button></Grid>
             </Grid>)
     }
 }
 
-export default Appointment;
+export default Recipes;
