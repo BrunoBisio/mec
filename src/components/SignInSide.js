@@ -13,7 +13,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import '../css/styles/SignInSide.scss';
-import {fakeAuth} from './Security.js';
+import {login as securityLogin} from '../services/RolRepository.js';
 import {
   useHistory,
   useLocation
@@ -53,13 +53,13 @@ export default function SignInSide() {
   const classes = useStyles();
   let history = useHistory();
   let location = useLocation();
+  const [userName, setUserName] = React.useState();
   let { from } = location.state || { from: { pathname: "/" } };
   console.log(from);
   console.log(location);
   let login = () => {
-    fakeAuth.authenticate(() => {
-      history.replace(from);
-    });
+    securityLogin(userName)
+    history.replace(from);
   };
 
   return (
@@ -73,7 +73,7 @@ export default function SignInSide() {
           </Avatar>
           <Typography component="h1" variant="h5">Sign in</Typography>
           <form className={classes.form} noValidate>
-            <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus />
+            <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" onChange={(event) => setUserName(event.target.value)} autoFocus />
             <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
             <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me"/>
             <Button onClick={login} type="button" variant="contained" color="primary" className="SingInButton"> Sign In</Button>

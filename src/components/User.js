@@ -6,6 +6,7 @@ import Prescription from './Prescription.js'
 import MedicalHistory from './MedicalHistory.js'
 import MyAccount from './MyAccount.js'
 import RequestPrescription from './RequestPrescription.js'
+import {getUser as GetUser} from '../services/RolRepository.js';
 
 const items = [
     {
@@ -41,7 +42,7 @@ const items = [
 class User extends React.Component {
 
     render() {
-        return (<Dashboard drawerItems={items}></Dashboard>)
+        return (<Dashboard drawerItems={GetUser().rol.access}></Dashboard>)
     }
 }
 

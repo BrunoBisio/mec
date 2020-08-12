@@ -12,7 +12,7 @@ import {
   
 function RenderRoutes(props){
     const { path } = useRouteMatch();
-    const routes = props.items.map((item,index)=> 
+    const routes = props.items.filter(item => item.component).map((item,index)=> 
         <Route key={index} path={`${path}/${item.route}`} component={item.component} exact></Route>
     )
     return  (<div>{routes}</div>);

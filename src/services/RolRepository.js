@@ -1,141 +1,192 @@
 import React from 'react';
 
-let accesses = [
-    {
-      id: 1,
-      title: 'Alta Paciente',
-      assigned: false
-    },
-    {
-      id: 2,
-      title: 'Baja Paciente',
-      assigned: false
-    },
-    {
-      id: 3,
-      title: 'Mod. Paciente',
-      assigned: false
-    },
-    {
-      id: 4,
-      title: 'Alta Empleado',
-      assigned: false
-    },
-    {
-      id: 5,
-      title: 'Baja Empleado',
-      assigned: false
-    },
-    {
-      id: 6,
-      title: 'Mod. Empleado',
-      assigned: false
-    },
-    {
-      id: 7,
-      title: 'Alta Receta',
-      assigned: false
-    },
-    {
-      id: 8,
-      title: 'Baja Receta',
-      assigned: false
-    },
-    {
-      id: 9,
-      title: 'Lectura Receta',
-      assigned: false
-    },
-    {
-      id: 10,
-      title: 'Alta Turno',
-      assigned: false
-    },
-    {
-      id: 11,
-      title: 'Baja Turno',
-      assigned: false
-    },
-    {
-      id: 12,
-      title: 'Mod. Turno',
-      assigned: false
-    },
-    {
-      id: 13,
-      title: 'Lectura Turno',
-      assigned: false
-    },
-    {
-      id: 14,
-      title: 'Alta Hist. Clinica',
-      assigned: false
-    },
-    {
-      id: 15,
-      title: 'Baja Hist. Clinica',
-      assigned: false
-    },
-    {
-      id: 16,
-      title: 'Mod. Hist. Clinica',
-      assigned: false
-    },
-    {
-      id: 17,
-      title: 'Lectura Hist. Clinica',
-      assigned: false
-    },
-    {
-      id: 18,
-      title: 'Alta Rol',
-      assigned: false
-    },
-    {
-      id: 19,
-      title: 'Baja Rol',
-      assigned: false
-    },
-    {
-      id: 20,
-      title: 'Mod. Rol',
-      assigned: false
-    }
-  ]
+import UserAppointment from '../components/UserAppointment.js'
+import AddAppointment from '../components/AddAppointment.js'
+import Prescription from '../components/Prescription.js'
+import MedicalHistory from '../components/MedicalHistory.js'
+import MyAccount from '../components/MyAccount.js'
+import RequestPrescription from '../components/RequestPrescription.js'
 
-
-const roles = [
-    {
-        id: 1,
-        name: 'Admin',
-        access: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
-    },
-    {
-        id: 2,
-        name: 'Medico',
-        access: [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 21]
-    },
-    {
-        id: 3,
-        name: 'Administrativo',
-        access: [10, 11, 12, 13, 17, 21]
-    },
-    {
-        id: 4,
-        name: 'Paciente',
-        access: [10, 11, 12, 13, 14, 16, 17]
-    }
+let accesses = [{},
+  {
+    id: 1,
+    title: 'Alta Paciente',
+    visible: false
+  },
+  {
+    id: 2,
+    title: 'Baja Paciente',
+    visible: false
+  },
+  {
+    id: 3,
+    title: 'Mod. Paciente',
+    visible: false
+  },
+  {
+    id: 4,
+    title: 'Alta Empleado',
+    visible: false
+  },
+  {
+    id: 5,
+    title: 'Baja Empleado',
+    visible: false
+  },
+  {
+    id: 6,
+    title: 'Mod. Empleado',
+    visible: false
+  },
+  {
+    id: 7,
+    title: 'Alta Receta',
+    visible: false,
+    route: 'prescription/request',
+    component: RequestPrescription
+  },
+  {
+    id: 8,
+    title: 'Baja Receta',
+    visible: false
+  },
+  {
+    id: 9,
+    title: 'Recetas',
+    visible: true,
+    route: 'prescription',
+    component: Prescription
+  },
+  {
+    id: 10,
+    title: 'Alta Turno',
+    visible: false,
+    route: 'appointment/add',
+    component: AddAppointment
+  },
+  {
+    id: 11,
+    title: 'Baja Turno',
+    visible: false
+  },
+  {
+    id: 12,
+    title: 'Mod. Turno',
+    visible: false
+  },
+  {
+    id: 13,
+    title: 'Turnos',
+    visible: true,
+    route: 'appointment',
+    component: UserAppointment
+  },
+  {
+    id: 14,
+    title: 'Alta Hist. Clinica',
+    visible: false
+  },
+  {
+    id: 15,
+    title: 'Baja Hist. Clinica',
+    visible: false
+  },
+  {
+    id: 16,
+    title: 'Mod. Hist. Clinica',
+    visible: false
+  },
+  {
+    id: 17,
+    title: 'Historial',
+    visible: true,
+    route: 'history',
+    component: MedicalHistory
+  },
+  {
+    id: 18,
+    title: 'Alta Rol',
+    visible: false
+  },
+  {
+    id: 19,
+    title: 'Baja Rol',
+    visible: false
+  },
+  {
+    id: 20,
+    title: 'Mod. Rol',
+    visible: false
+  },
+  {
+    id: 21,
+    title: 'Cuenta',
+    route: 'account',
+    component: MyAccount,
+    visible: true
+  }
 ]
 
-export function getRoles() {
-    return rol;
-}
+const roles = [{
+    id: 1,
+    name: 'Admin',
+    access: [accesses[1], accesses[2], accesses[3], accesses[4], accesses[5], accesses[6], accesses[7], accesses[8], accesses[9], accesses[10], accesses[11], accesses[12], accesses[13], accesses[14], accesses[15], accesses[16], accesses[17], accesses[18], accesses[19], accesses[20], accesses[21]]
+  },
+  {
+    id: 2,
+    name: 'Medico',
+    access: [accesses[7], accesses[8], accesses[9], accesses[10], accesses[11], accesses[12], accesses[13], accesses[14], accesses[15], accesses[16], accesses[17], accesses[21]]
+  },
+  {
+    id: 3,
+    name: 'Administrativo',
+    access: [accesses[10], accesses[11], accesses[12], accesses[13], accesses[17], accesses[21]]
+  },
+  {
+    id: 4,
+    name: 'Paciente',
+    access: [accesses[10], accesses[11], accesses[12], accesses[13], accesses[14], accesses[16], accesses[17]]
+  }
+]
+
+const users = [{
+      name: "aragon",
+      rol: roles[1]
+    },
+    {
+      name: "boromir",
+      rol: roles[3]
+    },
+    {
+      name: "sauron",
+      rol: roles[2]
+    }
+];
+
+let user = null;
+
 
 export function getAccesses() {
-    return accesses;
+  return accesses;
+}
+
+export function login(username) {
+    user = users.filter(user  => user.name == username)[0]
+}
+
+export function isAuthenticated() {
+  return user;
+}
+export function getUser() {
+  return user;
+}
+export function singout() {
+  user = null;
 }
 
 export function hasAccess(role, viewTitle) {
-    const currentView = accesses.find((acc) => { return acc.title == viewTitle });
-    return role.access.indexOf(currentView.id) > -1
+  const currentView = accesses.find((acc) => {
+    return acc.title == viewTitle
+  });
+  return role.access.indexOf(currentView.id) > -1
 }
