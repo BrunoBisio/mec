@@ -148,18 +148,44 @@ const roles = [{
     access: [accesses[10], accesses[11], accesses[12], accesses[13], accesses[14], accesses[16], accesses[17]]
   }
 ]
+ 
 
-const users = [{
-      name: "aragon",
+const users = [
+  {
+      name: "Aragon",
       rol: roles[1]
     },
     {
-      name: "boromir",
+      name: "Boromir",
       rol: roles[3]
     },
     {
-      name: "sauron",
+      name: "Sauron",
+      rol: roles[0]
+    },
+    {
+      name: "Gimli",
       rol: roles[2]
+    },
+    {
+      name: "Tauriel",
+      rol: roles[1]
+    },
+    {
+      name: "Legolas",
+      rol: roles[1]
+    },
+    {
+      name: "Gandalf",
+      rol: roles[1]
+    },
+    {
+      name: "Boromir",
+      rol: roles[1]
+    },
+    {
+      name: "Arwen",
+      rol: roles[1]
     }
 ];
 
@@ -171,7 +197,7 @@ export function getAccesses() {
 }
 
 export function login(username) {
-    user = users.filter(user  => user.name == username)[0]
+    user = users.filter(user  => user.name.toUpperCase() == username.toUpperCase())[0]
 }
 
 export function isAuthenticated() {
