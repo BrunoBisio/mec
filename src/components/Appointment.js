@@ -35,11 +35,11 @@ class Appointment extends React.Component {
           ]};
     }
 
-
     removeAppointment(row) {
         const newData = arrayRemove(this.state.data, row);
         this.setState((state,props) => state.data = newData);
     }
+
     render() {
         return (
             <Grid container xs={12} className="AppointmentGrid">
