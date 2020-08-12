@@ -11,12 +11,12 @@ function DrawerItems(props){
     return (
         <List>
             {props.items && props.items.filter((item)=> item.text).map((item, index) => (
-                <ListItem button key={index}>
                 <Link to={`${path}/${item.route}`}>
-                    <ListItemIcon>{item.icon}</ListItemIcon>
-                    <ListItemText primary={item.text} />
-                    </Link>
-                </ListItem>
+                    <ListItem button key={index}>
+                        {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}
+                        <ListItemText primary={item.text} />
+                    </ListItem>
+                </Link>
             ))}
         </List>
     )

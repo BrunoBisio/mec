@@ -4,12 +4,14 @@ import Appointment from './Appointment.js'
 import AddAppointment from './AddAppointment.js'
 import Recipes from './Recipes.js'
 import MedicalHistory from './MedicalHistory.js'
+import MyAccount from './MyAccount.js'
 
 
 const items = [
     {
-        text: 'Cuentas',
-        route: 'account'
+        text: 'Cuenta',
+        route: 'account',
+        component: MyAccount
     },
     {
         text: 'Turnos',

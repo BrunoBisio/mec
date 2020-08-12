@@ -1,5 +1,6 @@
 import React from 'react';
 import {Typography, TextField, Paper, Button, MenuItem } from '@material-ui/core';
+import '../css/styles/MyAccount.scss';
 
 let dummyInfo = {
     name: 'Aragon',
@@ -64,6 +65,15 @@ class MyAccount extends React.Component {
     
     handleCelChange = (event, value) => { this.setState({ cellphone: event.target.value }); };
 
+    updateUser = () => { 
+        dummyInfo.insurance = this.state.insurance;
+        dummyInfo.city = this.state.city;
+        dummyInfo.address = this.state.address;
+        dummyInfo.mail = this.state.mail;
+        dummyInfo.telephone = this.state.telephone;
+        dummyInfo.cellphone = this.state.cellphone;
+    }
+
     render() {
         return (
             <Paper className="MyAccountPaper">
@@ -94,9 +104,9 @@ class MyAccount extends React.Component {
                             <TextField label="Telefono" value={this.state.telephone} onChange={this.handleTelChange}></TextField>
                             <TextField label="Celular" value={this.state.cellphone} onChange={this.handleCelChange} ></TextField>
                         </div>
-                        <Button variant="contained">Guardar</Button>
                     </div>
                 </form>
+                <div className="MyAccountButton"><Button variant="contained" onClick={this.updateUser}>Guardar</Button></div>
             </Paper>
         );
     }

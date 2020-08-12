@@ -33,7 +33,6 @@ function App() {
         <LoggedIn></LoggedIn>
         </PrivateRoute> 
         <PrivateRoute path="/user"><User></User></PrivateRoute>
-        <Route path="/appointment"><Appointment></Appointment></Route>
         <Route path="/MyAccount"><MyAccount></MyAccount></Route>
       </Switch>
     </div>

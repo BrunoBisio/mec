@@ -1,34 +1,54 @@
-.MyAccountForm {
+@import './global.scss';
+
+.MyAccountPaper {
+  box-shadow: none !important;
+  margin: 20px;
+
+  button {
+    background-color: $golden;
+    color: white;
+  }
+
+  .MyAccountForm {
     display: flex;
-    margin: 0 20%;
     justify-content: center;
+    margin-top: 3vh;
   }
   
   .MyAccountCol {
     display: grid;
-  }
+    width: 40%;
+    &.ColRight {
+      margin-left: 5vw;
+    }
   
-  .MyAccountCol div {
-    width: 15vw;
-    margin: 5px;
-  }
+    div {
+      width: 100%;
+      margin: 10px;
+    }
   
-  .MyAccountCol button {
-    width: 5vw;
-    justify-self: right;
-    padding: 0;
-  }
-  
-  .MyAccountCol.ColRight {
-    margin-left: 5vw;
+    button {
+      width: 5vw;
+      justify-self: right;
+      padding: 0;
+    }
   }
   
   .MyAccountHeader {
     display: flex;
-     margin: 0 20%;
-    justify-content: center;
-  }
+    
+    .MyAccountTitle {
+      width: 50%;
+      text-align: initial;
+    }
   
-  /*.MyAccountHeader h4 {
-      
-  }*/
+    .MyAccountDelete {
+      width: 50%;
+      text-align: end;
+    }
+  }
+
+  .MyAccountButton {
+    text-align: right;
+  }
+}
