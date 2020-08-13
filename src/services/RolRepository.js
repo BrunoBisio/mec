@@ -11,8 +11,9 @@ import InnerAppointment from '../components/InnerAppointment.js';
 import UDEmployee from '../components/UDEmploye'
 import CheckPatient from '../components/CheckPatient';
 import SetAppointments from '../components/SetAppointments.js';
-import ABMRole from '../components/ABMRole'
-import ABMPatients from '../components/ABMPatients'
+import ABMRole from '../components/ABMRole.js'
+import ABMPatients from '../components/ABMPatients.js'
+import ManagePrescriptions from '../components/ManagePrescriptions.js'
 
 function arrayRemove(array, value) { return array.filter(function(item){ return item !== value; });}
 let accesses = [{},
@@ -157,6 +158,13 @@ let accesses = [{},
     route: 'employee/setAppointment',
     component: SetAppointments,
     visible: false
+  },
+  {
+    id: 24,
+    title: 'Administrar Recetas',
+    route: 'doctor/managePrescriptions',
+    component: ManagePrescriptions,
+    visible: true
   }
 ]
 
@@ -164,13 +172,13 @@ const roles = [{
     id: 1,
     name: 'Admin',
     defaultView: accesses[1],
-    access: [accesses[1], accesses[2], accesses[3], accesses[4], accesses[5], accesses[6], accesses[7], accesses[8], accesses[9], accesses[10], accesses[11], accesses[12], accesses[13], accesses[14], accesses[15], accesses[16], accesses[17], accesses[18], accesses[19], accesses[20], accesses[22], accesses[23]]
+    access: [accesses[1], accesses[2], accesses[3], accesses[4], accesses[5], accesses[6], accesses[7], accesses[8], accesses[9], accesses[10], accesses[11], accesses[12], accesses[13], accesses[14], accesses[15], accesses[16], accesses[17], accesses[18], accesses[19], accesses[20], accesses[22], accesses[23], accesses[24]]
   },
   {
     id: 2,
     name: 'Medico',
     defaultView: accesses[12],
-    access: [accesses[7], accesses[8], accesses[9], accesses[10], accesses[11], accesses[12], accesses[13], accesses[14], accesses[15], accesses[16], accesses[17], accesses[21], accesses[22], accesses[23]]
+    access: [accesses[7], accesses[8], accesses[9], accesses[10], accesses[11], accesses[12], accesses[13], accesses[14], accesses[15], accesses[16], accesses[17], accesses[21], accesses[22], accesses[23], accesses[24]]
   },
   {
     id: 3,

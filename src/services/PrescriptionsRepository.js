@@ -3,7 +3,7 @@ import React from 'react';
 const prescriptions = [
     {   
         id: 1,
-        date: 10/8/2020,
+        date: "10/8/2020",
         doc: '123456',
         name: 'Frodo',
         lastName: 'Baggins',
@@ -13,7 +13,7 @@ const prescriptions = [
     },
     {   
         id: 2,
-        date: 12/8/2020,
+        date: "12/8/2020",
         doc: '123456',
         name: 'Frodo',
         lastName: 'Baggins',
@@ -23,7 +23,7 @@ const prescriptions = [
     },
     {   
         id: 3,
-        date: 12/8/2020,
+        date: "12/8/2020",
         doc: '000002',
         name: 'Galadriel',
         lastName: 'del bosque',
@@ -33,22 +33,22 @@ const prescriptions = [
     },
     {   
         id: 4,
-        date: 12/8/2020,
+        date: "12/8/2020",
         doc: '123456',
         name: 'Frodo',
         lastName: 'Baggins',
         description: "Clonazepam 10mg",
-        comment: "",
+        comment: "algun comentario",
         status: "pending"
     },
     {   
         id: 5,
-        date: 13/8/2020,
+        date: "13/8/2020",
         doc: '000002',
         name: 'Galadriel',
         lastName: 'del bosque',
         description: "agua mágica",
-        comment: "",
+        comment: " no me quedan muchas ideas, buenas noches",
         status: "pending"
     }
 ]
@@ -60,7 +60,6 @@ export function add(prescription) {
         date: new Date(),
         description: prescription.description,
         comment: prescription.description,
-        specialty: prescription.specialty,
         status: "pending"
     });
 }

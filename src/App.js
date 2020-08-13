@@ -12,7 +12,7 @@ import LoggedIn from './components/LoggedIn.js';
 import PrivateRoute from './components/Security.js';
 import UserAppointment from './components/UserAppointment';
 import User from './components/User.js';
-import SetAppointments from './components/SetAppointments.js';
+import ManagePrescriptions from './components/ManagePrescriptions.js';
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
         <LoggedIn></LoggedIn>
         </PrivateRoute> 
         <PrivateRoute path="/user"><User></User></PrivateRoute>
-        <Route path="/pruebaBruno"><SetAppointments></SetAppointments></Route>
+        <Route path="/pruebaBruno"><ManagePrescriptions></ManagePrescriptions></Route>
       </Switch>
     </div>
   );

@@ -1,0 +1,19 @@
+.PrescriptionContainer {
+    display: flex;
+    padding: 30px;
+}
+
+.PrescriptionColumn {
+  height: 30vh;
+  display: grid;
+  width: 50%;
+}
+
+.PrescriptionColumn > div {
+    width: 75%;
+}
+
+.PrescriptionButtonContainer {
+  padding: 30px
+}
+
