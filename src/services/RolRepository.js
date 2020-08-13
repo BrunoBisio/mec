@@ -10,6 +10,7 @@ import AddEmployee from '../components/AddEmploye'
 import InnerAppointment from '../components/InnerAppointment.js';
 import UDEmployee from '../components/UDEmploye'
 import CheckPatient from '../components/CheckPatient';
+import SetAppointments from '../components/SetAppointments.js';
 
 let accesses = [{},
   {
@@ -141,23 +142,30 @@ let accesses = [{},
     route: 'checkPatient',
     component: CheckPatient,
     visible: true
+  },
+  {
+    id: 23,
+    title: 'Alta Turno Empleado',
+    route: 'employee/setAppointment',
+    component: SetAppointments,
+    visible: false
   }
 ]
 
 const roles = [{
     id: 1,
     name: 'Admin',
-    access: [accesses[1], accesses[2], accesses[3], accesses[4], accesses[5], accesses[6], accesses[7], accesses[8], accesses[9], accesses[10], accesses[11], accesses[12], accesses[13], accesses[14], accesses[15], accesses[16], accesses[17], accesses[18], accesses[19], accesses[20], accesses[21]]
+    access: [accesses[1], accesses[2], accesses[3], accesses[4], accesses[5], accesses[6], accesses[7], accesses[8], accesses[9], accesses[10], accesses[11], accesses[12], accesses[13], accesses[14], accesses[15], accesses[16], accesses[17], accesses[18], accesses[19], accesses[20], accesses[21], accesses[22], accesses[23]]
   },
   {
     id: 2,
     name: 'Medico',
-    access: [accesses[7], accesses[8], accesses[9], accesses[10], accesses[11], accesses[12], accesses[13], accesses[14], accesses[15], accesses[16], accesses[17], accesses[21]]
+    access: [accesses[7], accesses[8], accesses[9], accesses[10], accesses[11], accesses[12], accesses[13], accesses[14], accesses[15], accesses[16], accesses[17], accesses[21], accesses[22], accesses[23]]
   },
   {
     id: 3,
     name: 'Administrativo',
-    access: [accesses[10], accesses[11], accesses[12], accesses[13], accesses[17], accesses[21]]
+    access: [accesses[10], accesses[11], accesses[12], accesses[13], accesses[17], accesses[21], accesses[22], accesses[23]]
   },
   {
     id: 4,

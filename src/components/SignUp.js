@@ -7,11 +7,14 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
+import MenuItem from '@material-ui/core/MenuItem';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { getInsurances, getDocTypes, getCities, getRaces } from '../services/DropDownRepositories.js';
+import '../css/styles/Signup.scss';
 
 function Copyright() {
   return (
@@ -48,6 +51,52 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  
+  const [docType, setDocType] = React.useState();
+  const [docNumber, setDocNumber] = React.useState();
+  const [name, setName] = React.useState();
+  const [lastName, setLastName] = React.useState();
+  const [birthday, setBirthday] = React.useState();
+  const [insurance, setInsurance] = React.useState();
+  const [city, setCity] = React.useState();
+  const [address, setAddress] = React.useState();
+  const [mail, setMail] = React.useState();
+  const [telephone, setTelephone] = React.useState();
+  const [cellphone, setCellphone] = React.useState();
+/*
+  handleDocTypeChange = (event, obj) => { setDocType(obj.props.value) };
+  handleDocNumberChange = (event, obj) => { setDocType(obj.props.value) };
+  handleNameChange = (event, obj) => { setDocType(obj.props.value) };
+  handleLastNameChange = (event, obj) => { setDocType(obj.props.value) };
+  handleBirthdayChange = (event, obj) => { setDocType(obj.props.value) };
+  handleInsuranceChange = (event, obj) => { setDocType(obj.props.value) };
+  handleDocTypeChange = (event, obj) => { setDocType(obj.props.value) };
+  handleDocTypeChange = (event, obj) => { setDocType(obj.props.value) };
+  handleDocTypeChange = (event, obj) => { setDocType(obj.props.value) };
+
+  handleDocNumberChange = (event, value) => { this.setState({ docNumber: event.target.value }); };
+  handleNameChange = (event, value) => { this.setState({ name: event.target.value }); };
+  handleLastNameChange = (event, value) => { this.setState({ lastName: event.target.value }); };
+  handleBirthdayChange = (event, value) => { this.setState({ birthday: event.target.value }); };
+  handleInsuranceChange = (event, obj) => { this.setState({ insurance: obj.props.value }); };
+  handleCityChange = (event, obj) => { this.setState({ city: obj.props.value}); };
+  handleAddressChange = (event, value) => { this.setState({ address: event.target.value }); };
+  handleMailChange = (event, value) => { this.setState({ mail: event.target.value }); };
+  handleTelChange = (event, value) => { this.setState({ telephone: event.target.value }); };
+  handleCelChange = (event, value) => { this.setState({ cellphone: event.target.value }); };
+*/
+  /*updateUser = () => { 
+    dummyInfo.insurance = this.state.insurance;
+    dummyInfo.city = this.state.city;
+    dummyInfo.address = this.state.address;
+    dummyInfo.mail = this.state.mail;
+    dummyInfo.telephone = this.state.telephone;
+    dummyInfo.cellphone = this.state.cellphone;
+  }*/
+
+  const insurances = getInsurances();
+  const docTypes = getDocTypes();
+  const cities = getCities();
 
   return (
     <Container component="main" maxWidth="xs">
@@ -59,54 +108,31 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate className="SignupForm">
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-            </Grid>
+            <TextField label="Tipo de documento" value={docType} >
+            {docTypes.map((option, index) => (
+               <MenuItem key={index} value={option.codigo}>{option.codigo}</MenuItem>
+              ))}
+            </TextField>
+            <TextField label="Número de documento" value={docNumber}></TextField>
+            <TextField label="Nombre" value={name} ></TextField>
+            <TextField label="Apellido" value={lastName} ></TextField>
+            <TextField label="Fecha de nacimiento" value={birthday} ></TextField>
+            <TextField label="Plan" select value={insurance}  >
+              {insurances.map((option, index) => (
+               <MenuItem key={index} value={option.name}>{option.name}</MenuItem>
+              ))}
+            </TextField>
+            <TextField label="Ciudad" select value={city}  >
+              {cities.map((option, index) => (
+                <MenuItem key={index} value={option.name}>{option.name}</MenuItem>
+              ))}
+            </TextField>
+            <TextField label="Direccion" value={address} ></TextField>
+            <TextField label="Correo electronico" value={mail} ></TextField>
+            <TextField label="Telefono" value={telephone} ></TextField>
+            <TextField label="Celular" value={cellphone}  ></TextField>
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}

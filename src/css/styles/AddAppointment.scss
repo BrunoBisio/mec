@@ -11,3 +11,17 @@
 .tableContainer > div {
     box-shadow: none
 }
+
+.AppAutocompContainer .Document {
+    display: contents;
+}
+
+.AppAutocompContainer .Document .DocType {
+width: 25%;
+}
+
+.AppAutocompContainer .Document .DocNumber {
+width: 75%;
+}
+
+

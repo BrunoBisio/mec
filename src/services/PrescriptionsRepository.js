@@ -1,28 +1,58 @@
 import React from 'react';
 
-let prescriptions = [
+const prescriptions = [
     {   
         id: 1,
-        date: new Date(),
-        description: "Paracetamol x200",
+        date: 10/8/2020,
+        doc: '123456',
+        name: 'Frodo',
+        lastName: 'Baggins',
+        description: "Rivotril 20mg",
         comment: "",
         status: "confirmed"
     },
     {   
         id: 2,
-        date: new Date(),
-        description: "Marihuana x200kg por dia",
+        date: 12/8/2020,
+        doc: '123456',
+        name: 'Frodo',
+        lastName: 'Baggins',
+        description: "agua mágica",
         comment: "",
-        status: "confirmed"
+        status: "pending"
     },
     {   
         id: 3,
-        date: new Date(),
-        description: "Morfina x200cc x hora",
-        comment: "",
+        date: 12/8/2020,
+        doc: '000002',
+        name: 'Galadriel',
+        lastName: 'del bosque',
+        description: "Clonazepam 10mg",
+        comment: "Necesito dormirrrr",
         status: "confirmed"
+    },
+    {   
+        id: 4,
+        date: 12/8/2020,
+        doc: '123456',
+        name: 'Frodo',
+        lastName: 'Baggins',
+        description: "Clonazepam 10mg",
+        comment: "",
+        status: "pending"
+    },
+    {   
+        id: 5,
+        date: 13/8/2020,
+        doc: '000002',
+        name: 'Galadriel',
+        lastName: 'del bosque',
+        description: "agua mágica",
+        comment: "",
+        status: "pending"
     }
 ]
+
 
 export function add(prescription) {
     prescriptions.push({
@@ -37,4 +67,8 @@ export function add(prescription) {
 
 export function get() {
     return prescriptions;
+}
+
+export function getPending() {
+    return prescriptions.filter((p) => { return p.status == 'pending'});
 }
