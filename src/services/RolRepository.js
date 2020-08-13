@@ -6,6 +6,7 @@ import Prescription from '../components/Prescription.js'
 import MedicalHistory from '../components/MedicalHistory.js'
 import MyAccount from '../components/MyAccount.js'
 import RequestPrescription from '../components/RequestPrescription.js'
+import AddEmployee from '../components/AddEmploye'
 
 let accesses = [{},
   {
@@ -26,7 +27,9 @@ let accesses = [{},
   {
     id: 4,
     title: 'Alta Empleado',
-    visible: false
+    visible: true,
+    route: 'employee/add',
+    component: AddEmployee
   },
   {
     id: 5,
