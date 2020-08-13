@@ -1,6 +1,7 @@
 import React from 'react';
 import {Typography, TextField, Paper, Button, MenuItem } from '@material-ui/core';
 import '../css/styles/MyAccount.scss';
+import {getUser} from '../services/RolRepository';
 
 let dummyInfo = {
     name: 'Aragon',
@@ -38,11 +39,11 @@ const cities = [
 class MyAccount extends React.Component {
     constructor(props){
         super(props);
-
+        const user = getUser()
         this.state = {
-            name: dummyInfo.name,
+            name: user.name,
             docTypeAndDoc: dummyInfo.docTypeAndDoc,
-            fullName: dummyInfo.fullName,
+            fullName: user.name,
             birthday: dummyInfo.birthday,
             insurance: dummyInfo.insurance,
             city: dummyInfo.city,

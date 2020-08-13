@@ -16,7 +16,7 @@ class Header extends React.Component {
                     </Grid>
                     <Grid item xs={8} className="HeaderSection">
                         <Grid container item direction="row" justify="flex-end" alignItems="flex-start" spacing={3} xs={12}>
-                            <Link to="/login"><Button variant="contained" color="primary" className ="SingButtons">Mi Middle Earth</Button></Link>
+                            <Link to="/user"><Button variant="contained" color="primary" className ="SingButtons">Mi Middle Earth</Button></Link>
                             <Link to="/singup"><Button variant="contained" color="primary" className ="SingButtons">Quiero asociarme</Button></Link>
                        </Grid>
                     </Grid>
