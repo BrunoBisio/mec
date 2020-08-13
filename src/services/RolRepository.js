@@ -8,6 +8,7 @@ import MyAccount from '../components/MyAccount.js'
 import RequestPrescription from '../components/RequestPrescription.js'
 import AddEmployee from '../components/AddEmploye'
 import InnerAppointment from '../components/InnerAppointment.js';
+import UDEmployee from '../components/UDEmploye'
 
 let accesses = [{},
   {
@@ -35,7 +36,9 @@ let accesses = [{},
   {
     id: 5,
     title: 'Baja Empleado',
-    visible: false
+    visible: true,
+    route: 'employee/update',
+    component: UDEmployee
   },
   {
     id: 6,
@@ -156,7 +159,7 @@ const roles = [{
 ]
  
 
-const users = [
+export const users = [
   {
       name: "Aragon",
       rol: roles[1]
@@ -197,7 +200,9 @@ const users = [
 
 let user = null;
 
-
+export function getRoles() {
+  return roles;
+}
 export function getAccesses() {
   return accesses;
 }

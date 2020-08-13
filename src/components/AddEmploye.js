@@ -38,9 +38,11 @@ const cities = [
 class AddEmployee extends React.Component {
     constructor(props){
         super(props);
-
-        this.state = {
-            name: "",
+        if (props.data) {
+            this.state = props.data
+        } else {
+            this.state = {
+                name: "",
             docTypeAndDoc: "",
             id: "",
             role: "",
@@ -51,6 +53,7 @@ class AddEmployee extends React.Component {
             telephone: "",
             cellphone: ""
         }
+    }
     }
     handleDocTypeAndDocChange = (event) => { this.setState({ docTypeAndDoc: event.target.value})};
     handleIdChange = (event) => { this.setState({ id: event.target.value})};

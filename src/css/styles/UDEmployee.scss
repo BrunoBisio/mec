@@ -1,0 +1,23 @@
+@import 'global';
+
+.Table{
+    width: 50%;
+}
+.AppointmentGrid {
+    padding: 2vh;
+}
+.MuiButton-contained.NewAppointment {
+    background-color: $golden;
+    
+}
+
+.modal{
+    top: 20%;
+    left: 15%;
+    position: absolute;
+    width: 75vw;
+    background-color: $grey;
+    border: 2px solid #000;
+    box-shadow: 5;
+    padding: 2,4,3;
+  }
