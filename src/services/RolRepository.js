@@ -12,13 +12,17 @@ import UDEmployee from '../components/UDEmploye'
 import CheckPatient from '../components/CheckPatient';
 import SetAppointments from '../components/SetAppointments.js';
 import ABMRole from '../components/ABMRole'
+import ABMPatients from '../components/ABMPatients'
 
 function arrayRemove(array, value) { return array.filter(function(item){ return item !== value; });}
 let accesses = [{},
   {
     id: 1,
     title: 'Alta Paciente',
-    visible: false
+    visible: true,
+    route: 'patient/abm',
+    component: ABMPatients
+
   },
   {
     id: 2,

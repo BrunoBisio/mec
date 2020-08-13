@@ -38,7 +38,7 @@ class AddEmployee extends React.Component {
 
             <Paper className="MyAccountPaper">
                 <div className="MyAccountHeader">
-                    <div className="MyAccountTitle"><Typography variant="h4">Alta de empleado</Typography></div>
+                    <div className="MyAccountTitle"><Typography variant="h4">{this.props ? "Modificacion de rol": "Alta de rol"}</Typography></div>
                 </div>
                 <form noValidate className="MyAccountForm" autoComplete="off">
                     <div className="MyAccountCol ColLeft">
