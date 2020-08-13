@@ -48,7 +48,7 @@ class ABMPatients extends React.Component {
     return (
       <Grid container xs={12} className="AppointmentGrid">
         <Grid item xs={8}>
-          <MaterialTable title="Empleados"
+          <MaterialTable title="Pacientes"
             columns={[
               { title: "tipo y numero de documento", field: "docTypeAndDoc" },
               { title: "Nombre", field: "name" },

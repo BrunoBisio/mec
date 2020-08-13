@@ -19,7 +19,7 @@ function arrayRemove(array, value) { return array.filter(function(item){ return 
 let accesses = [{},
   {
     id: 1,
-    title: 'Alta Paciente',
+    title: 'ABM Paciente',
     visible: true,
     route: 'patient/abm',
     component: ABMPatients
@@ -123,7 +123,7 @@ let accesses = [{},
   },
   {
     id: 18,
-    title: 'Alta Rol',
+    title: 'ABM Rol',
     visible: true,
     route: 'admin/role',
     component: ABMRole
@@ -154,10 +154,10 @@ let accesses = [{},
   },
   {
     id: 23,
-    title: 'Alta Turno Empleado',
+    title: 'Alta Turno',
     route: 'employee/setAppointment',
     component: SetAppointments,
-    visible: false
+    visible: true
   },
   {
     id: 24,
@@ -178,13 +178,13 @@ const roles = [{
     id: 2,
     name: 'Medico',
     defaultView: accesses[12],
-    access: [accesses[7], accesses[8], accesses[10], accesses[11], accesses[12], accesses[14], accesses[15], accesses[16], accesses[17], accesses[21], accesses[22], accesses[23], accesses[24]]
+    access: [accesses[7], accesses[8], accesses[10], accesses[11], accesses[12], accesses[14], accesses[15], accesses[16], accesses[21], accesses[22], accesses[23], accesses[24]]
   },
   {
     id: 3,
     name: 'Administrativo',
     defaultView: accesses[23],
-    access: [accesses[10], accesses[11], accesses[12], accesses[13], accesses[17], accesses[21], accesses[22], accesses[23]]
+    access: [accesses[10], accesses[11], accesses[12], accesses[21], accesses[22], accesses[23]]
   },
   {
     id: 4,
