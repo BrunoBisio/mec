@@ -11,7 +11,9 @@ import InnerAppointment from '../components/InnerAppointment.js';
 import UDEmployee from '../components/UDEmploye'
 import CheckPatient from '../components/CheckPatient';
 import SetAppointments from '../components/SetAppointments.js';
+import ABMRole from '../components/ABMRole'
 
+function arrayRemove(array, value) { return array.filter(function(item){ return item !== value; });}
 let accesses = [{},
   {
     id: 1,
@@ -117,7 +119,9 @@ let accesses = [{},
   {
     id: 18,
     title: 'Alta Rol',
-    visible: false
+    visible: true,
+    route: 'admin/role',
+    component: ABMRole
   },
   {
     id: 19,
@@ -249,6 +253,16 @@ let user = null;
 
 export function getRoles() {
   return roles;
+}
+export function removeRoles(role) {
+  roles = arrayRemove(roles, role)
+}
+export function addRole(role) {
+  roles.push(role)
+}
+export function updateRole(role) {
+  const oldRole = roles.filter(element => element.id === role.id)[0]
+  roles[roles.indexOf(oldRole)]=role
 }
 export function getAccesses() {
   return accesses;

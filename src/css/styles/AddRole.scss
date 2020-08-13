@@ -1,0 +1,53 @@
+@import './global.scss';
+
+.MyAccountPaper {
+  box-shadow: none !important;
+  margin: 20px;
+
+  button {
+    background-color: $golden;
+    color: white;
+  }
+
+  .MyAccountForm {
+    display: flex;
+    justify-content: center;
+    margin-top: 3vh;
+  }
+  
+  .MyAccountCol>div {
+    width: 40%;
+    margin: 10px;
+  }
+  .MyAccountCol {
+    display: grid;
+    width: 40%;
+    &.ColRight {
+      margin-left: 5vw;
+    }
+  
+    button {
+      width: 5vw;
+      justify-self: right;
+      padding: 0;
+    }
+  }
+  
+  .MyAccountHeader {
+    display: flex;
+    
+    .MyAccountTitle {
+      width: 50%;
+      text-align: initial;
+    }
+  
+    .MyAccountDelete {
+      width: 50%;
+      text-align: end;
+    }
+  }
+
+  .MyAccountButton {
+    text-align: right;
+  }
+}
