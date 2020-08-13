@@ -1,10 +1,9 @@
 import React from 'react';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import EditIcon from '@material-ui/icons/Edit';
+import MenuIcon from '@material-ui/icons/Menu';
 import { get } from '../services/AppointmentRepository.js';
 import { Grid, TextField, Paper } from '@material-ui/core';
 import MaterialTable from 'material-table';
-import RelativeLink from './RelativeLink.js';
+import MedicalHistory from './MedicalHistory.js';
 
 class InnerAppointment extends React.Component {
     
@@ -16,8 +15,8 @@ class InnerAppointment extends React.Component {
         }
     }
 
-    openAppointment = () => {
-
+    openMedicalHistory = () => {
+        console.log("abrir histria clinica")
     }
 
     render() {
@@ -35,9 +34,9 @@ class InnerAppointment extends React.Component {
                         }}
                         data={this.state.data}
                         actions={[{
-                            icon: EditIcon,
-                            tooltip: 'Editar turno',
-                            onClick: (event, rowData) => this.openAppointment(rowData)
+                            icon: MenuIcon,
+                            tooltip: 'Abrir historia clinica',
+                            onClick: (event, rowData) => this.openMedicalHistory(rowData)
                         }]}
                         options={{
                             actionsColumnIndex: -1
@@ -45,18 +44,7 @@ class InnerAppointment extends React.Component {
                     </MaterialTable>
                 </Grid>
                 <Grid item xs={6}>
-                    <Paper>
-                        <form>
-                            <TextField></TextField>
-                            <TextField></TextField>
-                            <TextField></TextField>
-                            <TextField></TextField>
-                            <TextField></TextField>
-                            <TextField></TextField>
-                            <TextField></TextField>
-                            <TextField></TextField>
-                        </form>
-                    </Paper>
+                    <MedicalHistory userId='123456'></MedicalHistory>
                 </Grid>
             </Grid>
         )

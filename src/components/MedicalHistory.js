@@ -1,100 +1,122 @@
 import React from 'react';
-import { Button } from '@material-ui/core';
+import { Button, Radio, Grid, Checkbox, TextField } from '@material-ui/core';
 import '../css/styles/Header.scss'
-import Grid from '@material-ui/core/Grid';
 import MaterialTable from "material-table";
-import SaveAltIcon from '@material-ui/icons/SaveAlt';
-import '../css/styles/MedicalHistory.scss'
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import IconButton from '@material-ui/core/IconButton';
-import Modal from '@material-ui/core/Modal';
+import '../css/styles/MedicalHistory.scss';
+import { getGeneraInformation, getPatalogicHistory, getNonPatologicHistory } from '../services/MedicalHistoryRepository.js'
 
-function arrayRemove(array, value) { return array.filter(function(item){ return item !== value; });}
+function RadioButtons(props) {
+  
+  const [selectedValue, setSelectedValue] = React.useState(props.value);
 
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+    props.value = selectedValue;
+  };
 
-function CommentModal(props) {
-  return  <div  className="modal">
-  <h2 id="simple-modal-title">Comentario de la fecha: {props.date + ""}</h2>
-  <p id="simple-modal-description">
-    {props.comment}
-  </p>
-</div>
+  return (
+    <div>
+      <Radio
+        checked={selectedValue === '2'}
+        onChange={handleChange}
+        value="2"
+        name="radio-button-demo"
+        label="Frecuentemente"
+      />
+      <Radio
+        checked={selectedValue === '1'}
+        onChange={handleChange}
+        value="1"
+        name="radio-button-demo"
+        label="Esporadico"
+      />
+      <Radio
+        checked={selectedValue === '0'}
+        onChange={handleChange}
+        value="0"
+        name="radio-button-demo"
+        label="Nunca"
+      />
+    </div>
+  )
 }
+
 class MedicalHistory extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
+        
         this.state = {
-          data:[
-            {   
-                id: 1,
-                date: new Date(),
-                specialty: "Oncologia",
-                comment: "algun dia se va a morir",
-                open: false
-            },
-            {   
-              id: 1,
-              date: new Date(),
-              specialty: "Yo que se",
-              comment: "Que esperaba conseguir?",
-              open: false
-          },
-          {   
-            id: 1,
-            date: new Date(),
-            specialty: "PHP con esteroides",
-            comment: "La revolucion volviendo a la misma mierda de antes",
-            open: false
-        },
-            
-          ]};
+          generaInformation: getGeneraInformation(props.userId),
+          patologicalHistory: getPatalogicHistory(props.userId),
+          nonPatologicHistory: getNonPatologicHistory(props.userId)
+        };
     }
 
-    openModal(row, newVal) {
-      const newData = this.state.data;
-      const dataIndex = newData.indexOf(row);
-      const updatedData = newData[dataIndex]; 
-      updatedData.open = newVal;
-      newData[dataIndex] = updatedData;
-      this.setState((state,props) => state.data = newData);
-    }
-    removeAppointment(row) {
-        const newData = arrayRemove(this.state.data, row);
-        this.setState((state,props) => state.data = newData);
-    }
+    handleChange = (event) => {
+      debugger;
+      this.setState({ value: event.target.checked });
+      // updateMedicalHistory("") verificar si recibe campo
+    };
+
+    handleCommentChange = (event, value) => { 
+      debugger;
+      this.setState({ comment: event.target.value }); // verificar si recibe campo
+    };
+
     render() {
         return (
-            <Grid container xs={12} className="AppointmentGrid">
-                <Grid item xs={6}>
-                 <MaterialTable 
-                
-                 title="Recetas"
-                 columns={[
-            { title: "Fecha", field: "date", type: "datetime" },
-            { title: "Especialidad", field: "specialty" },
-            { title: "Comentario", field: "comment",
-                 render: rowData =>  <div><IconButton onClick= {()=> this.openModal(rowData, true)}><MoreHorizIcon/></IconButton><Modal open={rowData.open} onClose={()=>{this.openModal(rowData, false)}}><CommentModal date={rowData.date} comment={rowData.comment}/></Modal></div>},
-          ]}
-          localization={{
-            header: {
-              actions: 'Descargar'
-          },
-          }}
-          data={this.state.data}
-          actions={[
-            {
-              icon: SaveAltIcon,
-              tooltip: 'Descargar receta',
-              onClick: (event, rowData) => alert("descargando receta: " + rowData.description)
-            }
-          ]}
-          options={{
-            actionsColumnIndex: -1
-          }}
-        /></Grid>
-        <Grid item xs={6}>
-        <Button variant="contained" color="primary" className ="NewAppointment">Nueva Receta</Button></Grid>
-            </Grid>)
+          <Grid container xs={12} className="MedicalHistoryContainer">
+            <Grid item xs={12} className="GeneraInformationContainer">
+              <MaterialTable title="Datos Generales"
+                columns={[
+                  { title: "", field: "fieldName" },
+                  { title: "", field: "value" }
+                ]}
+                data={this.state.generaInformation}
+                options={{
+                  paging: false,
+                  search: false,
+                  header: false
+                }}>
+              </MaterialTable>
+            </Grid>
+            <Grid item xs={12} className="">
+              <MaterialTable title="Antecedentes Pátologicos"
+                  columns={[
+                    { title: "", field: "fieldName" },
+                    { title: "", field: "value.active", 
+                      render: rowData => <div><Checkbox name="active" checked={rowData.value.active} onChange={this.handleChange} color="primary"/></div> 
+                    },
+                    { title: "", field: "value.comment", 
+                      render: rowData => <div><TextField name="comment" value={rowData.value.comment} onChange={this.handleCommentChange}></TextField></div>
+                    }
+                  ]}
+                  data={this.state.patologicalHistory}
+                  options={{
+                    paging: false,
+                    search: false,
+                    header: false
+                  }}>
+              </MaterialTable>
+            </Grid>
+            <Grid item xs={12} className="">
+              <MaterialTable title="Datos Generales"
+                  columns={[
+                    { title: "", field: "fieldName" },
+                    { title: "", field: "value.recurrence", render: rowData => <div><RadioButtons value={rowData.value.recurrence}></RadioButtons></div> },
+                    { title: "", field: "value.comment" }
+                    // render: rowData => <div><Checkbox checked={rowData.value} onChange={this.handleChange} name="checkedB" color="primary"/></div>
+                  ]}
+                  data={this.state.nonPatologicHistory}
+                  options={{
+                    paging: false,
+                    search: false,
+                    header: false
+                  }}>
+              </MaterialTable>
+            </Grid>
+          </Grid>
+        )
     }
 }
 
