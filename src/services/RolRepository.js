@@ -172,13 +172,13 @@ const roles = [{
     id: 1,
     name: 'Admin',
     defaultView: accesses[1],
-    access: [accesses[1], accesses[2], accesses[3], accesses[4], accesses[5], accesses[6], accesses[7], accesses[8], accesses[9], accesses[10], accesses[11], accesses[12], accesses[13], accesses[14], accesses[15], accesses[16], accesses[17], accesses[18], accesses[19], accesses[20], accesses[22], accesses[23], accesses[24]]
+    access: [accesses[1], accesses[2], accesses[3], accesses[4], accesses[5], accesses[6], accesses[7], accesses[8], accesses[10], accesses[11], accesses[12], accesses[14], accesses[15], accesses[16], accesses[18], accesses[19], accesses[20], accesses[23], accesses[24]]
   },
   {
     id: 2,
     name: 'Medico',
     defaultView: accesses[12],
-    access: [accesses[7], accesses[8], accesses[9], accesses[10], accesses[11], accesses[12], accesses[13], accesses[14], accesses[15], accesses[16], accesses[17], accesses[21], accesses[22], accesses[23], accesses[24]]
+    access: [accesses[7], accesses[8], accesses[10], accesses[11], accesses[12], accesses[14], accesses[15], accesses[16], accesses[17], accesses[21], accesses[22], accesses[23], accesses[24]]
   },
   {
     id: 3,
@@ -190,7 +190,7 @@ const roles = [{
     id: 4,
     name: 'Paciente',
     defaultView: accesses[21],
-    access: [accesses[10], accesses[11], accesses[12], accesses[13], accesses[14], accesses[16], accesses[17], accesses[21]]
+    access: [accesses[9], accesses[10], accesses[11], accesses[13], accesses[14], accesses[16], accesses[17], accesses[21]]
   }
 ]
  
@@ -199,10 +199,6 @@ export const users = [
   {
       name: "Aragon",
       rol: roles[1]
-    },
-    {
-      name: "Boromir",
-      rol: roles[3]
     },
     {
       name: "Sauron",
