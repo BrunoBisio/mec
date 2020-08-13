@@ -9,6 +9,7 @@ import RequestPrescription from '../components/RequestPrescription.js'
 import AddEmployee from '../components/AddEmploye'
 import InnerAppointment from '../components/InnerAppointment.js';
 import UDEmployee from '../components/UDEmploye'
+import CheckPatient from '../components/CheckPatient';
 
 let accesses = [{},
   {
@@ -133,6 +134,13 @@ let accesses = [{},
     route: 'account',
     component: MyAccount,
     visible: true
+  },
+  {
+    id: 22,
+    title: 'Consultar Paciente',
+    route: 'checkPatient',
+    component: CheckPatient,
+    visible: true
   }
 ]
 
@@ -195,7 +203,38 @@ export const users = [
     {
       name: "Arwen",
       rol: roles[1]
-    }
+    },
+    {
+      id: 1,
+      tipoDoc: 'DH',
+      doc: '123456',
+      name: 'Frodo',
+      lastName: 'Baggins',
+      bDay: "22/9/2968",
+      plan: 'MEC50',
+      ciudad: 3,
+      direccion: 'Bolson cerrado 123, Hobbiton',
+      mail: 'frodoNueveDedos@gmail.com',
+      telefono: '48247864',
+      celular: '15123456',
+      rol: roles[3]
+    },
+    {
+      id: 2,
+      tipoDoc: 'DE',
+      doc: '000002',
+      name: 'Galadriel',
+      lastName: 'del bosque',
+      bDay: "27/12/1362",
+      plan: 'MEC-ELFOS',
+      ciudad: 1,
+      direccion: 'Arbol 49, Bosque de Doriath',
+      mail: 'DamaBlanca@gmail.com',
+      telefono: '27122812',
+      celular: '15456789',
+      rol: roles[3]
+  }
+
 ];
 
 let user = null;
@@ -226,4 +265,8 @@ export function hasAccess(role, viewTitle) {
     return acc.title == viewTitle
   });
   return role.access.indexOf(currentView.id) > -1
+}
+
+export function getPatients() {
+  return users.filter((user) => { return user.rol.id === 4 });
 }
