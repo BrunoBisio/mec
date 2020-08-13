@@ -4,6 +4,7 @@ import { get } from '../services/AppointmentRepository.js';
 import { Grid, TextField, Paper } from '@material-ui/core';
 import MaterialTable from 'material-table';
 import MedicalHistory from './MedicalHistory.js';
+import '../css/styles/InnerAppointment.scss'
 
 class InnerAppointment extends React.Component {
     
@@ -43,7 +44,7 @@ class InnerAppointment extends React.Component {
                         }}>
                     </MaterialTable>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={6} className="MedicalHistory">
                     <MedicalHistory userId='123456'></MedicalHistory>
                 </Grid>
             </Grid>

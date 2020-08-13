@@ -85,10 +85,10 @@ class MedicalHistory extends React.Component {
                   columns={[
                     { title: "", field: "fieldName" },
                     { title: "", field: "value.active", 
-                      render: rowData => <div><Checkbox name="active" checked={rowData.value.active} onChange={this.handleChange} color="primary"/></div> 
+                      render: rowData => <div><Checkbox name="active" checked={rowData.value && rowData.value.active} onChange={this.handleChange} color="primary"/></div> 
                     },
                     { title: "", field: "value.comment", 
-                      render: rowData => <div><TextField name="comment" value={rowData.value.comment} onChange={this.handleCommentChange}></TextField></div>
+                      render: rowData => <div><TextField name="comment" value={rowData.value && rowData.value.comment} onChange={this.handleCommentChange}></TextField></div>
                     }
                   ]}
                   data={this.state.patologicalHistory}
@@ -100,10 +100,10 @@ class MedicalHistory extends React.Component {
               </MaterialTable>
             </Grid>
             <Grid item xs={12} className="">
-              <MaterialTable title="Datos Generales"
+              <MaterialTable title="Antecedentes no Pátalogicos - Consumo de sustancias"
                   columns={[
                     { title: "", field: "fieldName" },
-                    { title: "", field: "value.recurrence", render: rowData => <div><RadioButtons value={rowData.value.recurrence}></RadioButtons></div> },
+                    { title: "", field: "value.recurrence", render: rowData => <div><RadioButtons value={rowData.value && rowData.value.recurrence}></RadioButtons></div> },
                     { title: "", field: "value.comment" }
                     // render: rowData => <div><Checkbox checked={rowData.value} onChange={this.handleChange} name="checkedB" color="primary"/></div>
                   ]}

@@ -7,6 +7,7 @@ import MedicalHistory from '../components/MedicalHistory.js'
 import MyAccount from '../components/MyAccount.js'
 import RequestPrescription from '../components/RequestPrescription.js'
 import AddEmployee from '../components/AddEmploye'
+import InnerAppointment from '../components/InnerAppointment.js';
 
 let accesses = [{},
   {
@@ -75,7 +76,9 @@ let accesses = [{},
   {
     id: 12,
     title: 'Mod. Turno',
-    visible: false
+    visible: true,
+    route: 'doctorAppointment',
+    component: InnerAppointment
   },
   {
     id: 13,
