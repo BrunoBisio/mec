@@ -45,8 +45,8 @@ class UDEmployee extends React.Component {
   render() {
     return (
       <Grid container xs={12} className="AppointmentGrid">
-        <Grid item xs={6}>
-          <MaterialTable title="Turnos"
+        <Grid item xs={12}>
+          <MaterialTable title="Empleados"
             columns={[
               { title: "Id", field: "id" },
               { title: "Nombre", field: "name" },
@@ -58,9 +58,6 @@ class UDEmployee extends React.Component {
             ]}
             data={this.state.data}>
           </MaterialTable>
-        </Grid>
-        <Grid item xs={6}>
-          <RelativeLink route="add"><Button variant="contained" color="primary" className ="NewAppointment">Nuevo Turno</Button></RelativeLink>
         </Grid>
       </Grid>
     )
