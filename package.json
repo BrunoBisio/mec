@@ -17,11 +17,11 @@
     "react-dom": "^16.13.1",
     "react-material-ui-carousel": "^1.8.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
-    "sequelize": "^6.3.4"
+    "react-scripts": "3.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node ./server/bin/www",
+    "start-dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
