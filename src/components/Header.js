@@ -4,7 +4,7 @@ import '../css/styles/Header.scss'
 import logo from '../css/img/Logo-nombre.png';
 import Grid from '@material-ui/core/Grid';
 import {Link} from 'react-router-dom';
-
+import {getUser} from '../services/RolRepository'
 class Header extends React.Component {
    
     render() {
@@ -14,12 +14,14 @@ class Header extends React.Component {
                     <Grid item xs={4} className="HeaderSection">
                         <img src={logo} className="App-logo" alt="logo" />
                     </Grid>
+                    { !getUser() &&
                     <Grid item xs={8} className="HeaderSection">
                         <Grid container item direction="row" justify="flex-end" alignItems="flex-start" spacing={3} xs={12}>
                             <Link to="/user"><Button variant="contained" color="primary" className ="SingButtons">Mi Middle Earth</Button></Link>
                             <Link to="/singup"><Button variant="contained" color="primary" className ="SingButtons">Quiero asociarme</Button></Link>
                        </Grid>
                     </Grid>
+                    }
                 </Grid>
             </div>
         </header>

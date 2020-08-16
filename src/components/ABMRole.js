@@ -14,6 +14,7 @@ import AddRole from './AddRole';
 import Modal from '@material-ui/core/Modal';
 
 
+
 function InternalModal(props) {
   return  <div  className="modal">
             <AddRole data={props.data}/>
@@ -47,7 +48,7 @@ class ABMRole extends React.Component {
     return (
       <Grid container xs={12} className="AppointmentGrid">
         <Grid item xs={8}>
-          <MaterialTable title="Empleados"
+          <MaterialTable title="Roles"
             columns={[
               { title: "Id", field: "id" },
               { title: "Nombre", field: "name" },
