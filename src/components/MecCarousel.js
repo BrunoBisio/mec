@@ -44,7 +44,7 @@ class MecCarousel extends React.Component {
         super(props);
 
         this.state = {
-            autoPlay: false,
+            autoPlay: true,
             timer: 500,
             animation: "fade",
             indicators: true,
