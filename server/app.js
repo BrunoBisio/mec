@@ -18,6 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
  //app.use(express.static(path.join(__dirname, 'public')));
+ app.use('/users', usersRouter);
 app.use(express.static(path.join(__dirname, '/../build')));
 app.all('/', function(req, res, next) {
   const route = __dirname + '/../build/index.html'
@@ -25,7 +26,7 @@ app.all('/', function(req, res, next) {
   res.sendFile(path.join(route));
   //res.render('index', { title: 'Express' });
 });
-app.use('/users', usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
