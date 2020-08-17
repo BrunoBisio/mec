@@ -16,11 +16,11 @@ const MedicalRecordAppointment = db.define('MedicalRecordAppointment', {
     },
     createdAt: {
         type: DataTypes.DATE,
-        defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
     },
     updatedAt: {
         type: DataTypes.DATE,
-        defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
     }
 }, {
     tableName: 'medical_record_appointment'

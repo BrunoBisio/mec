@@ -13,12 +13,12 @@ const MedicDetail = db.define('MedicDetail', {
     createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
     },
     updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
     }
 }, {
     tableName: 'medic_detail'

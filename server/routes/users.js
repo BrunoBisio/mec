@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../database');
-const User = require('../modules/User');
+const User = require('../models/User');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
