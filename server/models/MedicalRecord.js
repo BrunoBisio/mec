@@ -1,7 +1,8 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../database');
 const sequelize = new Sequelize('mysql::memory:');
-const User = require('./User');
+const user = require('./User');
+const mra = require('./MedicalRecordAppointment');
 
 const MedicalRecord = db.define('MedicalRecord', {
   id: {
@@ -104,5 +105,8 @@ const MedicalRecord = db.define('MedicalRecord', {
 }, {
   tableName: 'medical_record',
 });
-MedicalRecord.belongsTo(User);
+
+MedicalRecord.belongsTo(user);
+MedicalRecord.belongsTo(mra);
+
 module.exports = MedicalRecord;
