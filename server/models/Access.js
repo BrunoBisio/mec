@@ -1,14 +1,13 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../database');
-const city = require('./City');
 
-const Clinic = db.define('Clinic', {
-    clinicId: {
+const Access = db.define('Access', {
+    accessId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
     },
-    name: {
+    nameAccess: {
         type: DataTypes.STRING
     },
     createdAt: {
@@ -20,9 +19,7 @@ const Clinic = db.define('Clinic', {
         defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
     }
 }, {
-    tableName: 'clinics'
+    tableName: 'access'
 });
 
-Clinic.belongsTo(city);
-
-module.exports = Clinic;
+module.exports = Access;
