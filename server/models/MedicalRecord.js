@@ -9,18 +9,6 @@ const MedicalRecord = db.define('MedicalRecord', {
     allowNull: false,
     primaryKey: true,
   },
-  // Model attributes are defined here
-  userId: {
-    type: Sequelize.INTEGER,
-
-   references: {
-     // This is a reference to another model
-     model: User,
-     // This is the column name of the referenced model
-     key: 'id'
-   },
-    allowNull: false
-  },
   alergiaActive: {
     type: DataTypes.BOOLEAN
   },
@@ -105,9 +93,16 @@ const MedicalRecord = db.define('MedicalRecord', {
   otroComment: {
     type: DataTypes.STRING
   },
+  createdAt: {
+    type: Sequelize.DATE,
+    defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+  },
+  updatedAt: {
+      type: Sequelize.DATE,
+      defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+  }
 }, {
-  tableName: 'MedicalRecord',
-  timestamps: false
+  tableName: 'medical_record',
 });
-
+MedicalRecord.belongsTo(User);
 module.exports = MedicalRecord;
