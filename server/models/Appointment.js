@@ -13,6 +13,15 @@ const Appointment = db.define('Appointment', {
         type: DataTypes.DATE,
         allowNull: false
     },
+    startHour: {
+        type: DataTypes.TIME
+    },
+    endHour: {
+        type: DataTypes.TIME
+    },
+    completed: {
+        type: DataTypes.BOOLEAN
+    },
     createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
