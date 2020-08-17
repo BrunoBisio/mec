@@ -1,14 +1,15 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../database');
-const city = require('./City');
+const roleXaccess = require('./RoleXAccess');
+const access = require('./Access');
 
-const Clinic = db.define('Clinic', {
-    clinicId: {
+const Role = db.define('Role', {
+    roleId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
     },
-    name: {
+    nameRole: {
         type: DataTypes.STRING
     },
     createdAt: {
@@ -20,9 +21,9 @@ const Clinic = db.define('Clinic', {
         defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
     }
 }, {
-    tableName: 'clinics'
+    tableName: 'roles'
 });
 
-Clinic.belongsTo(city);
+Role.belongsToMany(access, { through: roleXaccess });
 
-module.exports = Clinic;
+module.exports = Role;
