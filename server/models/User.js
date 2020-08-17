@@ -1,5 +1,10 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../database');
+const role = require('./Role');
+const city = require('./City');
+const docType = require('./DocType');
+const race = require('./Race');
+const plan = require('./Plan');
 
 const User = db.define('User', {
   userId: {
@@ -48,9 +53,13 @@ const User = db.define('User', {
       defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
   }
 }, {
-  tableName: 'users',
-  timestamps: false
+  tableName: 'users'
 });
 
-// TODO: associate with rol, city, docType, race and plan
+User.belongsTo(role);
+User.belongsTo(city);
+User.belongsTo(docType);
+User.belongsTo(race);
+User.belongsTo(plan);
+
 module.exports = User;
