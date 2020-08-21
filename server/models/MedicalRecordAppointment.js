@@ -7,6 +7,7 @@ const MedicalRecordAppointment = db.define('MedicalRecordAppointment', {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true
     },
     date: {
         type: DataTypes.DATE

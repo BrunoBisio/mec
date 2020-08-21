@@ -1,12 +1,8 @@
 const User = require('../models/User');
 
-const userService = {
-    getById: function(id) {
-        User.findByPk(id).then(
-            (user) => { return user; },
-            (error) => { console.log(error); }
-        );
-    }
+exports.getById = function(id) {
+    User.findByPk(id).then(
+        (user) => { return user; },
+        (error) => { console.log(error); return; }
+    );
 }
-
-module.exports = userService;
