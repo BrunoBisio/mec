@@ -6,6 +6,7 @@ const Access = db.define('Access', {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true
     },
     nameAccess: {
         type: DataTypes.STRING

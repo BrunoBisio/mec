@@ -8,6 +8,7 @@ const Prescription = db.define('Prescription', {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true
     },
     date: {
         type: DataTypes.STRING

@@ -9,6 +9,7 @@ const MedicalRecord = db.define('MedicalRecord', {
     type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,
+    autoIncrement: true
   },
   alergiaActive: {
     type: DataTypes.BOOLEAN

@@ -6,6 +6,7 @@ const Plan = db.define('Plan', {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true
     },
     planCode: {
         type: DataTypes.STRING

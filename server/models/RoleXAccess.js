@@ -8,6 +8,7 @@ const RoleXAccess = db.define('RoleXAccess', {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
+        autoIncrement: true
     },
     createdAt: {
         type: Sequelize.DATE,

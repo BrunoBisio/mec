@@ -1,12 +1,15 @@
-const userService = require('../services/userService');
-const express = require('express');
-const router = express.Router();
+const UserService = require('../services/userService');
 
 /* GET users by id. */
-router.get('user/:id', function(req, res, next) {
-    const id = req.params.id;
-    const user = userService.getById(id);
-    res.json(user);
-});
-
-module.exports = router;
+exports.getUserById = function(req, res, next) {
+    try {
+        const user = await UserService.getById(req.params.id);
+        if (user) {
+            return res.status(200).json({status: 200, data: user});
+        } else {
+            return res.status(400).json({status: 400, message: 'No existe ningun usuario con ese ID'});
+        }
+    } catch (e) {
+        return res.status(400).json({status: 400, message: e.message});
+    }
+}

@@ -6,6 +6,7 @@ const Specialty = db.define('Specialty', {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true
     },
     name: {
         type: DataTypes.STRING

@@ -9,6 +9,7 @@ const MedicDetail = db.define('MedicDetail', {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true
     },
     createdAt: {
         allowNull: false,

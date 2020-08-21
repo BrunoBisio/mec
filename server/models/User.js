@@ -11,6 +11,7 @@ const User = db.define('User', {
     type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,
+    autoIncrement: true
   },
   password: {
     type: DataTypes.STRING,

@@ -7,6 +7,7 @@ const DocType = db.define('DocType', {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true
     },
     docTypeCode: {
         type: DataTypes.STRING
