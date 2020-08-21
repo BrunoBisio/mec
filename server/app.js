@@ -4,8 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
 var usersRouter = require('./controllers/userController');
+var appointmentsRouter = require('./controllers/appointmentController');
 
 var app = express();
 
@@ -19,6 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
  //app.use(express.static(path.join(__dirname, 'public')));
  app.use('/users', usersRouter);
+ app.use('/appointment', appointmentsRouter);
 app.use(express.static(path.join(__dirname, '/../build')));
 app.all('/', function(req, res, next) {
   const route = __dirname + '/../build/index.html'
@@ -41,7 +42,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  //res.render('error');
 });
 
 module.exports = app;

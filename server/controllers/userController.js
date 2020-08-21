@@ -5,7 +5,7 @@ const router = express.Router();
 /* GET users by id. */
 router.get('user/:id', function(req, res, next) {
     const id = req.params.id;
-    const user = await userService.getById(id);
+    const user = userService.getById(id);
     res.json(user);
 });
 

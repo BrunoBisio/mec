@@ -6,8 +6,9 @@ const User = require('../models/User');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   User.findAll().then(function(users){
-    console.log(users);
-    res.sendStatus(200);
+    console.log("yaaaaaay");
+    res.send(users);
+    //res.sendStatus(200);
   }, function(error) {
     console.log("error: " + error);
   });
