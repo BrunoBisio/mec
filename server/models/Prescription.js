@@ -19,6 +19,10 @@ const Prescription = db.define('Prescription', {
     comment: {
         type: DataTypes.STRING
     },
+    approved: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    },
     filename: {
         type: DataTypes.STRING
     },
