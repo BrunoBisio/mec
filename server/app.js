@@ -8,11 +8,10 @@ const logger = require('morgan');
 const usersRouter = require('./routes/users');
 const appointmentsRouter = require('./routes/appointments');
 const specialtyRouter = require('./routes/specialties');
-const prescriptionRouter = require('./routes/prescription');
+const prescriptionRouter = require('./routes/prescriptions');
 const clinicRouter = require('./routes/clinics');
 const medicalRecordRouter = require('./routes/medicalRecords');
 const docTypeRouter = require('./routes/docTypes');
-const prescriptionRouter = require('./routes/prescriptions');
 
 let app = express();
 
@@ -29,12 +28,8 @@ app.use('/clinic', clinicRouter);
 app.use('/prescription', prescriptionRouter);
 app.use('/medRecord', medicalRecordRouter);
 app.use('/docType', docTypeRouter);
-app.use('/prescription', prescriptionRouter);
 
-
-/**
-* Logica par alevantar React
-*/
+/* Logica par alevantar React */
 app.use(express.static(path.join(__dirname, '/../build')));
 
 app.all('/', function(req, res, next) {
