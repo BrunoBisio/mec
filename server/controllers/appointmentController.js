@@ -8,3 +8,13 @@ exports.getAppointmentsByUser = function(req, res, next) {
       console.log("error: " + error);
     });
   }
+
+
+/* GET appointments without user. */
+exports.getAppointmentsWithoutUser = function(req, res, next) {
+    appointmentService.getAppointmentsWithoutUser().then(function(appointments){
+      res.send(appointments);
+    }, function(error) {
+      console.log("error: " + error);
+    });
+  }
