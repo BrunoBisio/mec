@@ -6,7 +6,7 @@ exports.getAppointmentsByUser = function(req, res, next) {
     appointmentService.getAppointmentsByUser(req.params.userId, req.pagination).then(function(results){
         res.send(pagination.generateResponse(results, req.pagination));
     }, function(error) {
-        res.status(500);
+       next(error);
     });
   }
 
@@ -16,62 +16,61 @@ exports.getAppointmentsWithoutUser = function(req, res, next) {
     appointmentService.getAppointmentsWithoutUser(req.pagination).then(function(results){
       res.send(pagination.generateResponse(results, req.pagination));
     }).catch(function(error) {
-        res.status(400).send({error: error});
+        next(error);
     });
   }
 
 
 
-  /* GET appointments without user. */
+  /* GET appointments with any user. */
 exports.getAppointmentsWithUser = function(req, res, next) {
     appointmentService.getAppointmentsWithUser(req.pagination).then(function(results){
         res.send(pagination.generateResponse(results, req.pagination));
     }, function(error) {
-        res.status(500);
+        next(error);
     });
   }
-/* GET appointments without user. */
+/* GET appointments with any medic and user. */
 exports.getAppointmentsWithMedicAndUser = function(req, res, next) {
     appointmentService.getAppointmentsWithMedicAndUser(req.pagination).then(function(results){
         res.send(pagination.generateResponse(results, req.pagination));
     }, function(error) {
-        res.status(500);
+        next(error);
     });
   }
-/* GET appointments without user. */
+/* GET appointments by medic and with any user. */
 exports.getAppointmentsByMedicAndWithUser = function(req, res, next) {
     appointmentService.getAppointmentsWithoutUser(req.params.medicId, req.pagination).then(function(results){
         res.send(pagination.generateResponse(results, req.pagination));
     }, function(error) {
-        res.status(500);
+        next(error);
     });
   }
 
-  /* GET appointments without user. */
+  /* GET appointments by medic. */
 exports.getAppointmentsByMedic = function(req, res, next) {
     appointmentService.getAppointmentsByMedic(req.params.medicId, req.pagination).then(function(results){
         res.send(pagination.generateResponse(results, req.pagination));
     }, function(error) {
-        res.status(500);
+        next(error);
     });
   }
 
-    /* GET appointments without user. */
+    /* POST appointments. */
 exports.postAppointments = function(req, res, next) {
     appointmentService.createAppointment(req.body).then(function(appointments){
       res.send(appointments);
     }, function(error) {
-        res.status(500);
+        next(error);
     });
   }
 
 
-      /* GET appointments without user. */
+      /* PUT appointments. */
 exports.putAppointments = function(req, res, next) {
     appointmentService.updateAppointment(req.params.appointmentId, req.body).then(function(appointments){
       res.send(appointments);
     }, function(error) {
-        res.status(500);
-      console.log("error: " + error);
+        next(error);
     });
   }
