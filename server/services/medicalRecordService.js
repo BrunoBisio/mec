@@ -1,7 +1,10 @@
 const MedicalRecord = require('../models/MedicalRecord');
 
 exports.getMedicalRecordByPatient = function(patientId){
-    return MedicalRecord.findOne({ where: { UserId: patientId } });
+    return MedicalRecord.findOne({ 
+        where: { UserId: patientId },
+        attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] }
+    });
 }
 
 exports.createMedicalRecord = function(medicalRecord) {

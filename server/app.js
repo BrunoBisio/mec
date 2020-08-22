@@ -10,6 +10,8 @@ const appointmentsRouter = require('./routes/appointments');
 const specialtyRouter = require('./routes/specialties');
 const clinicRouter = require('./routes/clinics');
 const medicalRecordRouter = require('./routes/medicalRecords');
+const docTypeRouter = require('./routes/docTypes');
+const prescriptionRouter = require('./routes/prescriptions');
 
 let app = express();
 
@@ -24,6 +26,8 @@ app.use('/appointment', appointmentsRouter);
 app.use('/specialty', specialtyRouter);
 app.use('/clinic', clinicRouter);
 app.use('/medRecord', medicalRecordRouter);
+app.use('/docType', docTypeRouter);
+app.use('/prescription', prescriptionRouter);
 
 /**
 * Logica par alevantar React
