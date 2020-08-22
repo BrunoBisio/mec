@@ -26,3 +26,10 @@ exports.getAppointmentsByMedicAndWithUser = function(medic) {
 exports.getAppointmentsByMedic = function(medic) {
     return Appointment.findAll({include: [User, {model: MedicDetail, where: {medicId: medic}}]});
 }
+
+exports.createAppointment = function(appointment) {
+    return Appointment.create(appointment);
+}
+exports.updateAppointment = function(appointmentId, appointment) {
+    return Appointment.update(appointment, {where: {id: appointmentId}});
+}

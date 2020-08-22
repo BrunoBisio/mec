@@ -9,5 +9,7 @@ router.get('/user', AppointmentController.getAppointmentsWithUser);
 router.get('/medic/user', AppointmentController.getAppointmentsWithMedicAndUser);
 router.get('/medic/:medicId/user', AppointmentController.getAppointmentsByMedicAndWithUser);
 router.get('/medic/:medicId', AppointmentController.getAppointmentsByMedic);
+router.post('/', AppointmentController.postAppointments);
+router.put('/:appointmentId', AppointmentController.putAppointments);
 
 module.exports = router;
