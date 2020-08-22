@@ -4,30 +4,30 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// routes
 var usersRouter = require('./routes/users');
 var appointmentsRouter = require('./routes/appointments');
+var specialtyRouter = require('./routes/specialties');
 
 var app = express();
-
-// view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
- //app.use(express.static(path.join(__dirname, 'public')));
- app.use('/users', usersRouter);
- app.use('/appointment', appointmentsRouter);
+
+// routers
+app.use('/users', usersRouter);
+app.use('/appointment', appointmentsRouter);
+app.use('/specialty', specialtyRouter);
+
 app.use(express.static(path.join(__dirname, '/../build')));
+
 app.all('/', function(req, res, next) {
   const route = __dirname + '/../build/index.html'
   console.log(route)
   res.sendFile(path.join(route));
-  //res.render('index', { title: 'Express' });
 });
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
