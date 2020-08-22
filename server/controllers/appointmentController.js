@@ -1,10 +1,10 @@
 const AppointmentService = require('../services/appointmentService');
-const pagination = require('../utils/paginationResponse')
+const Pagination = require('../utils/paginationResponse');
 
 /* GET appointments by user. */
 exports.getAppointmentsByUser = function (req, res, next) {
   AppointmentService.getAppointmentsByUser(req.params.userId, req.pagination).then(function (results) {
-    res.send(pagination.generateResponse(results, req.pagination));
+    res.send(Pagination.generateResponse(results, req.pagination));
   }).catch(function (error) {
     next(error);
   });
@@ -13,7 +13,7 @@ exports.getAppointmentsByUser = function (req, res, next) {
 /* GET appointments without user. */
 exports.getAppointmentsWithoutUser = function (req, res, next) {
   AppointmentService.getAppointmentsWithoutUser(req.pagination).then(function (results) {
-    res.send(pagination.generateResponse(results, req.pagination));
+    res.send(Pagination.generateResponse(results, req.pagination));
   }).catch(function (error) {
     next(error);
   });
@@ -22,7 +22,7 @@ exports.getAppointmentsWithoutUser = function (req, res, next) {
 /* GET appointments with any user. */
 exports.getAppointmentsWithUser = function (req, res, next) {
   AppointmentService.getAppointmentsWithUser(req.pagination).then(function (results) {
-    res.send(pagination.generateResponse(results, req.pagination));
+    res.send(Pagination.generateResponse(results, req.pagination));
   }).catch(function (error) {
     next(error);
   });
@@ -31,7 +31,7 @@ exports.getAppointmentsWithUser = function (req, res, next) {
 /* GET appointments with any medic and user. */
 exports.getAppointmentsWithMedicAndUser = function (req, res, next) {
   AppointmentService.getAppointmentsWithMedicAndUser(req.pagination).then(function (results) {
-    res.send(pagination.generateResponse(results, req.pagination));
+    res.send(Pagination.generateResponse(results, req.pagination));
   }).catch(function (error) {
     next(error);
   });
@@ -40,7 +40,7 @@ exports.getAppointmentsWithMedicAndUser = function (req, res, next) {
 /* GET appointments by medic and with any user. */
 exports.getAppointmentsByMedicAndWithUser = function (req, res, next) {
   AppointmentService.getAppointmentsWithoutUser(req.params.medicId, req.pagination).then(function (results) {
-    res.send(pagination.generateResponse(results, req.pagination));
+    res.send(Pagination.generateResponse(results, req.pagination));
   }).catch(function (error) {
     next(error);
   });
@@ -49,7 +49,7 @@ exports.getAppointmentsByMedicAndWithUser = function (req, res, next) {
 /* GET appointments by medic. */
 exports.getAppointmentsByMedic = function (req, res, next) {
   AppointmentService.getAppointmentsByMedic(req.params.medicId, req.pagination).then(function (results) {
-    res.send(pagination.generateResponse(results, req.pagination));
+    res.send(Pagination.generateResponse(results, req.pagination));
   }).catch(function (error) {
     next(error);
   });

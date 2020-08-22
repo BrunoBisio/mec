@@ -1,4 +1,5 @@
 const UserService = require('../services/userService');
+const Pagination = require('../utils/paginationResponse');
 
 /* GET users by id. */
 exports.getUserById = function (req, res, next) {
@@ -11,8 +12,8 @@ exports.getUserById = function (req, res, next) {
 
 /* GET users */
 exports.getUsers = function (_, res, next) {
-    UserService.getUsers().then((users) => {
-        return res.status(200).json({ status: 200, data: users });
+    UserService.getUsers(req.pagination).then((users) => {
+        return res.status(200).json({ status: 200, data: Pagination.generateResponse(users, req.pagination) });
     }).catch((error) => {
         next(error);
     });
@@ -20,8 +21,8 @@ exports.getUsers = function (_, res, next) {
 
 /* GET users by role id. */
 exports.getUserByRoleId = function (req, res, next) {
-    UserService.getUserByRoleId(req.params.roleId).then((user) => {
-        return res.status(200).json({ status: 200, data: user });
+    UserService.getUserByRoleId(req.params.roleId, req.pagination).then((users) => {
+        return res.status(200).json({ status: 200, data: Pagination.generateResponse(users, req.pagination) });
     }).catch((error) => {
         next(error);
     });
