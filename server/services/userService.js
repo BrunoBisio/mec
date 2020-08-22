@@ -11,3 +11,11 @@ exports.getUsers = function() {
 exports.getUserByRoleId = function(roleId) {
     return User.findAll({ where: { RoleId: roleId } });
 }
+
+exports.createUser = function(user) {
+    return User.create(user);
+}
+
+exports.updateUser = function(userId, userUpdated) {
+    return User.update(userUpdated, { where: { id: userId } });
+}
