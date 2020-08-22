@@ -19,6 +19,10 @@ const Prescription = db.define('Prescription', {
     comment: {
         type: DataTypes.STRING
     },
+    approved: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    },
     createdAt: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW
@@ -32,7 +36,7 @@ const Prescription = db.define('Prescription', {
     paranoid: true
 });
 
-Appointment.belongsTo(user);
-Appointment.belongsTo(medicDetail);
+Prescription.belongsTo(user);
+Prescription.belongsTo(medicDetail);
 
 module.exports = Prescription;
