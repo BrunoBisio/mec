@@ -1,15 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../database');
-const appointment = require('../models/Appointment');
+var AppointmentController = require('../controllers/appointmentController');
 
 /* GET users listing. */
-router.get('/appointments/user/:userId', function(req, res, next) {
-  appointment.findAll({where:{userId: req.params.userId}}).then(function(appointments){
-    res.send(appointments);
-  }, function(error) {
-    console.log("error: " + error);
-  });
-});
+router.get('/user/:userId', AppointmentController.getAppointmentsByUser);
 
 module.exports = router;

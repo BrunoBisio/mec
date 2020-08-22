@@ -3,7 +3,7 @@ const UserService = require('../services/userService');
 /* GET users by id. */
 exports.getUserById = function(req, res, next) {
     try {
-        const user = await UserService.getById(req.params.id);
+        const user = UserService.getById(req.params.id);
         if (user) {
             return res.status(200).json({status: 200, data: user});
         } else {
