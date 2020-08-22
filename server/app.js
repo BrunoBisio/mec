@@ -12,6 +12,7 @@ const prescriptionRouter = require('./routes/prescriptions');
 const clinicRouter = require('./routes/clinics');
 const medicalRecordRouter = require('./routes/medicalRecords');
 const docTypeRouter = require('./routes/docTypes');
+const emailRouter = require('./routes/email');
 
 let app = express();
 
@@ -28,6 +29,8 @@ app.use('/clinic', clinicRouter);
 app.use('/prescription', prescriptionRouter);
 app.use('/medRecord', medicalRecordRouter);
 app.use('/docType', docTypeRouter);
+app.use('/email', emailRouter);
+
 
 /* Logica par alevantar React */
 app.use(express.static(path.join(__dirname, '/../build')));
