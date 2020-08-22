@@ -12,5 +12,6 @@ router.get('/medic/:medicId/user', Middleware.paginationMiddleware, AppointmentC
 router.get('/medic/:medicId', Middleware.paginationMiddleware, AppointmentController.getAppointmentsByMedic);
 router.post('/', AppointmentController.postAppointments);
 router.put('/:appointmentId', AppointmentController.putAppointments);
+router.delete('/:appointmentId', AppointmentController.deleteAppointments);
 
 module.exports = router;

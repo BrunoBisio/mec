@@ -20,7 +20,8 @@ const Race = db.define('Race', {
         defaultValue: Sequelize.NOW
     }
 }, {
-    tableName: 'races'
+    tableName: 'races',
+    paranoid: true
 });
 
 module.exports = Race;

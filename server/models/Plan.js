@@ -23,7 +23,8 @@ const Plan = db.define('Plan', {
         defaultValue: Sequelize.NOW
     }
 }, {
-    tableName: 'plan'
+    tableName: 'plan',
+    paranoid: true
 });
 
 module.exports = Plan;

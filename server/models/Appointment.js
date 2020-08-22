@@ -34,7 +34,8 @@ const Appointment = db.define('Appointment', {
         defaultValue: Sequelize.NOW
     }
 }, {
-    tableName: 'appointment'
+    tableName: 'appointment',
+    paranoid: true
 });
 
 Appointment.belongsTo(user);

@@ -28,7 +28,8 @@ const Prescription = db.define('Prescription', {
         defaultValue: Sequelize.NOW
     }
 }, {
-    tableName: 'prescription'
+    tableName: 'prescription',
+    paranoid: true
 });
 
 Appointment.belongsTo(user);

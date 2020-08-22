@@ -42,3 +42,7 @@ exports.createAppointment = function(appointment) {
 exports.updateAppointment = function(appointmentId, appointment) {
     return Appointment.update(appointment, {where: {id: appointmentId}});
 }
+
+exports.deleteAppointment = function(appointmentId) {
+    return Appointment.destroy({where: {id: appointmentId}});
+}

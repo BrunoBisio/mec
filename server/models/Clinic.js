@@ -21,7 +21,8 @@ const Clinic = db.define('Clinic', {
         defaultValue: Sequelize.NOW
     }
 }, {
-    tableName: 'clinics'
+    tableName: 'clinics',
+    paranoid: true
 });
 
 Clinic.belongsTo(city);

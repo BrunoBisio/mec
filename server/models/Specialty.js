@@ -23,7 +23,8 @@ const Specialty = db.define('Specialty', {
         defaultValue: Sequelize.NOW
     }
 }, {
-    tableName: 'specialty'
+    tableName: 'specialty',
+    paranoid: true
 });
   
 module.exports = Specialty;

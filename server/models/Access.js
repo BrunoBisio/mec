@@ -20,7 +20,8 @@ const Access = db.define('Access', {
         defaultValue: Sequelize.NOW
     }
 }, {
-    tableName: 'access'
+    tableName: 'access',
+    paranoid: true
 });
 
 module.exports = Access;

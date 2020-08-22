@@ -22,7 +22,8 @@ const MedicDetail = db.define('MedicDetail', {
         defaultValue: Sequelize.NOW
     }
 }, {
-    tableName: 'medic_detail'
+    tableName: 'medic_detail',
+    paranoid: true
 });
 
 MedicDetail.belongsTo(user);

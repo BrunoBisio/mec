@@ -24,7 +24,8 @@ const MedicalRecordAppointment = db.define('MedicalRecordAppointment', {
         defaultValue: Sequelize.NOW
     }
 }, {
-    tableName: 'medical_record_appointment'
+    tableName: 'medical_record_appointment',
+    paranoid: true
 });
 
 MedicalRecordAppointment.belongsTo(medicDetail);

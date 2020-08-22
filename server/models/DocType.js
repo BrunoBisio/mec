@@ -24,7 +24,8 @@ const DocType = db.define('DocType', {
         defaultValue: Sequelize.NOW
     }
 }, {
-    tableName: 'documentTypes'
+    tableName: 'documentTypes',
+    paranoid: true
 });
 
 DocType.belongsTo(race);

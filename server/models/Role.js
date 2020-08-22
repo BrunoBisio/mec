@@ -22,7 +22,8 @@ const Role = db.define('Role', {
         defaultValue: Sequelize.NOW
     }
 }, {
-    tableName: 'roles'
+    tableName: 'roles',
+    paranoid: true
 });
 
 Role.belongsToMany(access, { through: roleXaccess });

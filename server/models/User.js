@@ -54,7 +54,8 @@ const User = db.define('User', {
       defaultValue: Sequelize.NOW
   }
 }, {
-  tableName: 'users'
+  tableName: 'users',
+  paranoid: true
 });
 
 User.belongsTo(role);

@@ -74,3 +74,17 @@ exports.putAppointments = function(req, res, next) {
         next(error);
     });
   }
+
+/* DELETE appointments. */
+exports.deleteAppointments = function(req, res, next) {
+  appointmentService.deleteAppointment(req.params.appointmentId).then(function(appointments){
+    if(appointments >0 ) {
+      res.send("ok");
+    } else {
+      res.status(404).send("not found");
+    }
+    
+  }, function(error) {
+      next(error);
+  });
+}

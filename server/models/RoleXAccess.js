@@ -19,7 +19,8 @@ const RoleXAccess = db.define('RoleXAccess', {
         defaultValue: Sequelize.NOW
     }
 },{
-    tableName: 'roleXaccess'
+    tableName: 'roleXaccess',
+    paranoid: true
 });
 
 module.exports = RoleXAccess;

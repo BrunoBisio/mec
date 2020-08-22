@@ -105,6 +105,7 @@ const MedicalRecord = db.define('MedicalRecord', {
   }
 }, {
   tableName: 'medical_record',
+  paranoid: true
 });
 
 MedicalRecord.belongsTo(user);

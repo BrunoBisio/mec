@@ -20,7 +20,8 @@ const City = db.define('City', {
         defaultValue: Sequelize.NOW
     }
 }, {
-    tableName: 'city'
+    tableName: 'city',
+    paranoid: true
 });
 
 module.exports = City;
