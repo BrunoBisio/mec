@@ -7,7 +7,7 @@ const race = require('./Race');
 const plan = require('./Plan');
 
 const User = db.define('User', {
-  userId: {
+  id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,

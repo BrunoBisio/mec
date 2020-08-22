@@ -5,7 +5,7 @@ const clinic = require('./Clinic');
 const specialty = require('./Specialty');
 
 const MedicDetail = db.define('MedicDetail', {
-    medicDetailId: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,

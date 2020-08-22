@@ -4,7 +4,7 @@ const user = require('./User');
 const medicDetail = require('./MedicDetail');
 
 const Appointment = db.define('Appointment', {
-    appointmentId: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,

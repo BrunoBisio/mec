@@ -4,7 +4,7 @@ const roleXaccess = require('./RoleXAccess');
 const access = require('./Access');
 
 const Role = db.define('Role', {
-    roleId: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,

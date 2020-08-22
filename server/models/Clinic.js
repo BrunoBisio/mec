@@ -3,7 +3,7 @@ const db = require('../database');
 const city = require('./City');
 
 const Clinic = db.define('Clinic', {
-    clinicId: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,

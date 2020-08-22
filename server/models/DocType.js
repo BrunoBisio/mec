@@ -3,7 +3,7 @@ const db = require('../database');
 const race = require('./Race');
 
 const DocType = db.define('DocType', {
-    docTypeId: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,

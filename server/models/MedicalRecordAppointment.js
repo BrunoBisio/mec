@@ -3,7 +3,7 @@ const db = require('../database');
 const medicDetail = require('./MedicDetail');
 
 const MedicalRecordAppointment = db.define('MedicalRecordAppointment', {
-    mraId: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
