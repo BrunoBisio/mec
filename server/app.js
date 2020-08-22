@@ -20,14 +20,17 @@ app.use(cookieParser());
  //app.use(express.static(path.join(__dirname, 'public')));
  app.use('/users', usersRouter);
  app.use('/appointment', appointmentsRouter);
+
+ /**
+  * Logica par alevantar React
+  */
 app.use(express.static(path.join(__dirname, '/../build')));
 app.all('/', function(req, res, next) {
   const route = __dirname + '/../build/index.html'
   console.log(route)
   res.sendFile(path.join(route));
-  //res.render('index', { title: 'Express' });
 });
-
+// Termina React
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
