@@ -11,3 +11,7 @@ exports.updatePrescription = function(prescriptionId, prescription) {
 exports.getById = function(id) {
     return Prescription.findByPk(id);
 }
+
+exports.createPrescription = function (prescription) {
+    return Prescription.create(prescription);
+}

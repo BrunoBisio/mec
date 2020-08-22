@@ -10,6 +10,9 @@ const appointmentsRouter = require('./routes/appointments');
 const specialtyRouter = require('./routes/specialties');
 const prescriptionRouter = require('./routes/prescription');
 const clinicRouter = require('./routes/clinics');
+const medicalRecordRouter = require('./routes/medicalRecords');
+const docTypeRouter = require('./routes/docTypes');
+const prescriptionRouter = require('./routes/prescriptions');
 
 let app = express();
 
@@ -23,6 +26,9 @@ app.use('/users', usersRouter);
 app.use('/appointment', appointmentsRouter);
 app.use('/specialty', specialtyRouter);
 app.use('/clinic', clinicRouter);
+app.use('/prescription', prescriptionRouter);
+app.use('/medRecord', medicalRecordRouter);
+app.use('/docType', docTypeRouter);
 app.use('/prescription', prescriptionRouter);
 
 
