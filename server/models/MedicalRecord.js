@@ -11,10 +11,10 @@ const MedicalRecord = db.define('MedicalRecord', {
     primaryKey: true,
     autoIncrement: true
   },
-  alergiaActive: {
+  allergyActive: {
     type: DataTypes.BOOLEAN
   },
-  alergiaMedicamento: {
+  allergyDrug: {
     type: DataTypes.STRING
   },
   cardioActive: {
@@ -23,52 +23,52 @@ const MedicalRecord = db.define('MedicalRecord', {
   cardioComment: {
     type: DataTypes.STRING
   },
-  pulmonarActivo: {
+  pulmonaryActive: {
     type: DataTypes.BOOLEAN
   },
-  pulmonarComment: {
+  pulmonaryComment: {
     type: DataTypes.STRING
   },
-  digestivaActivo: {
+  digestiveActive: {
     type: DataTypes.BOOLEAN
   },
-  digestivaComment: {
+  digestiveComment: {
     type: DataTypes.STRING
   },
-  renalesActivo: {
+  renalActive: {
     type: DataTypes.BOOLEAN
   },
-  renalesComment: {
+  renalComment: {
     type: DataTypes.STRING
   },
-  neuronalesActivo: {
+  neurologicalActive: {
     type: DataTypes.BOOLEAN
   },
-  neuronalesComment: {
+  neurologicalComment: {
     type: DataTypes.STRING
   },
-  diabetesActivo: {
+  diabetesActive: {
     type: DataTypes.BOOLEAN
   },
   diabetesComment: {
     type: DataTypes.STRING
   },
-  quirurjicosActivo: {
+  surgicalActive: {
     type: DataTypes.BOOLEAN
   },
-  quirurjicosComment: {
+  surgicalComment: {
     type: DataTypes.STRING
   },
-  medicamentosActivo: {
+  treatmentActive: {
     type: DataTypes.BOOLEAN
   },
-  medicamentosComment: {
+  treatmentComment: {
     type: DataTypes.STRING
   },
-  embarazosActivo: {
+  pregnancyActive: {
     type: DataTypes.BOOLEAN
   },
-  embarazosComment: {
+  pregnancyComment: {
     type: DataTypes.STRING
   },
   alcoholFreq: {
@@ -77,22 +77,22 @@ const MedicalRecord = db.define('MedicalRecord', {
   alcoholComment: {
     type: DataTypes.STRING
   },
-  tabacoFreq: {
+  tobaccoFreq: {
     type: DataTypes.TINYINT
   },
-  tabacoComment: {
+  tobacoComment: {
     type: DataTypes.STRING
   },
-  drogaFreq: {
+  drugsFreq: {
     type: DataTypes.TINYINT
   },
-  drogaComment: {
+  drugsComment: {
     type: DataTypes.STRING
   },
-  otroFreq: {
+  otherFreq: {
     type: DataTypes.TINYINT
   },
-  otroComment: {
+  otherComment: {
     type: DataTypes.STRING
   },
   createdAt: {
