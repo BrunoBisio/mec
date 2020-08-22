@@ -12,7 +12,7 @@ const prescriptionRouter = require('./routes/prescription');
 const clinicRouter = require('./routes/clinics');
 const medicalRecordRouter = require('./routes/medicalRecords');
 const docTypeRouter = require('./routes/docTypes');
-const prescriptionRouter = require('./routes/prescriptions');
+const emailRouter = require('./routes/email');
 
 let app = express();
 
@@ -30,6 +30,7 @@ app.use('/prescription', prescriptionRouter);
 app.use('/medRecord', medicalRecordRouter);
 app.use('/docType', docTypeRouter);
 app.use('/prescription', prescriptionRouter);
+app.use('/email', emailRouter);
 
 
 /**
