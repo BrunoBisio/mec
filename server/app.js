@@ -21,6 +21,9 @@ app.use('/users', usersRouter);
 app.use('/appointment', appointmentsRouter);
 app.use('/specialty', specialtyRouter);
 
+/**
+* Logica par alevantar React
+*/
 app.use(express.static(path.join(__dirname, '/../build')));
 
 app.all('/', function(req, res, next) {
@@ -28,6 +31,7 @@ app.all('/', function(req, res, next) {
   console.log(route)
   res.sendFile(path.join(route));
 });
+// Termina React
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
