@@ -3,21 +3,16 @@ const MedicDetail = require('../models/MedicDetail');
 const User = require('../models/User');
 const { Op } = require("sequelize");
 
-exports.updatePrescription = function(prescriptionId, prescription) {
-    return Prescription.update(prescription, {where: {id: prescriptionId}});
+exports.updatePrescription = function (prescriptionId, prescription) {
+    return Prescription.update(prescription, { where: { id: prescriptionId } });
 }
 
-
-exports.getById = function(id) {
+exports.getById = function (id) {
     return Prescription.findByPk(id);
 }
 
 exports.createPrescription = function (prescription) {
     return Prescription.create(prescription);
-}
-
-exports.updatePrescription = function (prescriptionId, prescription) {
-    return Prescription.update(prescription, { where: { id: prescriptionId } });
 }
 
 exports.getPrescriptionsNotApproved = function (condition) {

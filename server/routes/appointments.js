@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Middleware = require('../middleware/paginationMiddleware')
-var AppointmentController = require('../controllers/appointmentController');
+const Middleware = require('../middleware/paginationMiddleware');
+const AppointmentController = require('../controllers/appointmentController');
 
 /* GET users listing. */
 router.get('/user/:userId', Middleware.paginationMiddleware, AppointmentController.getAppointmentsByUser);
