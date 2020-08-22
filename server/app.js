@@ -1,15 +1,16 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
 // routes
-var usersRouter = require('./routes/users');
-var appointmentsRouter = require('./routes/appointments');
-var specialtyRouter = require('./routes/specialties');
+const usersRouter = require('./routes/users');
+const appointmentsRouter = require('./routes/appointments');
+const specialtyRouter = require('./routes/specialties');
+const clinicRouter = require('./routes/clinics');
 
-var app = express();
+let app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -20,6 +21,7 @@ app.use(cookieParser());
 app.use('/users', usersRouter);
 app.use('/appointment', appointmentsRouter);
 app.use('/specialty', specialtyRouter);
+app.use('/clinic', clinicRouter);
 
 /**
 * Logica par alevantar React
