@@ -23,6 +23,12 @@ const Prescription = db.define('Prescription', {
         type: DataTypes.BOOLEAN,
         defaultValue: false
     },
+    filename: {
+        type: DataTypes.STRING
+    },
+    file: {
+        type: DataTypes.BLOB('Long')
+    },
     createdAt: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW
