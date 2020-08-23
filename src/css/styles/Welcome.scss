@@ -1,0 +1,13 @@
+@import 'global';
+
+.WelcomeContainer {
+
+    .WelcomeTextContainer {
+        padding-top: 3vh;
+    
+        .WelcomeText {
+            background-color: transparent;
+            color: $golden;
+        }
+    }
+}
