@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Grid } from '@material-ui/core';
+import { Button, Grid, Typography, Modal } from '@material-ui/core';
 import CallIcon from '@material-ui/icons/Call';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import EmailIcon from '@material-ui/icons/Email';
@@ -7,22 +7,48 @@ import '../css/styles/ContactButton.scss'
 
 const items = [
     {
-        text: 'Telefono',
-        icon: <CallIcon/>
+        Text: 'Telefono',
+        Icon: <CallIcon/>,
+        Title: 'Habla con un operador',
+        Info: '0666-6660'
     },
     {
-        text: 'Sucursales',
-        icon: <LocationOnIcon />
+        Text: 'Sucursales',
+        Icon: <LocationOnIcon />,
+        Title: 'Acercate a una sucursal',
+        Info: 'Gondor, La comarca, Mordor, Moria',
     },
     {
-        text: 'Mail',
-        icon: <EmailIcon />
+        Text: 'Mail',
+        Icon: <EmailIcon />,
+        Title: 'Envianos un correo',
+        Info: 'middleEarthClinics@mordor.com',
     }
 ]
 
 function CustomButton(props) {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const open = Boolean(anchorEl);
+
     return (
-        <Button className="ContactButton" startIcon={props.item.icon}>{props.item.text}</Button>
+        <div>
+            <Button onClick={handleClick} className="ContactButton" startIcon={props.item.Icon}>{props.item.Text}</Button>
+            <Modal open={open} onClose={handleClose} className="ContactModal">
+                <div className="modalTextContainer">
+                    <Typography variant="h4" className="modalText title">{props.item.Title}</Typography>
+                    <Typography variant="body1" className="modalText text">{props.item.Info}</Typography>
+                </div>
+            </Modal>
+        </div>
     )
 }
 
