@@ -1,10 +1,16 @@
 const { Sequelize } = require('sequelize');
-
-const connection = new Sequelize('MEC', 'mecadmin', 'root', {
+let connection;
+const scope = process.env.SCOPE
+if(scope === 'production') {
+  connection = new Sequelize(process.env.CLEARDB_DATABASE_URL);
+} else{
+  connection = new Sequelize('MEC', 'mecadmin', 'root', {
     host: 'localhost',
     dialect: 'mysql'
   }
 );
+
+}
 
 connection.sync({ alter: true });
 
