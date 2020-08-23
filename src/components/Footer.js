@@ -9,22 +9,25 @@ import '../css/styles/Footer.scss';
 
 const items = [
     {
-        Text: 'Habla con un operador',
+        Title: 'Habla con un operador',
+        Text: '0666-6660',
         Icon: <CallIcon />
     },
     {
-        Text: 'Acercate a una sucursal',
+        Title: 'Acercate a una sucursal',
+        Text: 'Gondor, La comarca, Mordor, Moria',
         Icon: <LocationOnIcon />
     },
     {
-        Text: 'Envianos un correo',
+        Title: 'Envianos un correo',
+        Text: 'middleEarthClinics@mordor.com',
         Icon: <EmailIcon />
     }
 ]
 
 function ContactListItem(props) {
     return (
-        <ListItem>
+        <ListItem title={props.item.Title}>
             <ListItemIcon>{props.item.Icon}</ListItemIcon>
             <ListItemText primary={props.item.Text} primaryTypographyProps={{ variant: 'caption' }} alignItems="center"></ListItemText>
         </ListItem>

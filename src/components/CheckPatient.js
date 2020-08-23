@@ -70,7 +70,7 @@ class CheckPatient extends React.Component {
                         {
                             icon: EventIcon,
                             tooltip: 'Turnos',
-                            onClick: (event, rowData) => this.openAppointments(event, rowData)
+                            onClick: (event, rowData) => this.openMedicalHistory(event, rowData)
                         },
                     ]}
                     options={{

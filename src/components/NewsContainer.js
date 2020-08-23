@@ -10,12 +10,12 @@ class NewsContainer extends React.Component {
   
     render() {
         const  list = [
-            {title:"testTitle1", content:"testContent1", image:Nazgul},
-            {title:"testTitle2", content:"testContent2", image:MinasMoria},
-            {title:"testTitle3", image:Addicciones},
+            {title:"Nazgul", content:"No dejes que un cortesito de Nazgul arruine tu viaje con amigos.", content2: " ¡Veni a hacer tu control con nostros!", image:Nazgul},
+            {title:"Minas Moria", content:"¿Ya conociste nuestra nueva sucursal en las Minas de Moria?", content2: "Ahora sin Barlog", image:MinasMoria},
+            {title:"testTitle3", content: "Que las adicciones no controlen tu vida", content2: "Conocé nuestros programas de rehabilitación" ,image:Addicciones},
      ]
         const res = list.map( (card, index)=> 
-        <Grid key={index} item xs={12} sm={4}><NewsCard Title={card.title} Content={card.content} Image={card.image}/></Grid>
+        <Grid key={index} item xs={12} sm={4}><NewsCard Title={card.title} Content={card.content} Content2={card.content2} Image={card.image}/></Grid>
         )
         return (
                 <Grid container spacing={2} xs={12} className="MainGrid">
