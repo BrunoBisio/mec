@@ -13,6 +13,7 @@ const clinicRouter = require('./routes/clinics');
 const medicalRecordRouter = require('./routes/medicalRecords');
 const docTypeRouter = require('./routes/docTypes');
 const emailRouter = require('./routes/email');
+const medicDetailRouter = require('./routes/medicDetails');
 
 let app = express();
 
@@ -30,7 +31,7 @@ app.use('/prescription', prescriptionRouter);
 app.use('/medRecord', medicalRecordRouter);
 app.use('/docType', docTypeRouter);
 app.use('/email', emailRouter);
-
+app.use('/medic', medicDetailRouter);
 
 /* Logica par alevantar React */
 app.use(express.static(path.join(__dirname, '/../build')));
@@ -57,7 +58,7 @@ app.use(function(err, req, res, next) {
   error = {
     status: status,
     message: "we have a problem with your request",
-    error: req.app.get('env') !== 'production' ? err : {}
+    error: err // req.app.get('env') !== 'production' ? err : {}
   }
   res.send(error)
 });

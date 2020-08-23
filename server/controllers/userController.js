@@ -11,7 +11,7 @@ exports.getUserById = function (req, res, next) {
 }
 
 /* GET users */
-exports.getUsers = function (_, res, next) {
+exports.getUsers = function (req, res, next) {
     UserService.getUsers(req.pagination).then((users) => {
         return res.status(200).json({ status: 200, data: Pagination.generateResponse(users, req.pagination) });
     }).catch((error) => {

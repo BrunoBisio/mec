@@ -5,12 +5,12 @@ exports.getById = function (id) {
 }
 
 exports.getUsers = function (condition) {
-    return User.findAll(condition);
+    return User.findAndCountAll(condition);
 }
 
 exports.getUserByRoleId = function (roleId, condition) {
     condition.where = { RoleId: roleId }
-    return User.findAll(condition);
+    return User.findAndCountAll(condition);
 }
 
 exports.createUser = function (user) {
