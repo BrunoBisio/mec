@@ -10,6 +10,9 @@ const appointmentsRouter = require('./routes/appointments');
 const specialtyRouter = require('./routes/specialties');
 const prescriptionRouter = require('./routes/prescriptions');
 const clinicRouter = require('./routes/clinics');
+const raceRouter = require('./routes/race');
+const roleRouter = require('./routes/role');
+const cityRouter = require('./routes/city');
 const medicalRecordRouter = require('./routes/medicalRecords');
 const docTypeRouter = require('./routes/docTypes');
 const emailRouter = require('./routes/email');
@@ -27,11 +30,15 @@ app.use('/users', usersRouter);
 app.use('/appointment', appointmentsRouter);
 app.use('/specialty', specialtyRouter);
 app.use('/clinic', clinicRouter);
+app.use('/role', roleRouter);
+app.use('/race', raceRouter);
+app.use('/city', cityRouter);
 app.use('/prescription', prescriptionRouter);
 app.use('/medRecord', medicalRecordRouter);
 app.use('/docType', docTypeRouter);
 app.use('/email', emailRouter);
 app.use('/medic', medicDetailRouter);
+
 
 /* Logica par alevantar React */
 app.use(express.static(path.join(__dirname, '/../build')));
