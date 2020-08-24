@@ -8,5 +8,7 @@ router.get('/:id', UserController.getUserById);
 router.get('/role/:roleId', Middleware.paginationMiddleware, UserController.getUserByRoleId);
 router.post('/', UserController.createUser);
 router.put('/:id', UserController.updateUser);
+router.get('/delete', UserController.getUsersPendingDelete);
+router.delete('/:userId', UserController.deleteUser);
 
 module.exports = router;

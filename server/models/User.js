@@ -52,6 +52,10 @@ const User = db.define('User', {
   updatedAt: {
       type: DataTypes.DATE,
       defaultValue: Sequelize.NOW
+  },
+  deleteRequest: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false
   }
 }, {
   tableName: 'users',

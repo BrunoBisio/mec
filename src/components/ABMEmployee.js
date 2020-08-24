@@ -8,35 +8,36 @@ import '../css/styles/UDEmployee.scss';
 import RelativeLink from './RelativeLink.js';
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
-import {getPatients} from '../services/RolRepository' ;
+import {getEmployees} from '../services/RolRepository' ;
 import {remove} from '../services/UserRepository' ;
 import IconButton from '@material-ui/core/IconButton';
-import AddPatient from './AddPatient';
+import AddEmploye from './AddEmploye';
 import Modal from '@material-ui/core/Modal';
 import ConfirmDelete from './ConfirmDelete';
 
 
 function InternalModal(props) {
   return  <div className="modal">
-            <AddPatient data={props.data}/>
+            <AddEmploye data={props.data}/>
           </div>
 }
 
 function InternalDeleteModal(props) {
   return  <div className="deleteModal">
-            <ConfirmDelete data={props.data} title="Está por eliminar al paciente:"/>
+            <ConfirmDelete data={props.data} title="Está por eliminar al empleado:"/>
           </div>
 }
 
 class ABMPatients extends React.Component {
   constructor(props){
     super(props);
-    this.state = { data:getPatients() ,
-    newPatient: false,
-    deletePatient: false,
-    editPatient: false,
-    newData: null
-  };
+    this.state = { 
+      data:getEmployees(),
+      newPatient: false,
+      deletePatient: false,
+      editPatient: false,
+      newData: null
+    };
   }
   openEditModal(row, newVal) {
     const newData = this.state.data;
@@ -65,14 +66,14 @@ class ABMPatients extends React.Component {
   }
   removeUser(row) {
     remove(row);
-    this.setState((state,props) => state.data = getPatients());
+    this.setState((state,props) => state.data = getEmployees());
   }
 
   render() {
     return (
       <Grid container xs={12} className="AppointmentGrid">
         <Grid item xs={8}>
-          <MaterialTable title="ABM Paciente"
+          <MaterialTable title="ABM Empleado"
             columns={[
               { title: "tipo de documento", field: "docType.docTypeCode" },
               { title: "Numero de documento", field: "docNumber" },
@@ -87,7 +88,7 @@ class ABMPatients extends React.Component {
           </MaterialTable>
         </Grid>
         <Grid xs={4}>
-        <Button variant="contained" color="primary" onClick= {()=>this.openNewModal(true)} className ="NewAppointment">Nuevo paciente</Button>
+        <Button variant="contained" color="primary" onClick= {()=>this.openNewModal(true)} className ="NewAppointment">Nuevo empleado</Button>
         <Modal open={this.state.newPatient} onClose={()=>{this.openNewModal(false)}}><InternalModal data={this.state.newData}/></Modal>
         </Grid>
       </Grid>

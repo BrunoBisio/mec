@@ -1,37 +1,61 @@
 import React from 'react';
 import {Typography, TextField, Paper, Button, MenuItem } from '@material-ui/core';
 import '../css/styles/AddRole.scss'
+import axios from 'axios';
 
 class AddPatient extends React.Component {
     constructor(props){
         super(props);
-        if (props.data) {
-            this.state = props.data
-        } else {
-            this.state = {
-                name: "",
-            docTypeAndDoc: "",
-            id: "",
-            role: "",
-            name: "",
-            surname: "",
-            birthday: "",            
-            mail: "",
-            telephone: "",
-            cellphone: ""
+        this.state = {
+            docTypes: [],
+            races: [],
+            cities: [],
+            plans: [],
+            user: props.data ? props.data : {}
         }
     }
-    }
-    handleDocTypeAndDocChange = (event) => { this.setState({ docTypeAndDoc: event.target.value})};
-    handleIdChange = (event) => { this.setState({ id: event.target.value})};
-    handleNameChange = (event) => { this.setState({ name: event.target.value})};
-    handleSurNameChange = (event) => { this.setState({ surname: event.target.value})};
-    handleBirthdayChange = (event) => { this.setState({ birthday: event.target.value})};
-    handleRoleChange = (event) => { this.setState({ role: event.target.value})};
-    handleTelephoneChange = (event) => { this.setState({ telephone: event.target.value})};
-    handleCellphoneChange = (event) => { this.setState({ cellphone: event.target.value})};
-    handlemailChange = (event) => { this.setState({ mail: event.target.value})};
 
+    componentDidMount() {
+        // const apiUrl = 'http://localhost:3000';
+        axios.all([
+            axios.get('/docType'), // get docTypes
+            axios.get('/city'), // get cities
+            axios.get('/race') // get races
+            // axios.get('/plan'), // TODO
+        ]).then((responses) => {
+            const docTypes = responses[0].data.data;
+            const cities = responses[1].data.data;
+            const races = responses[2].data.data;
+            // const plans = responses[3].data.data;
+            this.setState({ docTypes, cities, races });
+        });
+    }
+
+    handleDocTypeChange = (event, obj) => { this.setState({ docType: obj.props.value}); };
+
+    handleDocNumberChange = (event, value) => { this.setState({ docNumber: event.target.value }); };
+
+    handleNameChange = (event, value) => { this.setState({ name: event.target.value }); };
+
+    handleLastNameChange = (event, value) => { this.setState({ lastName: event.target.value }); };
+
+    handleDateChange = (event, value) => { this.setState({ birthdate: event.target.value }); }; // buscar como es para fecha
+    
+    handleRaceChange = (event, obj) => { this.setState({ race: obj.props.value}); };
+    
+    handlePlanChange = (event, obj) => { this.setState({ role: obj.props.value}); };
+
+    handleCityChange = (event, obj) => { this.setState({ city: obj.props.value}); };
+
+    handleAddressChange = (event, value) => { this.setState({ address: event.target.value }); };
+
+    handleMailChange = (event, value) => { this.setState({ mail: event.target.value }); };
+    
+    handleTelChange = (event, value) => { this.setState({ telephone: event.target.value }); };
+    
+    handleCelChange = (event, value) => { this.setState({ cellphone: event.target.value }); };
+
+    handlePasswordChange = (event, value) => { this.setState({ password: event.target.value }); };
 
     render() {
         return (
@@ -40,22 +64,43 @@ class AddPatient extends React.Component {
                 <div className="MyAccountHeader">
                     <div className="MyAccountTitle"><Typography variant="h4">Alta de empleado</Typography></div>
                 </div>
-                <form noValidate className="MyAccountForm" autoComplete="off">
+                <form noValidate className="MyAccountForm" autoComplete="off" onSubmit={this.updateUser}>
                     <div className="MyAccountCol ColLeft">
-                    <TextField label="Tipo y Nro de doc" value={this.state.docTypeAndDoc} onChange={this.handleDocTypeAndDocChange}></TextField>
-                    <TextField label="Id de empleado" value={this.state.id} onChange={this.handleIdChange} type="number"></TextField>
-                    <TextField label="Nombre" value={this.state.name} onChange={this.handleNameChange}></TextField>
-                    <TextField label="Apellido" value={this.state.surname} onChange={this.handleSurNameChange}></TextField>
-                    <TextField label="Fecha de nacimiento" value={this.state.birthday} onChange={this.handleBirthdayChange} type="date"  InputLabelProps={{shrink: true}}></TextField>
+                        <TextField label="Tipo de documento" value={this.state.user.docType} select onChange={this.handleDocTypeChange}>
+                            {this.state.docTypes.map((option, index) => (
+                                <MenuItem key={index} value={option}>{option.docTypeCode}</MenuItem>
+                            ))}
+                        </TextField>
+                        <TextField label="Número de documento" value={this.state.user.docNumber} onChange={this.handleDocNumberChange}></TextField>
+                        <TextField label="Nombres" value={this.state.user.name} onChange={this.handleNameChange}></TextField>
+                        <TextField label="Apellido" value={this.state.user.lastName} onChange={this.handleLastNameChange}></TextField>
+                        <TextField label="Fecha de nacimiento" value={this.state.user.birthdate} onChange={this.handleDateChange}></TextField>
+                        <TextField label="Raza" value={this.state.user.race} select onChange={this.handleRaceChange}>
+                            {this.state.races.map((option, index) => (
+                                <MenuItem key={index} value={option}>{option.name}</MenuItem>
+                            ))}
+                        </TextField>
+                        <TextField label="Genero" value={this.state.user.gender} onChange={this.handleMailChange}></TextField>
                     </div>
                     <div className="MyAccountCol ColRight">
-                    <TextField label="Rol" value={this.state.role} onChange={this.handleRoleChange}></TextField>
-                    <TextField label="Telefono" value={this.state.telephone} onChange={this.handleTelephoneChange}></TextField>
-                    <TextField label="Celular" value={this.state.cellphone} onChange={this.handleCellphoneChange}></TextField>
-                    <TextField label="Mail" value={this.state.mail} onChange={this.handlemailChange}></TextField>
+                        <TextField label="Plan" select value={this.state.user.plan} onChange={this.handlePlanChange}>
+                            {/*this.state.plans.map((option, index) => (
+                                <MenuItem key={index} value={option}>{option.nameRole}</MenuItem>
+                            ))*/}
+                        </TextField>
+                        <TextField label="Ciudad" select value={this.state.user.city} onChange={this.handleCityChange}>
+                            {this.state.cities.map((option, index) => (
+                                <MenuItem key={index} value={option}>{option.name}</MenuItem>
+                            ))}
+                        </TextField>
+                        <TextField label="Dirección" value={this.state.user.address} onChange={this.handleAddressChange}></TextField>
+                        <TextField label="Correo electronico" value={this.state.user.mail} onChange={this.handleMailChange}></TextField>
+                        <TextField label="Telefono" value={this.state.user.telephone} onChange={this.handleTelChange}></TextField>
+                        <TextField label="Celular" value={this.state.user.cellphone} onChange={this.handleCelChange} ></TextField>
+                        <TextField label="Contraseña" value={this.state.user.password} onChange={this.handlePasswordChange}></TextField>
                     </div>
+                    <div className="MyAccountButton"><Button variant="contained" color="primary" type="submit">Guardar</Button></div>
                 </form>
-                <div className="MyAccountButton"><Button variant="contained" color="primary" onClick={this.updateUser}>Guardar</Button></div>
             </Paper>
         );
     }

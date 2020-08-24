@@ -11,6 +11,7 @@ import NewsContainer from './components/NewsContainer'
 import LoggedIn from './components/LoggedIn.js';
 import PrivateRoute from './components/Security.js';
 import User from './components/User.js';
+import MyAccountAdmin from './components/MyAccountAdmin.js'
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <LoggedIn></LoggedIn>
         </PrivateRoute> 
         <PrivateRoute path="/user"><User></User></PrivateRoute>
+        <Route path="/pruebaBruno"><MyAccountAdmin></MyAccountAdmin></Route>
       </Switch>
     </div>
   );

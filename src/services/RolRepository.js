@@ -4,16 +4,19 @@ import UserAppointment from '../components/UserAppointment.js'
 import AddAppointment from '../components/AddAppointment.js'
 import Prescription from '../components/Prescription.js'
 import MedicalHistory from '../components/MedicalHistory.js'
-import MyAccount from '../components/MyAccount.js'
+// import MyAccount from '../components/MyAccount.js'
 import RequestPrescription from '../components/RequestPrescription.js'
 import AddEmployee from '../components/AddEmploye'
 import InnerAppointment from '../components/InnerAppointment.js';
-import UDEmployee from '../components/UDEmploye'
+// import UDEmployee from '../components/UDEmploye'
 import CheckPatient from '../components/CheckPatient';
 import SetAppointments from '../components/SetAppointments.js';
 import ABMRole from '../components/ABMRole.js'
 import ABMPatients from '../components/ABMPatients.js'
-import ManagePrescriptions from '../components/ManagePrescriptions.js'
+import ManagePrescriptions from '../components/ManagePrescriptions.js';
+import MyAccountAdmin from '../components/MyAccountAdmin.js';
+import PendingDeleteUsers from '../components/PendingDeleteUsers.js';
+import ABMEmployee from '../components/ABMEmployee.js';
 
 function arrayRemove(array, value) { return array.filter(function(item){ return item !== value; });}
 let accesses = [{},
@@ -38,16 +41,16 @@ let accesses = [{},
   {
     id: 4,
     title: 'Alta Empleado',
-    visible: true,
-    route: 'employee/add',
-    component: AddEmployee
+    visible: false,
+    // route: 'employee/add',
+    // component: AddEmployee
   },
   {
     id: 5,
-    title: 'Baja Empleado',
+    title: 'ABM Empleado',
     visible: true,
     route: 'employee/update',
-    component: UDEmployee
+    component: ABMEmployee
   },
   {
     id: 6,
@@ -142,7 +145,7 @@ let accesses = [{},
     id: 21,
     title: 'Cuenta',
     route: 'account',
-    component: MyAccount,
+    component: MyAccountAdmin,
     visible: true
   },
   {
@@ -165,6 +168,13 @@ let accesses = [{},
     route: 'doctor/managePrescriptions',
     component: ManagePrescriptions,
     visible: true
+  },
+  {
+    id: 25,
+    title: 'Solicitud bajas',
+    route: 'admin/pendingDeletes',
+    component: PendingDeleteUsers,
+    visible: true
   }
 ]
 
@@ -172,7 +182,7 @@ const roles = [{
     id: 1,
     name: 'Admin',
     defaultView: accesses[1],
-    access: [accesses[1], accesses[2], accesses[3], accesses[4], accesses[5], accesses[6], accesses[7], accesses[8], accesses[10], accesses[11], accesses[12], accesses[14], accesses[15], accesses[16], accesses[18], accesses[19], accesses[20], accesses[23], accesses[24]]
+    access: [accesses[1], accesses[2], accesses[3], accesses[4], accesses[5], accesses[6], accesses[7], accesses[8], accesses[10], accesses[11], accesses[12], accesses[14], accesses[15], accesses[16], accesses[18], accesses[19], accesses[20], accesses[21], accesses[23], accesses[24], accesses[25]]
   },
   {
     id: 2,
@@ -303,4 +313,8 @@ export function hasAccess(role, viewTitle) {
 
 export function getPatients() {
   return users.filter((user) => { return user.rol.id === 4 });
+}
+
+export function getEmployees() {
+  return users.filter((user) => {return (user.rol.id === 2 || user.rol.id === 3) });
 }

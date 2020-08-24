@@ -1,62 +1,19 @@
 import React, { Component } from 'react';
 import {Typography, TextField, Paper, Button, MenuItem } from '@material-ui/core';
 import '../css/styles/MyAccount.scss';
-import {getUser} from '../services/RolRepository';
+import axios from 'axios'
+import { getUser } from '../services/RolRepository.js';
 
-let dummyInfo = {
-    name: 'Aragon',
-    docTypeAndDoc: 'DU 100988',
-    fullName: 'Aragorn heir of Isildur',
-    birthday: '29/07/1954',
-    insurance: 'MEC50',
-    city: 'Gondor',
-    address: 'Isildur 101',
-    mail: 'Aragorn@orcSlayer.org',
-    telephone: '55443366',
-    cellphone: '01155445555'
-}
-
-const insurances = [
-    { value: 'MEC10' },
-    { value: 'MEC20' },
-    { value: 'MEC30' },
-    { value: 'MEC40' },
-    { value: 'MEC50' },
-    { value: 'MEC-ELFOS' }
-]
-
-const cities = [
-    { value: 'Erebor' },
-    { value: 'Gondor' },
-    { value: 'Hobbiton' },
-    { value: 'Mordor' },
-    { value: 'Moria' },
-    { value: 'Rohan' },
-]
-
-
-
-class MyAccount extends React.Component {
+class MyAccountAdmin extends React.Component {
     constructor(props){
         super(props);
 
         this.state = {
-            id: props.userId,
-            user: {},
+            user: getUser(),
             docTypes: [], 
             cities: [],
             roles: [],
             races: []
-            /*name: user.name,
-            docTypeAndDoc: dummyInfo.docTypeAndDoc,
-            fullName: user.name,
-            birthday: dummyInfo.birthday,
-            insurance: dummyInfo.insurance,
-            city: dummyInfo.city,
-            address: dummyInfo.address,
-            mail: dummyInfo.mail,
-            telephone: dummyInfo.telephone,
-            cellphone: dummyInfo.cellphone*/
         }
     }
 
@@ -87,39 +44,26 @@ class MyAccount extends React.Component {
     handlePasswordChange = (event, value) => { this.setState({ password: event.target.value }); };
 
     componentDidMount() {
-        /*
-            user
-            tipoDocumento
-            races
-            roles
-            cities
-        */
         // const apiUrl = 'http://localhost:3000';
         axios.all([
-            // get user
-            axios.get('/users/' + this.state.id),
-            // get docTypes
-            axios.get('/docType'),
-            // get cities
-            // axios.get('/cities'); // falta
-            // get roles
-            // axios.get('/roles'); // falta
-            // get races
-            // axios.get('/races');
+            axios.get('/docType'), // get docTypes
+            axios.get('/city'), // get cities
+            axios.get('/role'), // get roles
+            axios.get('/race') // get races
         ]).then((responses) => {
-            const user = responses[0].data;
-            const docTypes = responses[1].data;
-            const cities = responses[2].data;
-            const roles = responses[3].data;
-            const races = responses[4].data;
-            this.setState({ user, docTypes, cities, roles, races });
+            const docTypes = responses[0].data.data;
+            const cities = responses[1].data.data;
+            const roles = responses[2].data.data;
+            const races = responses[3].data.data;
+            this.setState({ docTypes, cities, roles, races });
         });
     }
 
-    updateUser = () => { 
+    updateUser = (event) => {
+        event.preventDefault();
         const user = this.state.user;
-        axios.put('/users/' + this.state.id, { user }).then((resp) => {
-
+        axios.put('/users/' + user.id, { user }).then((resp) => {
+            console.log(resp);
         });
     }
 
@@ -127,14 +71,13 @@ class MyAccount extends React.Component {
         return (
             <Paper className="MyAccountPaper">
                 <div className="MyAccountHeader">
-                    <div className="MyAccountTitle"><Typography variant="h4">Hola {this.state.name}</Typography></div>
-                    <div className="MyAccountDelete"><Button variant="contained" color="primary">Solicitar baja</Button></div>
+                    <div className="MyAccountTitle"><Typography variant="h4">Hola {this.state.user.name}</Typography></div>
                 </div>
                 <form noValidate className="MyAccountForm" autoComplete="off" onSubmit={this.updateUser}>
                     <div className="MyAccountCol ColLeft">
                         <TextField label="Tipo de documento" value={this.state.user.docType} select onChange={this.handleDocTypeChange}>
                             {this.state.docTypes.map((option, index) => (
-                                <MenuItem key={index} value={option.value}>{option.value}</MenuItem>
+                                <MenuItem key={index} value={option}>{option.docTypeCode}</MenuItem>
                             ))}
                         </TextField>
                         <TextField label="Número de documento" value={this.state.user.docNumber} onChange={this.handleDocNumberChange}></TextField>
@@ -143,20 +86,20 @@ class MyAccount extends React.Component {
                         <TextField label="Fecha de nacimiento" value={this.state.user.birthdate} onChange={this.handleDateChange}></TextField>
                         <TextField label="Raza" value={this.state.user.race} select onChange={this.handleRaceChange}>
                             {this.state.races.map((option, index) => (
-                                <MenuItem key={index} value={option.value}>{option.value}</MenuItem>
+                                <MenuItem key={index} value={option}>{option.name}</MenuItem>
                             ))}
                         </TextField>
                         <TextField label="Genero" value={this.state.user.gender} onChange={this.handleMailChange}></TextField>
                     </div>
                     <div className="MyAccountCol ColRight">
-                        <TextField label="Rol" select value={this.state.user.role}  onChange={this.handleRoleChange}>
+                        <TextField label="Rol" select value={this.state.user.role} onChange={this.handleRoleChange}>
                             {this.state.roles.map((option, index) => (
-                                <MenuItem key={index} value={option.value}>{option.value}</MenuItem>
+                                <MenuItem key={index} value={option}>{option.nameRole}</MenuItem>
                             ))}
                         </TextField>
-                        <TextField label="Ciudad" select value={this.state.user.city}  onChange={this.handleCityChange}>
+                        <TextField label="Ciudad" select value={this.state.user.city} onChange={this.handleCityChange}>
                             {this.state.cities.map((option, index) => (
-                                <MenuItem key={index} value={option.value}>{option.value}</MenuItem>
+                                <MenuItem key={index} value={option}>{option.name}</MenuItem>
                             ))}
                         </TextField>
                         <TextField label="Dirección" value={this.state.user.address} onChange={this.handleAddressChange}></TextField>
@@ -172,4 +115,4 @@ class MyAccount extends React.Component {
     }
 }
 
-export default MyAccount;
+export default MyAccountAdmin;

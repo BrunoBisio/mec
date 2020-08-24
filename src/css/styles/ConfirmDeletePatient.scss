@@ -1,0 +1,44 @@
+@import 'global';
+
+.confirmDeleteContainer {
+    text-align: center;
+    background-color: pink;
+    padding: 10px;
+    border: red solid 4px;
+  }
+  
+  .userDetails {
+    display: flex;
+    place-content: center;
+    margin: 5px;
+  }
+  
+  .textBox {
+    margin: 5px;
+    padding: 5px;
+    border: solid 1px;
+    background-color: lightgray;
+  }
+  
+  .cancelButton {
+    background-color: grey;
+    margin-right: 15px;
+  }
+  
+  .deleteButton {
+    background-color: $golden;
+  }
+  
+  .confirmDeleteContainer h2 {
+    margin: 5px;
+  }
+  
+  .confirmDeleteContainer h4 {
+    margin: 5px;
+  }
+  
+  .buttonContainer {
+    margin: 5px;
+  }
+  
+  

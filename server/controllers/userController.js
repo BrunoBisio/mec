@@ -45,3 +45,24 @@ exports.updateUser = function (req, res, next) {
         next(error);
     });
 }
+
+/* DELETE appointments. */
+exports.deleteUser = function (req, res, next) {
+    AppointmentService.deleteUser(req.params.userId).then(function (user) {
+      if (user > 0) {
+        res.send("ok");
+      } else {
+        res.status(404).send("not found");
+      }
+    }).catch(function (error) {
+      next(error);
+    });
+  }
+
+exports.getUsersPendingDelete = function (req, res, next) {
+    UserService.getUserForDelete(req.pagination).then((users) => {
+        return res.status(200).json({ status: 200, data: Pagination.generateResponse(users, req.pagination) });
+    }).catch((error) => {
+        next(error);
+    });
+}
