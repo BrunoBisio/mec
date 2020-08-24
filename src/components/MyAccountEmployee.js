@@ -84,10 +84,16 @@ class MyAccount extends React.Component {
                 </div>
                 <form noValidate className="MyAccountForm" autoComplete="off">
                     <div className="MyAccountCol ColLeft">
-                        <TextField label="Tipo y Nro de doc" value={this.state.docTypeAndDoc} InputProps={{readOnly: true}}></TextField>
-                        <TextField label="Nombre y Apellido" value={this.state.fullName} InputProps={{readOnly: true}}></TextField>
+                        <TextField label="Tipo de documento" value={this.state.docTypeAndDoc} InputProps={{readOnly: true}}></TextField>
+                        <TextField label="Número de documento"></TextField>
+                        <TextField label="Nombres" value={this.state.fullName} InputProps={{readOnly: true}}></TextField>
+                        <TextField label="Apellido"></TextField>
                         <TextField label="Fecha de nacimiento" value={this.state.birthday} InputProps={{readOnly: true}}></TextField>
-                        <TextField label="Plan" select value={this.state.insurance}  onChange={this.handleInsuranceChange}>
+                        <TextField label="Raza"></TextField>
+                        <TextField label="Genero"></TextField>
+                    </div>
+                    <div className="MyAccountCol ColRight">
+                        <TextField label="Rol" select value={this.state.insurance}  onChange={this.handleInsuranceChange}>
                             {insurances.map((option, index) => (
                                 <MenuItem key={index} value={option.value}>{option.value}</MenuItem>
                             ))}
@@ -97,14 +103,11 @@ class MyAccount extends React.Component {
                                 <MenuItem key={index} value={option.value}>{option.value}</MenuItem>
                             ))}
                         </TextField>
-                    </div>
-                    <div className="MyAccountCol ColRight">
-                        <div>
-                            <TextField label="Direccion" value={this.state.address} onChange={this.handleAddressChange}></TextField>
-                            <TextField label="Correo electronico" value={this.state.mail} onChange={this.handleMailChange}></TextField>
-                            <TextField label="Telefono" value={this.state.telephone} onChange={this.handleTelChange}></TextField>
-                            <TextField label="Celular" value={this.state.cellphone} onChange={this.handleCelChange} ></TextField>
-                        </div>
+                        <TextField label="Dirección" value={this.state.address} onChange={this.handleAddressChange}></TextField>
+                        <TextField label="Correo electronico" value={this.state.mail} onChange={this.handleMailChange}></TextField>
+                        <TextField label="Telefono" value={this.state.telephone} onChange={this.handleTelChange}></TextField>
+                        <TextField label="Celular" value={this.state.cellphone} onChange={this.handleCelChange} ></TextField>
+                        <TextField label="Contraseña"></TextField>
                     </div>
                 </form>
                 <div className="MyAccountButton"><Button variant="contained" color="primary" onClick={this.updateUser}>Guardar</Button></div>
