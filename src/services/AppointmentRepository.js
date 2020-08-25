@@ -30,8 +30,16 @@ export function push(appointment) {
     appointments.push(appointment);
 }
 
-export function getAppointments (id, roleId) {
-    return appointments;
+export function getAppointments () {
+
+}
+
+export function getAppointmentsByMedic (id) {
+
+}
+
+export function getAppointmentsByUser (id) {
+
 }
 
 export function updateAppointment (appointment) {

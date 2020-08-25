@@ -77,5 +77,9 @@ export function updatePrescription (prescription) {
 }
 
 export function getPrescriptionByUser (userId) {
+    return [];
+}
 
+export function getPrescriptionBySpecialty (specialtyId) {
+    return [];
 }
