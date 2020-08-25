@@ -1,5 +1,6 @@
 import React from 'react';
 
+// gets by roleId: 1, 2 and 3
 export function getEmployee() {
     return [];
 }

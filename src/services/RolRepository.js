@@ -298,7 +298,7 @@ export function login(username) {
 export function isAuthenticated() {
   return user;
 }
-export function getUser() {
+export function getUser(id) {
   return user;
 }
 export function singout() {

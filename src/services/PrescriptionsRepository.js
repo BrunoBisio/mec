@@ -54,7 +54,7 @@ const prescriptions = [
 ]
 
 
-export function add(prescription) {
+export function createPrescription(prescription) {
     prescriptions.push({
         id: prescriptions.length,
         date: new Date(),
@@ -64,10 +64,18 @@ export function add(prescription) {
     });
 }
 
-export function get() {
+export function getPrescriptions() {
     return prescriptions;
 }
 
-export function getPending() {
+export function getPendingPrescriptions() {
     return prescriptions.filter((p) => { return p.status == 'pending'});
+}
+
+export function updatePrescription (prescription) {
+
+}
+
+export function getPrescriptionByUser (userId) {
+
 }

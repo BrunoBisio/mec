@@ -8,7 +8,7 @@ export function add(user) {
     internalUsers.push(user);
 }
 
-export function get() {
+export function getUsers() {
     if(!internalUsers) {
         internalUsers = users;
     }
