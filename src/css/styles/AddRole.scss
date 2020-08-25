@@ -1,53 +1,21 @@
 @import './global.scss';
 
-.MyAccountPaper {
-  box-shadow: none !important;
-  margin: 20px;
+.TitleContainer {
+  text-align: center;
+}
 
-  button {
-    background-color: $golden;
-    color: white;
-  }
+.NameContainer {
+  text-align: center;
+}
 
-  .MyAccountForm {
-    display: flex;
-    justify-content: center;
-    margin-top: 3vh;
-  }
-  
-  .MyAccountCol>div {
-    width: 40%;
-    margin: 10px;
-  }
-  .MyAccountCol {
-    display: grid;
-    width: 40%;
-    &.ColRight {
-      margin-left: 5vw;
-    }
-  
-    button {
-      width: 5vw;
-      justify-self: right;
-      padding: 0;
-    }
-  }
-  
-  .MyAccountHeader {
-    display: flex;
-    
-    .MyAccountTitle {
-      width: 50%;
-      text-align: initial;
-    }
-  
-    .MyAccountDelete {
-      width: 50%;
-      text-align: end;
-    }
-  }
+.GridAccessesContainer {
+  width: 75%;
+}
 
-  .MyAccountButton {
-    text-align: right;
-  }
+.GridAccessesContainer .MuiGrid-spacing-xs-1 {
+  margin: 2vw;
+}
+
+.ButtonContainer {
+  text-align: right;
 }

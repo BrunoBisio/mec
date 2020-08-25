@@ -27,7 +27,6 @@ let appointments = [
 ];
 
 export function push(appointment) {
-    debugger
     appointments.push(appointment);
 }
 

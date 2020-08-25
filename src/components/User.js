@@ -9,7 +9,6 @@ class User extends React.Component {
     render() {
         const user = getUser();
         const route = "/user/" + getUser().rol.defaultView.route;
-        debugger
         return (<div><Redirect to={route}></Redirect><Dashboard drawerItems={GetUser().rol.access}></Dashboard></div>)
     }
 }

@@ -12,12 +12,19 @@ import {getRoles, removeRoles} from '../services/RolRepository' ;
 import IconButton from '@material-ui/core/IconButton';
 import AddRole from './AddRole';
 import Modal from '@material-ui/core/Modal';
+import ConfirmDeleteRole from './ConfirmDeleteRole';
 
 
 
 function InternalModal(props) {
   return  <div  className="modal">
             <AddRole data={props.data}/>
+          </div>
+}
+
+function InternalDeleteModal(props) {
+  return  <div  className="deleteModal">
+            <ConfirmDeleteRole data={props.data}/>
           </div>
 }
 
@@ -34,7 +41,21 @@ class ABMRole extends React.Component {
     const updatedData = newData[dataIndex]; 
     updatedData.open = newVal;
     newData[dataIndex] = updatedData;
-    this.setState((state,props) => state.data = newData);
+    this.setState({ 
+      data: newData,
+      editRole: newVal
+    });
+  }
+  openDeleteModal(row, newVal) {
+    const newData = this.state.data;
+    const dataIndex = newData.indexOf(row);
+    const updatedData = newData[dataIndex]; 
+    updatedData.open = newVal;
+    newData[dataIndex] = updatedData;
+    this.setState({ 
+      data: newData,
+      deleteRole: newVal
+    });
   }
   openNew(val) {
     this.setState((state,props) => state.newRole = val)
@@ -53,9 +74,9 @@ class ABMRole extends React.Component {
               { title: "Id", field: "id" },
               { title: "Nombre", field: "name" },
               { title: "Actualizar", field: "" ,
-              render: rowData =>  <div><IconButton onClick= {()=> this.openModal(rowData, true)}><CreateIcon/></IconButton><Modal open={!!rowData.open} onClose={()=>{this.openModal(rowData, false)}}><InternalModal data={rowData}/></Modal></div>},
+              render: rowData =>  <div><IconButton onClick= {()=> this.openModal(rowData, true)}><CreateIcon/></IconButton><Modal open={rowData.open && this.state.editRole} onClose={()=>{this.openModal(rowData, false)}}><InternalModal data={rowData}/></Modal></div>},
               { title: "Borrar", field: "",
-              render: rowData =>  <div><IconButton onClick= {()=> this.removeUser(rowData, true)}><DeleteIcon/></IconButton></div>}, 
+              render: rowData =>  <div><IconButton onClick= {()=> this.openDeleteModal(rowData, true)}><DeleteIcon/></IconButton><Modal open={rowData.open && this.state.deleteRole} onClose={()=>{this.openDeleteModal(rowData, false)}}><InternalDeleteModal data={rowData}/></Modal></div>}, 
             
             ]}
             data={this.state.data}>

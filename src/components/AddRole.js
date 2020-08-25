@@ -1,8 +1,7 @@
 import React from 'react';
-import {Grid, FormControlLabel, Paper, Checkbox, MenuItem } from '@material-ui/core';
+import {Grid, FormControlLabel, Paper, Checkbox, Typography, TextField, Button } from '@material-ui/core';
 import {getAccesses} from '../services/RolRepository'
 import '../css/styles/AddRole.scss';
-import Select from '@material-ui/core/Select';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -31,7 +30,8 @@ class AddEmployee extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            data: props.data ? props.data : { id: '', nameRole: '', accesses: [] },
+            title: ((props.data && props.data.id > 0) ? 'Modificar rol' : 'Alta Rol'),
+            role: props.data || { id: 0, name: '', access: [] },
             accesses: accesses,
             accessesTotal: 8,
             accessesPerRow: 4
@@ -39,49 +39,61 @@ class AddEmployee extends React.Component {
     }
 
     handleChange = (event) => {
-        this.state.data.accesses.push(event.target.checked);
-        const data = this.state.data;
-        this.setState({ data });
+        let accesses = this.state.accesses;
+        accesses.map((a) => {
+            if (a.id == event.target.id) {
+                a.checked = event.target.checked;
+            }
+        });
+        this.setState({ accesses });
+    };
+
+    handleNameChange = (event, value) => { 
+        let role = this.state.role;
+        role.name = event.target.value
+        this.setState({ role }); 
     };
 
     containsAccess = (access) => {
-        const value = this.state.data.accesses.filter((myAccess) => {
+        const value = this.state.role.access.filter((myAccess) => {
             return myAccess.id === access.id;
         });
-        return value !== null;
+        return (value.length > 0 && value[0] !== null);
     }
 
     componentDidMount() {
-        // this.state.data = accesses;
+        // this.state.role = getRole;
+        // this.state.accesses = getAccesses;
+        this.state.accesses.forEach((access) => {
+            if (this.state.role.access.legth > 0) {
+                const value = this.state.role.access.find((roleAccess) => { return roleAccess.id === access.id; });
+                access.checked = value.legth > 0;
+            }
+            access.checked = false;
+        });
+        const accesses = this.state.accesses;
+        this.setState({ accesses });
     }
 
     render() {
         return (
-            <div className="GridAccessesContainer">
-                <Grid container spacing={1} className="GridAccesses">
-                    {
-                        this.state.accesses.map((access) => {
-                            return (<Paper>
-                                <FormControlLabel control={ <Checkbox checked={this.containsAccess(access)} onChange={this.handleChange} name="checkedF" indeterminate /> } label={access.name} />
-                            </Paper>);
-                        })
-                    }
-                </Grid>
+            <div>
+                <div className="TitleContainer"><Typography variant="h2">{this.state.title}</Typography></div>
+                <div className="NameContainer"><TextField label="Nombre" value={this.state.role.name} onChange={this.handleNameChange}></TextField></div>
+                <div className="GridAccessesContainer">
+                    <Grid container spacing={1} className="GridAccesses">
+                        {
+                            this.state.accesses.map((access) => {
+                                return (<Paper>
+                                    <FormControlLabel control={ <Checkbox checked={access.checked} onChange={this.handleChange} id={access.id} /> } label={access.name} />
+                                </Paper>);
+                            })
+                        }
+                    </Grid>
+                </div>
+                <div className="ButtonContainer"><Button variant="contained" color="primary">Guardar</Button></div>
             </div>
         );
     }
 }
-
-
-/*
-<Grid container item xs={12} spacing={3}>
-                    <FormRow />
-                    </Grid>
-                    <Grid container item xs={12} spacing={3}>
-                    <FormRow />
-                    </Grid>
-                    <Grid container item xs={12} spacing={3}>
-                    <FormRow />
-                    </Grid>
-*/
 export default AddEmployee;

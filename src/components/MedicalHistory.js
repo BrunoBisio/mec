@@ -53,13 +53,11 @@ class MedicalHistory extends React.Component {
     }
 
     handleChange = (event) => {
-      debugger;
       this.setState({ value: event.target.checked });
       // updateMedicalHistory("") verificar si recibe campo
     };
 
     handleCommentChange = (event, value) => { 
-      debugger;
       this.setState({ comment: event.target.value }); // verificar si recibe campo
     };
 
