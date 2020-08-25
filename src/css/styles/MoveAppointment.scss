@@ -1,0 +1,46 @@
+@import './global.scss';
+
+.moveAppointmentContainer {
+    background-color: white;
+    padding: 10px;
+  }
+  
+  .moveAppointmentTitle {
+    text-align: center;
+  }
+  
+  .moveAppointmentBody {
+    text-align: center;
+  }
+  
+  .moveAppointmentDateTime > div:first-child {
+    margin-right:5vw;
+    width: 10vw;
+  }
+  
+  .moveAppointmentDateTime > div:nth-child(2) {
+    width: 10vw;
+  }
+  
+  .moveAppointmentComment {
+    margin: 10px;
+  }
+  
+  .moveAppointmentComment textarea {
+    width: 30vw;
+  }
+  
+  .moveAppointmentButtonContainer {
+    text-align: center;
+  }
+  
+  .moveAppointmentButtonContainer > button:first-child {
+    margin-right: 5vw;
+    background-color: grey;
+  }
+  
+  .moveAppointmentButtonContainer > div:nth-child(2) {
+    background-color: $golden;
+  }
+
+  

@@ -21,8 +21,8 @@ class ConfirmDeleteRole extends React.Component {
             </div>
             <Typography variant="h4" component="h4">Esta accion no se podra deshacer</Typography>
             <div className="buttonContainer">
-                <Button className="cancelButton">Cancelar</Button>
-                <Button className="deleteButton">Eliminar</Button>
+                <Button className="cancelButton" variant="contained" color="primary">Cancelar</Button>
+                <Button className="deleteButton" variant="contained" color="primary">Eliminar</Button>
             </div>
         </div>)
     }

@@ -1,10 +1,17 @@
 import React from 'react';
-import MenuIcon from '@material-ui/icons/Menu';
 import { get } from '../services/AppointmentRepository.js';
-import { Grid, TextField, Paper, Button } from '@material-ui/core';
+import { Grid, TextField, Paper, Button, Modal } from '@material-ui/core';
 import MaterialTable from 'material-table';
-import MedicalHistory from './MedicalHistory.js';
+import MoveAppointment from './MoveAppointment';
 import '../css/styles/InnerAppointment.scss'
+
+function AppointmentModal(props) {
+    return  (
+        <div className="modal">
+            <MoveAppointment data={props.data}/>
+        </div>
+    )
+}
 
 class InnerAppointment extends React.Component {
     
@@ -12,47 +19,50 @@ class InnerAppointment extends React.Component {
         super(props);
 
         this.state = {
-            data: get()
+            data: get(),
+            movingAppointment: false
         }
     }
 
-    openMedicalHistory = () => {
-        console.log("abrir histria clinica")
+    checkAppointment = (row, event) => {
+        // TODO: update appointment status
+        console.log("status appointment updated");
     }
+
+    moveAppointment(row, newVal) {
+        const newData = this.state.data;
+        const dataIndex = newData.indexOf(row);
+        const updatedData = newData[dataIndex]; 
+        updatedData.open = newVal;
+        newData[dataIndex] = updatedData;
+        this.setState({
+          data: newData,
+          movingAppointment: newVal
+        });
+      }
 
     render() {
         return (
             <Grid container xs={12} className="AppointmentGrid">
-                <Grid item xs={6}>
-                    <div>
+                    <div className="tableContainer">
                         <MaterialTable 
                             title="Turnos"
                             columns={[
-                                { title: "Fecha", field: "date", type: "datetime" },
-                                { title: "Paciente", field: "patient" },
+                                { title: "Fecha", field: "date", type: "datetime", cellStyle: { minWidth: 'fit-content'} },
+                                { title: "Paciente", field: "patient", cellStyle: { minWidth: 'fit-content'} },
+                                { title: "", field: "", cellStyle: { minWidth: 'fit-content'} , 
+                                    render: rowData =>  <div><Button variant="contained" color="primary" onClick= {()=> this.moveAppointment(rowData, true)}>Reprogramar Turno</Button><Modal open={!!rowData.open && this.state.movingAppointment} onClose={()=>{this.moveAppointment(rowData, false)}}><AppointmentModal data={rowData} /></Modal></div>
+                                },
+                                { title: "", field: "", cellStyle: { minWidth: 'fit-content'}, 
+                                    render: rowData => <div><Button variant="contained" color="primary" onClick= {()=> this.checkAppointment(rowData, true)}>Tomar turno</Button></div>
+                                }
                             ]}
-                            localization={{
-                                header: { actions: 'Acciones' },
-                            }}
                             data={this.state.data}
-                            actions={[{
-                                icon: MenuIcon,
-                                tooltip: 'Abrir historia clinica',
-                                onClick: (event, rowData) => this.openMedicalHistory(rowData)
-                            }]}
                             options={{
                                 actionsColumnIndex: -1
                             }}>
                         </MaterialTable>
                     </div>
-                    <div>
-                        <Button variant="contained" color="primary" >Aceptar</Button>
-                        <Button variant="contained" color="primary" >Cancelar Turno</Button>
-                    </div>
-                </Grid>
-                <Grid item xs={6} className="MedicalHistory">
-                    <MedicalHistory userId='123456'></MedicalHistory>
-                </Grid>
             </Grid>
         )
     }

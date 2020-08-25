@@ -90,7 +90,7 @@ let accesses = [{},
   },
   {
     id: 12,
-    title: 'Mod. Turno',
+    title: 'Turnos',
     visible: true,
     route: 'doctorAppointment',
     component: InnerAppointment
