@@ -3,6 +3,8 @@ import {Typography, TextField, Paper, Button, MenuItem } from '@material-ui/core
 import '../css/styles/MyAccount.scss';
 import axios from 'axios'
 import { getUser } from '../services/RolRepository.js';
+import { getDocTypes, getCities, getRoles, getRaces } from '../services/DropDownRepositories';
+import { updateUser } from '../services/UserRepository';
 
 class MyAccountAdmin extends React.Component {
     constructor(props){
@@ -46,10 +48,10 @@ class MyAccountAdmin extends React.Component {
     componentDidMount() {
         // const apiUrl = 'http://localhost:3000';
         axios.all([
-            axios.get('/docType'), // get docTypes
-            axios.get('/city'), // get cities
-            axios.get('/role'), // get roles
-            axios.get('/race') // get races
+            getDocTypes(),
+            getCities(),
+            getRoles(),
+            getRaces()
         ]).then((responses) => {
             const docTypes = responses[0].data.data;
             const cities = responses[1].data.data;
@@ -62,9 +64,9 @@ class MyAccountAdmin extends React.Component {
     updateUser = (event) => {
         event.preventDefault();
         const user = this.state.user;
-        axios.put('/users/' + user.id, { user }).then((resp) => {
+        updateUser(user.id, user).then((resp) => {
             console.log(resp);
-        });
+        });;
     }
 
     render() {

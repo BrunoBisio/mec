@@ -29,7 +29,7 @@ class MoveAppointment extends React.Component {
 
     handleCommentChange = (event, value) => { this.setState({ comment: event.target.value }); };
 
-    render(){
+    render() {
         return(
             <div className="moveAppointmentContainer">
                 <div></div>

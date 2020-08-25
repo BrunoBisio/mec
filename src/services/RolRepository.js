@@ -279,13 +279,14 @@ export function getRoles() {
 export function removeRoles(role) {
   roles = arrayRemove(roles, role)
 }
-export function addRole(role) {
+export function createRole(role) {
   roles.push(role)
 }
 export function updateRole(role) {
   const oldRole = roles.filter(element => element.id === role.id)[0]
   roles[roles.indexOf(oldRole)]=role
 }
+
 export function getAccesses() {
   return accesses;
 }

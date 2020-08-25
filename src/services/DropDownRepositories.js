@@ -144,3 +144,19 @@ export function getCities() {
 export function getInsurances() {
     return insurances;
 }
+
+export function getRoles() {
+    return [];
+}
+
+export function getPlans () {
+    return;
+}
+
+export function getSpecialties () {
+
+}
+
+export function getClinics () {
+    
+}

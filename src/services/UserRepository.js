@@ -30,3 +30,7 @@ export function getPendingDeletes() {
 export function deleteUser(user) {
     internalUsers = arrayRemove(internalUsers, user)
 }
+
+export function updateUser(id, user) {
+    axios.put('/users/' + id, { user });
+}

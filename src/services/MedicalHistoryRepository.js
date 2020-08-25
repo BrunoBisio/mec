@@ -76,6 +76,10 @@ export function getPatientHistory() {
     return medicalHistory;
 }
 
+export function updatePatientHistory(id, patientHistory) {
+
+}
+
 export function getGeneraInformation(userId){
     const user = medicalHistory.find((mh) => { return mh.id === userId});
     if (user !== null && user !== undefined)

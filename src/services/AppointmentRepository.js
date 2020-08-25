@@ -30,8 +30,16 @@ export function push(appointment) {
     appointments.push(appointment);
 }
 
-export function get() {
+export function getAppointments (id, roleId) {
     return appointments;
+}
+
+export function updateAppointment (appointment) {
+
+}
+
+export function createAppointment (appointment) {
+
 }
 
 export function remove(appointment) {
