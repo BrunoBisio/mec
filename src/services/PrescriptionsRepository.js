@@ -1,4 +1,5 @@
 import React from 'react';
+import RestService from './RestService.js'
 
 const prescriptions = [
     {   
@@ -55,31 +56,25 @@ const prescriptions = [
 
 
 export function createPrescription(prescription) {
-    prescriptions.push({
-        id: prescriptions.length,
-        date: new Date(),
-        description: prescription.description,
-        comment: prescription.description,
-        status: "pending"
-    });
+    return RestService.restClient.post('/prescriptions', prescription);
 }
 
 export function getPrescriptions() {
-    return prescriptions;
+    return RestService.restClient.get('/prescriptions');
 }
 
 export function getPendingPrescriptions() {
-    return prescriptions.filter((p) => { return p.status == 'pending'});
+    return RestService.restClient.get('/prescriptions/approved/false');
 }
 
 export function updatePrescription (prescription) {
-
+    return RestService.restClient.put('/prescriptions/' + prescription.id, prescription);
 }
 
 export function getPrescriptionByUser (userId) {
-    return [];
+    return RestService.restClient.get('/prescriptions/user/' +userId);
 }
 
 export function getPrescriptionBySpecialty (specialtyId) {
-    return [];
+    return RestService.restClient.get('/prescriptions/specialty/' +specialtyId);
 }

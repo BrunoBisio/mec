@@ -17,7 +17,7 @@ import ManagePrescriptions from '../components/ManagePrescriptions.js';
 import MyAccountAdmin from '../components/MyAccountAdmin.js';
 import PendingDeleteUsers from '../components/PendingDeleteUsers.js';
 import ABMEmployee from '../components/ABMEmployee.js';
-
+import RestService from './RestService.js'
 function arrayRemove(array, value) { return array.filter(function(item){ return item !== value; });}
 let accesses = [{},
   {
@@ -274,34 +274,49 @@ export const users = [
 let user = null;
 
 export function getRoles() {
-  return roles;
+  return RestService.restClient.get('/roles');
 }
-export function removeRoles(role) {
-  roles = arrayRemove(roles, role)
+export function removeRoles(roleId) {
+  return RestService.restClient.delete('/roles/' + roleId);
 }
 export function createRole(role) {
-  roles.push(role)
+  return RestService.restClient.post('/roles', role);
 }
 export function updateRole(role) {
-  const oldRole = roles.filter(element => element.id === role.id)[0]
-  roles[roles.indexOf(oldRole)]=role
+  return RestService.restClient.put('/roles/' + role.id, role);
 }
 
 export function getAccesses() {
-  return accesses;
+  return RestService.restClient.get('/accesses');
 }
 
-export function login(username) {
-    user = users.filter(user  => user.name.toUpperCase() == username.toUpperCase())[0]
+export function login(docNumber, docType, password) {
+  return RestService.restClient.post('/users/login', data: {
+    docNumber: docNumber,
+    docType: docType,
+    password: password
+  }).then(data => {
+    RestService.saveToken(data.token);
+    getLoggedUser();
+    return true;
+  });
 }
 
 export function isAuthenticated() {
+  return !!user;
+}
+
+export function getLoggedUser() {
+  if(!user) {
+    user = await RestService.restClient.get('/users/logged');
+  }
   return user;
 }
 export function getUser(id) {
-  return user;
+  return RestService.restClient.get('/users/' + id);
 }
 export function singout() {
+  RestService.deleteToken()
   user = null;
 }
 
@@ -313,9 +328,10 @@ export function hasAccess(role, viewTitle) {
 }
 
 export function getPatients() {
-  return users.filter((user) => { return user.rol.id === 4 });
+  return RestService.restClient.get('/users/patients');
 }
 
 export function getEmployees() {
-  return users.filter((user) => {return (user.rol.id === 2 || user.rol.id === 3) });
+  return RestService.restClient.get('/users/employee');
+
 }
