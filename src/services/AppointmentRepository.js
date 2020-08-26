@@ -50,12 +50,7 @@ export function getAppointmentsByUser (id) {
 
 }
 
-<<<<<<< HEAD
-export function updateAppointment (appointments) {
-    return RestService.restClient.put('/appointments/' + appointments.id, appointments);
-=======
 export function updateAppointment (appointment) {
->>>>>>> parent of c594867... Connected front with backend api
 
 }
 
