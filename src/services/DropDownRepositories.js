@@ -1,4 +1,5 @@
 import React from 'react';
+import RestService from './RestService.js'
 
 const docTypes = [
     {
@@ -130,33 +131,33 @@ const insurances = [
 
 
 export function getDocTypes() {
-    return docTypes;
+    return RestService.restClient.get('/doctypes');
 }
 
 export function getRaces(){
-    return races;
+    return RestService.restClient.get('/races');
 }
 
 export function getCities() {
-    return cities;
+    return RestService.restClient.get('/cities');
 }
 
 export function getInsurances() {
-    return insurances;
+    //return RestService.restClient.get('/clinics');
 }
 
 export function getRoles() {
-    return [];
+    return RestService.restClient.get('/roles');
 }
 
 export function getPlans () {
-    return;
+    return RestService.restClient.get('/plans');
 }
 
 export function getSpecialties () {
-
+    return RestService.restClient.get('/specialties');
 }
 
 export function getClinics () {
-    
+    return RestService.restClient.get('/clinics');
 }

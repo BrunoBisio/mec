@@ -1,4 +1,5 @@
 import React from 'react';
+import RestService from './RestService.js'
 function arrayRemove(array, value) { return array.filter(function(item){ return item !== value; });}
 let appointments = [
   {   
@@ -39,27 +40,31 @@ export function push(appointment) {
 }
 
 export function getAppointments () {
-    return appointments;
+    return RestService.restClient.get('/appointments');
+
 }
 
 export function getAppointmentsByMedic (id) {
-    return appointments;
+    return RestService.restClient.get('/appointments/medic/' + id);
 
 }
 
 export function getAppointmentsByUser (id) {
-    return appointments;
+    return RestService.restClient.get('/appointments/patient/' +id);
 
 }
 
-export function updateAppointment (appointment) {
+export function updateAppointment (appointments) {
+    return RestService.restClient.put('/appointments/' + appointments.id, appointments);
 
 }
 
 export function createAppointment (appointment) {
+    return RestService.restClient.post('/appointments', appointments);
 
 }
 
-export function remove(appointment) {
-    appointments = arrayRemove(appointments, appointment);
+export function remove(appointmentId) {
+    return RestService.restClient.delete('/appointments/' +appointmentsId);
+
 }

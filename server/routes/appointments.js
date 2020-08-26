@@ -4,6 +4,7 @@ const Middleware = require('../middleware/paginationMiddleware');
 const AppointmentController = require('../controllers/appointmentController');
 
 /* GET users listing. */
+router.get('/', Middleware.paginationMiddleware, AppointmentController.getAppointments);
 router.get('/user/:userId', Middleware.paginationMiddleware, AppointmentController.getAppointmentsByUser);
 router.get('/unnasigned', Middleware.paginationMiddleware, AppointmentController.getAppointmentsWithoutUser);
 router.get('/user', Middleware.paginationMiddleware, AppointmentController.getAppointmentsWithUser);
