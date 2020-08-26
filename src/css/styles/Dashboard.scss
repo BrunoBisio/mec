@@ -17,10 +17,20 @@
     .DashboardNav {
         height: 100%;
         width: 8%;
+
+        a {
+            color: gray;
+            text-decoration: none;
+        }
     }
 
     .DashboardMain {
         height: 100%;
         width: 92%;
+
+        > div:first-child {
+            overflow: auto;
+              height: 100%;
+        }
     }
 }

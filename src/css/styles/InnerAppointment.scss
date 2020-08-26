@@ -1,3 +1,14 @@
 .tableContainer {
     width: 100%;
 }
+
+.ButtonContainer {
+    width: 100%;
+    text-align: center;
+    margin-top: 2vh;
+}
+
+.AppointmentGrid  .ButtonContainer Button {
+  padding: 1vh 3vw;
+  font-size: 1.5rem;
+}

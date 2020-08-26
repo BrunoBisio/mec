@@ -3,7 +3,7 @@ import { Button, Modal, Paper, TextField } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import MaterialTable from "material-table";
 import SaveAltIcon from '@material-ui/icons/SaveAlt';
-import { getPending } from '../services/PrescriptionsRepository.js';
+import { getPendingPrescriptions } from '../services/PrescriptionsRepository.js';
 import RelativeLink from './RelativeLink.js';
 import '../css/styles/Header.scss'
 import '../css/styles/ManagePrescription.scss'
@@ -55,7 +55,7 @@ class ManagePrescriptions extends React.Component {
   constructor(props){
       super(props);
       this.state = {
-        data: getPending()
+        data: getPendingPrescriptions()
       };
   }
   /*

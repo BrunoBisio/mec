@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, TextField, MenuItem, Paper, Button } from '@material-ui/core';
-import { add } from '../services/PrescriptionsRepository.js';
+import { createPrescription } from '../services/PrescriptionsRepository.js';
 import '../css/styles/RequestPrescription.scss';
 
 const specialties = [
@@ -31,7 +31,7 @@ class RequestPrescription extends React.Component {
     handleCommentChange = (event, value) => { this.setState({ comment: event.target.value }); };
 
     requesrPrescription = () => {
-        add(this.state);
+        createPrescription(this.state);
         
         this.setState({
             specialty: '',

@@ -6,22 +6,30 @@ let appointments = [
       date: new Date(),
       specialty: "Oncologia",
       doctor: "Wilson",
-      patient: "lu"
+      patient: { id: 1, name: "lu" },
+      medicDetail: {
+          specialty: { name: "especialidad1" }
+      }
   },
   {
       id: 2,
       date: new Date(),
       specialty: "Problemas Generales",
       doctor: "House",
-      patient: "alexis"
-      
+      patient: { id: 2, name: "alexis" },
+      medicDetail: {
+          specialty: { name: "especialidad2" }
+      }
   },
   {
       id: 3,
       date: new Date(),
       specialty: "neurología",
       doctor: "Trece",
-      patient: "bruno"
+      patient: { id: 3, name: "bruno" },
+      medicDetail: {
+          specialty: { name: "especialidad3" }
+      }
   },
   
 ];
@@ -31,14 +39,16 @@ export function push(appointment) {
 }
 
 export function getAppointments () {
-
+    return appointments;
 }
 
 export function getAppointmentsByMedic (id) {
+    return appointments;
 
 }
 
 export function getAppointmentsByUser (id) {
+    return appointments;
 
 }
 

@@ -10,18 +10,72 @@
     background-color: $golden;
     
 }
-.modal{
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    width: 400px;
-    background-color: $grey;
-    border: 2px solid #000;
-    box-shadow: 5;
-    padding: 2,4,3;
+
+.MedicalHistoryContainer.MuiGrid-root  {
+    margin: 2vh 0;
+    display: -webkit-inline-box;
+
+  
+  .PatologicalRow {
+    margin-bottom: 5px;
+  }
+  
+  .RowRadioButtonContainer {
+    flex-direction: row;
+  }
+  
+  .RowText {
+    font-size: 1.3rem;
+  } 
+  
+  .RowRadioButton > label {
+    margin-right: 0;
+  }
+  
+  .RowRadioButton > label > span {
+    padding-right: 0;
+  }
+  
+  .RowComment > div {
+    width: 90%
+  }
+  
+  .GeneralInfoText {
+      width: 30vw;
+      margin: 10px;
+  }
+  
+  .GeneralInfoTitle {
+      border: grey solid 2px;
+      padding: 4px;
+  }
+  
+  .PatologicInfoTitle {
+      border: grey solid 2px;
+      padding: 4px;
+      margin: 3vh 0;
+  }
+  
+  .PatologicColumnsTitle {
+    margin-bottom: 3vh;
+  }
+  
+  .NonPatologicInfoTitle {
+        border: grey solid 2px;
+      padding: 4px;
+      margin: 3vh 0;
+  }
+  
+  .NonPatologicColumnsTitle {
+    margin-bottom: 3vh;
+  }
+  
+  .nonPatologicalRow {
+    margin-bottom: 5px;
   }
 
-.MedicalHistoryContainer {
-    max-height: 75vh;
-    overflow: auto;
+  .NewMedicNoteContainer {
+    display: flex;
+    flex-direction: row;
+  }
 }

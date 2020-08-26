@@ -79,7 +79,7 @@ export function getPatientHistory() {
 export function updatePatientHistory(id, patientHistory) {
 
 }
-/*
+
 export function getGeneraInformation(userId){
     const user = medicalHistory.find((mh) => { return mh.id === userId});
     if (user !== null && user !== undefined)
@@ -120,4 +120,4 @@ export function getNonPatologicHistory(userId) {
             {fieldName: "Otros", value: user.otros }
         ]
     return nonPatologicHistoryFormat;
-}*/
+}

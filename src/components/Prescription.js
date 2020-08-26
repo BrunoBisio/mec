@@ -3,7 +3,7 @@ import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import MaterialTable from "material-table";
 import SaveAltIcon from '@material-ui/icons/SaveAlt';
-import { get } from '../services/PrescriptionsRepository.js';
+import { getPrescriptions } from '../services/PrescriptionsRepository.js';
 import RelativeLink from './RelativeLink.js';
 import '../css/styles/Header.scss'
 import '../css/styles/UserAppointment.scss'
@@ -14,7 +14,7 @@ class Prescription extends React.Component {
   constructor(props){
       super(props);
       this.state = {
-        data: get()
+        data: getPrescriptions()
       };
   }
   /*

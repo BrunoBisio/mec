@@ -6,17 +6,17 @@ import MaterialTable from "material-table";
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import '../css/styles/UserAppointment.scss';
 import RelativeLink from './RelativeLink.js';
-import {get, remove} from '../services/AppointmentRepository.js';
+import {getAppointments, remove} from '../services/AppointmentRepository.js';
 
 class UserAppointment extends React.Component {
   constructor(props){
     super(props);
-    this.state = { data:get() };
+    this.state = { data:getAppointments() };
   }
 
   removeAppointment(row) {
     remove(row);
-      this.setState((state,props) => state.data = get());
+      this.setState((state,props) => state.data = getAppointments());
   }
 
   render() {
