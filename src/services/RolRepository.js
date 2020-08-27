@@ -19,9 +19,10 @@ import PendingDeleteUsers from '../components/PendingDeleteUsers.js';
 import ABMEmployee from '../components/ABMEmployee.js';
 
 import MyAccountPatient from '../components/MyAccountPatient.js';
-import UserMedicalHistory from '../components/UserMedicalHistory.js';
+import UserMedicalHistory from '../components/PatientMedicalHistory.js';
 import CalendarMedic from '../components/CalendarMedic.js';
-
+import PatientMedicalHistory from '../components/PatientMedicalHistory.js'
+import MedicAgenda from '../components/MedicAgenda.js'
 import AdminWelcome from '../components/AdminWelcome';
 import Welcome from '../components/Welcome';
 import PatientWelcome from '../components/PatientWelcome';
@@ -68,7 +69,7 @@ export let accesses = [{},
     title: 'Mi Historial Clínico', //histclinico de paciente
     visible: true,
     route: 'patiente/history',
-    component: ''//FALTA (copiar MedicalHistory)
+    component: PatientMedicalHistory//FALTA (copiar MedicalHistory)
   },
    {
     id: 6,
@@ -119,13 +120,13 @@ export let accesses = [{},
     route: 'appointment',
     component: InnerAppointment
   },
-  {
+  /*{
     id: 13,
     title: 'Tomar Turnos', //tomar turno admin y medico
     visible: false,
     route: 'takeAppointment',
     component: MedicalHistory
-  },
+  },*/
   {
     id: 14,
     title: 'Recetas', //recetas pendientes
@@ -187,7 +188,7 @@ export let accesses = [{},
     title: 'Agenda', //Agendas medicos 
     visible: true,
     route: 'medic/schedule',
-    component: 'algo'//adapatar Calendar
+    component: MedicAgenda//adapatar Calendar
   },
   {
     id: 24,
