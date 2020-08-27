@@ -60,7 +60,7 @@ export function updateAppointment (appointments) {
 }
 
 export function createAppointments (appointment) {
-    return RestService.post('/appointments', appointments);
+    return RestService.post('/appointments', appointment);
 
 }
 
