@@ -19,6 +19,8 @@ import PendingDeleteUsers from '../components/PendingDeleteUsers.js';
 import ABMEmployee from '../components/ABMEmployee.js';
 import Calendar from '../components/Calendar.js';
 import MyAccountPatient from '../components/MyAccountPatient.js';
+import UserMedicalHistory from '../components/UserMedicalHistory.js';
+import CalendarMedic from '../components/CalendarMedic.js';
 
 function arrayRemove(array, value) { return array.filter(function(item){ return item !== value; });}
 let accesses = [{},
@@ -124,7 +126,7 @@ let accesses = [{},
     title: 'Historial',
     visible: true,
     route: 'history',
-    component: MedicalHistory
+    component: UserMedicalHistory
   },
   {
     id: 18,
@@ -192,6 +194,13 @@ let accesses = [{},
     component: MyAccountPatient,
     visible: true
   },
+  {
+    id: 28,
+    title: 'Agenda',
+    route: 'medic/agenda',
+    component: CalendarMedic,
+    visible: true
+  }
 ]
 
 const roles = [{
@@ -204,7 +213,7 @@ const roles = [{
     id: 2,
     name: 'Medico',
     defaultView: accesses[12],
-    access: [accesses[7], accesses[8], accesses[10], accesses[11], accesses[12], accesses[14], accesses[15], accesses[16], accesses[21], accesses[22], accesses[23], accesses[24]]
+    access: [accesses[7], accesses[8], accesses[10], accesses[11], accesses[12], accesses[14], accesses[15], accesses[16], accesses[21], accesses[22], accesses[23], accesses[24], accesses[28]]
   },
   {
     id: 3,

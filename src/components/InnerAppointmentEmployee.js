@@ -28,7 +28,7 @@ function NewAppointmentModal(props) {
     )
 }
 
-class InnerAppointment extends React.Component {
+class InnerAppointmentEmployee extends React.Component {
     
     constructor (props) {
         super(props);
@@ -50,7 +50,7 @@ class InnerAppointment extends React.Component {
         }
     }
 
-    checkAppointment = (row, event) => {
+    /*checkAppointment = (row, event) => {
         const appointmentSelected = row; 
         const showHideAppointmentGrid = false; 
         const showHideMedicalHistory = true;
@@ -65,7 +65,7 @@ class InnerAppointment extends React.Component {
             showHideMedicalHistory,
             newMedicRecApp
         });
-    }
+    }*/
 
     moveAppointment(row, newVal) {
         const newData = this.state.data;
@@ -128,9 +128,6 @@ class InnerAppointment extends React.Component {
                                     { title: "Paciente", field: "patient.name", cellStyle: { minWidth: 'fit-content'} },
                                     { title: "", field: "", cellStyle: { minWidth: 'fit-content'} , 
                                         render: rowData =>  <div><Button variant="contained" color="primary" onClick= {()=> this.moveAppointment(rowData, true)}>Reprogramar Turno</Button><Modal open={!!rowData.open && this.state.movingAppointment} onClose={()=>{this.moveAppointment(rowData, false)}}><MoveAppointmentModal data={rowData} /></Modal></div>
-                                    },
-                                    { title: "", field: "", cellStyle: { minWidth: 'fit-content'}, 
-                                        render: rowData => <div><Button variant="contained" color="primary" onClick= {()=> this.checkAppointment(rowData, true)}>Tomar turno</Button></div>
                                     }
                                 ]}
                                 data={this.state.data}
@@ -176,4 +173,4 @@ class InnerAppointment extends React.Component {
     }
 }
 
-export default InnerAppointment;
+export default InnerAppointmentEmployee;
