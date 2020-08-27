@@ -131,35 +131,37 @@ const insurances = [
 
 
 export function getDocTypes() {
-    return RestService.restClient.get('/doctypes');
+    console.log("entro al getDocTypes")
+    debugger
+    return RestService.get('/doctypes');
 }
 
 export function getRaces(){
-    return RestService.restClient.get('/races');
+    return RestService.get('/races');
 }
 
 export function getCities() {
-    return RestService.restClient.get('/cities');
+    return RestService.get('/cities');
 }
 
 export function getInsurances() {
-    //return RestService.restClient.get('/clinics');
+    //return RestService.get('/clinics');
 }
 
 export function getRoles() {
-    return RestService.restClient.get('/roles');
+    return RestService.get('/roles');
 }
 
 export function getPlans () {
-    return RestService.restClient.get('/plans');
+    return RestService.get('/plans');
 }
 
 export function getSpecialties () {
-    return RestService.restClient.get('/specialties');
+    return RestService.get('/specialties');
 }
 
 export function getClinics () {
-    return RestService.restClient.get('/clinics');
+    return RestService.get('/clinics');
 }
 
 export function getDocTypesWithPatients() {

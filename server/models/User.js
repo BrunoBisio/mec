@@ -67,5 +67,6 @@ User.belongsTo(city);
 User.belongsTo(docType);
 User.belongsTo(race);
 User.belongsTo(plan);
+docType.hasMany(User)
 
 module.exports = User;

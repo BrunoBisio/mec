@@ -2,6 +2,7 @@ import React from 'react';
 import autoBind from 'auto-bind';
 import '../css/styles/MecDrawer.scss';
 import { Drawer, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import {hasAccess} from '../services/RolRepository'
 import {
     Link,
     useRouteMatch
@@ -10,7 +11,9 @@ function DrawerItems(props){
     let { path } = useRouteMatch();
     return (
         <List>
-            {props.items && props.items.filter((item)=> item.visible).map((item, index) => (
+            {props.items && props.items.filter((item)=> item.visible).filter((item)=> {
+                return !!hasAccess(item);
+            }).map((item, index) => (
                 <Link to={`${path}/${item.route}`} key={item.id}>
                     <ListItem button>
                         {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}

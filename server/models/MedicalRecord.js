@@ -109,6 +109,5 @@ const MedicalRecord = db.define('MedicalRecord', {
 });
 
 MedicalRecord.belongsTo(user);
-MedicalRecord.belongsTo(mra);
 
 module.exports = MedicalRecord;

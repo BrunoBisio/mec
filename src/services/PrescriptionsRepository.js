@@ -56,25 +56,25 @@ const prescriptions = [
 
 
 export function createPrescription(prescription) {
-    return RestService.restClient.post('/prescriptions', prescription);
+    return RestService.post('/prescriptions', prescription);
 }
 
 export function getPrescriptions() {
-    return RestService.restClient.get('/prescriptions');
+    return RestService.get('/prescriptions');
 }
 
 export function getPendingPrescriptions() {
-    return RestService.restClient.get('/prescriptions/approved/false');
+    return RestService.get('/prescriptions/approved/false');
 }
 
 export function updatePrescription (prescription) {
-    return RestService.restClient.put('/prescriptions/' + prescription.id, prescription);
+    return RestService.put('/prescriptions/' + prescription.id, prescription);
 }
 
 export function getPrescriptionByUser (userId) {
-    return RestService.restClient.get('/prescriptions/user/' +userId);
+    return RestService.get('/prescriptions/user/' +userId);
 }
 
 export function getPrescriptionBySpecialty (specialtyId) {
-    return RestService.restClient.get('/prescriptions/specialty/' +specialtyId);
+    return RestService.get('/prescriptions/specialty/' +specialtyId);
 }

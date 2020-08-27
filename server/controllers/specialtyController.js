@@ -7,3 +7,12 @@ exports.getSpecialties = function (_, res, next) {
         next(error);
     });
 }
+
+
+exports.getSpecialtiesWithClinicsWithMedics = function (_, res, next) {
+    SpecialtyService.getSpecialtiesWithClinicsWithMedics().then((values) => {
+        return res.status(200).json({ status: 200, data: values });
+    }).catch((error) => {
+        next(error);
+    });
+}

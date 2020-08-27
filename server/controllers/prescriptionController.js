@@ -86,7 +86,7 @@ exports.getPrescriptionBySpecialty = function (req, res, next) {
 
 
 /* GET prescriptions by medic. */
-exports.getPrescription = function (req, res, next) {
+exports.getPrescriptions = function (req, res, next) {
     PrescriptionService.getPrescriptions(req.pagination).then(function (results) {
         return res.status(200).json({ status: 200, data: Pagination.generateResponse(results, req.pagination) });
     }).catch(function (error) {

@@ -2,17 +2,17 @@ import React from 'react';
 import axios from 'axios';
 
 
-const instance = axios.create({
+ const RestService = axios.create({
   });
   
-exports.haveToken = function() {
-    return !!instance.defaults.headers.common['Authorization'];
+export const haveToken = function() {
+    return !!RestService.defaults.headers.common['Authorization'];
 }
-exports.saveToken = function(token) {
-    instance.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+export const saveToken = function(token) {
+    RestService.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 }
 
-exports.deleteToken = function() {
-    instance.defaults.headers.common.delete('Authorization');
+export const deleteToken = function() {
+    RestService.defaults.headers.common.delete('Authorization');
 }
-exports.restClient = instance;
+export default RestService;

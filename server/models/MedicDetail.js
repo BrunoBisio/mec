@@ -27,7 +27,16 @@ const MedicDetail = db.define('MedicDetail', {
 });
 
 MedicDetail.belongsTo(user);
+user.hasMany(MedicDetail);
+user.belongsToMany(clinic,  {through: MedicDetail})
+user.belongsToMany(specialty,  {through: MedicDetail})
 MedicDetail.belongsTo(clinic);
+clinic.hasMany(MedicDetail);
+clinic.belongsToMany(user,  {through: MedicDetail})
+clinic.belongsToMany(specialty,  {through: MedicDetail})
 MedicDetail.belongsTo(specialty);
+specialty.hasMany(MedicDetail);
+specialty.belongsToMany(user,  {through: MedicDetail})
+specialty.belongsToMany(clinic,  {through: MedicDetail})
 
 module.exports = MedicDetail;

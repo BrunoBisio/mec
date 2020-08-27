@@ -29,5 +29,6 @@ const MedicalRecordAppointment = db.define('MedicalRecordAppointment', {
 });
 
 MedicalRecordAppointment.belongsTo(medicDetail);
+medicDetail.hasMany(MedicalRecordAppointment);
 
 module.exports = MedicalRecordAppointment;

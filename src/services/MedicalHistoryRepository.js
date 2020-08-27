@@ -74,16 +74,16 @@ let nonPatologicHistoryFormat = [
 ]
 
 export function getPatientHistory() {
-    return RestService.restClient.get('/MedicalRecord');
+    return RestService.get('/MedicalRecord');
 }
 
 
 export function getPatientHistoryById(userId) {
-    return RestService.restClient.get('/MedicalRecord/' + userId);
+    return RestService.get('/MedicalRecord/' + userId);
 }
 
 export function updatePatientHistory(patientHistory) {
-    return RestService.restClient.put('/MedicalRecord/' + patientHistory.id, patientHistory);
+    return RestService.put('/MedicalRecord/' + patientHistory.id, patientHistory);
 }
 
 export function getGeneraInformation(userId){

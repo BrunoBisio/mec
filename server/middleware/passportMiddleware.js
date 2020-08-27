@@ -12,6 +12,11 @@ const createError = require('http-errors');
 passport.use('login', new CustomStrategy(
   function(req, done) { 
     const {docNumber, docType, password} = req.body
+    console.log("entro al login")
+    console.log(docNumber)
+    console.log(docType)
+    console.log(password)
+
     return userService.login(parseInt(docNumber), docType, password).then((data) =>{
         return done(null, data);
     }

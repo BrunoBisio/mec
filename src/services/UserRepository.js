@@ -1,40 +1,31 @@
 import React from 'react';
-import {users} from './RolRepository'
-import axios from 'axios';
-function arrayRemove(array, value) { return array.filter(function(item){ return item !== value; });}
-
-let internalUsers;
+import RestService from './RestService.js';
+import {getLoggedUser as repositoryGetLoggedUser} from './RolRepository';
 export function add(user) {
-    internalUsers.push(user);
+    return RestService.post('/users', user);
 }
 
 export function getUsers() {
-    if(!internalUsers) {
-        internalUsers = users;
-    }
-    return internalUsers;
+    return RestService.get('/users');
 }
 
 export function remove(user) {
-    internalUsers = arrayRemove(internalUsers, user)
+    return RestService.delete('/users/'+ user.id);
 }
 
 export function getPendingDeletes() {
-    return axios.get('/users/delete');/*.then((response) => {
-        return response.data.data;
-    }).catch(() => {
-        return [];
-    });*/
+    return RestService.get('/users/delete');
 }
 
 export function deleteUser(user) {
+    return RestService.delete('/users/'+ user.id);
     // internalUsers = arrayRemove(internalUsers, user)
 }
 
 export function updateUser(id, user) {
-    axios.put('/users/' + id, { user });
+    return RestService.put('/users/'+id, user);
 }
 
 export function getLoggedUser () {
-    return users[0];
+    return repositoryGetLoggedUser();
 }

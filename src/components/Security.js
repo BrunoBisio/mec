@@ -1,7 +1,7 @@
 import React from 'react';
 import '../css/styles/Header.scss'
 import {Redirect, Route} from 'react-router-dom';
-import {getUser as IsAuthenticated} from '../services/RolRepository.js';
+import {isAuthenticated} from '../services/RolRepository.js';
 
 
 // A wrapper for <Route> that redirects to the login
@@ -11,7 +11,7 @@ function PrivateRoute({ children, ...rest }) {
       <Route
         {...rest}
         render={({ location }) =>
-          IsAuthenticated() ? (
+          isAuthenticated() ? (
             children
           ) : (
             <Redirect

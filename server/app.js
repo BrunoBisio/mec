@@ -11,6 +11,7 @@ const specialtyRouter = require('./routes/specialties');
 const prescriptionRouter = require('./routes/prescriptions');
 const clinicRouter = require('./routes/clinics');
 const medicalRecordRouter = require('./routes/medicalRecords');
+const medicalRecordRouterAppointment = require('./routes/medicalRecordsAppointment');
 const docTypeRouter = require('./routes/docTypes');
 const emailRouter = require('./routes/email');
 const medicDetailRouter = require('./routes/medicDetails');
@@ -32,14 +33,15 @@ app.use('/specialty', specialtyRouter);
 app.use('/clinic', clinicRouter);
 app.use('/prescription', prescriptionRouter);
 app.use('/medRecord', medicalRecordRouter);
-app.use('/docType', docTypeRouter);
+app.use('/medRecordAppointment', medicalRecordRouterAppointment);
+app.use('/docTypes', docTypeRouter);
 app.use('/email', emailRouter);
 app.use('/medic', medicDetailRouter);
 
 /* Logica par alevantar React */
 app.use(express.static(path.join(__dirname, '/../build')));
 
-app.all('/', function(req, res, next) {
+app.all('*', function(req, res, next) {
   const route = __dirname + '/../build/index.html'
   res.sendFile(path.join(route));
 });
@@ -52,6 +54,7 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
+  console.log(err)
   // render the error page
   status = err.status || 400
   res.status(status);

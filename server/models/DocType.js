@@ -1,6 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../database');
 const race = require('./Race');
+const users = require('./User');
 
 const DocType = db.define('DocType', {
     id: {

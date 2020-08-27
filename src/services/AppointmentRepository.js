@@ -40,31 +40,31 @@ export function push(appointment) {
 }
 
 export function getAppointments () {
-    return RestService.restClient.get('/appointments');
+    return RestService.get('/appointments');
 
 }
 
 export function getAppointmentsByMedic (id) {
-    return RestService.restClient.get('/appointments/medic/' + id);
+    return RestService.get('/appointments/medic/' + id);
 
 }
 
 export function getAppointmentsByUser (id) {
-    return RestService.restClient.get('/appointments/patient/' +id);
+    return RestService.get('/appointments/patient/' +id);
 
 }
 
 export function updateAppointment (appointments) {
-    return RestService.restClient.put('/appointments/' + appointments.id, appointments);
+    return RestService.put('/appointments/' + appointments.id, appointments);
 
 }
 
-export function createAppointment (appointment) {
-    return RestService.restClient.post('/appointments', appointments);
+export function createAppointments (appointment) {
+    return RestService.post('/appointments', appointments);
 
 }
 
 export function remove(appointmentId) {
-    return RestService.restClient.delete('/appointments/' +appointmentsId);
+    return RestService.delete('/appointments/' +appointmentId);
 
 }
