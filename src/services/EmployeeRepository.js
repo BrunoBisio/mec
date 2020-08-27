@@ -5,10 +5,6 @@ export function getEmployee() {
     return [];
 }
 
-export function getEmployeeByRole(rolId) {
-    return [];
-}
-
 export function createEmployee() {
     return;
 }
