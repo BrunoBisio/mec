@@ -39,27 +39,48 @@ export function push(appointment) {
 }
 
 export function getAppointments () {
-
+    return {
+        "pagination": {
+            "total": 1,
+            "offset": 0,
+            "limit": 30
+        },
+        "results": [
+            {
+                "id": 1,
+                "date": "2020-08-22T05:11:18.000Z",
+                "startHour": "12:00:00",
+                "endHour": "21:00:00",
+                "completed": true,
+                "createdAt": "2019-08-22T05:11:28.000Z",
+                "updatedAt": "2020-08-22T05:18:38.000Z",
+                "deletedAt": null,
+                "UserId": null,
+                "MedicDetailId": null,
+                "User": null,
+                "MedicDetail": null
+            }
+        ]
+    };
 }
 
 export function getAppointmentsByMedic (id) {
-
+    return appointments;
 }
 
 export function getAppointmentsByUser (id) {
-
+    return appointments;
 }
 
-<<<<<<< HEAD
-export function updateAppointment (appointments) {
-    return RestService.restClient.put('/appointments/' + appointments.id, appointments);
-=======
 export function updateAppointment (appointment) {
->>>>>>> parent of c594867... Connected front with backend api
 
 }
 
 export function createAppointment (appointment) {
+
+}
+
+export function createAppointments (preAppointmentsObject) {
 
 }
 

@@ -9,11 +9,20 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker, KeyboardTimePicker } from 
 import DateFnsUtils from '@date-io/date-fns';
 import CheckIcon from '@material-ui/icons/Check';
 import '../css/styles/MedicalHistory.scss';
+import AddAppointment from './AddAppointment.js';
 
-function AppointmentModal(props) {
+function MoveAppointmentModal(props) {
     return  (
         <div className="modal">
             <MoveAppointment data={props.data}/>
+        </div>
+    )
+}
+
+function NewAppointmentModal(props) {
+    return (
+        <div className="modal">
+            <AddAppointment/>
         </div>
     )
 }
@@ -24,7 +33,7 @@ class InnerAppointment extends React.Component {
         super(props);
 
         this.state = {
-            data: getAppointments(),
+            data: [],
             movingAppointment: false,
             showHideAppointmentGrid: true,
             showHideMedicalHistory: false,
@@ -35,6 +44,8 @@ class InnerAppointment extends React.Component {
                 medicDetail: '',
                 comment: ''
             },
+            openNewAppointment: false,
+            loggedUser: {}
         }
     }
 
@@ -70,7 +81,7 @@ class InnerAppointment extends React.Component {
     /* Handlers for medical record appointment section */
     handleCommentChange = (event, value) => { 
         this.setState({ comment: event.target.value }); // verificar si recibe campo
-      };
+    };
 
     openWarningDialog = () => {
        this.setState({ open: true });
@@ -91,6 +102,18 @@ class InnerAppointment extends React.Component {
         this.setState({ open: false });
     }
 
+    handleNewAppointment = (val) => {
+        this.setState({ openNewAppointment: val });
+    }
+
+    componentDidMount() {
+        /*
+            getAppointments().then((appointments) => {
+                this.setState({ data });
+            });
+        */
+    }
+
     render() {
         return (
             <div>
@@ -103,7 +126,7 @@ class InnerAppointment extends React.Component {
                                     { title: "Fecha", field: "date", type: "datetime", cellStyle: { minWidth: 'fit-content'} },
                                     { title: "Paciente", field: "patient.name", cellStyle: { minWidth: 'fit-content'} },
                                     { title: "", field: "", cellStyle: { minWidth: 'fit-content'} , 
-                                        render: rowData =>  <div><Button variant="contained" color="primary" onClick= {()=> this.moveAppointment(rowData, true)}>Reprogramar Turno</Button><Modal open={!!rowData.open && this.state.movingAppointment} onClose={()=>{this.moveAppointment(rowData, false)}}><AppointmentModal data={rowData} /></Modal></div>
+                                        render: rowData =>  <div><Button variant="contained" color="primary" onClick= {()=> this.moveAppointment(rowData, true)}>Reprogramar Turno</Button><Modal open={!!rowData.open && this.state.movingAppointment} onClose={()=>{this.moveAppointment(rowData, false)}}><MoveAppointmentModal data={rowData} /></Modal></div>
                                     },
                                     { title: "", field: "", cellStyle: { minWidth: 'fit-content'}, 
                                         render: rowData => <div><Button variant="contained" color="primary" onClick= {()=> this.checkAppointment(rowData, true)}>Tomar turno</Button></div>
@@ -115,7 +138,7 @@ class InnerAppointment extends React.Component {
                                 }}>
                             </MaterialTable>
                         </div>
-                        <div className="ButtonContainer"><Button variant="contained" color="primary">Agendar Turno</Button></div>
+                        <div className="ButtonContainer"><Button variant="contained" color="primary" onClick={()=> this.handleNewAppointment(true)}>Agendar Turno</Button></div>
                 </Grid>
             </div>}
             { this.state.showHideMedicalHistory && <div>
@@ -146,6 +169,7 @@ class InnerAppointment extends React.Component {
                 </Button>
                 </DialogActions>
             </Dialog>
+            <Modal open={this.state.openNewAppointment} onClose={()=>{this.handleNewAppointment(false)}}><NewAppointmentModal/></Modal>
             </div>
         )
     }

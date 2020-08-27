@@ -17,6 +17,7 @@ import ManagePrescriptions from '../components/ManagePrescriptions.js';
 import MyAccountAdmin from '../components/MyAccountAdmin.js';
 import PendingDeleteUsers from '../components/PendingDeleteUsers.js';
 import ABMEmployee from '../components/ABMEmployee.js';
+import Calendar from '../components/Calendar.js';
 
 function arrayRemove(array, value) { return array.filter(function(item){ return item !== value; });}
 let accesses = [{},
@@ -175,6 +176,14 @@ let accesses = [{},
     route: 'admin/pendingDeletes',
     component: PendingDeleteUsers,
     visible: true
+  },
+  {
+    id: 26,
+    title: 'Agenda',
+    route: 'admin/agenda',
+    component: Calendar,
+    visible: true
+
   }
 ]
 
@@ -182,7 +191,7 @@ const roles = [{
     id: 1,
     name: 'Admin',
     defaultView: accesses[1],
-    access: [accesses[1], accesses[2], accesses[3], accesses[4], accesses[5], accesses[6], accesses[7], accesses[8], accesses[10], accesses[11], accesses[12], accesses[14], accesses[15], accesses[16], accesses[18], accesses[19], accesses[20], accesses[21], accesses[23], accesses[24], accesses[25]]
+    access: [accesses[1], accesses[2], accesses[3], accesses[4], accesses[5], accesses[6], accesses[7], accesses[8], accesses[10], accesses[11], accesses[12], accesses[14], accesses[15], accesses[16], accesses[18], accesses[19], accesses[20], accesses[21], accesses[23], accesses[24], accesses[25], accesses[26]]
   },
   {
     id: 2,

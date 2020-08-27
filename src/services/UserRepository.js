@@ -34,3 +34,7 @@ export function deleteUser(user) {
 export function updateUser(id, user) {
     axios.put('/users/' + id, { user });
 }
+
+export function getLoggedUser () {
+    return users[0];
+}

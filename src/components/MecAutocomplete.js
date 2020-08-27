@@ -21,9 +21,6 @@ class MecAutocomplete extends React.Component {
         this.setState(this.state, () => {
             if (this.state.changeEvent != null) {
                 this.state.changeEvent(event, value);
-                console.log("se corrio la func custom");
-            } else {
-                console.log("no se corrio un carajo negri");
             }
         });
       }
