@@ -25,7 +25,7 @@ class CheckPatient extends React.Component {
         super(props);
 
         this.state = {
-            patients: getPatients(),
+            patients: [],
             selectedRow: null,
             open: false
         }
@@ -48,7 +48,12 @@ class CheckPatient extends React.Component {
             open: true
         });
     }
-
+    componentDidMount () {
+        getPatients().then(data=> {
+            console.log(data)
+            this.setState({patients: data.data.data.results})
+        })
+    }
     closeMedicalHistory = () => {
         this.setState({
             open: false

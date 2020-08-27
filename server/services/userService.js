@@ -35,27 +35,14 @@ exports.getUsers = function (condition) {
 }
 
 exports.getPatients = function (condition) {
-    return User.findAndCountAll(condition, {
-        include: [
-            { model: Role, where:{ id: 4}},
-            { model: City },
-            { model: DocType },
-            { model: Race },
-            { model: Plan }
-        ]
-    });
+    condition.where=  { RoleId: 4}
+    console.log(condition)
+    return User.findAndCountAll(condition);
 }
 
 exports.getEmployees = function (condition) {
-    return User.findAndCountAll(condition, {
-        include: [
-            { model: Role, where:{ id: {[Op.not]: 4}}},
-            { model: City },
-            { model: DocType },
-            { model: Race },
-            { model: Plan }
-        ]
-    });
+    condition.where = {RoleId:  {[Op.not]: 4}}
+    return User.findAndCountAll(condition);
 }
 
 exports.getUserByRoleId = function (roleId, condition) {

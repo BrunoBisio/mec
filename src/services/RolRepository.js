@@ -17,7 +17,7 @@ import ManagePrescriptions from '../components/ManagePrescriptions.js';
 import MyAccountAdmin from '../components/MyAccountAdmin.js';
 import PendingDeleteUsers from '../components/PendingDeleteUsers.js';
 import ABMEmployee from '../components/ABMEmployee.js';
-import Calendar from '../components/Calendar.js';
+
 import MyAccountPatient from '../components/MyAccountPatient.js';
 import UserMedicalHistory from '../components/UserMedicalHistory.js';
 import CalendarMedic from '../components/CalendarMedic.js';
@@ -28,7 +28,6 @@ import PatientWelcome from '../components/PatientWelcome';
 import Calendar from '../components/Calendar';
 import MedicWelcome from '../components/MedicWelcome';
 import MyAccountEmployee from '../components/MyAccountEmployee';
-import MyAccountPatient from '../components/MyAccountPatient';
 import EmployeeWelcome from '../components/EmployeeWelcome';
 import RestService from './RestService.js';
 import {saveToken, deleteToken} from './RestService.js'
@@ -317,9 +316,7 @@ export function getLoggedUser() {
   const promise = Promise;
   if(!user) {
     return RestService.get('/users/logged').then(data => {
-      console.log(data)
       user = data.data;
-      console.log(user)
       return user;
   });
   }
@@ -334,10 +331,8 @@ export function singout() {
 }
 
 export function hasAccess(view) {
-  console.log("entro al hasAccess")
-  console.log(user)
   return user.Role.Accesses.find((acc) => {
-    return acc.nameAccess == view.title
+    return acc.id == view.id
   })
 }
 
