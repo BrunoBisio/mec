@@ -52,3 +52,17 @@
     text-align: right;
   }
 }
+
+.DeleteUserContainer {
+  background-color: white;
+  text-align: center;
+
+  .DeleteUserTitle {
+    padding: 5px;
+  }
+  
+  .DeleteUserButton {
+    margin: 15px
+  }
+}
+

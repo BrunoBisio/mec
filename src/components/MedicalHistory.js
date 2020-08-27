@@ -84,9 +84,10 @@ class MedicalHistory extends React.Component {
         super(props);
         
         this.state = {
-          userId: props.data.patient.id,
+          userId: props.userId,
           medicalRecord: {},
-          appointment: props.data || {},
+          // appointment: props.data || {},
+          // filterDate: new Date(),
           medRecApps: [],
           specialtyFilter: '',
           specialties: []
@@ -211,9 +212,9 @@ class MedicalHistory extends React.Component {
                   <Grid container xs={12} className="MedicNotesColumnsTitle">
                     <Grid item xs={3} className="colHeader">
                         <Typography variant="h5">Fecha de consulta</Typography>
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <KeyboardDatePicker label="Fecha" disableToolbar variant="inline" format="dd/MM/yyyy" margin="normal" value={this.state.appointment.date} onChange={this.onDateChange}></KeyboardDatePicker>
-                        </MuiPickersUtilsProvider>
+                        {/*<MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <KeyboardDatePicker label="Fecha" disableToolbar variant="inline" format="dd/MM/yyyy" margin="normal" value={this.state.filterDate} onChange={this.onDateChange}></KeyboardDatePicker>
+                        </MuiPickersUtilsProvider>*/}
                     </Grid>
                     <Grid item xs={3} className="colHeader">
                         <Typography variant="h5">Especialidad</Typography>

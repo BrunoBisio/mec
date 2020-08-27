@@ -17,6 +17,11 @@ import ManagePrescriptions from '../components/ManagePrescriptions.js';
 import MyAccountAdmin from '../components/MyAccountAdmin.js';
 import PendingDeleteUsers from '../components/PendingDeleteUsers.js';
 import ABMEmployee from '../components/ABMEmployee.js';
+import Calendar from '../components/Calendar.js';
+import MyAccountPatient from '../components/MyAccountPatient.js';
+import UserMedicalHistory from '../components/UserMedicalHistory.js';
+import CalendarMedic from '../components/CalendarMedic.js';
+
 import AdminWelcome from '../components/AdminWelcome';
 import Welcome from '../components/Welcome';
 import PatientWelcome from '../components/PatientWelcome';
@@ -145,10 +150,10 @@ export let accesses = [{},
   },
   {
     id: 17,
-    title: 'Historial Clínico', //histclinico de paciente
-    visible: false,
-    route: 'patienteHistory',
-    component: MedicalHistory
+    title: 'Historial',
+    visible: true,
+    route: 'history',
+    component: UserMedicalHistory
   },
   {
     id: 18,
@@ -194,10 +199,57 @@ export let accesses = [{},
   },
   {
     id: 25,
-    title: 'Turnos', //Turnos de secre
-    visible: true,
-    route: 'secre/appointment',
-    component: 'algo'//FALTA ADAPTAR DE InnerAppointment
+    title: 'Solicitud bajas',
+    route: 'admin/pendingDeletes',
+    component: PendingDeleteUsers,
+    visible: true
+  },
+  {
+    id: 26,
+    title: 'Agenda',
+    route: 'admin/agenda',
+    component: Calendar,
+    visible: true
+  },
+  {
+    id: 27,
+    title: 'Cuenta',
+    route: 'account',
+    component: MyAccountPatient,
+    visible: true
+  },
+  {
+    id: 28,
+    title: 'Agenda',
+    route: 'medic/agenda',
+    component: CalendarMedic,
+    visible: true
+  }
+]
+
+const roles = [{
+    id: 1,
+    name: 'Admin',
+    defaultView: accesses[1],
+    access: [accesses[1], accesses[2], accesses[3], accesses[4], accesses[5], accesses[6], accesses[7], accesses[8], accesses[10], accesses[11], accesses[12], accesses[14], accesses[15], accesses[16], accesses[18], accesses[19], accesses[20], accesses[21], accesses[23], accesses[24], accesses[25], accesses[26]]
+  },
+  {
+    id: 2,
+    name: 'Medico',
+    defaultView: accesses[12],
+    access: [accesses[7], accesses[8], accesses[10], accesses[11], accesses[12], accesses[14], accesses[15], accesses[16], accesses[21], accesses[22], accesses[23], accesses[24], accesses[28]]
+  },
+  {
+    id: 3,
+    name: 'Administrativo',
+    defaultView: accesses[23],
+    access: [accesses[10], accesses[11], accesses[12], accesses[21], accesses[22], accesses[23]]
+  },
+  {
+    id: 4,
+    name: 'Paciente',
+    defaultView: accesses[21],
+    access: [accesses[9], accesses[10], accesses[11], accesses[13], accesses[14], accesses[16], accesses[17], accesses[27]]
   }
 ]
 
