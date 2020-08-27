@@ -4,31 +4,31 @@ let appointments = [
   {   
       id: 1,
       date: new Date(),
-      specialty: "Oncologia",
-      doctor: "Wilson",
-      patient: { id: 1, name: "lu" },
+      user: { id: 1, name: "lu" },
       medicDetail: {
-          specialty: { name: "especialidad1" }
+          specialty: { name: "especialidad1" },
+          medic: { name: "gimli" },
+          speciality: { name: "Oncologia" }
       }
   },
   {
       id: 2,
       date: new Date(),
-      specialty: "Problemas Generales",
-      doctor: "House",
-      patient: { id: 2, name: "alexis" },
+      user: { id: 2, name: "alexis" },
       medicDetail: {
-          specialty: { name: "especialidad2" }
+          specialty: { name: "especialidad2" },
+          medic: { name: "legolas" },
+          speciality: { name: "Problemas Generales" }
       }
   },
   {
       id: 3,
       date: new Date(),
-      specialty: "neurología",
-      doctor: "Trece",
-      patient: { id: 3, name: "bruno" },
+      user: { id: 3, name: "bruno" },
       medicDetail: {
-          specialty: { name: "especialidad3" }
+          specialty: { name: "especialidad3" },
+          medic: { name: "aragon" },
+          speciality: { name: "neurología" }
       }
   },
   
