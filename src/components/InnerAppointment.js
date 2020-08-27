@@ -18,6 +18,15 @@ function AppointmentModal(props) {
     )
 }
 
+function NewAppointmentModal(props) {
+    return (
+        <div className="modal">
+            <div><AddAppointment/></div>
+            <div><Button  variant="contained" color="primary" onClick={()=> props.closeFunc(false)}>Cerrar</Button></div>
+        </div>
+    )
+}
+
 class InnerAppointment extends React.Component {
     
     constructor (props) {
@@ -146,6 +155,7 @@ class InnerAppointment extends React.Component {
                 </Button>
                 </DialogActions>
             </Dialog>
+            <Modal open={this.state.openNewAppointment} onClose={()=>{this.handleNewAppointment(false)}}><NewAppointmentModal closeFunc={this.handleNewAppointment}/></Modal>
             </div>
         )
     }

@@ -3,6 +3,8 @@ import {Typography, TextField, Paper, Button, MenuItem } from '@material-ui/core
 import '../css/styles/MyAccount.scss';
 import axios from 'axios'
 import { getUser } from '../services/RolRepository.js';
+import { getDocTypes, getCities, getRoles, getRaces } from '../services/DropDownRepositories';
+import { updateUser } from '../services/UserRepository';
 
 class MyAccountEmployee extends React.Component {
     constructor(props){
@@ -10,9 +12,26 @@ class MyAccountEmployee extends React.Component {
 
         this.state = {
             user: getUser(),
+            docTypes: [], 
             cities: [],
+            roles: [],
+            races: []
         }
     }
+
+    handleDocTypeChange = (event, obj) => { this.setState({ docType: obj.props.value}); };
+
+    handleDocNumberChange = (event, value) => { this.setState({ docNumber: event.target.value }); };
+
+    handleNameChange = (event, value) => { this.setState({ name: event.target.value }); };
+
+    handleLastNameChange = (event, value) => { this.setState({ lastName: event.target.value }); };
+
+    handleDateChange = (event, value) => { this.setState({ birthdate: event.target.value }); }; // buscar como es para fecha
+    
+    handleRaceChange = (event, obj) => { this.setState({ race: obj.props.value}); };
+    
+    handleRoleChange = (event, obj) => { this.setState({ role: obj.props.value}); };
 
     handleCityChange = (event, obj) => { this.setState({ city: obj.props.value}); };
 
@@ -28,39 +47,58 @@ class MyAccountEmployee extends React.Component {
 
     componentDidMount() {
         // const apiUrl = 'http://localhost:3000';
-        axios.get('/city').then(response => {
-            const cities = response.data;
-            this.setState({ cities });
+        axios.all([
+            getDocTypes(),
+            getCities(),
+            getRoles(),
+            getRaces()
+        ]).then((responses) => {
+            const docTypes = responses[0].data.data;
+            const cities = responses[1].data.data;
+            const roles = responses[2].data.data;
+            const races = responses[3].data.data;
+            this.setState({ docTypes, cities, roles, races });
         });
     }
 
     updateUser = (event) => {
         event.preventDefault();
         const user = this.state.user;
-        axios.put('/users/' + user.id, { user }).then((resp) => {
+        updateUser(user.id, user).then((resp) => {
             console.log(resp);
-        });
+        });;
     }
 
     render() {
         return (
             <Paper className="MyAccountPaper">
                 <div className="MyAccountHeader">
-                    <div className="MyAccountTitle"><Typography variant="h4">Hola {this.state.name}</Typography></div>
-                    <div className="MyAccountDelete"><Button variant="contained" color="primary">Solicitar baja</Button></div>
+                    <div className="MyAccountTitle"><Typography variant="h4">Hola {this.state.user.name}</Typography></div>
                 </div>
                 <form noValidate className="MyAccountForm" autoComplete="off" onSubmit={this.updateUser}>
                     <div className="MyAccountCol ColLeft">
-                        <TextField label="Tipo de documento" value={this.state.user.docType} InputProps={{readOnly: true}}></TextField>
-                        <TextField label="Número de documento" value={this.state.user.docNumber} InputProps={{readOnly: true}}></TextField>
-                        <TextField label="Nombres" value={this.state.user.name} InputProps={{readOnly: true}}></TextField>
-                        <TextField label="Apellido" value={this.state.user.lastName} InputProps={{readOnly: true}}></TextField>
-                        <TextField label="Fecha de nacimiento" value={this.state.user.birthdate} InputProps={{readOnly: true}}></TextField>
-                        <TextField label="Raza" value={this.state.user.race} select InputProps={{readOnly: true}}></TextField>
-                        <TextField label="Genero" value={this.state.user.gender} InputProps={{readOnly: true}}></TextField>
+                        <TextField label="Tipo de documento" value={this.state.user.docType} select onChange={this.handleDocTypeChange}>
+                            {this.state.docTypes.map((option, index) => (
+                                <MenuItem key={index} value={option}>{option.docTypeCode}</MenuItem>
+                            ))}
+                        </TextField>
+                        <TextField label="Número de documento" value={this.state.user.docNumber} onChange={this.handleDocNumberChange} disabled={true}></TextField>
+                        <TextField label="Nombres" value={this.state.user.name} onChange={this.handleNameChange} disabled={true}></TextField>
+                        <TextField label="Apellido" value={this.state.user.lastName} onChange={this.handleLastNameChange} disabled={true}></TextField>
+                        <TextField label="Fecha de nacimiento" value={this.state.user.birthdate} onChange={this.handleDateChange} disabled={true}></TextField>
+                        <TextField label="Raza" value={this.state.user.race} select onChange={this.handleRaceChange} disabled={true}>
+                            {this.state.races.map((option, index) => (
+                                <MenuItem key={index} value={option}>{option.name}</MenuItem>
+                            ))}
+                        </TextField>
+                        <TextField label="Genero" value={this.state.user.gender} onChange={this.handleMailChange} disabled={true}></TextField>
                     </div>
                     <div className="MyAccountCol ColRight">
-                        <TextField label="Rol" value={this.state.user.role} InputProps={{readOnly: true}}></TextField>
+                        <TextField label="Rol" select value={this.state.user.role} onChange={this.handleRoleChange} disabled={true}>
+                            {this.state.roles.map((option, index) => (
+                                <MenuItem key={index} value={option}>{option.nameRole}</MenuItem>
+                            ))}
+                        </TextField>
                         <TextField label="Ciudad" select value={this.state.user.city} onChange={this.handleCityChange}>
                             {this.state.cities.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.name}</MenuItem>
