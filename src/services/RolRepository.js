@@ -22,7 +22,6 @@ import MyAccountPatient from '../components/MyAccountPatient.js';
 import UserMedicalHistory from '../components/PatientMedicalHistory.js';
 import CalendarMedic from '../components/CalendarMedic.js';
 import PatientMedicalHistory from '../components/PatientMedicalHistory.js'
-import MedicAgenda from '../components/MedicAgenda.js'
 import AdminWelcome from '../components/AdminWelcome';
 import Welcome from '../components/Welcome';
 import PatientWelcome from '../components/PatientWelcome';
@@ -120,13 +119,13 @@ export let accesses = [{},
     route: 'appointment',
     component: InnerAppointment
   },
-  /*{
+  {
     id: 13,
     title: 'Tomar Turnos', //tomar turno admin y medico
     visible: false,
     route: 'takeAppointment',
     component: MedicalHistory
-  },*/
+  },
   {
     id: 14,
     title: 'Recetas', //recetas pendientes
@@ -184,14 +183,14 @@ export let accesses = [{},
     component: MyAccountEmployee
   },
   {
-    id: 23,
+    id: 22,
     title: 'Agenda', //Agendas medicos 
     visible: true,
     route: 'medic/schedule',
-    component: MedicAgenda//adapatar Calendar
+    component: CalendarMedic//adapatar Calendar
   },
   {
-    id: 24,
+    id: 23,
     title: 'Bienvenida', //Bienvenida de secre
     visible: true,
     route: 'secre/welcome',

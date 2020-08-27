@@ -32,12 +32,17 @@ class ABMPatients extends React.Component {
   constructor(props){
     super(props);
     this.state = { 
-      data:getEmployees(),
+      data:[],
       newPatient: false,
       deletePatient: false,
       editPatient: false,
       newData: null
     };
+  }
+  componentDidMount() {
+    getEmployees().then((data)=> {
+      this.setState({data: data.data.data.results})
+    })
   }
   openEditModal(row, newVal) {
     const newData = this.state.data;
