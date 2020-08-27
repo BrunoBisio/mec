@@ -16,7 +16,39 @@ exports.getById = function (id) {
 }
 
 exports.getUsers = function (condition) {
-    return User.findAndCountAll(condition);
+    return User.findAndCountAll(condition, {
+        include: [
+            { model: Role },
+            { model: City },
+            { model: DocType },
+            { model: Race },
+            { model: Plan }
+        ]
+    });
+}
+
+exports.getPatients = function (condition) {
+    return User.findAndCountAll(condition, {
+        include: [
+            { model: Role, where:{ id: 4}},
+            { model: City },
+            { model: DocType },
+            { model: Race },
+            { model: Plan }
+        ]
+    });
+}
+
+exports.getEmployees = function (condition) {
+    return User.findAndCountAll(condition, {
+        include: [
+            { model: Role, where:{ id: {[Op.not]: 4}}},
+            { model: City },
+            { model: DocType },
+            { model: Race },
+            { model: Plan }
+        ]
+    });
 }
 
 exports.getUserByRoleId = function (roleId, condition) {
@@ -49,6 +81,7 @@ const getUserByDocNumber = function (docNumber, doctypeCode) {
     return User.findOne({where: {docNumber: docNumber}, include: [{model: docType, where:{ docTypeCode: doctypeCode}}]})
 }
 exports.getUserByDocNumber = getUserByDocNumber;
+
 exports.login = function(docNumber, docType, password) {
     return getUserByDocNumber(docNumber, docType).then((user)=> {
         if (!isValidPassword(user, password)){
@@ -62,8 +95,8 @@ exports.login = function(docNumber, docType, password) {
 
 const isValidPassword = function(user, password){
     return bCrypt.compareSync(password, user.password);
-  }
-  // Generates hash using bCrypt
-  const createHash = function(password){
+}
+// Generates hash using bCrypt
+const createHash = function(password){
     return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
-   }
+}

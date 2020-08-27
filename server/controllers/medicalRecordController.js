@@ -1,4 +1,15 @@
 const MedicalRecordService = require('../services/medicalRecordService');
+const Pagination = require('../utils/paginationResponse');
+
+/* GET MedicalRecord By User */
+exports.getMedicalRecords = function (req, res, next) {
+    MedicalRecordService.getMedicalRecord(req.pagination).then((result) => {
+        return res.status(200).json({ status: 200, data: Pagination.generateResponse(result, req.pagination) });
+    }).catch((error) => {
+        next(error);
+    });
+}
+
 
 /* GET MedicalRecord By User */
 exports.getMedicalRecordsByPatientId = function (req, res, next) {

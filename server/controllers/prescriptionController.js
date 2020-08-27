@@ -47,8 +47,8 @@ exports.updatePrescription = function (req, res, next) {
 }
 
 /* GET prescriptions that are yet to be approved */
-exports.getPrescriptionsNotApproved = function (req, res, next) {
-    PrescriptionService.getPrescriptionsNotApproved(req.pagination).then(function (results) {
+exports.getPrescriptionsByState = function (req, res, next) {
+    PrescriptionService.getPrescriptionsByState(req.params.state, req.pagination).then(function (results) {
         return res.status(200).json({ status: 200, data: Pagination.generateResponse(results, req.pagination) });
     }).catch(function (error) {
         next(error);
@@ -67,6 +67,27 @@ exports.getPrescriptionsByUser = function (req, res, next) {
 /* GET prescriptions by medic. */
 exports.getPrescriptionByMedic = function (req, res, next) {
     PrescriptionService.getPrescriptionByMedicId(req.params.medicId, req.pagination).then(function (results) {
+        return res.status(200).json({ status: 200, data: Pagination.generateResponse(results, req.pagination) });
+    }).catch(function (error) {
+        next(error);
+    });
+}
+
+
+
+/* GET prescriptions by medic. */
+exports.getPrescriptionBySpecialty = function (req, res, next) {
+    PrescriptionService.getPrescriptionByMedicId(req.params.specialtyId, req.pagination).then(function (results) {
+        return res.status(200).json({ status: 200, data: Pagination.generateResponse(results, req.pagination) });
+    }).catch(function (error) {
+        next(error);
+    });
+}
+
+
+/* GET prescriptions by medic. */
+exports.getPrescription = function (req, res, next) {
+    PrescriptionService.getPrescriptions(req.pagination).then(function (results) {
         return res.status(200).json({ status: 200, data: Pagination.generateResponse(results, req.pagination) });
     }).catch(function (error) {
         next(error);

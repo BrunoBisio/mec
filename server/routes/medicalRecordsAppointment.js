@@ -6,9 +6,4 @@ router.get('/', MedicalRecordAppointmentController.getMedicalRecordAppointment);
 router.post('/', MedicalRecordAppointmentController.createMedicalRecordAppointment);
 router.put('/:id', MedicalRecordAppointmentController.updateMedicalRecordAppointment);
 
-
-export function createMedRecApp (MedRecApp) {
-    return RestService.restClient.post('/MedicalRecordAppointment', MedRecApp);
-    
-}
 module.exports = router;
