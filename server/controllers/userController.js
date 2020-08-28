@@ -7,7 +7,7 @@ const createError = require('http-errors');
 /* GET users by id. */
 exports.getUserById = function (req, res, next) {
     UserService.getById(req.params.id).then((user) => {
-        return res.status(200).json({ status: 200, data: user });
+        res.send(user);
     }).catch((error) => {
         next(error);
     });
@@ -16,7 +16,7 @@ exports.getUserById = function (req, res, next) {
 /* GET users */
 exports.getUsers = function (req, res, next) {
     UserService.getUsers(req.pagination).then((users) => {
-        return res.status(200).json({ status: 200, data: Pagination.generateResponse(users, req.pagination) });
+        res.send(Pagination.generateResponse(users, req.pagination));
     }).catch((error) => {
         next(error);
     });
@@ -25,7 +25,7 @@ exports.getUsers = function (req, res, next) {
 /* GET users */
 exports.getPatients = function (req, res, next) {
     UserService.getPatients(req.pagination).then((users) => {
-        return res.status(200).json({ status: 200, data: Pagination.generateResponse(users, req.pagination) });
+        res.send(Pagination.generateResponse(users, req.pagination));
     }).catch((error) => {
         next(error);
     });
@@ -35,7 +35,7 @@ exports.getPatients = function (req, res, next) {
 /* GET users */
 exports.getEmployees = function (req, res, next) {
     UserService.getUsers(req.pagination).then((users) => {
-        return res.status(200).json({ status: 200, data: Pagination.generateResponse(users, req.pagination) });
+        res.send(Pagination.generateResponse(users, req.pagination));
     }).catch((error) => {
         next(error);
     });
@@ -43,7 +43,7 @@ exports.getEmployees = function (req, res, next) {
 /* GET users by role id. */
 exports.getUserByRoleId = function (req, res, next) {
     UserService.getUserByRoleId(req.params.roleId, req.pagination).then((users) => {
-        return res.status(200).json({ status: 200, data: Pagination.generateResponse(users, req.pagination) });
+        res.send(Pagination.generateResponse(users, req.pagination));
     }).catch((error) => {
         next(error);
     });
@@ -52,7 +52,7 @@ exports.getUserByRoleId = function (req, res, next) {
 /* CREATE user. */
 exports.createUser = function (req, res, next) {
     UserService.createUser(req.body).then((user) => {
-        return res.status(200).json({ status: 200, data: user });
+        res.send(user);
     }).catch((error) => {
         next(error);
     });
@@ -61,7 +61,7 @@ exports.createUser = function (req, res, next) {
 /* UPDATE user */
 exports.updateUser = function (req, res, next) {
     UserService.updateUser(req.params.id, req.body).then((user) => {
-        return res.status(200).json({ status: 200, data: user });
+        res.send(user);
     }).catch((error) => {
         next(error);
     });
@@ -82,7 +82,7 @@ exports.deleteUser = function (req, res, next) {
 
 exports.getUsersPendingDelete = function (req, res, next) {
     UserService.getUserForDelete(req.pagination).then((users) => {
-        return res.status(200).json({ status: 200, data: Pagination.generateResponse(users, req.pagination) });
+        res.send(Pagination.generateResponse(users, req.pagination));
     }).catch((error) => {
         next(error);
     });

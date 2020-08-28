@@ -4,7 +4,7 @@ const Pagination = require('../utils/paginationResponse');
 /* GET MedicalRecord By User */
 exports.getMedicalRecords = function (req, res, next) {
     MedicalRecordService.getMedicalRecord(req.pagination).then((result) => {
-        return res.status(200).json({ status: 200, data: Pagination.generateResponse(result, req.pagination) });
+        res.send(Pagination.generateResponse(result, req.pagination));
     }).catch((error) => {
         next(error);
     });
@@ -14,7 +14,7 @@ exports.getMedicalRecords = function (req, res, next) {
 /* GET MedicalRecord By User */
 exports.getMedicalRecordsByPatientId = function (req, res, next) {
     MedicalRecordService.getMedicalRecordByPatient(req.params.roleId).then((result) => {
-        return res.status(200).json({ status: 200, data: result });
+        res.send(result);
     }).catch((error) => {
         next(error);
     });
@@ -23,7 +23,7 @@ exports.getMedicalRecordsByPatientId = function (req, res, next) {
 /* POST MedicalRecord. */
 exports.createMedicalRecord = function (req, res, next) {
     MedicalRecordService.createMedicalRecord(req.body).then((medicalRecord) => {
-        return res.status(200).json({ status: 200, data: medicalRecord });
+        res.send(medicalRecord);
     }).catch((error) => {
         next(error);
     });
@@ -33,7 +33,7 @@ exports.createMedicalRecord = function (req, res, next) {
 exports.updateMedicalRecord = function (req, res, next) {
     MedicalRecordService.updateMedicalRecord(req.params.id, req.body).then((updated) => {
         if (updated === 1) {
-            return res.status(200).json({ status: 200, data: medicalRecord });
+            res.send(updated);
         } else {
             next("No se encontro ningun historial medico con ese ID");
         }
