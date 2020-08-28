@@ -13,10 +13,11 @@ class MyAccountEmployee extends React.Component {
         this.state = {
             user: { DocType: {}, Race: {}, Role: {}, City: {} },
             cities: [],
+            cityValue: ''
         }
     }
 
-    handleCityChange = (event, obj) => { this.setState({ city: obj.props.value}); };
+    handleCityChange = (event, obj) => { this.setState({ city: obj.props.value, cityValue: obj.props.value.name }); };
 
     handleAddressChange = (event, value) => { this.setState({ address: event.target.value }); };
 
@@ -35,7 +36,8 @@ class MyAccountEmployee extends React.Component {
         ]).then((res) => {
             const cities = res[0].data;
             const user = res[1];
-            this.setState({ cities, user });
+            const cityValue = res[1].City ? res[1].City.name : '';
+            this.setState({ cities, user, cityValue });
         });
     }
 
@@ -65,9 +67,9 @@ class MyAccountEmployee extends React.Component {
                     </div>
                     <div className="MyAccountCol ColRight">
                         <TextField label="Rol" value={this.state.user.Role.nameRole} disabled={true}></TextField>
-                        <TextField label="Ciudad" select value={this.state.user.City.name} onChange={this.handleCityChange}>
+                        <TextField label="Ciudad" select value={this.state.cityValue} onChange={this.handleCityChange} inputProps={{ name: "name", id: "id" }}>
                             {this.state.cities && this.state.cities.map((option, index) => (
-                                <MenuItem key={index} value={option}>{option.name}</MenuItem>
+                                <MenuItem key={option.id} value={option}>{option.name}</MenuItem>
                             ))}
                         </TextField>
                         <TextField label="Dirección" value={this.state.user.address} onChange={this.handleAddressChange}></TextField>
