@@ -3,7 +3,7 @@ import { Button, Radio, Grid, IconButton, TextField, Typography, RadioGroup, For
 import '../css/styles/Header.scss'
 import MaterialTable from "material-table";
 import '../css/styles/MedicalHistory.scss';
-import { getGeneraInformation, getPatalogicHistory, getNonPatologicHistory } from '../services/MedicalHistoryRepository.js'
+import { getPatientHistoryById } from '../services/MedicalHistoryRepository.js'
 import { MuiPickersUtilsProvider, KeyboardDatePicker, KeyboardTimePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import CheckIcon from '@material-ui/icons/Check';
@@ -80,15 +80,15 @@ class NotPatologicalRow extends React.Component {
 }
 
 class MedicalHistory extends React.Component {
-    constructor(props) {
+    
+  constructor(props) {
         super(props);
         
         this.state = {
-          userId: props.userId,
+          user: props.user,
           medicalRecord: {},
-          // appointment: props.data || {},
-          // filterDate: new Date(),
-          medRecApps: [],
+          medicalRecordApps: [],
+           // filterDate: new Date(),
           specialtyFilter: '',
           specialties: []
         };
@@ -100,59 +100,26 @@ class MedicalHistory extends React.Component {
     };
 
     onDateChange = (value) => {
-      const medRecApps = this.state.medRecApps.filter((mra) => {
+      const medicalRecordApps = this.state.medicalRecordApps.filter((mra) => {
         return mra.date == value;
       });
-      this.setState({ medRecApps });
+      this.setState({ medicalRecordApps });
     }
 
   
   handleSelectChange = (event, obj) => { 
-      const medRecApps = this.state.medRecApps.filter((mra) => {
+      const medicalRecordApps = this.state.medicalRecordApps.filter((mra) => {
           return mra.medicDetail.specialty.id === obj.props.value.id;
       });
-      this.setState({ medRecApps });
+      this.setState({ medicalRecordApps });
   };
 
     componentDidMount() {
-      const medicalRecord = {
-        "UserId": 2,
-        "allergyActive": true,
-        "allergyDrug": "prueba1",
-        "cardioActive": false,
-        "cardioComment": "",
-        "pulmonaryActive": true,
-        "pulmonaryComment": "prueba1",
-        "digestiveActive": true,
-        "digestiveComment": "prueba1",
-        "renalActive": false,
-        "renalComment": "",
-        "neurologicalActive": false,
-        "neurologicalComment": "",
-        "diabetesActive": false,
-        "diabetesComment": "",
-        "surgicalActive": false,
-        "surgicalComment": "",
-        "treatmentActive": false,
-        "treatmentComment": "",
-        "pregnancyActive": false,
-        "pregnancyComment": "",
-        "alcoholFreq": 0,
-        "alcoholComment": "",
-        "tobaccoFreq": 1,
-        "tobacoComment": "prueba1",
-        "drugsFreq": 2,
-        "drugsComment": "prueba1",
-        "otherFreq": 0,
-        "otherComment": "",
-        "medicNotes" : []
-      }
-      const medRecApps = medicalRecord.medicalRecordAppointments;
-      this.setState({ medicalRecord, medRecApps });
-      /*getPaitnetHistory(this.state.userId).then((response) => {
-        const medicalHistory = response.data;
-        this.setState({ medicalHistory });
-      });*/
+      getPatientHistoryById(this.state.user.id).then((response) => {
+        const medicalRecord = response.data;
+        const medicalRecordApps = medicalRecord.
+        this.setState({ medicalRecord, medicalRecordApps });
+      });
     }
 
     render() {

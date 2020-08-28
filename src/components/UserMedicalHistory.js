@@ -1,6 +1,6 @@
 import React from 'react';
 import MedicalHistory from './MedicalHistory.js';
-import { getLoggedUser } from '../services/UserRepository';
+import { getLoggedUser } from '../services/RolRepository';
 
 class UserMedicalHistory extends React.Component {
 

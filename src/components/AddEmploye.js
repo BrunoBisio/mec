@@ -2,6 +2,7 @@ import React from 'react';
 import {Typography, TextField, Paper, Button, MenuItem } from '@material-ui/core';
 import '../css/styles/AddRole.scss'
 import axios from 'axios';
+import {  getDocTypes, getCities, getRaces, getRoles } from '../services/DropDownRepositories.js';
 
 class AddEmploye extends React.Component {
     constructor(props){
@@ -16,17 +17,16 @@ class AddEmploye extends React.Component {
     }
 
     componentDidMount() {
-        // const apiUrl = 'http://localhost:3000';
         axios.all([
-            axios.get('/docType'), // get docTypes
-            axios.get('/city'), // get cities
-            axios.get('/race'), // get races
-            axios.get('/role') 
+            getDocTypes(),
+            getCities(),
+            getRaces(),
+            getRoles()
         ]).then((responses) => {
-            const docTypes = responses[0].data.data;
-            const cities = responses[1].data.data;
-            const races = responses[2].data.data;
-            const roles = responses[3].data.data;
+            const docTypes = responses[0].data;
+            const cities = responses[1].data;
+            const races = responses[2].data;
+            const roles = responses[3].data;
             this.setState({ docTypes, cities, races, roles });
         });
     }

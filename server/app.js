@@ -15,8 +15,13 @@ const medicalRecordRouterAppointment = require('./routes/medicalRecordsAppointme
 const docTypeRouter = require('./routes/docTypes');
 const emailRouter = require('./routes/email');
 const medicDetailRouter = require('./routes/medicDetails');
-const User = require('./services/userService')
-const passport = require('./middleware/passportMiddleware')
+const raceRouter = require('./routes/race');
+const planRouter = require('./routes/plan');
+const roleRouter = require('./routes/role');
+const cityRouter = require('./routes/city');
+
+const User = require('./services/userService');
+const passport = require('./middleware/passportMiddleware');
 
 let app = express();
 
@@ -29,14 +34,18 @@ app.use(passport.passport.initialize())
 // routers
 app.use('/users', usersRouter);
 app.use('/appointment', appointmentsRouter);
-app.use('/specialty', specialtyRouter);
-app.use('/clinic', clinicRouter);
+app.use('/specialties', specialtyRouter);
+app.use('/clinics', clinicRouter);
 app.use('/prescription', prescriptionRouter);
-app.use('/medRecord', medicalRecordRouter);
-app.use('/medRecordAppointment', medicalRecordRouterAppointment);
+app.use('/medicalRecord', medicalRecordRouter);
+app.use('/medicalRecordAppointment', medicalRecordRouterAppointment);
 app.use('/docTypes', docTypeRouter);
 app.use('/email', emailRouter);
 app.use('/medic', medicDetailRouter);
+app.use('/races', raceRouter);
+app.use('/plans', planRouter);
+app.use('/roles', roleRouter);
+app.use('/cities', cityRouter);
 
 /* Logica par alevantar React */
 app.use(express.static(path.join(__dirname, '/../build')));

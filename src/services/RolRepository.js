@@ -4,26 +4,22 @@ import UserAppointment from '../components/UserAppointment.js'
 import AddAppointment from '../components/AddAppointment.js'
 import Prescription from '../components/Prescription.js'
 import MedicalHistory from '../components/MedicalHistory.js'
-// import MyAccount from '../components/MyAccount.js'
 import RequestPrescription from '../components/RequestPrescription.js'
 import AddEmployee from '../components/AddEmploye'
 import InnerAppointment from '../components/InnerAppointment.js';
-// import UDEmployee from '../components/UDEmploye'
 import CheckPatient from '../components/CheckPatient';
-import SetAppointments from '../components/SetAppointments.js';
-import ABMRole from '../components/ABMRole.js'
-import ABMPatients from '../components/ABMPatients.js'
+import ABMRole from '../components/ABMRole.js';
+import ABMPatients from '../components/ABMPatients.js';
 import ManagePrescriptions from '../components/ManagePrescriptions.js';
 import MyAccountAdmin from '../components/MyAccountAdmin.js';
 import PendingDeleteUsers from '../components/PendingDeleteUsers.js';
 import ABMEmployee from '../components/ABMEmployee.js';
-
 import MyAccountPatient from '../components/MyAccountPatient.js';
 import UserMedicalHistory from '../components/PatientMedicalHistory.js';
 import CalendarMedic from '../components/CalendarMedic.js';
 import PatientMedicalHistory from '../components/PatientMedicalHistory.js'
 import AdminWelcome from '../components/AdminWelcome';
-import Welcome from '../components/Welcome';
+// import Welcome from '../components/Welcome';
 import PatientWelcome from '../components/PatientWelcome';
 import Calendar from '../components/Calendar';
 import MedicWelcome from '../components/MedicWelcome';
@@ -31,9 +27,8 @@ import MyAccountEmployee from '../components/MyAccountEmployee';
 import EmployeeWelcome from '../components/EmployeeWelcome';
 import RestService from './RestService.js';
 import { saveToken, deleteToken } from './RestService.js'
-function arrayRemove(array, value) { return array.filter(function (item) { return item !== value; }); }
 
-export let accesses = [{},
+export let accesses = [
 {
   id: 1,
   title: 'Bienvenida', //Bienvenida de paciente
@@ -296,8 +291,38 @@ export function getAccesses() {
   return RestService.get('/accesses');
 }
 
+export function getLoggedUser() {
+  const promise = Promise;
+  if (!user) {
+    return RestService.get('/users/logged').then(data => {
+      user = data.data;
+      return user;
+    });
+  }
+  return promise.resolve(user);
+}
+
+export function isAuthenticated() {
+  return !!user;
+}
+
+export function singout() {
+  user = null;
+}
+
 export function hasAccess(view) {
   return user.Role.Accesses.find((acc) => {
     return acc.id == view.id
   })
+}
+
+export function login(docNumber, docType, password) {
+  return RestService.post('/users/login', {
+    docNumber: docNumber,
+    docType: docType,
+    password: password
+  }).then(data => {
+    saveToken(data.data.data.token);
+    return getLoggedUser();
+  });
 }

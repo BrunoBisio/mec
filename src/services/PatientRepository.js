@@ -16,4 +16,3 @@ export function updatePatient(patient) {
 export function deletePatient(patientId) {
     return RestService.get('/users/' + patientId);
 }
-

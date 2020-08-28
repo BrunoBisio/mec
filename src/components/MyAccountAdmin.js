@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Typography, TextField, Paper, Button, MenuItem } from '@material-ui/core';
 import '../css/styles/MyAccount.scss';
 import axios from 'axios'
-import { getUser } from '../services/RolRepository.js';
+import { getLoggedUser } from '../services/RolRepository.js';
 import { getDocTypes, getCities, getRoles, getRaces } from '../services/DropDownRepositories';
 import { updateUser } from '../services/UserRepository';
 
@@ -11,7 +11,7 @@ class MyAccountAdmin extends React.Component {
         super(props);
 
         this.state = {
-            user: getUser(),
+            user: getLoggedUser(),
             docTypes: [], 
             cities: [],
             roles: [],
@@ -46,17 +46,16 @@ class MyAccountAdmin extends React.Component {
     handlePasswordChange = (event, value) => { this.setState({ password: event.target.value }); };
 
     componentDidMount() {
-        // const apiUrl = 'http://localhost:3000';
         axios.all([
             getDocTypes(),
             getCities(),
             getRoles(),
-            getRaces()
+            getRaces(),
         ]).then((responses) => {
-            const docTypes = responses[0].data.data;
-            const cities = responses[1].data.data;
-            const roles = responses[2].data.data;
-            const races = responses[3].data.data;
+            const docTypes = responses[0].data;
+            const cities = responses[1].data;
+            const roles = responses[2].data;
+            const races = responses[3].data;
             this.setState({ docTypes, cities, roles, races });
         });
     }
@@ -78,7 +77,7 @@ class MyAccountAdmin extends React.Component {
                 <form noValidate className="MyAccountForm" autoComplete="off" onSubmit={this.updateUser}>
                     <div className="MyAccountCol ColLeft">
                         <TextField label="Tipo de documento" value={this.state.user.docType} select onChange={this.handleDocTypeChange}>
-                            {this.state.docTypes&& this.state.docTypes.map((option, index) => (
+                            {this.state.docTypes && this.state.docTypes.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.docTypeCode}</MenuItem>
                             ))}
                         </TextField>
@@ -95,12 +94,12 @@ class MyAccountAdmin extends React.Component {
                     </div>
                     <div className="MyAccountCol ColRight">
                         <TextField label="Rol" select value={this.state.user.role} onChange={this.handleRoleChange}>
-                            {this.state.roles&&this.state.roles.map((option, index) => (
+                            {this.state.roles && this.state.roles.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.nameRole}</MenuItem>
                             ))}
                         </TextField>
                         <TextField label="Ciudad" select value={this.state.user.city} onChange={this.handleCityChange}>
-                            {this.state.cities&&this.state.cities.map((option, index) => (
+                            {this.state.cities && this.state.cities.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.name}</MenuItem>
                             ))}
                         </TextField>

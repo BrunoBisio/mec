@@ -8,7 +8,7 @@ import '../css/styles/UDEmployee.scss';
 import RelativeLink from './RelativeLink.js';
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { getPatients } from '../services/RolRepository';
+import { getPatients } from '../services/PatientRepository';
 import { remove } from '../services/UserRepository';
 import IconButton from '@material-ui/core/IconButton';
 import AddPatient from './AddPatient';

@@ -2,7 +2,7 @@ import React from 'react';
 import RestService from './RestService';
 
 export function getDocTypes() {
-    return RestService.get('/doctypes');
+    return RestService.get('/docTypes');
 }
 
 export function getRaces() {

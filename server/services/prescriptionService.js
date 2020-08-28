@@ -15,7 +15,6 @@ exports.createPrescription = function (prescription) {
     return Prescription.create(prescription);
 }
 
-
 exports.getPrescriptions = function ( condition) {
     return Prescription.findAndCountAll(condition);
 }

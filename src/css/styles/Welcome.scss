@@ -1,13 +1,24 @@
 @import 'global';
 
 .WelcomeContainer {
+    background-position-x: center;
+    background-size: contain;
+    margin-top: 10px;
 
     .WelcomeTextContainer {
         padding-top: 3vh;
-    
-        .WelcomeText {
-            background-color: transparent;
-            color: $golden;
+    }
+}
+
+.AdminWelcome {
+    .WelcomeContainer {
+        
+        .WelcomeTextContainer {
+        
+            .WelcomeText {
+                background-color: transparent;
+                color: $golden;
+            }
         }
     }
 }

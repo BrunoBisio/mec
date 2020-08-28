@@ -16,7 +16,7 @@ import { getEmployeeByRole } from '../services/EmployeeRepository.js';
 import MecAutocomplete from './MecAutocomplete.js';
 import { Typography } from '@material-ui/core';
 import '../css/styles/calendar.scss'
-import { getLoggedUser } from '../services/UserRepository.js';
+import { getLoggedUser } from '../services/RolRepository.js';
 
 const currentDate = new Date(2017, 4, 25);
 

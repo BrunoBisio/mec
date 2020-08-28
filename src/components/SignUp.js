@@ -13,7 +13,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { getInsurances, getDocTypes, getCities, getRaces } from '../services/DropDownRepositories.js';
+import { getPlans, getDocTypes, getCities, getRaces } from '../services/DropDownRepositories.js';
 import '../css/styles/Signup.scss';
 
 function Copyright() {
@@ -57,45 +57,14 @@ export default function SignUp() {
   const [name, setName] = React.useState();
   const [lastName, setLastName] = React.useState();
   const [birthday, setBirthday] = React.useState();
-  const [insurance, setInsurance] = React.useState();
+  const [plan, setPlan] = React.useState();
   const [city, setCity] = React.useState();
   const [address, setAddress] = React.useState();
   const [mail, setMail] = React.useState();
   const [telephone, setTelephone] = React.useState();
   const [cellphone, setCellphone] = React.useState();
 
-/*
-  handleDocTypeChange = (event, obj) => { setDocType(obj.props.value) };
-  handleDocNumberChange = (event, obj) => { setDocType(obj.props.value) };
-  handleNameChange = (event, obj) => { setDocType(obj.props.value) };
-  handleLastNameChange = (event, obj) => { setDocType(obj.props.value) };
-  handleBirthdayChange = (event, obj) => { setDocType(obj.props.value) };
-  handleInsuranceChange = (event, obj) => { setDocType(obj.props.value) };
-  handleDocTypeChange = (event, obj) => { setDocType(obj.props.value) };
-  handleDocTypeChange = (event, obj) => { setDocType(obj.props.value) };
-  handleDocTypeChange = (event, obj) => { setDocType(obj.props.value) };
-
-  handleDocNumberChange = (event, value) => { this.setState({ docNumber: event.target.value }); };
-  handleNameChange = (event, value) => { this.setState({ name: event.target.value }); };
-  handleLastNameChange = (event, value) => { this.setState({ lastName: event.target.value }); };
-  handleBirthdayChange = (event, value) => { this.setState({ birthday: event.target.value }); };
-  handleInsuranceChange = (event, obj) => { this.setState({ insurance: obj.props.value }); };
-  handleCityChange = (event, obj) => { this.setState({ city: obj.props.value}); };
-  handleAddressChange = (event, value) => { this.setState({ address: event.target.value }); };
-  handleMailChange = (event, value) => { this.setState({ mail: event.target.value }); };
-  handleTelChange = (event, value) => { this.setState({ telephone: event.target.value }); };
-  handleCelChange = (event, value) => { this.setState({ cellphone: event.target.value }); };
-*/
-  /*updateUser = () => { 
-    dummyInfo.insurance = this.state.insurance;
-    dummyInfo.city = this.state.city;
-    dummyInfo.address = this.state.address;
-    dummyInfo.mail = this.state.mail;
-    dummyInfo.telephone = this.state.telephone;
-    dummyInfo.cellphone = this.state.cellphone;
-  }*/
-
-  const insurances = getInsurances();
+  const plans = getPlans();
   const docTypes = getDocTypes();
   const cities = getCities();
 
@@ -120,8 +89,8 @@ export default function SignUp() {
             <TextField label="Nombre" value={name} ></TextField>
             <TextField label="Apellido" value={lastName} ></TextField>
             <TextField label="Fecha de nacimiento" value={birthday} ></TextField>
-            <TextField label="Plan" select value={insurance}  >
-              {insurances.map((option, index) => (
+            <TextField label="Plan" select value={plan}  >
+              {plans.map((option, index) => (
                <MenuItem key={index} value={option.name}>{option.name}</MenuItem>
               ))}
             </TextField>
@@ -130,9 +99,9 @@ export default function SignUp() {
                 <MenuItem key={index} value={option.name}>{option.name}</MenuItem>
               ))}
             </TextField>
-            <TextField label="Direccion" value={address} ></TextField>
+            <TextField label="Dirección" value={address} ></TextField>
             <TextField label="Correo electronico" value={mail} ></TextField>
-            <TextField label="Telefono" value={telephone} ></TextField>
+            <TextField label="Teléfono" value={telephone} ></TextField>
             <TextField label="Celular" value={cellphone}  ></TextField>
           </Grid>
           <Button

@@ -4,7 +4,7 @@ import MaterialTable from "material-table";
 import RelativeLink from './RelativeLink.js';
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { getEmployees } from '../services/RolRepository';
+import { getEmployees } from '../services/EmployeeRepository';
 import { remove } from '../services/UserRepository';
 import AddEmploye from './AddEmploye';
 import ConfirmDelete from './ConfirmDelete';

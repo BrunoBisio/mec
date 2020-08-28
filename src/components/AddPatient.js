@@ -1,7 +1,8 @@
 import React from 'react';
 import {Typography, TextField, Paper, Button, MenuItem } from '@material-ui/core';
-import '../css/styles/AddRole.scss'
+import {  getDocTypes, getCities, getRaces, getPlans } from '../services/DropDownRepositories.js';
 import axios from 'axios';
+import '../css/styles/AddRole.scss'
 
 class AddPatient extends React.Component {
     constructor(props){
@@ -16,18 +17,17 @@ class AddPatient extends React.Component {
     }
 
     componentDidMount() {
-        // const apiUrl = 'http://localhost:3000';
         axios.all([
-            axios.get('/docType'), // get docTypes
-            axios.get('/city'), // get cities
-            axios.get('/race') // get races
-            // axios.get('/plan'), // TODO
+            getDocTypes(),
+            getCities(),
+            getRaces(),
+            getPlans()
         ]).then((responses) => {
-            const docTypes = responses[0].data.data;
-            const cities = responses[1].data.data;
-            const races = responses[2].data.data;
-            // const plans = responses[3].data.data;
-            this.setState({ docTypes, cities, races });
+            const docTypes = responses[0].data;
+            const cities = responses[1].data;
+            const races = responses[2].data;
+            const plans = responses[3].data;
+            this.setState({ docTypes, cities, races, plans });
         });
     }
 
@@ -67,7 +67,7 @@ class AddPatient extends React.Component {
                 <form noValidate className="MyAccountForm" autoComplete="off" onSubmit={this.updateUser}>
                     <div className="MyAccountCol ColLeft">
                         <TextField label="Tipo de documento" value={this.state.user.docType} select onChange={this.handleDocTypeChange}>
-                            {this.state.docTypes.map((option, index) => (
+                            {this.state.docTypes && this.state.docTypes.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.docTypeCode}</MenuItem>
                             ))}
                         </TextField>
@@ -76,26 +76,26 @@ class AddPatient extends React.Component {
                         <TextField label="Apellido" value={this.state.user.lastName} onChange={this.handleLastNameChange}></TextField>
                         <TextField label="Fecha de nacimiento" value={this.state.user.birthdate} onChange={this.handleDateChange}></TextField>
                         <TextField label="Raza" value={this.state.user.race} select onChange={this.handleRaceChange}>
-                            {this.state.races.map((option, index) => (
+                            {this.state.races && this.state.races.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.name}</MenuItem>
                             ))}
                         </TextField>
-                        <TextField label="Genero" value={this.state.user.gender} onChange={this.handleMailChange}></TextField>
+                        <TextField label="Género" value={this.state.user.gender} onChange={this.handleMailChange}></TextField>
                     </div>
                     <div className="MyAccountCol ColRight">
                         <TextField label="Plan" select value={this.state.user.plan} onChange={this.handlePlanChange}>
-                            {/*this.state.plans.map((option, index) => (
+                            {this.state.plans && this.state.plans.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.nameRole}</MenuItem>
-                            ))*/}
+                            ))}
                         </TextField>
                         <TextField label="Ciudad" select value={this.state.user.city} onChange={this.handleCityChange}>
-                            {this.state.cities.map((option, index) => (
+                            {this.state.cities && this.state.cities.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.name}</MenuItem>
                             ))}
                         </TextField>
                         <TextField label="Dirección" value={this.state.user.address} onChange={this.handleAddressChange}></TextField>
                         <TextField label="Correo electronico" value={this.state.user.mail} onChange={this.handleMailChange}></TextField>
-                        <TextField label="Telefono" value={this.state.user.telephone} onChange={this.handleTelChange}></TextField>
+                        <TextField label="Teléfono" value={this.state.user.telephone} onChange={this.handleTelChange}></TextField>
                         <TextField label="Celular" value={this.state.user.cellphone} onChange={this.handleCelChange} ></TextField>
                         <TextField label="Contraseña" value={this.state.user.password} onChange={this.handlePasswordChange}></TextField>
                     </div>

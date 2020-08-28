@@ -7,13 +7,11 @@ exports.getMedicalRecordByPatient = function (patientId) {
     });
 }
 
-
 exports.getMedicalRecord = function () {
     return MedicalRecord.findAndCountAll({
         attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] }
     });
 }
-
 
 exports.createMedicalRecord = function (medicalRecord) {
     return MedicalRecord.create(medicalRecord);

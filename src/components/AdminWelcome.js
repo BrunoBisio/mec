@@ -17,7 +17,9 @@ class AdminWelcome extends React.Component {
     
     render() {
         return (
-            <Welcome config={this.state}></Welcome>
+            <div className="AdminWelcome">
+                <Welcome config={this.state}></Welcome>
+            </div>
         )
     }
 }

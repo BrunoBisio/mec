@@ -1,6 +1,6 @@
 import React from 'react';
 import MedicalHistory from './MedicalHistory.js';
-import { getLoggedUser } from '../services/UserRepository';
+import { getLoggedUser } from '../services/RolRepository';
 
 class PatientMedicalHistory extends React.Component {
 
@@ -8,19 +8,14 @@ class PatientMedicalHistory extends React.Component {
         super(props);
 
         this.state = {
-            user: {}
+            user: getLoggedUser()
         }
-    }
-
-    componentDidMount() {
-        const user = getLoggedUser();
-        this.setState({ user });
     }
 
     render() {
         return(
             <div>
-                <MedicalHistory userId={this.state.user.id}></MedicalHistory>
+                <MedicalHistory user={this.state.user}></MedicalHistory>
             </div>
         )
     }

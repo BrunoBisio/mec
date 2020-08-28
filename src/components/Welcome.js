@@ -20,7 +20,7 @@ class Welcome extends React.Component {
     }
     componentDidMount(){
         getLoggedUser().then(data => {
-            this.setState({Title: '¡Hola ' + data.name + '!' })
+            this.setState({Title: '¡ Hola ' + data.name + '!' })
         })
     }
 

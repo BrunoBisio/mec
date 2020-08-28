@@ -1,16 +1,15 @@
 import React from 'react';
 import format from "date-fns/format";
 import esLocale from "date-fns/locale/es";
-import { Grid, List, ListItem, TextField, MenuItem } from '@material-ui/core';
+import { Grid, TextField, MenuItem } from '@material-ui/core';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import MaterialTable from "material-table";
 import AddIcon from '@material-ui/icons/Add';
 import '../css/styles/AddAppointment.scss';
-import {getAppointments, updateAppointment} from '../services/AppointmentRepository.js';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import { getAppointments, updateAppointment } from '../services/AppointmentRepository.js';
 import Axios from 'axios';
-import { getLoggedUser } from '../services/UserRepository.js';
+import { getLoggedUser } from '../services/RolRepository.js';
 import { getDocTypesWithPatients, getSpecialtiesWithClinicsWithMedics } from '../services/DropDownRepositories.js';
 
 const matTableOpt = {
@@ -135,25 +134,19 @@ class AddApointment extends React.Component {
     onDateChange = (event, value) => { this.setState({ filterDate: value }, this.filterList); };
 
     componentDidMount () {
-        /*Axios.all([
+        Axios.all([
             getLoggedUser(),
             getDocTypesWithPatients(),
             getSpecialtiesWithClinicsWithMedics(),
             getAppointments()
         ]).then((responses) => {
             const loggedUser = responses[0];
-            const listDocTypes = responses[1];
-            const listSpecialities = responses[2];
-            const listAppointments = responses[3];
-            this.setState({ loggedUser, listDocTypes, listSpecialities, listAppointments });
-        });*/
-        const listDocTypes = getDocTypesWithPatients().data;
-        const listSpecialities = getSpecialtiesWithClinicsWithMedics().data;
-        const listAppointments = getAppointments().results;
-        this.setState({ listDocTypes, listSpecialities, listAppointments }, this.filterList);
+            const listDocTypes = responses[1].data.results;
+            const listSpecialities = responses[2].data.results;
+            const listAppointments = responses[3].data.results;
+            this.setState({ loggedUser, listDocTypes, listSpecialities, listAppointments }, this.filterList);
+        });
     }
-
-    onDateChange = (event, value) => { this.setState({ filterDate: value }); };
 
     render() {
         return (
@@ -177,14 +170,14 @@ class AddApointment extends React.Component {
                         </TextField>
                     </div>
                     {this.state.filterSpeciality && this.state.filterSpeciality.id > 0 && this.state.filterSpeciality.Clinics && <div className="FilterRow">
-                        <TextField fullWidth select variant="outlined" value={this.state.filterClinic} onChange={this.onClinicChange} label="Clinica" >
+                        <TextField fullWidth select variant="outlined" value={this.state.filterClinic} onChange={this.onClinicChange} label="Clínica" >
                             {this.state.filterSpeciality.Clinics.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.name}</MenuItem>
                             ))}
                         </TextField>
                     </div>}
                     {this.state.filterClinic && this.state.filterClinic.id > 0 && this.state.filterClinic.Users && <div className="FilterRow">
-                        <TextField fullWidth select variant="outlined" value={this.state.filterMedic} onChange={this.onMedicChange} label="Medico" >
+                        <TextField fullWidth select variant="outlined" value={this.state.filterMedic} onChange={this.onMedicChange} label="Médico" >
                             {this.state.filterClinic.Users.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.name}</MenuItem>
                             ))}

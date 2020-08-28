@@ -8,33 +8,6 @@ VALUES
 ('Administrativo', CURDATE(), CURDATE()),
 ('Paciente', CURDATE(), CURDATE());
 
--- Access
-INSERT INTO access (nameAccess, createdAt, updatedAt) 
-VALUES
-('Alta Paciente', CURDATE(), CURDATE()),
-('Baja Paciente', CURDATE(), CURDATE()),
-('Modificacion Paciente', CURDATE(), CURDATE()),
-('Alta Empleado', CURDATE(), CURDATE()),
-('Baja Empleado', CURDATE(), CURDATE()),
-('Modificacion Empleado', CURDATE(), CURDATE()),
-('Alta Receta', CURDATE(), CURDATE()),
-('Baja Receta', CURDATE(), CURDATE()),
-('Lectura Receta', CURDATE(), CURDATE()),
-('Alta Turno', CURDATE(), CURDATE()),
-('Baja Turno', CURDATE(), CURDATE()),
-('Modificacion Turno', CURDATE(), CURDATE()),
-('Lectura Turno', CURDATE(), CURDATE()),
-('Alta Historia Clinica', CURDATE(), CURDATE()),
-('Baja Historia Clinica', CURDATE(), CURDATE()),
-('Modificacion Historia Clinica', CURDATE(), CURDATE()),
-('Lectura Historia Clinica', CURDATE(), CURDATE()),
-('Alta Rol', CURDATE(), CURDATE()),
-('Baja Rol', CURDATE(), CURDATE()),
-('Modificacion Rol', CURDATE(), CURDATE()),
-('Alta Agenda', CURDATE(), CURDATE()),
-('Baja Agenda', CURDATE(), CURDATE()),
-('Modificacion Agenda', CURDATE(), CURDATE());
-
 -- Races
 INSERT INTO races (name, createdAt, updatedAt) 
 VALUES ('Elfo', CURDATE(), CURDATE()),
@@ -296,3 +269,73 @@ VALUES
 (STR_TO_DATE('31/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 8),
 (STR_TO_DATE('31/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 9),
 (STR_TO_DATE('31/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 10);
+
+-- Access
+INSERT INTO access (id, nameAccess, createdAt, updatedAt) 
+VALUES
+(1,'PatientWelcome', CURDATE(), CURDATE()),
+(2,'MyAccountPatient', CURDATE(), CURDATE()),
+(3,'UserAppointment', CURDATE(), CURDATE()),
+(4,'Prescription', CURDATE(), CURDATE()),
+(5,'PatientMedicalHistory', CURDATE(), CURDATE()),
+(6,'AdminWelcome', CURDATE(), CURDATE()),
+(7,'MyAccountAdmin', CURDATE(), CURDATE()),
+(8,'PendingDeleteUsers', CURDATE(), CURDATE()),
+(9,'ABMPatients', CURDATE(), CURDATE()),
+(10,'ABMEmployee', CURDATE(), CURDATE()),
+(11,'ABMRole', CURDATE(), CURDATE()),
+(12,'InnerAppointment', CURDATE(), CURDATE()),
+(13,'InternalMedicalHistory', CURDATE(), CURDATE()),
+(14,'ManagePrescriptions', CURDATE(), CURDATE()),
+(15,'Calendar', CURDATE(), CURDATE()),
+(16,'CheckPatient', CURDATE(), CURDATE()),
+(17,'MedicalHistory', CURDATE(), CURDATE()),
+(18,'UserAppointment', CURDATE(), CURDATE()),
+(19,'Prescription', CURDATE(), CURDATE()),
+(20,'MedicWelcome', CURDATE(), CURDATE()),
+(21,'MyAccountEmployeen Rol', CURDATE(), CURDATE()),
+(22,'MedicAgenda', CURDATE(), CURDATE()),
+(23,'EmployeeWelcome', CURDATE(), CURDATE()),
+(24,'EmployeeAppointment', CURDATE(), CURDATE())
+
+
+-- role x access
+INSERT INTO roleXaccess (AccessId, RoleId, createdAt, updatedAt)
+VALUES
+(1, 1, curdate(), curdate()),
+(6, 1, curdate(), curdate()),
+(7, 1, curdate(), curdate()),
+(8, 1, curdate(), curdate()),
+(9, 1, curdate(), curdate()),
+(10, 1, curdate(), curdate()),
+(11, 1, curdate(), curdate()),
+(12, 1, curdate(), curdate()),
+(13, 1, curdate(), curdate()),
+(14, 1, curdate(), curdate()),
+(15, 1, curdate(), curdate()),
+(16, 1, curdate(), curdate()),
+(17, 1, curdate(), curdate()),
+(18, 1, curdate(), curdate()),
+(20, 2, curdate(), curdate()),
+(21, 2, curdate(), curdate()),
+(12, 2, curdate(), curdate()),
+(13, 2, curdate(), curdate()),
+(14, 2, curdate(), curdate()),
+(16, 2, curdate(), curdate()),
+(17, 2, curdate(), curdate()),
+(18, 2, curdate(), curdate()),
+(19, 2, curdate(), curdate()),
+(23, 2, curdate(), curdate()),
+(22, 2, curdate(), curdate()),
+(24, 3, curdate(), curdate()),
+(15, 3, curdate(), curdate()),
+(21, 3, curdate(), curdate()),
+(16, 3, curdate(), curdate()),
+(17, 3, curdate(), curdate()),
+(18, 3, curdate(), curdate()),
+(19, 3, curdate(), curdate()),
+(1, 4, curdate(), curdate()),
+(2, 4, curdate(), curdate()),
+(3, 4, curdate(), curdate()),
+(4, 4, curdate(), curdate()),
+(5, 4, curdate(), curdate());

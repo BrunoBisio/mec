@@ -12,7 +12,7 @@ import {
 } from '@devexpress/dx-react-scheduler-material-ui';
 import { ViewState, EditingState, IntegratedEditing } from '@devexpress/dx-react-scheduler';
 import { createAppointments, remove, getAppointmentsByMedic, getAppointments } from '../services/AppointmentRepository.js';
-import { getEmployeeByRole } from '../services/EmployeeRepository.js';
+import { getUsersByRole } from '../services/UserRepository.js';
 import MecAutocomplete from './MecAutocomplete.js';
 import { Typography } from '@material-ui/core';
 import '../css/styles/calendar.scss'
@@ -37,14 +37,14 @@ class Calendar extends React.Component {
     }
 
     componentDidMount() {
-        /*getEmployeeByRole(2).then((medics) => {
+        getUsersByRole(2).then((response) => {
             const medicsAutocomplete = {
-                values: medics,
+                values: response.data.results,
                 label: 'user.lastName',
                 title: 'Medicos'
             }
             this.setState({ medicsAutocomplete });
-        });*/
+        });
     }
 
     commitChanges({ added, changed, deleted }) {

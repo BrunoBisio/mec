@@ -1,7 +1,7 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import {Typography, TextField, Paper, Button, MenuItem } from '@material-ui/core';
+import { Typography, TextField, Paper, Button, MenuItem } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import '../css/styles/SignInSide.scss';
-import {login as securityLogin} from '../services/RolRepository.js';
+import { login as securityLogin } from '../services/RolRepository.js';
 import {
   useHistory,
   useLocation
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
-  } 
+  }
 }));
 
 export default function SignInSide() {
@@ -56,18 +56,17 @@ export default function SignInSide() {
   const [docType, setdocType] = React.useState();
   const [userDocNumber, setDocNumber] = React.useState();
   const [docTypes, setdocTypes] = React.useState();
-  debugger
+
   React.useEffect(() => {
-    getDocTypes().then(data => {
-      setdocTypes(data.data.data)
+    getDocTypes().then((response) => {
+      setdocTypes(response.data)
     })
-    
-  },[]);
+
+  }, []);
 
   let { from } = location.state || { from: { pathname: "/" } };
   let login = () => {
-    console.log(docType)
-    securityLogin(userDocNumber,docType.docTypeCode, password).then(
+    securityLogin(userDocNumber, docType.docTypeCode, password).then(
       (data) => {
         console.log("entro al replace")
         history.replace(from);
@@ -86,26 +85,26 @@ export default function SignInSide() {
           </Avatar>
           <Typography component="h1" variant="h5">Sign in</Typography>
           <form className={classes.form} noValidate>
-          <Grid container xs={12}>
-          <Grid item xs={3}>
-          <TextField variant="outlined" margin="normal" required fullWidth label="Tipo de documento" value={docType} select onChange={(event, obj) => setdocType(obj.props.value)}>
-                            {docTypes && docTypes.map((option, index) => (
-                                <MenuItem key={index} value={option}>{option.docTypeCode}</MenuItem>
-                            ))}
-                        </TextField></Grid> 
-          <Grid item xs={9}>
-          <TextField variant="outlined" margin="normal" required fullWidth label="Número de documento" value={userDocNumber} onChange={(event) => setDocNumber(event.target.value)}></TextField>
-          </Grid> 
-           </Grid >
-          
+            <Grid container xs={12}>
+              <Grid item xs={3}>
+                <TextField variant="outlined" margin="normal" required fullWidth label="Tipo de documento" value={docType} select onChange={(event, obj) => setdocType(obj.props.value)}>
+                  {docTypes && docTypes.map((option, index) => (
+                    <MenuItem key={index} value={option}>{option.docTypeCode}</MenuItem>
+                  ))}
+                </TextField></Grid>
+              <Grid item xs={9}>
+                <TextField variant="outlined" margin="normal" required fullWidth label="Número de documento" value={userDocNumber} onChange={(event) => setDocNumber(event.target.value)}></TextField>
+              </Grid>
+            </Grid >
+
             <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" onChange={(event) => setPassword(event.target.value)} autoComplete="current-password" />
             <Button onClick={login} type="button" variant="contained" color="primary" className="SingInButton"> Sign In</Button>
             <Grid container justify="center">
               <Grid item xs={12} md={6} className="SingInLinkText">
-                <Link href="#" variant="body2">{ "¿Olvidaste tu contraseña?" }</Link>
+                <Link href="#" variant="body2">{"¿Olvidaste tu contraseña?"}</Link>
               </Grid>
               <Grid item xs={12} md={6} className="SingInLinkText">
-                <Link href="#" variant="body2">{ "¿Todavia no tenes tu cuenta? Registrate aca" }</Link>
+                <Link href="#" variant="body2">{"¿Todavia no tenes tu cuenta? Registrate aca"}</Link>
               </Grid>
             </Grid>
             <Box mt={5}>

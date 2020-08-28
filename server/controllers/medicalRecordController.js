@@ -13,7 +13,7 @@ exports.getMedicalRecords = function (req, res, next) {
 
 /* GET MedicalRecord By User */
 exports.getMedicalRecordsByPatientId = function (req, res, next) {
-    MedicalRecordService.getMedicalRecordByPatient(req.params.roleId).then((result) => {
+    MedicalRecordService.getMedicalRecordByPatient(req.params.id).then((result) => {
         res.send(result);
     }).catch((error) => {
         next(error);

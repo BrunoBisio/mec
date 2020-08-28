@@ -16,7 +16,9 @@ class MedicWelcome extends React.Component {
     
     render() {
         return (
-            <Welcome config={this.state}></Welcome>
+            <div className="MedicWelcome">
+                <Welcome config={this.state}></Welcome>
+            </div>
         )
     }
 }

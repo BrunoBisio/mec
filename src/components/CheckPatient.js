@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, TextField, Paper, MenuItem, Modal } from '@material-ui/core';
 import { getDocTypes, getInsurances } from '../services/DropDownRepositories.js';
-import { getPatients } from '../services/RolRepository.js';
+import { getPatients } from '../services/PatientRepository.js';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import '../css/styles/CheckPatient.scss';
