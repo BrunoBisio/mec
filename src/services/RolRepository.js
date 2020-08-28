@@ -296,51 +296,8 @@ export function getAccesses() {
   return RestService.get('/accesses');
 }
 
-export function login(docNumber, docType, password) {
-  return RestService.post('/users/login', {
-    docNumber: docNumber,
-    docType: docType,
-    password: password
-  }).then(data => {
-    saveToken(data.data.data.token);
-    return getLoggedUser();
-  });
-}
-
-
-export function isAuthenticated() {
-  return !!user;
-}
-
-export function getLoggedUser() {
-  const promise = Promise;
-  if(!user) {
-    return RestService.get('/users/logged').then(data => {
-      user = data.data;
-      return user;
-  });
-  }
-  return promise.resolve(user);
-}
-export function getUser(id) {
-  return RestService.get('/users/' + id);
-}
-export function singout() {
-  user = null;
-}
-
 export function hasAccess(view) {
   return user.Role.Accesses.find((acc) => {
     return acc.id == view.id
   })
 }
-
-export function getPatients() {
-  return RestService.get('/users/patients');
-}
-
-export function getEmployees() {
-  return RestService.get('/users/employee');
-
-}
-

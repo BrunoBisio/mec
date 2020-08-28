@@ -29,6 +29,7 @@ export function getClinics () {
     return RestService.get('/clinics');
 }
 
+// TODO: replace object with proper REST call
 export function getDocTypesWithPatients() {
     return {
         "status": 200,
@@ -137,7 +138,8 @@ export function getDocTypesWithPatients() {
         ]
     }
 }
- 
+
+// TODO: replace object with proper REST call
 export function getSpecialtiesWithClinicsWithMedics() {
     return {
         "status": 200,
