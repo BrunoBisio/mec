@@ -63,6 +63,7 @@ export default function SignUp() {
   const [mail, setMail] = React.useState();
   const [telephone, setTelephone] = React.useState();
   const [cellphone, setCellphone] = React.useState();
+
 /*
   handleDocTypeChange = (event, obj) => { setDocType(obj.props.value) };
   handleDocNumberChange = (event, obj) => { setDocType(obj.props.value) };
@@ -133,12 +134,6 @@ export default function SignUp() {
             <TextField label="Correo electronico" value={mail} ></TextField>
             <TextField label="Telefono" value={telephone} ></TextField>
             <TextField label="Celular" value={cellphone}  ></TextField>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid>
           </Grid>
           <Button
             type="submit"

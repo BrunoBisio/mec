@@ -8,7 +8,6 @@ import Header from './components/Header.js';
 import Footer from './components/Footer.js';
 import './css/styles/App.scss';
 import NewsContainer from './components/NewsContainer'
-import LoggedIn from './components/LoggedIn.js';
 import PrivateRoute from './components/Security.js';
 import User from './components/User.js';
 import MyAccountAdmin from './components/MyAccountAdmin.js'
@@ -28,9 +27,6 @@ function App() {
         </Route>
         <Route path="/login" exact strict component={SignInSide}></Route>
         <Route path="/singup" exact strict component={SignUp}></Route> 
-        <PrivateRoute path="/loggedin" exact strict>
-        <LoggedIn></LoggedIn>
-        </PrivateRoute> 
         <PrivateRoute path="/user"><User></User></PrivateRoute>
         <Route path="/pruebaBruno"><MyAccountAdmin></MyAccountAdmin></Route>
       </Switch>

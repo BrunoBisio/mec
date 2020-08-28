@@ -17,109 +17,135 @@ import ManagePrescriptions from '../components/ManagePrescriptions.js';
 import MyAccountAdmin from '../components/MyAccountAdmin.js';
 import PendingDeleteUsers from '../components/PendingDeleteUsers.js';
 import ABMEmployee from '../components/ABMEmployee.js';
-import Calendar from '../components/Calendar.js';
-import MyAccountPatient from '../components/MyAccountPatient.js';
-import UserMedicalHistory from '../components/UserMedicalHistory.js';
-import CalendarMedic from '../components/CalendarMedic.js';
 
+import MyAccountPatient from '../components/MyAccountPatient.js';
+import UserMedicalHistory from '../components/PatientMedicalHistory.js';
+import CalendarMedic from '../components/CalendarMedic.js';
+import PatientMedicalHistory from '../components/PatientMedicalHistory.js'
+import AdminWelcome from '../components/AdminWelcome';
+import Welcome from '../components/Welcome';
+import PatientWelcome from '../components/PatientWelcome';
+import Calendar from '../components/Calendar';
+import MedicWelcome from '../components/MedicWelcome';
+import MyAccountEmployee from '../components/MyAccountEmployee';
+import EmployeeWelcome from '../components/EmployeeWelcome';
+import RestService from './RestService.js';
+import {saveToken, deleteToken} from './RestService.js'
 function arrayRemove(array, value) { return array.filter(function(item){ return item !== value; });}
-let accesses = [{},
+
+export let accesses = [{},
   {
     id: 1,
-    title: 'ABM Paciente',
+    title: 'Bienvenida', //Bienvenida de paciente
     visible: true,
-    route: 'patient/abm',
-    component: ABMPatients
-
+    route: 'patiente/welcome',
+    component: PatientWelcome
   },
   {
     id: 2,
-    title: 'Baja Paciente',
-    visible: false
+    title: 'Mi Cuenta', //Cuenta de paciente
+    visible: true,
+    route: 'patiente/account',
+    component: MyAccountPatient
+
   },
   {
     id: 3,
-    title: 'Mod. Paciente',
-    visible: false
+    title: 'Mis Turnos', //Turnos de paciente
+    visible: true,
+    route: 'patiente/appointments',
+    component: UserAppointment
   },
   {
     id: 4,
-    title: 'Alta Empleado',
-    visible: false,
-    // route: 'employee/add',
-    // component: AddEmployee
-  },
-  {
-    id: 5,
-    title: 'ABM Empleado',
+    title: 'Mis Recetas', //Recetas de paciente
     visible: true,
-    route: 'employee/update',
-    component: ABMEmployee
-  },
-  {
-    id: 6,
-    title: 'Mod. Empleado',
-    visible: false
-  },
-  {
-    id: 7,
-    title: 'Alta Receta',
-    visible: false,
-    route: 'prescription/request',
-    component: RequestPrescription
-  },
-  {
-    id: 8,
-    title: 'Baja Receta',
-    visible: false
-  },
-  {
-    id: 9,
-    title: 'Recetas',
-    visible: true,
-    route: 'prescription',
+    route: 'patiente/prescriptions',
     component: Prescription
   },
   {
+    id: 5,
+    title: 'Mi Historial Clínico', //histclinico de paciente
+    visible: true,
+    route: 'patiente/history',
+    component: PatientMedicalHistory//FALTA (copiar MedicalHistory)
+  },
+   {
+    id: 6,
+    title: 'Bienvenida', //Bienvenida de Admin
+    visible: true,
+    route: 'admin/welcome',
+    component: AdminWelcome
+  },
+  {
+    id: 7,
+    title: 'Mi Cuenta', //Cuenta de Admin
+    visible: true,
+    route: 'admin/account',
+    component: MyAccountAdmin
+  },
+  {
+    id: 8,
+    title: 'Solicitudes Baja', //Bajas pendedientes
+    visible: true,
+    route: 'admin/deleteRequest',
+    component: PendingDeleteUsers
+  },
+  {
+    id: 9,
+    title: 'ABM Usuario',
+    visible: true,
+    route: 'admin/abmPatient',
+    component:  ABMPatients
+  },
+  {
     id: 10,
-    title: 'Alta Turno',
-    visible: false,
-    route: 'appointment/add',
-    component: AddAppointment
+    title: 'ABM Empleado',
+    visible: true,
+    route: 'admin/abmEmployee',
+    component: ABMEmployee
   },
   {
     id: 11,
-    title: 'Baja Turno',
-    visible: false
+    title: 'ABM Rol',
+    visible: true,
+    route: 'admin/abmRole',
+    component: ABMRole
   },
   {
     id: 12,
-    title: 'Turnos',
+    title: 'Turnos', //Turnos pendientes admin y secre
     visible: true,
-    route: 'doctorAppointment',
+    route: 'appointment',
     component: InnerAppointment
   },
   {
     id: 13,
-    title: 'Turnos',
-    visible: true,
-    route: 'appointment',
-    component: UserAppointment
+    title: 'Tomar Turnos', //tomar turno admin y medico
+    visible: false,
+    route: 'takeAppointment',
+    component: MedicalHistory
   },
   {
     id: 14,
-    title: 'Alta Hist. Clinica',
-    visible: false
+    title: 'Recetas', //recetas pendientes
+    visible: true,
+    route: 'prescriptions',
+    component: ManagePrescriptions
   },
   {
     id: 15,
-    title: 'Baja Hist. Clinica',
-    visible: false
+    title: 'Agenda', //Agendas medicos (admin y secre)
+    visible: true,
+    route: 'schedule',
+    component: Calendar //terminar
   },
   {
     id: 16,
-    title: 'Mod. Hist. Clinica',
-    visible: false
+    title: 'Consultar Paciente', //consulta (admin, med y secre)
+    visible: true,
+    route: 'searchPatiente',
+    component: CheckPatient
   },
   {
     id: 17,
@@ -130,48 +156,45 @@ let accesses = [{},
   },
   {
     id: 18,
-    title: 'ABM Rol',
-    visible: true,
-    route: 'admin/role',
-    component: ABMRole
+    title: 'Turnos Paciente', //Turnos de paciente
+    visible: false,
+    route: 'patienteAppointments',
+    component: UserAppointment //filtrado por el usuario buscado en consultar paciente
   },
   {
     id: 19,
-    title: 'Baja Rol',
-    visible: false
+    title: 'Recetas Paciente', //Recetas de paciente
+    visible: false,
+    route: 'patientePrescription',
+    component: Prescription //filtrado por el usuario buscado en consultar paciente
   },
   {
     id: 20,
-    title: 'Mod. Rol',
-    visible: false
+    title: 'Bienvenida', //Bienvenida de medico
+    visible: true,
+    route: 'medic/welcome',
+    component: MedicWelcome
   },
   {
     id: 21,
-    title: 'Cuenta',
-    route: 'account',
-    component: MyAccountAdmin,
-    visible: true
+    title: 'Mi Cuenta', //Cuenta de medico- secre
+    visible: true,
+    route: 'employee/myAccount',
+    component: MyAccountEmployee
   },
   {
     id: 22,
-    title: 'Consultar Paciente',
-    route: 'checkPatient',
-    component: CheckPatient,
-    visible: true
+    title: 'Agenda', //Agendas medicos 
+    visible: true,
+    route: 'medic/schedule',
+    component: CalendarMedic//adapatar Calendar
   },
   {
     id: 23,
-    title: 'Alta Turno',
-    route: 'employee/setAppointment',
-    component: SetAppointments,
-    visible: true
-  },
-  {
-    id: 24,
-    title: 'Administrar Recetas',
-    route: 'doctor/managePrescriptions',
-    component: ManagePrescriptions,
-    visible: true
+    title: 'Bienvenida', //Bienvenida de secre
+    visible: true,
+    route: 'secre/welcome',
+    component: EmployeeWelcome
   },
   {
     id: 25,
@@ -228,119 +251,96 @@ const roles = [{
     access: [accesses[9], accesses[10], accesses[11], accesses[13], accesses[14], accesses[16], accesses[17], accesses[27]]
   }
 ]
- 
 
-export const users = [
-  {
-      name: "Aragon",
-      rol: roles[1]
-    },
-    {
-      name: "Sauron",
-      rol: roles[0]
-    },
-    {
-      name: "Gimli",
-      rol: roles[2]
-    },
-    {
-      name: "Tauriel",
-      rol: roles[1]
-    },
-    {
-      name: "Legolas",
-      rol: roles[1]
-    },
-    {
-      name: "Gandalf",
-      rol: roles[1]
-    },
-    {
-      name: "Boromir",
-      rol: roles[1]
-    },
-    {
-      name: "Arwen",
-      rol: roles[1]
-    },
-    {
-      id: 1,
-      tipoDoc: 'DH',
-      doc: '123456',
-      name: 'Frodo',
-      lastName: 'Baggins',
-      bDay: "22/9/2968",
-      plan: 'MEC50',
-      ciudad: 3,
-      direccion: 'Bolson cerrado 123, Hobbiton',
-      mail: 'frodoNueveDedos@gmail.com',
-      telefono: '48247864',
-      celular: '15123456',
-      rol: roles[3]
-    },
-    {
-      id: 2,
-      tipoDoc: 'DE',
-      doc: '000002',
-      name: 'Galadriel',
-      lastName: 'del bosque',
-      bDay: "27/12/1362",
-      plan: 'MEC-ELFOS',
-      ciudad: 1,
-      direccion: 'Arbol 49, Bosque de Doriath',
-      mail: 'DamaBlanca@gmail.com',
-      telefono: '27122812',
-      celular: '15456789',
-      rol: roles[3]
-  }
-
-];
-
+export const defaultView = ['', {
+  id: 6,
+  title: 'Bienvenida', //Bienvenida de Admin
+  visible: true,
+  route: 'admin/welcome',
+  component: AdminWelcome
+}, {
+  id: 24,
+  title: 'Bienvenida', //Bienvenida de secre
+  visible: true,
+  route: 'secre/welcome',
+  component: EmployeeWelcome
+}, {
+  id: 24,
+  title: 'Bienvenida', //Bienvenida de secre
+  visible: true,
+  route: 'secre/welcome',
+  component: EmployeeWelcome
+}, {
+  id: 1,
+  title: 'Bienvenida', //Bienvenida de paciente
+  visible: true,
+  route: 'patiente/welcome',
+  component: PatientWelcome
+},]
 let user = null;
 
 export function getRoles() {
-  return roles;
+  return RestService.get('/roles');
 }
-export function removeRoles(role) {
-  roles = arrayRemove(roles, role)
+export function removeRoles(roleId) {
+  return RestService.delete('/roles/' + roleId);
 }
 export function createRole(role) {
-  roles.push(role)
+  return RestService.post('/roles', role);
 }
 export function updateRole(role) {
-  const oldRole = roles.filter(element => element.id === role.id)[0]
-  roles[roles.indexOf(oldRole)]=role
+  return RestService.put('/roles/' + role.id, role);
 }
 
 export function getAccesses() {
-  return accesses;
+  return RestService.get('/accesses');
 }
 
-export function login(username) {
-    user = users.filter(user  => user.name.toUpperCase() == username.toUpperCase())[0]
+export function login(docNumber, docType, password) {
+  return RestService.post('/users/login', {
+    docNumber: docNumber,
+    docType: docType,
+    password: password
+  }).then(data => {
+    saveToken(data.data.data.token);
+    return getLoggedUser();
+  });
 }
+
 
 export function isAuthenticated() {
-  return user;
+  return !!user;
+}
+
+export function getLoggedUser() {
+  const promise = Promise;
+  if(!user) {
+    return RestService.get('/users/logged').then(data => {
+      user = data.data;
+      return user;
+  });
+  }
+  return promise.resolve(user);
 }
 export function getUser(id) {
-  return user;
+  return RestService.get('/users/' + id);
 }
 export function singout() {
   user = null;
 }
 
-export function hasAccess(role, viewTitle) {
-  const currentView = accesses.find((acc) => {
-    return acc.title == viewTitle
-  });
-  return role.access.indexOf(currentView.id) > -1
+export function hasAccess(view) {
+  return user.Role.Accesses.find((acc) => {
+    return acc.id == view.id
+  })
 }
 
 export function getPatients() {
-  return users.filter((user) => { return user.rol.id === 4 });
+  return RestService.get('/users/patients');
 }
 
 export function getEmployees() {
-  return users.filter((user) => {return (user.rol.id === 2 || user.rol.id === 3) });
+  return RestService.get('/users/employee');
+
 }
+

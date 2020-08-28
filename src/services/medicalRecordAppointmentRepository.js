@@ -1,5 +1,6 @@
 import React from 'react';
 
-export function createMedRecApp () {
+export function createMedRecApp (MedRecApp) {
+    return RestService.post('/MedicalRecordAppointment', MedRecApp);
     
 }

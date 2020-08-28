@@ -15,8 +15,13 @@ exports.createPrescription = function (prescription) {
     return Prescription.create(prescription);
 }
 
-exports.getPrescriptionsNotApproved = function (condition) {
-    condition.where = { approved: false }
+
+exports.getPrescriptions = function ( condition) {
+    return Prescription.findAndCountAll(condition);
+}
+
+exports.getPrescriptionsByState = function (state, condition) {
+    condition.where = { approved: state }
     return Prescription.findAndCountAll(condition);
 }
 

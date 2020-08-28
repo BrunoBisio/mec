@@ -22,6 +22,24 @@ exports.getUsers = function (req, res, next) {
     });
 }
 
+/* GET users */
+exports.getPatients = function (req, res, next) {
+    UserService.getPatients(req.pagination).then((users) => {
+        return res.status(200).json({ status: 200, data: Pagination.generateResponse(users, req.pagination) });
+    }).catch((error) => {
+        next(error);
+    });
+}
+
+
+/* GET users */
+exports.getEmployees = function (req, res, next) {
+    UserService.getUsers(req.pagination).then((users) => {
+        return res.status(200).json({ status: 200, data: Pagination.generateResponse(users, req.pagination) });
+    }).catch((error) => {
+        next(error);
+    });
+}
 /* GET users by role id. */
 exports.getUserByRoleId = function (req, res, next) {
     UserService.getUserByRoleId(req.params.roleId, req.pagination).then((users) => {

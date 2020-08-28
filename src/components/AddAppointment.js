@@ -153,6 +153,8 @@ class AddApointment extends React.Component {
         this.setState({ listDocTypes, listSpecialities, listAppointments }, this.filterList);
     }
 
+    onDateChange = (event, value) => { this.setState({ filterDate: value }); };
+
     render() {
         return (
             <Grid container direction="row" className="AddAppointmentGrid">

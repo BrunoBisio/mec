@@ -19,7 +19,13 @@ const User = db.define('User', {
   },
   docNumber: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    unique: 'compositeIndex'
+  },
+  DocTypeId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    unique: 'compositeIndex'
   },
   name: {
     type: DataTypes.STRING
@@ -64,8 +70,9 @@ const User = db.define('User', {
 
 User.belongsTo(role);
 User.belongsTo(city);
-User.belongsTo(docType);
+User.belongsTo(docType, {foreignkey: User.rawAttributes.DocTypeId});
 User.belongsTo(race);
 User.belongsTo(plan);
+docType.hasMany(User, {foreignkey: User.rawAttributes.DocTypeId});
 
 module.exports = User;

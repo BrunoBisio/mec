@@ -130,35 +130,37 @@ const insurances = [
 
 
 export function getDocTypes() {
-    return docTypes;
+    console.log("entro al getDocTypes")
+    debugger
+    return RestService.get('/doctypes');
 }
 
 export function getRaces(){
-    return races;
+    return RestService.get('/races');
 }
 
 export function getCities() {
-    return cities;
+    return RestService.get('/cities');
 }
 
 export function getInsurances() {
-    return insurances;
+    //return RestService.get('/clinics');
 }
 
 export function getRoles() {
-    return [];
+    return RestService.get('/roles');
 }
 
 export function getPlans () {
-    return;
+    return RestService.get('/plans');
 }
 
 export function getSpecialties () {
-
+    return RestService.get('/specialties');
 }
 
 export function getClinics () {
-    
+    return RestService.get('/clinics');
 }
 
 export function getDocTypesWithPatients() {

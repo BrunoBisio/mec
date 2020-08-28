@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Typography } from '@material-ui/core';
 import '../css/styles/Welcome.scss';
+import {getLoggedUser} from '../services/RolRepository'
 
 class Welcome extends React.Component {
 
@@ -16,6 +17,11 @@ class Welcome extends React.Component {
                 backgroundImage: `url(${props.config.img})`
             }
         }
+    }
+    componentDidMount(){
+        getLoggedUser().then(data => {
+            this.setState({Title: '¡Hola ' + data.name + '!' })
+        })
     }
 
     render() {

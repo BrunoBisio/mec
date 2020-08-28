@@ -31,12 +31,18 @@ function InternalDeleteModal(props) {
 class ABMPatients extends React.Component {
   constructor(props){
     super(props);
-    this.state = { data:getPatients() ,
+    this.state = { data:[] ,
     newPatient: false,
     deletePatient: false,
     editPatient: false,
     newData: null
   };
+  }
+  componentDidMount() {
+    getPatients().then(res => {
+      this.setState({data: res.data.data.results})
+    })
+    
   }
   openEditModal(row, newVal) {
     const newData = this.state.data;

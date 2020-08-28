@@ -8,22 +8,22 @@ import RelativeLink from './RelativeLink.js';
 import '../css/styles/Header.scss'
 import '../css/styles/UserAppointment.scss'
 
-function arrayRemove(array, value) { return array.filter(function(item){ return item !== value; });}
-
 class Prescription extends React.Component {
+
   constructor(props){
+    console.log("creando el prescription")
       super(props);
       this.state = {
-        data: getPrescriptions()
+        data: []
       };
   }
-  /*
-  TODO: for later
-  removePrescription(row) {
-      const newData = arrayRemove(this.state.data, row);
-      this.setState((state,props) => state.data = newData);
+
+  componentDidMount() {
+    console.log("trayendo las prescriptions")
+    getPrescriptions().then(data => {
+      this.setState({data: data.data.data.results})
+    })
   }
-  */
   
   render() {
     return (

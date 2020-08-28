@@ -11,6 +11,15 @@ exports.getAppointmentsByUser = function (req, res, next) {
 }
 
 /* GET appointments without user. */
+exports.getAppointments = function (req, res, next) {
+  AppointmentService.getAppointments(req.pagination).then(function (results) {
+    res.send(Pagination.generateResponse(results, req.pagination));
+  }).catch(function (error) {
+    next(error);
+  });
+}
+
+/* GET appointments without user. */
 exports.getAppointmentsWithoutUser = function (req, res, next) {
   AppointmentService.getAppointmentsWithoutUser(req.pagination).then(function (results) {
     res.send(Pagination.generateResponse(results, req.pagination));

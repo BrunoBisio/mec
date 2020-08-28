@@ -31,9 +31,14 @@ function InternalDeleteModal(props) {
 class ABMRole extends React.Component {
   constructor(props){
     super(props);
-    this.state = { data:getRoles() ,
+    this.state = { data:[],
     newRole: false,
     newData: null};
+  }
+  componentDidMount() {
+    getRoles().then(data => {
+      this.setState({data: data.data.data.results})
+    })
   }
   openModal(row, newVal) {
     const newData = this.state.data;

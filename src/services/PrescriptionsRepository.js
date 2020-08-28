@@ -55,31 +55,25 @@ const prescriptions = [
 
 
 export function createPrescription(prescription) {
-    prescriptions.push({
-        id: prescriptions.length,
-        date: new Date(),
-        description: prescription.description,
-        comment: prescription.description,
-        status: "pending"
-    });
+    return RestService.post('/prescriptions', prescription);
 }
 
 export function getPrescriptions() {
-    return prescriptions;
+    return RestService.get('/prescriptions');
 }
 
 export function getPendingPrescriptions() {
-    return prescriptions.filter((p) => { return p.status == 'pending'});
+    return RestService.get('/prescriptions/approved/false');
 }
 
 export function updatePrescription (prescription) {
-
+    return RestService.put('/prescriptions/' + prescription.id, prescription);
 }
 
 export function getPrescriptionByUser (userId) {
-    return [];
+    return RestService.get('/prescriptions/user/' +userId);
 }
 
 export function getPrescriptionBySpecialty (specialtyId) {
-    return [];
+    return RestService.get('/prescriptions/specialty/' +specialtyId);
 }

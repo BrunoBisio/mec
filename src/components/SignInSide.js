@@ -1,16 +1,13 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
+import {Typography, TextField, Paper, Button, MenuItem } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import '../css/styles/SignInSide.scss';
 import {login as securityLogin} from '../services/RolRepository.js';
@@ -18,6 +15,7 @@ import {
   useHistory,
   useLocation
 } from "react-router-dom";
+import { getDocTypes } from '../services/DropDownRepositories';
 
 function Copyright() {
   return (
@@ -54,12 +52,27 @@ export default function SignInSide() {
   let history = useHistory();
   let location = useLocation();
   const [userName, setUserName] = React.useState();
+  const [password, setPassword] = React.useState();
+  const [docType, setdocType] = React.useState();
+  const [userDocNumber, setDocNumber] = React.useState();
+  const [docTypes, setdocTypes] = React.useState();
+  debugger
+  React.useEffect(() => {
+    getDocTypes().then(data => {
+      setdocTypes(data.data.data)
+    })
+    
+  },[]);
+
   let { from } = location.state || { from: { pathname: "/" } };
-  console.log(from);
-  console.log(location);
   let login = () => {
-    securityLogin(userName)
-    history.replace(from);
+    console.log(docType)
+    securityLogin(userDocNumber,docType.docTypeCode, password).then(
+      (data) => {
+        console.log("entro al replace")
+        history.replace(from);
+      }
+    )
   };
 
   return (
@@ -73,9 +86,19 @@ export default function SignInSide() {
           </Avatar>
           <Typography component="h1" variant="h5">Sign in</Typography>
           <form className={classes.form} noValidate>
-            <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" onChange={(event) => setUserName(event.target.value)} autoFocus />
-            <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
-            <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me"/>
+          <Grid container xs={12}>
+          <Grid item xs={3}>
+          <TextField variant="outlined" margin="normal" required fullWidth label="Tipo de documento" value={docType} select onChange={(event, obj) => setdocType(obj.props.value)}>
+                            {docTypes && docTypes.map((option, index) => (
+                                <MenuItem key={index} value={option}>{option.docTypeCode}</MenuItem>
+                            ))}
+                        </TextField></Grid> 
+          <Grid item xs={9}>
+          <TextField variant="outlined" margin="normal" required fullWidth label="Número de documento" value={userDocNumber} onChange={(event) => setDocNumber(event.target.value)}></TextField>
+          </Grid> 
+           </Grid >
+          
+            <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" onChange={(event) => setPassword(event.target.value)} autoComplete="current-password" />
             <Button onClick={login} type="button" variant="contained" color="primary" className="SingInButton"> Sign In</Button>
             <Grid container justify="center">
               <Grid item xs={12} md={6} className="SingInLinkText">

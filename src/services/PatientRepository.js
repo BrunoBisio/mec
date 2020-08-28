@@ -1,18 +1,18 @@
 import React from 'react';
 
 export function getPatients() {
-    return [];
+    return RestService.get('/users/patients');
 }
 
-export function createPatient() {
-    return;
+export function createPatient(patient) {
+    return RestService.get('/users', patient);
 }
 
-export function updatePatient() {
-    return;
+export function updatePatient(patient) {
+    return RestService.get('/users/' + patient.id, patient);
 }
 
-export function deletePatient() {
-    return;
+export function deletePatient(patientId) {
+    return RestService.get('/users/' + patientId);
 }
 

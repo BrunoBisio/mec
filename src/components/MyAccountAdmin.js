@@ -78,7 +78,7 @@ class MyAccountAdmin extends React.Component {
                 <form noValidate className="MyAccountForm" autoComplete="off" onSubmit={this.updateUser}>
                     <div className="MyAccountCol ColLeft">
                         <TextField label="Tipo de documento" value={this.state.user.docType} select onChange={this.handleDocTypeChange}>
-                            {this.state.docTypes.map((option, index) => (
+                            {this.state.docTypes&& this.state.docTypes.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.docTypeCode}</MenuItem>
                             ))}
                         </TextField>
@@ -87,7 +87,7 @@ class MyAccountAdmin extends React.Component {
                         <TextField label="Apellido" value={this.state.user.lastName} onChange={this.handleLastNameChange}></TextField>
                         <TextField label="Fecha de nacimiento" value={this.state.user.birthdate} onChange={this.handleDateChange}></TextField>
                         <TextField label="Raza" value={this.state.user.race} select onChange={this.handleRaceChange}>
-                            {this.state.races.map((option, index) => (
+                            {this.state.races && this.state.races.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.name}</MenuItem>
                             ))}
                         </TextField>
@@ -95,12 +95,12 @@ class MyAccountAdmin extends React.Component {
                     </div>
                     <div className="MyAccountCol ColRight">
                         <TextField label="Rol" select value={this.state.user.role} onChange={this.handleRoleChange}>
-                            {this.state.roles.map((option, index) => (
+                            {this.state.roles&&this.state.roles.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.nameRole}</MenuItem>
                             ))}
                         </TextField>
                         <TextField label="Ciudad" select value={this.state.user.city} onChange={this.handleCityChange}>
-                            {this.state.cities.map((option, index) => (
+                            {this.state.cities&&this.state.cities.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.name}</MenuItem>
                             ))}
                         </TextField>
