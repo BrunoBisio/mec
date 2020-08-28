@@ -38,16 +38,12 @@ class CalendarMedic extends React.Component {
     }
 
     componentDidMount() {
-        /*
-            getLoggedUSer().then((user) => {
-                getAppointmentsByMedic(user.data.id).then((appointments) => {
-                    const data = appointments.data;
-                    this.setState({ data });
-                });
-            })
-        */
-        const loggedUser = getLoggedUser();
-        this.setState({ data: getAppointmentsByMedic(loggedUser.id) });
+        getLoggedUser().then((user) => {
+            getAppointmentsByMedic(user.id).then((appointments) => {
+                const data = appointments.data;
+                this.setState({ data });
+            });
+        });
     }
 
     commitChanges({ added, changed, deleted }) {

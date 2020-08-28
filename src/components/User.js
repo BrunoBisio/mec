@@ -14,9 +14,7 @@ class User extends React.Component {
 
     componentDidMount () {
         const user = getLoggedUser().then(data=> {
-            console.log(data);
             const finalRoute = "/user/" + defaultView[data.Role.id].route;
-            console.log(finalRoute);
             this.setState({ route: finalRoute});
         });
     }

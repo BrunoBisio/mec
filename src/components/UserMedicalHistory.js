@@ -13,12 +13,10 @@ class UserMedicalHistory extends React.Component {
     }
 
     componentDidMount() {
-        /*getLoggedUser().then((userData) => {
-            const user = userData.data;
+        getLoggedUser().then((userData) => {
+            const user = userData;
             this.setState({ user });
-        })*/
-        const user = getLoggedUser();
-        this.setState({ user });
+        });
     }
 
     render() {
