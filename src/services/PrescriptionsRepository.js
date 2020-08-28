@@ -13,14 +13,14 @@ export function getPendingPrescriptions() {
     return RestService.get('/prescriptions/approved/false');
 }
 
-export function updatePrescription (prescription) {
+export function updatePrescription(prescription) {
     return RestService.put('/prescriptions/' + prescription.id, prescription);
 }
 
-export function getPrescriptionByUser (userId) {
-    return RestService.get('/prescriptions/user/' +userId);
+export function getPrescriptionByUser(userId) {
+    return RestService.get('/prescriptions/user/' + userId);
 }
 
-export function getPrescriptionBySpecialty (specialtyId) {
-    return RestService.get('/prescriptions/specialty/' +specialtyId);
+export function getPrescriptionBySpecialty(specialtyId) {
+    return RestService.get('/prescriptions/specialty/' + specialtyId);
 }

@@ -7,13 +7,13 @@ export function getEmployee() {
 }
 
 export function createEmployee(employee) {
-    return RestService.post('/users',employee);
+    return RestService.post('/users', employee);
 }
 
 export function updateEmployee(employee) {
-    return RestService.put('/users/' +employee.id, employee);
+    return RestService.put('/users/' + employee.id, employee);
 }
 
 export function deleteEmployee(employeeId) {
-    return RestService.delete('/users/' +employeeId);
+    return RestService.delete('/users/' + employeeId);
 }

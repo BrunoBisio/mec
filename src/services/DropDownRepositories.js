@@ -5,7 +5,7 @@ export function getDocTypes() {
     return RestService.get('/doctypes');
 }
 
-export function getRaces(){
+export function getRaces() {
     return RestService.get('/races');
 }
 
@@ -17,15 +17,15 @@ export function getRoles() {
     return RestService.get('/roles');
 }
 
-export function getPlans () {
+export function getPlans() {
     return RestService.get('/plans');
 }
 
-export function getSpecialties () {
+export function getSpecialties() {
     return RestService.get('/specialties');
 }
 
-export function getClinics () {
+export function getClinics() {
     return RestService.get('/clinics');
 }
 
