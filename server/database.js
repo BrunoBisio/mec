@@ -8,7 +8,7 @@ if(scope === 'production') {
 
   });
 } else{
-  connection = new Sequelize('MEC', 'mecadmin', 'root', {
+  connection = new Sequelize('MEC', 'root', 'bruno', {
     host: 'localhost',
     dialect: 'mysql'
   }

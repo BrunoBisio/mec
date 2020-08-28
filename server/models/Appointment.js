@@ -24,12 +24,10 @@ const Appointment = db.define('Appointment', {
         type: DataTypes.BOOLEAN
     },
     createdAt: {
-        allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW
     },
     updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW
     }
