@@ -63,7 +63,7 @@ class MyAccountPatient extends React.Component {
         super(props);
 
         this.state = {
-            user: { DocType: {}, Race: {} },
+            user: { DocType: {}, Race: {}, Plan: {}, City: {} },
             cities: [],
             plans: [],
             open: false
@@ -128,12 +128,12 @@ class MyAccountPatient extends React.Component {
                             <TextField label="Género" value={this.state.user.gender} disabled={true}></TextField>
                         </div>
                         <div className="MyAccountCol ColRight">
-                            <TextField label="Plan" select value={this.state.user.Plan} onChange={this.handlePlanChange}>
+                            <TextField label="Plan" select value={this.state.user.Plan.planName} onChange={this.handlePlanChange}>
                                 {this.state.plans && this.state.plans.map((option, index) => (
                                     <MenuItem key={index} value={option}>{option.planName}</MenuItem>
                                 ))}
                             </TextField>
-                            <TextField label="Ciudad" select value={this.state.user.City} onChange={this.handleCityChange}>
+                            <TextField label="Ciudad" select value={this.state.user.City.name} onChange={this.handleCityChange}>
                                 {this.state.cities && this.state.cities.map((option, index) => (
                                     <MenuItem key={index} value={option}>{option.name}</MenuItem>
                                 ))}
