@@ -26,6 +26,6 @@ const Role = db.define('Role', {
     paranoid: true
 });
 
-Role.belongsToMany(access, { through: roleXaccess });
+Role.belongsToMany(access, { through: {model:roleXaccess, unique: false} });
 
 module.exports = Role;

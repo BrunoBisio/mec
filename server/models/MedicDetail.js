@@ -28,15 +28,15 @@ const MedicDetail = db.define('MedicDetail', {
 
 MedicDetail.belongsTo(user);
 user.hasMany(MedicDetail);
-user.belongsToMany(clinic,  {through: MedicDetail})
-user.belongsToMany(specialty,  {through: MedicDetail})
+user.belongsToMany(clinic,  {through: {model:MedicDetail, unique: false}})
+user.belongsToMany(specialty,  {through: {model:MedicDetail, unique: false}})
 MedicDetail.belongsTo(clinic);
 clinic.hasMany(MedicDetail);
-clinic.belongsToMany(user,  {through: MedicDetail})
-clinic.belongsToMany(specialty,  {through: MedicDetail})
+clinic.belongsToMany(user,  {through: {model:MedicDetail, unique: false}})
+clinic.belongsToMany(specialty,  {through: {model:MedicDetail, unique: false}})
 MedicDetail.belongsTo(specialty);
 specialty.hasMany(MedicDetail);
-specialty.belongsToMany(user,  {through: MedicDetail})
-specialty.belongsToMany(clinic,  {through: MedicDetail})
+specialty.belongsToMany(user,  {through: {model:MedicDetail, unique: false}})
+specialty.belongsToMany(clinic,  {through: {model:MedicDetail, unique: false}})
 
 module.exports = MedicDetail;
