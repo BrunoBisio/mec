@@ -63,7 +63,7 @@ class MyAccountPatient extends React.Component {
         super(props);
 
         this.state = {
-            user: {},
+            user: { DocType: {}, Race: {} },
             cities: [],
             plans: [],
             open: false
@@ -88,10 +88,11 @@ class MyAccountPatient extends React.Component {
         axios.all([
             getCities(),
             getPlans(),
+            getLoggedUser()
         ]).then((responses) => {
             const cities = responses[0].data;
             const plans = responses[1].data;
-            const user = getLoggedUser();
+            const user = responses[2];
             this.setState({ cities, plans, user });
         });
     }
@@ -118,21 +119,21 @@ class MyAccountPatient extends React.Component {
                     <div className="MyAccountButtonDelete"><Button variant="contained" color="primary" onClick={()=>{this.handleDeleteUser(true)}}>Solicitud de baja</Button></div>
                     <form noValidate className="MyAccountForm" autoComplete="off" onSubmit={this.updateUser}>
                         <div className="MyAccountCol ColLeft">
-                            <TextField label="Tipo de documento" value={this.state.user.docType.docTypeCode} disabled={true}></TextField>
+                            <TextField label="Tipo de documento" value={this.state.user.DocType.docTypeCode} disabled={true}></TextField>
                             <TextField label="Número de documento" value={this.state.user.docNumber} disabled={true}></TextField>
                             <TextField label="Nombres" value={this.state.user.name} disabled={true}></TextField>
                             <TextField label="Apellido" value={this.state.user.lastName} disabled={true}></TextField>
                             <TextField label="Fecha de nacimiento" value={this.state.user.birthdate} disabled={true}></TextField>
-                            <TextField label="Raza" value={this.state.user.race.name} disabled={true}></TextField>
+                            <TextField label="Raza" value={this.state.user.Race.name} disabled={true}></TextField>
                             <TextField label="Género" value={this.state.user.gender} disabled={true}></TextField>
                         </div>
                         <div className="MyAccountCol ColRight">
-                            <TextField label="Plan" select value={this.state.user.plan} onChange={this.handlePlanChange}>
+                            <TextField label="Plan" select value={this.state.user.Plan} onChange={this.handlePlanChange}>
                                 {this.state.plans && this.state.plans.map((option, index) => (
                                     <MenuItem key={index} value={option}>{option.planName}</MenuItem>
                                 ))}
                             </TextField>
-                            <TextField label="Ciudad" select value={this.state.user.city} onChange={this.handleCityChange}>
+                            <TextField label="Ciudad" select value={this.state.user.City} onChange={this.handleCityChange}>
                                 {this.state.cities && this.state.cities.map((option, index) => (
                                     <MenuItem key={index} value={option}>{option.name}</MenuItem>
                                 ))}

@@ -11,7 +11,7 @@ class MyAccountAdmin extends React.Component {
         super(props);
 
         this.state = {
-            user: getLoggedUser(),
+            user: {},
             docTypes: [], 
             cities: [],
             roles: [],
@@ -51,12 +51,14 @@ class MyAccountAdmin extends React.Component {
             getCities(),
             getRoles(),
             getRaces(),
+            getLoggedUser()
         ]).then((responses) => {
             const docTypes = responses[0].data;
             const cities = responses[1].data;
             const roles = responses[2].data;
             const races = responses[3].data;
-            this.setState({ docTypes, cities, roles, races });
+            const user = responses[4];
+            this.setState({ docTypes, cities, roles, races, user });
         });
     }
 
@@ -76,7 +78,7 @@ class MyAccountAdmin extends React.Component {
                 </div>
                 <form noValidate className="MyAccountForm" autoComplete="off" onSubmit={this.updateUser}>
                     <div className="MyAccountCol ColLeft">
-                        <TextField label="Tipo de documento" value={this.state.user.docType} select onChange={this.handleDocTypeChange}>
+                        <TextField label="Tipo de documento" value={this.state.user.DocType} select onChange={this.handleDocTypeChange}>
                             {this.state.docTypes && this.state.docTypes.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.docTypeCode}</MenuItem>
                             ))}
@@ -85,7 +87,7 @@ class MyAccountAdmin extends React.Component {
                         <TextField label="Nombres" value={this.state.user.name} onChange={this.handleNameChange}></TextField>
                         <TextField label="Apellido" value={this.state.user.lastName} onChange={this.handleLastNameChange}></TextField>
                         <TextField label="Fecha de nacimiento" value={this.state.user.birthdate} onChange={this.handleDateChange}></TextField>
-                        <TextField label="Raza" value={this.state.user.race} select onChange={this.handleRaceChange}>
+                        <TextField label="Raza" value={this.state.user.Race} select onChange={this.handleRaceChange}>
                             {this.state.races && this.state.races.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.name}</MenuItem>
                             ))}
@@ -93,12 +95,12 @@ class MyAccountAdmin extends React.Component {
                         <TextField label="Genero" value={this.state.user.gender} onChange={this.handleMailChange}></TextField>
                     </div>
                     <div className="MyAccountCol ColRight">
-                        <TextField label="Rol" select value={this.state.user.role} onChange={this.handleRoleChange}>
+                        <TextField label="Rol" select value={this.state.user.Role} onChange={this.handleRoleChange}>
                             {this.state.roles && this.state.roles.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.nameRole}</MenuItem>
                             ))}
                         </TextField>
-                        <TextField label="Ciudad" select value={this.state.user.city} onChange={this.handleCityChange}>
+                        <TextField label="Ciudad" select value={this.state.user.City} onChange={this.handleCityChange}>
                             {this.state.cities && this.state.cities.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.name}</MenuItem>
                             ))}

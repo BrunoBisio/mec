@@ -8,8 +8,15 @@ class PatientMedicalHistory extends React.Component {
         super(props);
 
         this.state = {
-            user: getLoggedUser()
+            user: {}
         }
+    }
+
+    componentDidMount() {
+        getLoggedUser().then((res) => {
+            const user = res;
+            this.setState({ user });
+        });
     }
 
     render() {
