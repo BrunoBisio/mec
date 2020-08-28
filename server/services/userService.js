@@ -36,7 +36,6 @@ exports.getUsers = function (condition) {
 
 exports.getPatients = function (condition) {
     condition.where=  { RoleId: 4}
-    console.log(condition)
     return User.findAndCountAll(condition);
 }
 
@@ -77,12 +76,7 @@ const getUserByDocNumber = function (docNumber, doctypeCode) {
 exports.getUserByDocNumber = getUserByDocNumber;
 
 exports.login = function(docNumber, docType, password) {
-    console.log("entro al login")
-    console.log(docNumber)
-    console.log(docType)
-    console.log(password)
     return getUserByDocNumber(docNumber, docType).then((user)=> {
-        console.log("encontro al usuario")
         if (!isValidPassword(user, password)){
             throw 'Invalid Password';
         }
@@ -93,9 +87,6 @@ exports.login = function(docNumber, docType, password) {
 }
 
 const isValidPassword = function(user, password){
-    console.log("esta validando la password")
-    console.log(password)
-    console.log(user)
     return bCrypt.compareSync(password, user.password);
 }
 // Generates hash using bCrypt

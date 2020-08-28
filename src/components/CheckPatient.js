@@ -50,7 +50,6 @@ class CheckPatient extends React.Component {
     }
     componentDidMount () {
         getPatients().then(data=> {
-            console.log(data)
             this.setState({patients: data.data.data.results})
         })
     }

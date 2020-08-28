@@ -8,7 +8,6 @@ exports.getDocTypes = function () {
 }
 
 exports.getDocTypesWithPatient = function () {
-    console.log("entro al metodo final")
     return DocTypes.findAll({
         attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
         include: [{

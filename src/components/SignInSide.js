@@ -68,7 +68,6 @@ export default function SignInSide() {
   let login = () => {
     securityLogin(userDocNumber, docType.docTypeCode, password).then(
       (data) => {
-        console.log("entro al replace")
         history.replace(from);
       }
     )
