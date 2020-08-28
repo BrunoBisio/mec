@@ -11,7 +11,7 @@ class MyAccountEmployee extends React.Component {
         super(props);
 
         this.state = {
-            user: { DocType: {}, Race: {}, Role: {} },
+            user: { DocType: {}, Race: {}, Role: {}, City: {} },
             cities: [],
         }
     }
@@ -64,8 +64,8 @@ class MyAccountEmployee extends React.Component {
                         <TextField label="Género" value={this.state.user.gender} disabled={true}></TextField>
                     </div>
                     <div className="MyAccountCol ColRight">
-                        <TextField label="Rol" select value={this.state.user.Role.nameRole} disabled={true}></TextField>
-                        <TextField label="Ciudad" select value={this.state.user.City} onChange={this.handleCityChange}>
+                        <TextField label="Rol" value={this.state.user.Role.nameRole} disabled={true}></TextField>
+                        <TextField label="Ciudad" select value={this.state.user.City.name} onChange={this.handleCityChange}>
                             {this.state.cities && this.state.cities.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.name}</MenuItem>
                             ))}

@@ -99,7 +99,7 @@ VALUES
 (999921,'123', '22222222', 'Gimli ', 'Enano', 'M', STR_TO_DATE('24/12/1980', '%d/%m/%Y'), 'Alguna Cueva', '626-555-0132', 'gimli@gmail.com', 3, 5, 8, 8, null, 0),
 (999922,'123', '33333333', 'Legolas ', 'Elfo', 'M', STR_TO_DATE('24/11/1980', '%d/%m/%Y'), 'Donde mi padre no me moleste', '626-555-0132', 'legolas@gmail.com', 2, 5, 8, 8, null, 0),
 (999923,'123', '44444444', 'Aragorn ', 'TrueKing', 'M', STR_TO_DATE('24/06/1980', '%d/%m/%Y'), 'Castillo de gondor', '626-555-0132', 'aragorn@gmail.com', 2, 4, 8, 8, null, 0),
-(999924,'123', '55555555', 'Frodo ', 'Baggins', 'M', STR_TO_DATE('24/03/1980', '%d/%m/%Y'), 'Agujero numero 2, el bolson cerrado', '626-555-0132', 'frodo@gmail.com', 4, 3, 4, 4, 4, 0);
+(999924,'123', '55555555', 'Frodo ', 'Baggins', 'M', STR_TO_DATE('24/03/1980', '%d/%m/%Y'), 'Agujero numero 2, el bolson cerrado', '626-555-0132', 'frodo@gmail.com', 4, 3, 3, 4, 4, 0);
 
 
 -- ###MEDIC DETAIL#####
