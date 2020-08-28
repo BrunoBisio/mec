@@ -1,81 +1,81 @@
 use MEC;
 
 -- Roles
-INSERT INTO roles (nameRole, createdAt, updatedAt) 
+INSERT INTO roles (id, nameRole, createdAt, updatedAt) 
 VALUES
-('Administrador', CURDATE(), CURDATE()),
-('Medico', CURDATE(), CURDATE()),
-('Administrativo', CURDATE(), CURDATE()),
-('Paciente', CURDATE(), CURDATE());
+(1,'Administrador', CURDATE(), CURDATE()),
+(2,'Medico', CURDATE(), CURDATE()),
+(3,'Administrativo', CURDATE(), CURDATE()),
+(4,'Paciente', CURDATE(), CURDATE());
 
 -- Races
-INSERT INTO races (name, createdAt, updatedAt) 
-VALUES ('Elfo', CURDATE(), CURDATE()),
-('Enano', CURDATE(), CURDATE()),
-('Mago', CURDATE(), CURDATE()),
-('Hobbit', CURDATE(), CURDATE()),
-('Humano', CURDATE(), CURDATE()),
-('Nazgul', CURDATE(), CURDATE()),
-('Orco', CURDATE(), CURDATE()),
-('Maia', CURDATE(), CURDATE());
+INSERT INTO races (id,name, createdAt, updatedAt) 
+VALUES (1,'Elfo', CURDATE(), CURDATE()),
+(2,'Enano', CURDATE(), CURDATE()),
+(3,'Mago', CURDATE(), CURDATE()),
+(4,'Hobbit', CURDATE(), CURDATE()),
+(5,'Humano', CURDATE(), CURDATE()),
+(6,'Nazgul', CURDATE(), CURDATE()),
+(7,'Orco', CURDATE(), CURDATE()),
+(8,'Maia', CURDATE(), CURDATE());
 
 -- City
-INSERT INTO city (name, createdAt, updatedAt)
-VALUES ('Erebor', curdate(), curdate()),
-('Gondor', curdate(), curdate()),
-('Hobbiton', curdate(), curdate()),
-('Mordor', curdate(), curdate()),
-('Moria', curdate(), curdate()),
-('Rohan', curdate(), curdate());
+INSERT INTO city (id,name, createdAt, updatedAt)
+VALUES (1,'Erebor', curdate(), curdate()),
+(2,'Gondor', curdate(), curdate()),
+(3,'Hobbiton', curdate(), curdate()),
+(4,'Mordor', curdate(), curdate()),
+(5,'Moria', curdate(), curdate()),
+(6,'Rohan', curdate(), curdate());
 
 -- Plan
-INSERT INTO plan (planCode, planName, createdAt, updatedAt) 
-VALUES ('MEC10', 'Middle Earth Clinic Plan 10', curdate(), curdate()),
-('MEC20', 'Middle Earth Clinic Plan 20', curdate(), curdate()),
-('MEC30', 'Middle Earth Clinic Plan 30', curdate(), curdate()),
-('MEC40', 'Middle Earth Clinic Plan 40', curdate(), curdate()),
-('MEC50', 'Middle Earth Clinic Plan 50', curdate(), curdate()),
-('MEC-ELFOS', 'Middle Earth Clinic Plan Elfos', curdate(), curdate());
+INSERT INTO plan (id,planCode, planName, createdAt, updatedAt) 
+VALUES (1,'MEC10', 'Middle Earth Clinic Plan 10', curdate(), curdate()),
+(2,'MEC20', 'Middle Earth Clinic Plan 20', curdate(), curdate()),
+(3,'MEC30', 'Middle Earth Clinic Plan 30', curdate(), curdate()),
+(4,'MEC40', 'Middle Earth Clinic Plan 40', curdate(), curdate()),
+(5,'MEC50', 'Middle Earth Clinic Plan 50', curdate(), curdate()),
+(6,'MEC-ELFOS', 'Middle Earth Clinic Plan Elfos', curdate(), curdate());
 
 -- Document type
-INSERT INTO documentTypes (RaceId, docTypeCode, docTypeName, createdAt, updatedAt)
-VALUES (2, 'DD', 'Documento Enano', curdate(), curdate()),
-(1, 'DE', 'Documento Elfo', curdate(), curdate()),
-(4, 'DH', 'Documento Hobbit', curdate(), curdate()),
-(3, 'DM', 'Documento Mago', curdate(), curdate()),
-(6, 'DN', 'Documento Nazgul', curdate(), curdate()),
-(7, 'DO', 'Documento Orco', curdate(), curdate()),
-(5, 'DU', 'Documento Humano', curdate(), curdate()),
-(8, 'EMPLEADO', 'Id Empleado', curdate(), curdate());
+INSERT INTO documentTypes (id, RaceId, docTypeCode, docTypeName, createdAt, updatedAt)
+VALUES (1,2, 'DD', 'Documento Enano', curdate(), curdate()),
+(2,1, 'DE', 'Documento Elfo', curdate(), curdate()),
+(3,4, 'DH', 'Documento Hobbit', curdate(), curdate()),
+(4,3, 'DM', 'Documento Mago', curdate(), curdate()),
+(5,6, 'DN', 'Documento Nazgul', curdate(), curdate()),
+(6,7, 'DO', 'Documento Orco', curdate(), curdate()),
+(7,5, 'DU', 'Documento Humano', curdate(), curdate()),
+(8,8, 'EMPLEADO', 'Id Empleado', curdate(), curdate());
 
 -- Clinics
-INSERT INTO clinics (CityId, name, createdAt, updatedAt)
-VALUES (2, 'Clinica Gondor', curdate(), curdate()),
-(3, 'Clinica La Comarca', curdate(), curdate()),
-(4, 'Clinica Mordor', curdate(), curdate()),
-(5, 'Clinica Moria', curdate(), curdate());
+INSERT INTO clinics (id,CityId, name, createdAt, updatedAt)
+VALUES (1,2, 'Clinica Gondor', curdate(), curdate()),
+(2,3, 'Clinica La Comarca', curdate(), curdate()),
+(3,4, 'Clinica Mordor', curdate(), curdate()),
+(4,5, 'Clinica Moria', curdate(), curdate());
 
 -- Speciality
-INSERT INTO specialty (name, description, createdAt, updatedAt) 
-VALUES ('Addicciones', 'Addiciones a substancias u objetos', curdate(), curdate()),
-('Clinica Medica', 'Controles generales', curdate(), curdate()),
-('Heridas Magicas', 'Heridas causadas por maleficios o hechizo', curdate(), curdate()),
-('Nutricion', 'Dietas y estilos de vida saludables', curdate(), curdate()),
-('Psicologia', 'Cuidados de la salud mental', curdate(), curdate()),
-('Mordeduras', 'Mordeduras de animales magicos', curdate(), curdate()),
-('Picadura Araña gigante', 'Picaduras venenosas', curdate(), curdate()),
-('Quemaduras', 'Quemaduras de animales magicos', curdate(), curdate()),
-('Cortes de Nazgul', 'Cortes de Nazgul', curdate(), curdate()),
-('Embrujos Irreversibles', 'Embrujos cronicos', curdate(), curdate()),
-('Maleficios', 'Maleficios oscuros', curdate(), curdate()),
-('Encantamientos mal realizados', 'Encantamientos propios o ajenos', curdate(), curdate()),
-('Accidentes de aguilas', 'Accidentes en las alturas', curdate(), curdate()),
-('Necrologia', 'Autopsias', curdate(), curdate());
+INSERT INTO specialty (id,name, description, createdAt, updatedAt) 
+VALUES (1,'Addicciones', 'Addiciones a substancias u objetos', curdate(), curdate()),
+(2,'Clinica Medica', 'Controles generales', curdate(), curdate()),
+(3,'Heridas Magicas', 'Heridas causadas por maleficios o hechizo', curdate(), curdate()),
+(4,'Nutricion', 'Dietas y estilos de vida saludables', curdate(), curdate()),
+(5,'Psicologia', 'Cuidados de la salud mental', curdate(), curdate()),
+(6,'Mordeduras', 'Mordeduras de animales magicos', curdate(), curdate()),
+(7,'Picadura Araña gigante', 'Picaduras venenosas', curdate(), curdate()),
+(8,'Quemaduras', 'Quemaduras de animales magicos', curdate(), curdate()),
+(9,'Cortes de Nazgul', 'Cortes de Nazgul', curdate(), curdate()),
+(10,'Embrujos Irreversibles', 'Embrujos cronicos', curdate(), curdate()),
+(11,'Maleficios', 'Maleficios oscuros', curdate(), curdate()),
+(12,'Encantamientos mal realizados', 'Encantamientos propios o ajenos', curdate(), curdate()),
+(13,'Accidentes de aguilas', 'Accidentes en las alturas', curdate(), curdate()),
+(14,'Necrologia', 'Autopsias', curdate(), curdate());
 
 -- ###USERS#####
 INSERT INTO users (id, password, docNumber, name, lastName, gender, birthdate, address, phone, mail, RoleId, CityId, DocTypeId, RaceId, PlanId, deleteRequest)
 VALUES 
-(1,'123456', '11111111', 'Sauron', 'Master of All', 'M', STR_TO_DATE('27/12/1993', '%d/%m/%Y'), 'Torre de Sauron, Mordor', '482-487-8556','SauronADMIN@gmail.com', 1, 4, 8, 8, null, 0),
+(1,'$2a$10$PU6cbU1Q4kQfqn5JYDmH3e2Tl2skQvam7elFE70j6rUwx4CAm9ke6', '11111111', 'Sauron', 'Master of All', 'M', STR_TO_DATE('27/12/1993', '%d/%m/%Y'), 'Torre de Sauron, Mordor', '482-487-8556','SauronADMIN@gmail.com', 1, 4, 8, 8, null, 0),
 (99999,'123', '93332030', 'Kareem ', 'Morley', 'F', STR_TO_DATE('04/09/2019', '%d/%m/%Y'), '8203 East West Court Mansfield, MA 02048', '202-555-0159', 'Kareem.Morley@gmail.com', 4, 3, 7, 5, 5, 0),
 (99991,'123', '85584607', 'Jared ', 'Oconnor', 'M', STR_TO_DATE('08/02/2012', '%d/%m/%Y'), '9707 West Marlborough Lane Natchez, MS 39120', '202-555-0111', 'Jared.Oconnor@gmail.com', 4, 5, 3, 4, 2, 0),
 (99992,'123', '68611836', 'Cassia ', 'Solis', 'F', STR_TO_DATE('16/04/1957', '%d/%m/%Y'), '7183 South Hamilton Drive Stone Mountain, GA 30083', '202-555-0130', 'Cassia.Solis@gmail.com', 4, 1, 1, 2, 2, 1),
@@ -96,10 +96,10 @@ VALUES
 (999918,'123', '49748385', 'Dean ', 'Patton', 'M', STR_TO_DATE('07/09/1982', '%d/%m/%Y'), '478 Cedarwood Ave.Twin Falls, ID 83301', '760-555-0113', 'Dean.Patton@gmail.com', 3, 3, 8, 8, null, 0),
 (999919,'123', '68029089', 'Lottie ', 'Reid', 'M', STR_TO_DATE('18/10/1962', '%d/%m/%Y'), '8511 Longbranch St.Mahwah, NJ 07430', '626-555-0148', 'LottieReid@gmail.com', 4, 2, 7, 5, 1, 1),
 (999920,'123', '73511637', 'Cheyanne ', 'Stein', 'M', STR_TO_DATE('24/05/1980', '%d/%m/%Y'), '41 East University Dr.Edison, NJ 08817', '626-555-0132', 'Cheyanne.Stein@gmail.com', 4, 5, 2, 1, 2, 1),
-(999921,'123', '22222222', 'Gimli ', 'Enano', 'M', STR_TO_DATE('24/12/1980', '%d/%m/%Y'), 'Alguna Cueva', '626-555-0132', 'gimli@gmail.com', 3, 5, 8, 8, null, 0),
+(999921,'$2a$10$ZOQBx1La7Dt9zFH9n089Xe6YHxXMe4wA1eIi8lgpMDvHVJl4Fs0Zm', '22222222', 'Gimli ', 'Enano', 'M', STR_TO_DATE('24/12/1980', '%d/%m/%Y'), 'Alguna Cueva', '626-555-0132', 'gimli@gmail.com', 3, 5, 8, 8, null, 0),
 (999922,'123', '33333333', 'Legolas ', 'Elfo', 'M', STR_TO_DATE('24/11/1980', '%d/%m/%Y'), 'Donde mi padre no me moleste', '626-555-0132', 'legolas@gmail.com', 2, 5, 8, 8, null, 0),
-(999923,'123', '44444444', 'Aragorn ', 'TrueKing', 'M', STR_TO_DATE('24/06/1980', '%d/%m/%Y'), 'Castillo de gondor', '626-555-0132', 'aragorn@gmail.com', 2, 4, 8, 8, null, 0),
-(999924,'123', '55555555', 'Frodo ', 'Baggins', 'M', STR_TO_DATE('24/03/1980', '%d/%m/%Y'), 'Agujero numero 2, el bolson cerrado', '626-555-0132', 'frodo@gmail.com', 4, 3, 4, 4, 4, 0);
+(999923,'$2a$10$axMe32DjcEqvM1.KnFVWfedPkuoshnYdYNV4MNVlk5aA0JQQ79N22', '44444444', 'Aragorn ', 'TrueKing', 'M', STR_TO_DATE('24/06/1980', '%d/%m/%Y'), 'Castillo de gondor', '626-555-0132', 'aragorn@gmail.com', 2, 4, 8, 8, null, 0),
+(999924,'$2a$10$.0ILHE2SNGiD5KZ9mXSqdOSmt7HbVewzm4cdYQZWeR4T477iYryxy', '55555555', 'Frodo ', 'Baggins', 'M', STR_TO_DATE('24/03/1980', '%d/%m/%Y'), 'Agujero numero 2, el bolson cerrado', '626-555-0132', 'frodo@gmail.com', 4, 3, 4, 4, 4, 0);
 
 
 -- ###MEDIC DETAIL#####
@@ -217,58 +217,58 @@ VALUES(1,STR_TO_DATE('07/1/2020', '%d/%m/%Y'), 'Un mago nunca llega tarde, ni pr
 
 
 -- ###APPOINTMENT DISPONIBLES#####
-INSERT INTO appointment (date, startHour, endHour, completed, UserId, MedicDetailId)
+INSERT INTO appointment (id,date, startHour, endHour, completed, UserId, MedicDetailId)
 VALUES 
-(STR_TO_DATE('27/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 1),
-(STR_TO_DATE('27/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 2),
-(STR_TO_DATE('27/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 3),
-(STR_TO_DATE('27/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 4),
-(STR_TO_DATE('27/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 5),
-(STR_TO_DATE('27/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 6),
-(STR_TO_DATE('27/08/2020', '%d/%m/%Y'), '13:00', '14:00', 0, null, 7),
-(STR_TO_DATE('27/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 8),
-(STR_TO_DATE('27/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 9),
-(STR_TO_DATE('27/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 10),
-(STR_TO_DATE('28/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 1),
-(STR_TO_DATE('28/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 2),
-(STR_TO_DATE('28/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 3),
-(STR_TO_DATE('28/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 4),
-(STR_TO_DATE('28/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 5),
-(STR_TO_DATE('28/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 6),
-(STR_TO_DATE('28/08/2020', '%d/%m/%Y'), '13:00', '14:00', 0, null, 7),
-(STR_TO_DATE('28/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 8),
-(STR_TO_DATE('28/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 9),
-(STR_TO_DATE('28/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 10),
-(STR_TO_DATE('29/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 1),
-(STR_TO_DATE('29/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 2),
-(STR_TO_DATE('29/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 3),
-(STR_TO_DATE('29/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 4),
-(STR_TO_DATE('29/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 5),
-(STR_TO_DATE('29/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 6),
-(STR_TO_DATE('29/08/2020', '%d/%m/%Y'), '13:00', '14:00', 0, null, 7),
-(STR_TO_DATE('29/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 8),
-(STR_TO_DATE('29/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 9),
-(STR_TO_DATE('30/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 10),
-(STR_TO_DATE('30/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 1),
-(STR_TO_DATE('30/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 2),
-(STR_TO_DATE('30/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 3),
-(STR_TO_DATE('30/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 4),
-(STR_TO_DATE('30/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 5),
-(STR_TO_DATE('30/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 6),
-(STR_TO_DATE('30/08/2020', '%d/%m/%Y'), '13:00', '14:00', 0, null, 7),
-(STR_TO_DATE('30/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 8),
-(STR_TO_DATE('30/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 9),
-(STR_TO_DATE('30/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 10),
-(STR_TO_DATE('31/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 1),
-(STR_TO_DATE('31/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 2),
-(STR_TO_DATE('31/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 3),
-(STR_TO_DATE('31/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 4),
-(STR_TO_DATE('31/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 5),
-(STR_TO_DATE('31/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 6),
-(STR_TO_DATE('31/08/2020', '%d/%m/%Y'), '13:00', '14:00', 0, null, 7),
-(STR_TO_DATE('31/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 8),
-(STR_TO_DATE('31/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 9),
-(STR_TO_DATE('31/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 10);
+(1,STR_TO_DATE('27/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 1),
+(2,STR_TO_DATE('27/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 2),
+(3,STR_TO_DATE('27/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 3),
+(4,STR_TO_DATE('27/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 4),
+(5,STR_TO_DATE('27/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 5),
+(6,STR_TO_DATE('27/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 6),
+(7,STR_TO_DATE('27/08/2020', '%d/%m/%Y'), '13:00', '14:00', 0, null, 7),
+(8,STR_TO_DATE('27/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 8),
+(9,STR_TO_DATE('27/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 9),
+(10,STR_TO_DATE('27/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 10),
+(11,STR_TO_DATE('28/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 1),
+(12,STR_TO_DATE('28/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 2),
+(13,STR_TO_DATE('28/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 3),
+(14,STR_TO_DATE('28/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 4),
+(15,STR_TO_DATE('28/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 5),
+(16,STR_TO_DATE('28/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 6),
+(17,STR_TO_DATE('28/08/2020', '%d/%m/%Y'), '13:00', '14:00', 0, null, 7),
+(18,STR_TO_DATE('28/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 8),
+(19,STR_TO_DATE('28/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 9),
+(20,STR_TO_DATE('28/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 10),
+(21,STR_TO_DATE('29/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 1),
+(22,STR_TO_DATE('29/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 2),
+(23,STR_TO_DATE('29/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 3),
+(24,STR_TO_DATE('29/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 4),
+(25,STR_TO_DATE('29/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 5),
+(26,STR_TO_DATE('29/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 6),
+(27,STR_TO_DATE('29/08/2020', '%d/%m/%Y'), '13:00', '14:00', 0, null, 7),
+(28,STR_TO_DATE('29/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 8),
+(29,STR_TO_DATE('29/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 9),
+(30,STR_TO_DATE('30/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 10),
+(31,STR_TO_DATE('30/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 1),
+(32,STR_TO_DATE('30/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 2),
+(33,STR_TO_DATE('30/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 3),
+(34,STR_TO_DATE('30/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 4),
+(35,STR_TO_DATE('30/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 5),
+(36,STR_TO_DATE('30/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 6),
+(37,STR_TO_DATE('30/08/2020', '%d/%m/%Y'), '13:00', '14:00', 0, null, 7),
+(38,STR_TO_DATE('30/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 8),
+(39,STR_TO_DATE('30/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 9),
+(40,STR_TO_DATE('30/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 10),
+(41,STR_TO_DATE('31/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 1),
+(42,STR_TO_DATE('31/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 2),
+(43,STR_TO_DATE('31/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 3),
+(44,STR_TO_DATE('31/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 4),
+(45,STR_TO_DATE('31/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 5),
+(46,STR_TO_DATE('31/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 6),
+(47,STR_TO_DATE('31/08/2020', '%d/%m/%Y'), '13:00', '14:00', 0, null, 7),
+(48,STR_TO_DATE('31/08/2020', '%d/%m/%Y'), '13:00', '18:00', 0, null, 8),
+(49,STR_TO_DATE('31/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 9),
+(50,STR_TO_DATE('31/08/2020', '%d/%m/%Y'), '09:00', '12:00', 0, null, 10);
 
 -- Access
 INSERT INTO access (id, nameAccess, createdAt, updatedAt) 
