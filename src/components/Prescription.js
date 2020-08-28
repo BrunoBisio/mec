@@ -11,7 +11,6 @@ import '../css/styles/UserAppointment.scss'
 class Prescription extends React.Component {
 
   constructor(props){
-    console.log("creando el prescription")
       super(props);
       this.state = {
         data: []
@@ -19,7 +18,6 @@ class Prescription extends React.Component {
   }
 
   componentDidMount() {
-    console.log("trayendo las prescriptions")
     getPrescriptions().then(data => {
       this.setState({data: data.data.data.results})
     })

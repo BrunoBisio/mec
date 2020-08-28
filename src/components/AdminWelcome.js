@@ -5,7 +5,6 @@ import Welcome from './Welcome.js';
 class AdminWelcome extends React.Component {
 
     constructor(props) {
-        console.log("entro al admin welcome")
         super(props);
 
         this.state = {

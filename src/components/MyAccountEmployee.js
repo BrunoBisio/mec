@@ -43,7 +43,6 @@ class MyAccountEmployee extends React.Component {
         event.preventDefault();
         const user = this.state.user;
         updateUser(user.id, user).then((resp) => {
-            console.log(resp);
         });
     }
 
