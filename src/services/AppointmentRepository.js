@@ -1,4 +1,5 @@
 import React from 'react';
+import RestService from './RestService';
 function arrayRemove(array, value) { return array.filter(function(item){ return item !== value; });}
 let appointments = [
   {   
@@ -66,8 +67,4 @@ export function createAppointments (appointment) {
 export function remove(appointmentId) {
     return RestService.delete('/appointments/' +appointmentId);
 
-}
-
-export function remove(appointment) {
-    appointments = arrayRemove(appointments, appointment);
 }

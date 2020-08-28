@@ -1,4 +1,5 @@
 import React from 'react';
+import RestService from './RestService';
 
 export function getPatients() {
     return RestService.get('/users/patients');

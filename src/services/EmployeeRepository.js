@@ -1,4 +1,5 @@
 import React from 'react';
+import RestService from './RestService';
 
 // gets by roleId: 1, 2 and 3
 export function getEmployee() {

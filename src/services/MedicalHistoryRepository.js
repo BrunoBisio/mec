@@ -1,5 +1,5 @@
 import React from 'react';
-
+import RestService from './RestService';
 let medicalHistory = [
     {
         id: '123456',
@@ -75,9 +75,6 @@ let nonPatologicHistoryFormat = [
 export function getPatientHistory() {
     return RestService.get('/MedicalRecord');
 }
-
-export function updatePatientHistory(id, patientHistory) {
-
 export function getPatientHistoryById(userId) {
     return RestService.get('/MedicalRecord/' + userId);
 }
