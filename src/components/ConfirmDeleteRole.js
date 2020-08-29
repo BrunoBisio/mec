@@ -9,6 +9,20 @@ class ConfirmDeleteRole extends React.Component {
         this.state = {
             role: props.data
         }
+        this.state.close = props.onClose
+        this.state.confirm = props.confirm
+    }
+
+    close() {
+        this.setState((state,props) => {
+            state.close()
+        })
+    }
+    confirm() {
+        this.setState((state,props) => {
+            state.confirm()
+            state.close()
+        })
     }
 
     render() {
@@ -21,8 +35,8 @@ class ConfirmDeleteRole extends React.Component {
             </div>
             <Typography variant="h4" component="h4">Esta accion no se podra deshacer</Typography>
             <div className="buttonContainer">
-                <Button className="cancelButton" variant="contained" color="primary">Cancelar</Button>
-                <Button className="deleteButton" variant="contained" color="primary">Eliminar</Button>
+                <Button className="cancelButton" variant="contained" color="primary" onClick={()=>{this.close()}}>Cancelar</Button>
+                <Button className="deleteButton" variant="contained" color="primary" onClick={()=>{this.confirm()}}>Eliminar</Button>
             </div>
         </div>)
     }

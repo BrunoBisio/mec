@@ -13,12 +13,14 @@ class AddPatient extends React.Component {
             cities: [],
             plans: [],
             user: props.data ? props.data : {},
-            close: props.onClose
+            close: props.onClose,
+            change: props.onChange
         }
     }
 
     closeModal() {
         this.setState((state,props) => {
+            state.change(state.user)
             state.close()
         })
     }
