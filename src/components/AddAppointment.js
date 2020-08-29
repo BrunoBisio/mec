@@ -73,17 +73,34 @@ class AddApointment extends React.Component {
     addAppointment(row) {
         let user = this.state.loggedUser;
         if (user.role !== 4) {
-            user = findUser(this.state.filterDocType.users, this.state.filterDocNumber);
+            debugger
+            if(!this.state.filterDocType.Users) {
+                alert("Selecciona un tipo de documento")
+                return
+            }
+            if(!this.state.filterDocNumber) {
+                alert("Selecciona un numero de documento")
+                return
+            }
+            user = findUser(this.state.filterDocType.Users, this.state.filterDocNumber);
         }
-        updateAppointment(row, user);
+        row.UserId = user.id;
+        updateAppointment(row);
+        this.updateListAppointments();
+        
     }
 
     filterByDate = (appointment) => {
-        return this.state.filterDate == appointment.date;
+        const filtDate = new Date(this.state.filterDate)
+        const AppDate = new Date(appointment.date)
+        const res = filtDate.getDate() == AppDate.getDate() &&
+        filtDate.getFullYear() == AppDate.getFullYear() &&
+        filtDate.getMonth() == AppDate.getMonth()
+        return res
     }
 
     filterBySpeciality = (appointment) => {
-        if (this.state.filterSpeciality.id == appointment.medicDetail.speciality.id) {
+        if (this.state.filterSpeciality.id == appointment.MedicDetail.SpecialtyId) {
             if (this.state.filterClinic && this.state.filterClinic.id > 0) {
                 return this.filterByClinic(appointment);
             }
@@ -93,9 +110,9 @@ class AddApointment extends React.Component {
     }
 
     filterByClinic = (appointment) => {
-        if (this.state.filterClinic.id == appointment.medicDetail.clinic.id) {
+        if (this.state.filterClinic.id == appointment.MedicDetail.ClinicId) {
             if (this.state.filterMedic && this.state.filterMedic.id > 0) {
-                return this.filterByClinic(appointment);
+                return this.filterByMedic(appointment);
             }
             return this.filterByDate(appointment);
         } 
@@ -103,7 +120,7 @@ class AddApointment extends React.Component {
     }
 
     filterByMedic = (appointment) => {
-        if (this.state.filterMedic.id === appointment.medicDetail.user.id) {
+        if (this.state.filterMedic.id === appointment.MedicDetail.UserId) {
             return this.filterByDate(appointment);
         } else {
             return false;
@@ -111,6 +128,7 @@ class AddApointment extends React.Component {
     }
 
     filterList = () => {
+
         const listAppointments = this.state.listAppointments.filter((appointment) => {
             // check if it filters by speciality
             if (this.state.filterSpeciality && this.state.filterSpeciality.id > 0) {
@@ -118,7 +136,7 @@ class AddApointment extends React.Component {
             }
             return this.filterByDate(appointment);
         });
-        this.setState({ listAppointments });
+        this.setState({ filteredAppointments: listAppointments });
     }
 
     onDocTypeChange = (event, obj) => { this.setState({ filterDocType: obj.props.value }, this.filterList); };
@@ -141,11 +159,17 @@ class AddApointment extends React.Component {
             getAppointments()
         ]).then((responses) => {
             const loggedUser = responses[0];
-            const listDocTypes = responses[1].data.results;
-            const listSpecialities = responses[2].data.results;
+            const listDocTypes = responses[1].data;
+            const listSpecialities = responses[2].data;
             const listAppointments = responses[3].data.results;
-            this.setState({ loggedUser, listDocTypes, listSpecialities, listAppointments }, this.filterList);
+            this.setState({ loggedUser: loggedUser, listDocTypes: listDocTypes, listSpecialities: listSpecialities, listAppointments: listAppointments }, this.filterList);
         });
+    }
+
+    updateListAppointments() {
+        getAppointments().then(data=> {
+            this.setState({ listAppointments: data.results }, this.filterList);
+        })
     }
 
     render() {
@@ -185,14 +209,14 @@ class AddApointment extends React.Component {
                     </div>}
                     <div className="FilterRow">
                         <MuiPickersUtilsProvider utils={LocalizedUtils} locale={esLocale}>
-                            <KeyboardDatePicker fullWidth variant="inline" format="dd/MM/yyyy" margin="normal" value={this.state.filterDate} onChange={this.onDateChange}></KeyboardDatePicker>
+                            <KeyboardDatePicker fullWidth variant="inline" format="yyyy-MM-dd" margin="normal" value={this.state.filterDate} onChange={this.onDateChange}></KeyboardDatePicker>
                         </MuiPickersUtilsProvider>
                     </div>
                 </Grid>
                 <Grid item xs={12} sm={6} className="RightPanel">
                     <div className="tableContainer">
                         <MaterialTable title="Turnos disponibles" 
-                            data={this.state.listAppointments}
+                            data={this.state.filteredAppointments}
                             columns={matTableOpt.columns}
                             localization={matTableOpt.localization}
                             actions={[ 
