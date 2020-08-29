@@ -93,3 +93,15 @@ exports.getPrescriptions = function (req, res, next) {
         next(error);
     });
 }
+
+exports.deletePrescription = function (req, res, next) {
+    PrescriptionService.deletePrescription(req.params.prescriptionId).then(function (prescriptions) {
+        if (prescriptions > 0) {
+          res.send("ok");
+        } else {
+          res.status(404).send("not found");
+        }
+      }).catch(function (error) {
+        next(error);
+      });
+}

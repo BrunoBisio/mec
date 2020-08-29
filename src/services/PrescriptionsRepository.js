@@ -24,3 +24,7 @@ export function getPrescriptionByUser(userId) {
 export function getPrescriptionBySpecialty(specialtyId) {
     return RestService.get('/prescription/specialty/' + specialtyId);
 }
+
+export function deletePrescription(prescription) {
+    return RestService.delete('/prescription/' + prescription.id);
+}

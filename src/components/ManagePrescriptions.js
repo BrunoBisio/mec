@@ -3,7 +3,7 @@ import { Button, Modal, Paper, TextField } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import MaterialTable from "material-table";
 import SaveAltIcon from '@material-ui/icons/SaveAlt';
-import { getPendingPrescriptions } from '../services/PrescriptionsRepository.js';
+import { getPendingPrescriptions, deletePrescription } from '../services/PrescriptionsRepository.js';
 import RelativeLink from './RelativeLink.js';
 import '../css/styles/Header.scss'
 import '../css/styles/ManagePrescription.scss'
@@ -26,7 +26,13 @@ class Prescription extends React.Component {
     }
 
     getFullName() {
-        return this.state.data.name + " " + this.state.data.lastName
+        return this.state.data.User.name + " " + this.state.data.User.lastName
+    }
+
+    remove() {
+      deletePrescription(this.state.data).then(() => {
+        alert("La receta fue rechazada satisfactoriamente");
+      })
     }
 
     render(){
@@ -34,9 +40,9 @@ class Prescription extends React.Component {
             <Paper>
                 <div className="PrescriptionContainer">
                     <div className="PrescriptionColumn">
-                        <TextField label="Numero de documento" disabled={true} value={this.state.data.doc}></TextField>
+                        <TextField label="Numero de documento" disabled={true} value={this.state.data.User.docNumber}></TextField>
                         <TextField label="Nombre y Apellido" disabled={true} value={this.getFullName()}></TextField>
-                        <TextField label="Descripcion" disabled={true} value={this.state.data.description}></TextField>
+                        <TextField label="Descripcion" disabled={true} value={this.state.data.drug}></TextField>
                     </div>
                     <div className="PrescriptionColumn">
                         <TextField label="Comentario" disabled={true} value={this.state.data.comment} multiline rows={6} variant="outlined"></TextField>
@@ -44,7 +50,7 @@ class Prescription extends React.Component {
                 </div>
                 <div className="PrescriptionButtonContainer">
                     <Button variant="contained" color="primary">Aceptar</Button>
-                    <Button variant="contained" color="primary">Rechazar</Button>
+                    <Button variant="contained" color="primary" onClick={this.deletePrescription}>Rechazar</Button>
                 </div>
             </Paper>
         )
@@ -79,9 +85,9 @@ class ManagePrescriptions extends React.Component {
 }
 
 closePrescription = () => {
-    this.setState({
-        open: false
-    })
+  getPendingPrescriptions().then(response => {
+    this.setState({data: response.data.results, open: false})
+  })
 }
   
   render() {

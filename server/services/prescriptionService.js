@@ -34,3 +34,7 @@ exports.getPrescriptionByMedicId = function (medicId, condition) {
     condition.include = [{ model: MedicDetail, where: { UserId: medicId } }]
     return Prescription.findAndCountAll(condition);
 }
+
+exports.deletePrescription = function (prescriptionId) {
+    return Prescription.destroy({ where: { id: prescriptionId } });
+}
