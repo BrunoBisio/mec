@@ -55,7 +55,7 @@ class ManagePrescriptions extends React.Component {
   constructor(props){
       super(props);
       this.state = {
-        data: getPendingPrescriptions()
+        data: []
       };
   }
   /*
@@ -65,6 +65,11 @@ class ManagePrescriptions extends React.Component {
       this.setState((state,props) => state.data = newData);
   }
   */
+ componentDidMount() {
+    getPendingPrescriptions().then(data => {
+      this.setState({data: data.data.results})
+    })
+  }
 
  openPrescription = (event, rowData) => {
     this.setState({ 

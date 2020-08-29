@@ -28,198 +28,143 @@ import EmployeeWelcome from '../components/EmployeeWelcome';
 import RestService from './RestService.js';
 import { saveToken, deleteToken } from './RestService.js'
 
-export let accesses = [
-{
-  id: 1,
-  title: 'Bienvenida', //Bienvenida de paciente
-  visible: true,
-  route: 'patiente/welcome',
-  component: PatientWelcome
-},
-{
-  id: 2,
-  title: 'Mi Cuenta', //Cuenta de paciente
-  visible: true,
-  route: 'patiente/account',
-  component: MyAccountPatient
 
-},
-{
-  id: 3,
-  title: 'Mis Turnos', //Turnos de paciente
-  visible: true,
-  route: 'patiente/appointments',
-  component: UserAppointment
-},
-{
-  id: 4,
-  title: 'Mis Recetas', //Recetas de paciente
-  visible: true,
-  route: 'patiente/prescriptions',
-  component: Prescription
-},
-{
-  id: 5,
-  title: 'Mi Historial Clínico', //histclinico de paciente
-  visible: true,
-  route: 'patiente/history',
-  component: PatientMedicalHistory//FALTA (copiar MedicalHistory)
-},
-{
-  id: 6,
-  title: 'Bienvenida', //Bienvenida de Admin
-  visible: true,
-  route: 'admin/welcome',
-  component: AdminWelcome
-},
-{
-  id: 7,
-  title: 'Mi Cuenta', //Cuenta de Admin
-  visible: true,
-  route: 'admin/account',
-  component: MyAccountAdmin
-},
-{
-  id: 8,
-  title: 'Solicitudes Baja', //Bajas pendedientes
-  visible: true,
-  route: 'admin/deleteRequest',
-  component: PendingDeleteUsers
-},
-{
-  id: 9,
-  title: 'ABM Usuario',
-  visible: true,
-  route: 'admin/abmPatient',
-  component: ABMPatients
-},
-{
-  id: 10,
-  title: 'ABM Empleado',
-  visible: true,
-  route: 'admin/abmEmployee',
-  component: ABMEmployee
-},
-{
-  id: 11,
-  title: 'ABM Rol',
-  visible: true,
-  route: 'admin/abmRole',
-  component: ABMRole
-},
-{
-  id: 12,
-  title: 'Turnos', //Turnos pendientes admin y secre
-  visible: true,
-  route: 'appointment',
-  component: InnerAppointment
-},
-{
-  id: 13,
-  title: 'Tomar Turnos', //tomar turno admin y medico
-  visible: false,
-  route: 'takeAppointment',
-  component: MedicalHistory
-},
-{
-  id: 14,
-  title: 'Recetas', //recetas pendientes
-  visible: true,
-  route: 'prescriptions',
-  component: ManagePrescriptions
-},
-{
-  id: 15,
-  title: 'Agenda', //Agendas medicos (admin y secre)
-  visible: true,
-  route: 'schedule',
-  component: Calendar //terminar
-},
-{
-  id: 16,
-  title: 'Consultar Paciente', //consulta (admin, med y secre)
-  visible: true,
-  route: 'searchPatiente',
-  component: CheckPatient
-},
-{
-  id: 17,
-  title: 'Historial',
-  visible: true,
-  route: 'history',
-  component: UserMedicalHistory
-},
-{
-  id: 18,
-  title: 'Turnos Paciente', //Turnos de paciente
-  visible: false,
-  route: 'patienteAppointments',
-  component: UserAppointment //filtrado por el usuario buscado en consultar paciente
-},
-{
-  id: 19,
-  title: 'Recetas Paciente', //Recetas de paciente
-  visible: false,
-  route: 'patientePrescription',
-  component: Prescription //filtrado por el usuario buscado en consultar paciente
-},
-{
-  id: 20,
-  title: 'Bienvenida', //Bienvenida de medico
-  visible: true,
-  route: 'medic/welcome',
-  component: MedicWelcome
-},
-{
-  id: 21,
-  title: 'Mi Cuenta', //Cuenta de medico- secre
-  visible: true,
-  route: 'employee/myAccount',
-  component: MyAccountEmployee
-},
-{
-  id: 22,
-  title: 'Agenda', //Agendas medicos 
-  visible: true,
-  route: 'medic/schedule',
-  component: CalendarMedic//adapatar Calendar
-},
-{
-  id: 23,
-  title: 'Bienvenida', //Bienvenida de secre
-  visible: true,
-  route: 'secre/welcome',
-  component: EmployeeWelcome
-},
-{
-  id: 25,
-  title: 'Solicitud bajas',
-  route: 'admin/pendingDeletes',
-  component: PendingDeleteUsers,
-  visible: true
-},
-{
-  id: 26,
-  title: 'Agenda',
-  route: 'admin/agenda',
-  component: Calendar,
-  visible: true
-},
-{
-  id: 27,
-  title: 'Cuenta',
-  route: 'account',
-  component: MyAccountPatient,
-  visible: true
-},
-{
-  id: 28,
-  title: 'Agenda',
-  route: 'medic/agenda',
-  component: CalendarMedic,
-  visible: true
-}
-]
+export let accesses = [
+  {
+    id: 1,
+    title: 'Bienvenida', //Bienvenida de paciente
+    visible: true,
+    route: 'patiente/welcome',
+    component: PatientWelcome
+  },
+  {
+    id: 6,
+    title: 'Bienvenida', //Bienvenida de Admin
+    visible: true,
+    route: 'admin/welcome',
+    component: AdminWelcome
+  },
+  {
+    id: 20,
+    title: 'Bienvenida', //Bienvenida de medico
+    visible: true,
+    route: 'medic/welcome',
+    component: MedicWelcome
+  },
+  {
+    id: 23,
+    title: 'Bienvenida', //Bienvenida de secre
+    visible: true,
+    route: 'secre/welcome',
+    component: EmployeeWelcome
+  },
+  {
+    id: 2,
+    title: 'Mi Cuenta',
+    visible: true,
+    route: 'account',
+    component: MyAccountPatient,
+  },
+  {
+    id: 7,
+    title: 'Mi Cuenta', //Cuenta de Admin
+    visible: true,
+    route: 'admin/account',
+    component: MyAccountAdmin
+  },
+  {
+    id: 21,
+    title: 'Mi Cuenta', //Cuenta de medico- secre
+    visible: true,
+    route: 'employee/myAccount',
+    component: MyAccountEmployee
+  },
+  {
+    id: 8,
+    title: 'Solicitudes Baja', //Bajas pendedientes
+    visible: true,
+    route: 'admin/deleteRequest',
+    component: PendingDeleteUsers
+  },
+  {
+    id: 9,
+    title: 'ABM Usuario',
+    visible: true,
+    route: 'admin/abmPatient',
+    component: ABMPatients
+  },
+  {
+    id: 10,
+    title: 'ABM Empleado',
+    visible: true,
+    route: 'admin/abmEmployee',
+    component: ABMEmployee
+  },
+  {
+    id: 11,
+    title: 'ABM Rol',
+    visible: true,
+    route: 'admin/abmRole',
+    component: ABMRole
+  },
+  {
+    id: 3,
+    title: 'Mis Turnos', //Turnos de paciente
+    visible: true,
+    route: 'patiente/appointments',
+    component: UserAppointment
+  },
+  {
+    id: 12,
+    title: 'Turnos', //Turnos pendientes admin y secre
+    visible: true,
+    route: 'appointment',
+    component: InnerAppointment
+  },
+  {
+    id: 19,
+    title: 'Mis Recetas', //Recetas de paciente
+    visible: true,
+    route: 'patiente/prescriptions',
+    component: Prescription
+  },
+  
+  {
+    id: 14,
+    title: 'Recetas', //recetas pendientes
+    visible: true,
+    route: 'prescriptions',
+    component: ManagePrescriptions
+  },
+  {
+    id: 5,
+    title: 'Mi Historial Clínico', //histclinico de paciente
+    visible: true,
+    route: 'patiente/history',
+    component: PatientMedicalHistory//FALTA (copiar MedicalHistory)
+  },
+  {
+    id: 15,
+    title: 'Agenda',
+    route: 'agenda',
+    component: Calendar,
+    visible: true
+  },
+  {
+    id: 22,
+    title: 'Agenda',
+    route: 'agenda',
+    component: CalendarMedic,
+    visible: true
+  },
+  {
+    id: 16,
+    title: 'Consultar Paciente', //consulta (admin, med y secre)
+    visible: true,
+    route: 'consulta',
+    component: CheckPatient
+  },
+  ]
 
 const roles = [{
   id: 1,
@@ -307,6 +252,7 @@ export function isAuthenticated() {
 }
 
 export function singout() {
+  deleteToken();
   user = null;
 }
 

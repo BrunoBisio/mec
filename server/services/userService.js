@@ -64,7 +64,9 @@ exports.createUser = function (user) {
 }
 
 exports.updateUser = function (userId, userUpdated) {
-    userUpdated.password = createHash(userUpdated.password)
+    if(user.password) {
+        userUpdated.password = createHash(userUpdated.password)
+    }
     return User.update(userUpdated, { where: { id: userId } });
 }
 
@@ -73,6 +75,13 @@ exports.getUserForDelete = function(condition) {
         { deleteRequest: true },
         { deletedAt: null }
       ]}
+      condition.include = [
+        { model: City },
+        { model: DocType },
+        { model: Race },
+        { model: Plan }
+    ]
+      condition.attributes =  {exclude: ['password']}
     return User.findAndCountAll(condition);
 }
 
