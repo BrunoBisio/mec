@@ -7,7 +7,7 @@ import { getPatientHistoryById, updatePatientHistory } from '../services/Medical
 import { MuiPickersUtilsProvider, KeyboardDatePicker, KeyboardTimePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import CheckIcon from '@material-ui/icons/Check';
-import {getPatientHistoryAppointmentById} from '../services/medicalRecordAppointmentRepository'
+import { getPatientHistoryAppointmentById } from '../services/medicalRecordAppointmentRepository.js';
 
 class PatologicalRow extends React.Component {
 
@@ -154,7 +154,6 @@ class MedicalHistory extends React.Component {
           user: props.user,
           medicalRecord: {},
           medicalRecordApps: [],
-           // filterDate: new Date(),
           specialtyFilter: '',
           specialties: [],
           fullName: '',
@@ -182,14 +181,14 @@ class MedicalHistory extends React.Component {
         this.setState({ medicalRecordApps:medicalRecordApps });
     };
 
-    updateMedRecord = (obj) => {
+    updateMedRecordField = (obj) => {
       this.setState((state, props) => {
         state.medicalRecord[obj.field] = obj.medRec[obj.field];
         return state;
       })
     }
 
-    updateAllMedRecord = () => {
+    updateMedRecord = () => {
       updatePatientHistory(this.state.medicalRecord).then(() => {
         alert("se guardaron los cambios de manera satisfactoria");
       });
@@ -229,6 +228,7 @@ class MedicalHistory extends React.Component {
         return (
           <div>
           {this.state.user && <Grid container xs={9} className="MedicalHistoryContainer">
+            <div className="ButtonContainer"><Button variant="contained" color="primary" onClick={this.updateMedRecord}>Guardar Cambios</Button></div>
             <Grid item xs={12} className="GeneraInformationContainer">
               <div className="GeneralInfoTitle"><Typography variant="h4">Datos Generales</Typography></div>
               <div>
@@ -250,16 +250,16 @@ class MedicalHistory extends React.Component {
                   <Grid item xs={3} className="colHeader"><Typography variant="h5">En caso de marcar "SI", especifique</Typography></Grid>
                 </Grid>
               </div>
-              <div><PatologicalRow text="Alergia a medicamentos" active="allergyActive" comment="allergyDrug" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecord(obj)}}></PatologicalRow></div>
-              <div><PatologicalRow text="Enfermedades cardiovasculares" active="cardioActive" comment="cardioComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecord(obj)}}></PatologicalRow> </div>
-              <div><PatologicalRow text="Enfermedades pulmonares" active="pulmonaryActive" comment="pulmonaryComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecord(obj)}}></PatologicalRow></div>
-              <div><PatologicalRow text="Enfermedades digestivas" active="digestiveActive" comment="digestiveComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecord(obj)}}></PatologicalRow></div>
-              <div><PatologicalRow text="Enfermedades renales" active="renalActive" comment="renalComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecord(obj)}}></PatologicalRow></div>
-              <div><PatologicalRow text="Enfermedades Neurológicas" active="neurologicalActive" comment="neurologicalComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecord(obj)}}></PatologicalRow></div>
-              <div><PatologicalRow text="Diabetes" active="diabetesActive" comment="diabetesComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecord(obj)}}></PatologicalRow></div>
-              <div><PatologicalRow text="Antecedentes quirúrgicos" active="surgicalActive" comment="surgicalComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecord(obj)}}></PatologicalRow></div>
-              <div><PatologicalRow text="Medicamentos actuales" active="treatmentActive" comment="treatmentComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecord(obj)}}></PatologicalRow></div>
-              <div><PatologicalRow text="Embarazos" active="pregnancyActive" comment="pregnancyComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecord(obj)}}></PatologicalRow></div>
+              <div><PatologicalRow text="Alergia a medicamentos" active="allergyActive" comment="allergyDrug" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecordField(obj)}}></PatologicalRow></div>
+              <div><PatologicalRow text="Enfermedades cardiovasculares" active="cardioActive" comment="cardioComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecordField(obj)}}></PatologicalRow> </div>
+              <div><PatologicalRow text="Enfermedades pulmonares" active="pulmonaryActive" comment="pulmonaryComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecordField(obj)}}></PatologicalRow></div>
+              <div><PatologicalRow text="Enfermedades digestivas" active="digestiveActive" comment="digestiveComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecordField(obj)}}></PatologicalRow></div>
+              <div><PatologicalRow text="Enfermedades renales" active="renalActive" comment="renalComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecordField(obj)}}></PatologicalRow></div>
+              <div><PatologicalRow text="Enfermedades Neurológicas" active="neurologicalActive" comment="neurologicalComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecordField(obj)}}></PatologicalRow></div>
+              <div><PatologicalRow text="Diabetes" active="diabetesActive" comment="diabetesComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecordField(obj)}}></PatologicalRow></div>
+              <div><PatologicalRow text="Antecedentes quirúrgicos" active="surgicalActive" comment="surgicalComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecordField(obj)}}></PatologicalRow></div>
+              <div><PatologicalRow text="Medicamentos actuales" active="treatmentActive" comment="treatmentComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecordField(obj)}}></PatologicalRow></div>
+              <div><PatologicalRow text="Embarazos" active="pregnancyActive" comment="pregnancyComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecordField(obj)}}></PatologicalRow></div>
             </Grid>}
             {this.state.medicalRecord.id && <Grid item xs={12} className="">
               <div className="NonPatologicInfoTitle"><Typography variant="h4">Antecedentes no patológicos</Typography></div>
@@ -272,10 +272,10 @@ class MedicalHistory extends React.Component {
                   <Grid item xs={3} className="colHeader"><Typography variant="h5">Especifique:</Typography></Grid>
                 </Grid>
               </div>
-              <div><NotPatologicalRow text="Alcohol" frequency="alcoholFreq" comment="alcoholComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecord(obj)}}></NotPatologicalRow></div>
-              <div><NotPatologicalRow text="Tabaco" frequency="tobaccoFreq" comment="tobacoComment"object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecord(obj)}}></NotPatologicalRow></div>
-              <div><NotPatologicalRow text="Drogas" frequency="drugsFreq" comment="drugsComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecord(obj)}}></NotPatologicalRow></div>
-              <div><NotPatologicalRow text="Otros" frequency="otherFreq" comment="otherComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecord(obj)}}></NotPatologicalRow></div>
+              <div><NotPatologicalRow text="Alcohol" frequency="alcoholFreq" comment="alcoholComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecordField(obj)}}></NotPatologicalRow></div>
+              <div><NotPatologicalRow text="Tabaco" frequency="tobaccoFreq" comment="tobacoComment"object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecordField(obj)}}></NotPatologicalRow></div>
+              <div><NotPatologicalRow text="Drogas" frequency="drugsFreq" comment="drugsComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecordField(obj)}}></NotPatologicalRow></div>
+              <div><NotPatologicalRow text="Otros" frequency="otherFreq" comment="otherComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecordField(obj)}}></NotPatologicalRow></div>
             </Grid>}
             <Grid item xs={12} className="">
               <div className="MedicNotes"><Typography variant="h4">Consultas Medicas</Typography></div>
