@@ -29,7 +29,7 @@ class DeleteUser extends React.Component {
 
     handleConfirm = (event) => {
         const user = this.state.user;
-        user.requestDelete = 1;
+        user.deleteRequest = 1;
         updateUser(user.id, user);
         this.state.closeFunc(false);
     }
