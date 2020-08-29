@@ -42,7 +42,13 @@ exports.getUsers = function (condition) {
 
 exports.getPatients = function (condition) {
     condition.where=  { RoleId: 4}
-    condition.attributes =  {exclude: ['password']}
+    condition.attributes =  { exclude: ['password'] }
+    condition.include = [
+        { model: City },
+        { model: DocType },
+        { model: Race },
+        { model: Plan }
+    ]
     return User.findAndCountAll(condition);
 }
 
