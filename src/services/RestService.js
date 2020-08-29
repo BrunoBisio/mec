@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 const RestService = axios.create({
-    //baseURL: "https://limitless-anchorage-84223.herokuapp.com"
+    baseURL: "https://limitless-anchorage-84223.herokuapp.com"
 });
 
 export const haveToken = function () {
