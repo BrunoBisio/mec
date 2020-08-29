@@ -90,7 +90,9 @@ class MedicalHistory extends React.Component {
           medicalRecordApps: [],
            // filterDate: new Date(),
           specialtyFilter: '',
-          specialties: []
+          specialties: [],
+          fullName: '',
+          age: ''
         };
     }
 
@@ -114,26 +116,49 @@ class MedicalHistory extends React.Component {
       this.setState({ medicalRecordApps:medicalRecordApps });
   };
 
+    
+
+    getFullName = () => {
+      return this.state.user.name + " " + this.state.user.lastName;
+    }
+
+    getAge = () => {
+      const date1 = new Date(this.state.user.birthdate);
+      const date2 = new Date();
+      const diffTime = Math.abs(date2 - date1);
+      const age = Math.ceil(diffTime / (1000 * 60 * 60 * 24* 365)); 
+      return age;
+    }
+
+
     componentDidMount() {
       getPatientHistoryById(this.state.user.id).then((response) => {
         const medicalRecord = response.data;
         const medicalRecordApps = medicalRecord;
-        this.setState({ medicalRecord:medicalRecord, medicalRecordApps:medicalRecordApps });
+        const fullName = this.getFullName();
+        const age = this.getAge();
+        this.setState({ 
+          medicalRecord:medicalRecord, 
+          medicalRecordApps:medicalRecordApps,
+          fullName: fullName,
+          age: age
+        });
       });
     }
 
     render() {
         return (
-          <Grid container xs={9} className="MedicalHistoryContainer">
+          <div>
+          {this.state.user && <Grid container xs={9} className="MedicalHistoryContainer">
             <Grid item xs={12} className="GeneraInformationContainer">
               <div className="GeneralInfoTitle"><Typography variant="h4">Datos Generales</Typography></div>
               <div>
-                <TextField className="GeneralInfoText" label="Nombre completo" disabled={true}></TextField>
-                <TextField className="GeneralInfoText" label="Genero" disabled={true}></TextField>
+                <TextField className="GeneralInfoText" label="Nombre completo" value={this.state.fullName} disabled={true}></TextField>
+                <TextField className="GeneralInfoText" label="Genero" value={this.state.user.gender} disabled={true}></TextField>
               </div>
               <div>
-                <TextField className="GeneralInfoText" label="Raza" disabled={true}></TextField>
-                <TextField className="GeneralInfoText" label="Edad" disabled={true}>{/* calcular */}</TextField>
+                {this.state.user.Race && <TextField className="GeneralInfoText" label="Raza" value={this.state.user.Race.name} disabled={true}></TextField>}
+                <TextField className="GeneralInfoText" label="Edad" value={this.state.age} disabled={true}></TextField>
               </div>
             </Grid>
             <Grid item xs={12} className="">
@@ -206,7 +231,8 @@ class MedicalHistory extends React.Component {
                   })}
               </div>
             </Grid>
-          </Grid>
+          </Grid>}
+          </div>
         )
     }
 }

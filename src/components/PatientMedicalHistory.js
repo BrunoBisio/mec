@@ -8,21 +8,21 @@ class PatientMedicalHistory extends React.Component {
         super(props);
 
         this.state = {
-            user: {}
+            user: null
         }
     }
 
     componentDidMount() {
         getLoggedUser().then((res) => {
             const user = res;
-            this.setState({ user });
+            this.setState({ user: user });
         });
     }
 
     render() {
         return(
             <div>
-                <MedicalHistory user={this.state.user}></MedicalHistory>
+                {this.state.user && <MedicalHistory user={this.state.user}></MedicalHistory>}
             </div>
         )
     }

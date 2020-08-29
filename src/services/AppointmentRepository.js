@@ -13,7 +13,7 @@ export function getAppointmentsByMedic(id) {
 }
 
 export function getAppointmentsByUser(id) {
-    return RestService.get('/appointment/patient/' + id);
+    return RestService.get('/appointment/user/' + id);
 }
 
 export function updateAppointment(appointments) {

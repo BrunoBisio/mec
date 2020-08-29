@@ -15,14 +15,14 @@ class UserMedicalHistory extends React.Component {
     componentDidMount() {
         getLoggedUser().then((userData) => {
             const user = userData;
-            this.setState({ user });
+            this.setState({ user:user });
         });
     }
 
     render() {
         return(
             <div>
-                <MedicalHistory userId={this.state.user.id}></MedicalHistory>
+                {this.state.user && <MedicalHistory user={this.state.user}></MedicalHistory>}
             </div>
         )
     }

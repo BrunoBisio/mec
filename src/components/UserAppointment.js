@@ -7,6 +7,7 @@ import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import '../css/styles/UserAppointment.scss';
 import RelativeLink from './RelativeLink.js';
 import {getAppointmentsByUser, remove} from '../services/AppointmentRepository.js';
+import { getLoggedUser } from '../services/RolRepository';
 
 class UserAppointment extends React.Component {
   constructor(props){
@@ -19,9 +20,20 @@ class UserAppointment extends React.Component {
   }
 
   componentDidMount() {
-    getAppointmentsByUser(this.state.user.id).then((response) => {
-      this.setState({ data: response.data.results });
-    })
+    if (this.state.user && this.state.user.id > 0) {
+      getAppointmentsByUser(this.state.user.id).then((response) => {
+        this.setState({ data: response.data.results });
+      })
+    } else {
+      getLoggedUser().then((user) => {
+        this.setState({ user: user });
+        getAppointmentsByUser(user.id).then((response) => {
+          this.setState({ 
+            data: response.data.results
+          });
+        });
+      });
+    }
   }
 
   removeAppointment(row) {
