@@ -11,6 +11,9 @@ const roleXaccess = require('../models/RoleXAccess');
 
 exports.getById = function (id) {
     return User.findByPk(id, {
+        attributes: {
+            exclude: ['password']
+        },
         include: [
             { model: Role, include: {model: access, through: { model: roleXaccess,
                 attributes:[]} }},
@@ -24,6 +27,9 @@ exports.getById = function (id) {
 
 exports.getUsers = function (condition) {
     return User.findAndCountAll(condition, {
+        attributes: {
+            exclude: ['password']
+        },
         include: [
             { model: Role },
             { model: City },
@@ -36,16 +42,19 @@ exports.getUsers = function (condition) {
 
 exports.getPatients = function (condition) {
     condition.where=  { RoleId: 4}
+    condition.attributes =  {exclude: ['password']}
     return User.findAndCountAll(condition);
 }
 
 exports.getEmployees = function (condition) {
     condition.where = {RoleId:  {[Op.not]: 4}}
+    condition.attributes =  {exclude: ['password']}
     return User.findAndCountAll(condition);
 }
 
 exports.getUserByRoleId = function (roleId, condition) {
     condition.where = { RoleId: roleId }
+    condition.attributes =  {exclude: ['password']}
     return User.findAndCountAll(condition);
 }
 
