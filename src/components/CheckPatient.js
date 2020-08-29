@@ -8,26 +8,23 @@ import '../css/styles/CheckPatient.scss';
 import MaterialTable from 'material-table';
 import EventIcon from '@material-ui/icons/Event';
 import MenuIcon from '@material-ui/icons/Menu';
+import SubtitlesIcon from '@material-ui/icons/Subtitles';
 import MedicalHistory from './MedicalHistory.js';
-
-function MedicalHistoryModal(props) {
-    const value = props.data.doc;
-    return (
-        <div className="modal">
-            <MedicalHistory userId={value}></MedicalHistory>
-        </div>
-    )
-}
+import UserAppointment from './UserAppointment.js'
+import Prescription from './Prescription.js';
 
 class CheckPatient extends React.Component {
-    
+
     constructor(props) {
         super(props);
 
         this.state = {
             patients: [],
-            selectedRow: null,
-            open: false
+            selectedUser: null,
+            openPatientList: true,
+            openMedicalHistory: false,
+            openUserAppointment: false,
+            openPrescriptions: false
         }
     }
 
@@ -43,46 +40,72 @@ class CheckPatient extends React.Component {
     ]
 
     openMedicalHistory = (event, rowData) => {
-        this.setState({ 
-            selectedRow: rowData,
-            open: true
+        this.setState({
+            selectedUser: rowData,
+            openMedicalHistory: true,
+            openPatientList: false,
+            openUserAppointment: false,
+            openPrescriptions: false
         });
     }
-    componentDidMount () {
-        getPatients().then((resposne) => {
-            this.setState({patients: resposne.data.results});
-        })
-    }
-    closeMedicalHistory = () => {
+
+    openAppointments = (event, rowData) => {
         this.setState({
-            open: false
+            selectedUser: rowData,
+            openMedicalHistory: false,
+            openPatientList: false,
+            openUserAppointment: true,
+            openPrescriptions: false
+        });
+    }
+
+    openPrescriptions = (event, rowData) => {
+        this.setState({
+            selectedUser: rowData,
+            openMedicalHistory: false,
+            openPatientList: false,
+            openUserAppointment: false,
+            openPrescriptions: true
+        });
+    }
+
+    componentDidMount() {
+        getPatients().then((resposne) => {
+            this.setState({ patients: resposne.data.results });
         })
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <Paper className="CheckPatientInputSection">
-                <MaterialTable 
-                    title="Consulta" 
+                {this.state.openPatientList && <MaterialTable
+                    title="Consulta"
                     data={this.state.patients}
                     columns={this.columns}
                     actions={[{
-                            icon: MenuIcon,
-                            tooltip: 'Historia clinica',
-                            onClick: (event, rowData) => this.openMedicalHistory(event, rowData)
-                        },
-                        {
-                            icon: EventIcon,
-                            tooltip: 'Turnos',
-                            onClick: (event, rowData) => this.openMedicalHistory(event, rowData)
-                        },
+                        icon: MenuIcon,
+                        tooltip: 'Historia clinica',
+                        onClick: (event, rowData) => this.openMedicalHistory(event, rowData)
+                    },
+                    {
+                        icon: EventIcon,
+                        tooltip: 'Turnos',
+                        onClick: (event, rowData) => this.openAppointments(event, rowData)
+                    },
+                    {
+                        icon: SubtitlesIcon,
+                        tooltip: 'Recetas',
+                        onClick: (event, rowData) => this.openPrescriptions(event, rowData)
+                    }
                     ]}
                     options={{
                         filtering: true,
                         actionsColumnIndex: -1
                     }}>
-                </MaterialTable>
-                <Modal open={this.state.open} onClose={()=>{this.closeMedicalHistory()}}><MedicalHistoryModal data={this.state.selectedRow}/></Modal>
+                </MaterialTable>}
+                {this.state.openMedicalHistory && <MedicalHistory user={this.state.selectedUser}></MedicalHistory>}
+                {this.state.openUserAppointment && <UserAppointment user={this.state.selectedUser}></UserAppointment>}
+                {this.state.openPrescriptions && <Prescription user={this.state.selectedUser}></Prescription>}
             </Paper>
         )
     }
