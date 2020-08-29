@@ -18,13 +18,13 @@ import ConfirmDeleteRole from './ConfirmDeleteRole';
 
 function InternalModal(props) {
   return  <div  className="modal">
-            <AddRole data={props.data}/>
+            <AddRole data={props.data} onClose={props.onClose}/>
           </div>
 }
 
 function InternalDeleteModal(props) {
   return  <div  className="deleteModal">
-            <ConfirmDeleteRole data={props.data}/>
+            <ConfirmDeleteRole data={props.data} onClose={props.onClose}/>
           </div>
 }
 
@@ -37,7 +37,7 @@ class ABMRole extends React.Component {
   }
   componentDidMount() {
     getRoles().then(data => {
-      this.setState({data: data.data.data.results})
+      this.setState({data: data.data})
     })
   }
   openModal(row, newVal) {
@@ -79,9 +79,9 @@ class ABMRole extends React.Component {
               { title: "Id", field: "id" },
               { title: "Nombre", field: "name" },
               { title: "Actualizar", field: "" ,
-              render: rowData =>  <div><IconButton onClick= {()=> this.openModal(rowData, true)}><CreateIcon/></IconButton><Modal open={rowData.open && this.state.editRole} onClose={()=>{this.openModal(rowData, false)}}><InternalModal data={rowData}/></Modal></div>},
+              render: rowData =>  <div><IconButton onClick= {()=> this.openModal(rowData, true)}><CreateIcon/></IconButton><Modal open={rowData.open && this.state.editRole} onClose={()=>{this.openModal(rowData, false)}}><InternalModal data={rowData} onClose={()=>{this.openModal(rowData, false)}}/></Modal></div>},
               { title: "Borrar", field: "",
-              render: rowData =>  <div><IconButton onClick= {()=> this.openDeleteModal(rowData, true)}><DeleteIcon/></IconButton><Modal open={rowData.open && this.state.deleteRole} onClose={()=>{this.openDeleteModal(rowData, false)}}><InternalDeleteModal data={rowData}/></Modal></div>}, 
+              render: rowData =>  <div><IconButton onClick= {()=> this.openDeleteModal(rowData, true)}><DeleteIcon/></IconButton><Modal open={rowData.open && this.state.deleteRole} onClose={()=>{this.openDeleteModal(rowData, false)}}><InternalDeleteModal data={rowData} onClose={()=>{this.openDeleteModal(rowData, false)}}/></Modal></div>}, 
             
             ]}
             data={this.state.data}>
@@ -89,7 +89,7 @@ class ABMRole extends React.Component {
         </Grid>
         <Grid xs={4}>
         <Button variant="contained" color="primary" onClick= {()=>this.openNew(true)} className ="NewAppointment">Nuevo rol</Button>
-        <Modal open={this.state.newRole} onClose={()=>{this.openNew(false)}}><InternalModal data={this.state.newData}/></Modal>
+        <Modal open={this.state.newRole} onClose={()=>{this.openNew(false)}}><InternalModal data={this.state.newData} onClose={()=>{this.openNew(false)}}/></Modal>
         </Grid>
       </Grid>
     )

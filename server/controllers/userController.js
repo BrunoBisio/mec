@@ -34,6 +34,7 @@ exports.getPatients = function (req, res, next) {
 
 /* GET users */
 exports.getEmployees = function (req, res, next) {
+    console.log("llego al backend")
     UserService.getUsers(req.pagination).then((users) => {
         res.send(Pagination.generateResponse(users, req.pagination));
     }).catch((error) => {

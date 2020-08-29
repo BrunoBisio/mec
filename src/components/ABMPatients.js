@@ -18,13 +18,13 @@ import ConfirmDelete from './ConfirmDelete';
 
 function InternalModal(props) {
   return <div className="modal">
-    <AddPatient data={props.data} />
+    <AddPatient data={props.data} onClose={props.onClose}/>
   </div>
 }
 
 function InternalDeleteModal(props) {
   return <div className="deleteModal">
-    <ConfirmDelete data={props.data} title="Está por eliminar al paciente:" />
+    <ConfirmDelete data={props.data} title="Está por eliminar al paciente:" onClose={props.onClose}/>
   </div>
 }
 
@@ -41,7 +41,7 @@ class ABMPatients extends React.Component {
   }
   componentDidMount() {
     getPatients().then(res => {
-      this.setState({ data: res.data.data.results })
+      this.setState({ data: res.data.results })
     })
 
   }
@@ -87,11 +87,11 @@ class ABMPatients extends React.Component {
               { title: "Apellido", field: "lastName" },
               {
                 title: "Actualizar", field: "",
-                render: rowData => <div><IconButton onClick={() => this.openEditModal(rowData, true)}><CreateIcon /></IconButton><Modal open={!!rowData.open && this.state.editPatient} onClose={() => { this.openEditModal(rowData, false) }}><InternalModal data={rowData} /></Modal></div>
+                render: rowData => <div><IconButton onClick={() => this.openEditModal(rowData, true)}><CreateIcon /></IconButton><Modal open={!!rowData.open && this.state.editPatient} onClose={() => { this.openEditModal(rowData, false) }}><InternalModal data={rowData} onClose={() => { this.openEditModal(rowData, false) }}/></Modal></div>
               },
               {
                 title: "Borrar", field: "",
-                render: rowData => <div><IconButton onClick={() => this.openDeleteModal(rowData, true)}><DeleteIcon /></IconButton><Modal open={!!rowData.open && this.state.deletePatient} onClose={() => { this.openDeleteModal(rowData, false) }}><InternalDeleteModal data={rowData} /></Modal></div>
+                render: rowData => <div><IconButton onClick={() => this.openDeleteModal(rowData, true)}><DeleteIcon /></IconButton><Modal open={!!rowData.open && this.state.deletePatient} onClose={() => { this.openDeleteModal(rowData, false) }}><InternalDeleteModal data={rowData} onClose={() => { this.openDeleteModal(rowData, false) }}/></Modal></div>
               },
             ]}
             data={this.state.data}>
@@ -99,7 +99,7 @@ class ABMPatients extends React.Component {
         </Grid>
         <Grid xs={4}>
           <Button variant="contained" color="primary" onClick={() => this.openNewModal(true)} className="NewAppointment">Nuevo paciente</Button>
-          <Modal open={this.state.newPatient} onClose={() => { this.openNewModal(false) }}><InternalModal data={this.state.newData} /></Modal>
+          <Modal open={this.state.newPatient} onClose={() => { this.openNewModal(false) }}><InternalModal data={this.state.newData} onClose={() => { this.openNewModal(false) }}/></Modal>
         </Grid>
       </Grid>
     )
