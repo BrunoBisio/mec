@@ -18,8 +18,7 @@ class PendingDeleteUsers extends React.Component {
   componentDidMount() {
     // const apiUrl = 'http://localhost:3000';
     getPendingDeletes().then((response) => {
-      const data = response;
-      this.setState({ data });
+      this.setState({ data: response.data.results });
     })
   }
 

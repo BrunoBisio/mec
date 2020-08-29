@@ -103,7 +103,7 @@ class MedicalHistory extends React.Component {
       const medicalRecordApps = this.state.medicalRecordApps.filter((mra) => {
         return mra.date == value;
       });
-      this.setState({ medicalRecordApps });
+      this.setState({ medicalRecordApps:medicalRecordApps });
     }
 
   
@@ -111,14 +111,14 @@ class MedicalHistory extends React.Component {
       const medicalRecordApps = this.state.medicalRecordApps.filter((mra) => {
           return mra.medicDetail.specialty.id === obj.props.value.id;
       });
-      this.setState({ medicalRecordApps });
+      this.setState({ medicalRecordApps:medicalRecordApps });
   };
 
     componentDidMount() {
       getPatientHistoryById(this.state.user.id).then((response) => {
         const medicalRecord = response.data;
-        const medicalRecordApps = medicalRecord.
-        this.setState({ medicalRecord, medicalRecordApps });
+        const medicalRecordApps = medicalRecord;
+        this.setState({ medicalRecord:medicalRecord, medicalRecordApps:medicalRecordApps });
       });
     }
 

@@ -11,7 +11,7 @@ router.get('/patients', Middleware.paginationMiddleware, UserController.getPatie
 router.get('/employee', Middleware.paginationMiddleware, UserController.getEmployees);
 router.get('/role/:roleId', Middleware.paginationMiddleware, UserController.getUserByRoleId);
 router.post('/', UserController.createUser);
-router.get('/delete', UserController.getUsersPendingDelete);
+router.get('/delete', Middleware.paginationMiddleware, UserController.getUsersPendingDelete);
 router.delete('/:userId', UserController.deleteUser);
 router.post('/login', UserController.login);
 router.put('/:id', UserController.updateUser);
