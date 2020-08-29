@@ -2,7 +2,7 @@ const MedicalRecordService = require('../services/medicalRecordServiceAppointmen
 
 /* GET MedicalRecord By User */
 exports.getMedicalRecordAppointment = function (req, res, next) {
-    MedicalRecordService.getMedicalRecordAppointment(req.params.roleId).then((result) => {
+    MedicalRecordService.getMedicalRecordAppointment(req.params.id).then((result) => {
         res.send(result);
     }).catch((error) => {
         next(error);
