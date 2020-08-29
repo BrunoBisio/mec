@@ -61,7 +61,11 @@ exports.createUser = function (req, res, next) {
 
 /* UPDATE user */
 exports.updateUser = function (req, res, next) {
-    UserService.updateUser(req.params.id, req.body).then((user) => {
+    let user = req.body
+    if(!user.password || user.password==='') {
+        delete undefined.password
+    }
+    UserService.updateUser(req.params.id, user).then((user) => {
         res.send(user);
     }).catch((error) => {
         next(error);

@@ -14,6 +14,6 @@ export const saveToken = function (token) {
 }
 
 export const deleteToken = function () {
-    RestService.defaults.headers.common.delete('Authorization');
+    delete RestService.defaults.headers.common['Authorization'];
 }
 export default RestService;

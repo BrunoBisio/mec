@@ -23,9 +23,9 @@ class PendingDeleteUsers extends React.Component {
   }
 
   removeUser(row) {
-    deleteUser(row);
-    const data = getPendingDeletes();
-    this.setState({ data });
+    getPendingDeletes().then((response) => {
+      this.setState({ data: response.data.results });
+    })
   }
 
   render() {

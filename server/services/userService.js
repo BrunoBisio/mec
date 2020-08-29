@@ -73,6 +73,12 @@ exports.getUserForDelete = function(condition) {
         { deleteRequest: true },
         { deletedAt: null }
       ]}
+      condition.include = [
+        { model: City },
+        { model: DocType },
+        { model: Race },
+        { model: Plan }
+    ]
       condition.attributes =  {exclude: ['password']}
     return User.findAndCountAll(condition);
 }

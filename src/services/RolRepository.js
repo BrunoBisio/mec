@@ -243,6 +243,7 @@ export function isAuthenticated() {
 }
 
 export function singout() {
+  deleteToken();
   user = null;
 }
 

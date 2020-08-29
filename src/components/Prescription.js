@@ -19,7 +19,7 @@ class Prescription extends React.Component {
 
   componentDidMount() {
     getPrescriptions().then(data => {
-      this.setState({data: data.data.data.results})
+      this.setState({data: data.data.results})
     })
   }
   
