@@ -1,10 +1,11 @@
 import React from 'react';
-import { getAppointmentsWithUser } from '../services/AppointmentRepository.js';
+import { getAppointmentsWithUser, updateAppointment } from '../services/AppointmentRepository.js';
 import { Grid, TextField, Button, Modal, Typography, IconButton, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@material-ui/core';
 import MaterialTable from 'material-table';
 import MoveAppointment from './MoveAppointment';
 import '../css/styles/InnerAppointment.scss';
 import MedicalHistory from './MedicalHistory';
+import { createMedRecApp } from '../services/medicalRecordAppointmentRepository'
 import { MuiPickersUtilsProvider, KeyboardDatePicker, KeyboardTimePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import CheckIcon from '@material-ui/icons/Check';
@@ -95,8 +96,11 @@ class InnerAppointment extends React.Component {
     }
 
     /* Handlers for medical record appointment section */
-    handleCommentChange = (event, value) => { 
-        this.setState({ comment: event.target.value }); // verificar si recibe campo
+    handleCommentChange = (event) => { 
+        const res = event.target.value
+        this.setState((state, props)=>{
+            return state.newMedicRecApp.comment =res
+        })
     };
 
     openWarningDialog = () => {
@@ -104,14 +108,27 @@ class InnerAppointment extends React.Component {
     }
 
     handleConfirm = () => {
-        // updateAppointmentAsCompleted
+        this.state.appointmentSelected.completed = true;
+        updateAppointment(this.state.appointmentSelected).then(()=>{
+            const medRecApp = {
+                date: this.state.newMedicRecApp.date,
+                comment: this.state.newMedicRecApp.comment,
+                MedicDetailId: this.state.newMedicRecApp.medicDetail.id
+            }
+            createMedRecApp(medRecApp).then(()=> {
+                this.loadAppointments().then(()=> {
+                    this.setState({
+                        open: false,
+                        showHideAppointmentGrid: true, 
+                        showHideMedicalHistory: false
+                    });
+                })
+            })
+        })
+
         // createNewMedicalRecordAppointment
-        // getAppointmentListByPending
-        this.setState({
-            open: false,
-            showHideAppointmentGrid: true, 
-            showHideMedicalHistory: false
-        });
+        
+       
     }
 
     handleCancel = () => {
@@ -155,7 +172,7 @@ class InnerAppointment extends React.Component {
                     <Grid item xs={12} className="NewMedicNoteContainer">
                         <Grid item xs={3}><TextField disabled={true} value={this.state.newMedicRecApp.date} variant="outlined" className="MedicNotesDate"></TextField></Grid>
                         <Grid item xs={3}><TextField disabled={true} value={this.state.newMedicRecApp.medicDetail.Specialty.name} variant="outlined" className="MedicNotesSpecialty"></TextField></Grid>
-                        <Grid item xs={5}><TextField value={this.state.newMedicRecApp.comment} variant="outlined" className="MedicNotesComment" multiline rows={6}></TextField></Grid>
+                        <Grid item xs={5}><TextField value={this.state.newMedicRecApp.comment} variant="outlined" onChange={(event)=>{this.handleCommentChange(event)}} className="MedicNotesComment" multiline rows={6}></TextField></Grid>
                         <Grid item xs={1}><IconButton onClick={this.openWarningDialog}><CheckIcon /></IconButton></Grid>
                     </Grid>
                 </Grid>

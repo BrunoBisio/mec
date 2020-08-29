@@ -1,4 +1,4 @@
-const MedicalRecordService = require('../services/medicalRecordService');
+const MedicalRecordService = require('../services/medicalRecordServiceAppointment');
 
 /* GET MedicalRecord By User */
 exports.getMedicalRecordAppointment = function (req, res, next) {
