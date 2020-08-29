@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Typography, TextField, Paper, Button, MenuItem, Modal, Container } from '@material-ui/core';
+import {Typography, TextField, Paper, Button, MenuItem, Modal, Container, FormControl, InputLabel, Select } from '@material-ui/core';
 import '../css/styles/MyAccount.scss';
 import axios from 'axios'
 import { getLoggedUser } from '../services/RolRepository.js';
@@ -64,36 +64,59 @@ class MyAccountPatient extends React.Component {
 
         this.state = {
             user: { DocType: {}, Race: {}, Plan: {}, City: {} },
-            cities: [],
-            plans: [],
+            PlanList: [],
+            CityList: [],
+            CityLoaded: {},
+            PlanLoaded: {},
+            CityValue: '',
+            PlanValue: '',
             open: false
         }
     }
-    
-    handlePlanChange = (event, obj) => { this.setState({ plan: obj.props.value}); };
 
-    handleCityChange = (event, obj) => { this.setState({ city: obj.props.value}); };
+    // select handlers
+    handleSelectChange = (event, obj) => {
+        const itemId = event.target.value;
+        const fieldName = event.target.name;
+        this.setState((state, props) => {
+            state.user[fieldName] = itemId > 0 ? state[fieldName + 'List'].find((item) => { return item.id = itemId }) : state[fieldName + 'Loaded'];
+            state.user[fieldName + 'Id'] = itemId > 0 ? state.user[fieldName].id : state[fieldName + 'Loaded'].id;
+            state[fieldName + 'Value'] = event.target.value;
+            return state;
+        });
+    }
 
-    handleAddressChange = (event, value) => { this.setState({ address: event.target.value }); };
-
-    handleMailChange = (event, value) => { this.setState({ mail: event.target.value }); };
-    
-    handleTelChange = (event, value) => { this.setState({ telephone: event.target.value }); };
-    
-    handleCelChange = (event, value) => { this.setState({ cellphone: event.target.value }); };
-
-    handlePasswordChange = (event, value) => { this.setState({ password: event.target.value }); };
+    // text handler
+    handleTextChange = (event, value) => { 
+        const fieldValue = event.target.value;
+        const fieldName = event.target.name;
+        this.setState((state, props) => {
+            state.user[fieldName] = fieldValue;
+            return state;
+        });
+    }
 
     componentDidMount() {
         axios.all([
-            getCities(),
+            getLoggedUser(),
             getPlans(),
-            getLoggedUser()
+            getCities(),
         ]).then((responses) => {
-            const cities = responses[0].data;
-            const plans = responses[1].data;
-            const user = responses[2];
-            this.setState({ cities, plans, user });
+            const user = responses[0];
+            
+            const PlanLoaded = user.Plan ? user.Plan : {};
+            const PlanList = responses[1].data.filter((item) => { return item.id !== PlanLoaded.id });
+            
+            const CityLoaded = user.City ? user.City : {};
+            const CityList = responses[2].data.filter((item) => { return item.id !== CityLoaded.id });
+            
+            this.setState({
+                PlanLoaded: PlanLoaded,
+                PlanList: PlanList,
+                CityLoaded: CityLoaded,
+                CityList: CityList,
+                user: user
+            });
         });
     }
 
@@ -101,7 +124,7 @@ class MyAccountPatient extends React.Component {
         event.preventDefault();
         const user = this.state.user;
         updateUser(user.id, user).then((resp) => {
-            console.log(resp);
+            alert("Los cambios se guardaron satisfactoriamente");
         });;
     }
 
@@ -128,21 +151,29 @@ class MyAccountPatient extends React.Component {
                             <TextField label="Género" value={this.state.user.gender} disabled={true}></TextField>
                         </div>
                         <div className="MyAccountCol ColRight">
-                            <TextField label="Plan" select value={this.state.user.Plan.planName} onChange={this.handlePlanChange}>
-                                {this.state.plans && this.state.plans.map((option, index) => (
-                                    <MenuItem key={index} value={option}>{option.planName}</MenuItem>
-                                ))}
-                            </TextField>
-                            <TextField label="Ciudad" select value={this.state.user.City.name} onChange={this.handleCityChange}>
-                                {this.state.cities && this.state.cities.map((option, index) => (
-                                    <MenuItem key={index} value={option}>{option.name}</MenuItem>
-                                ))}
-                            </TextField>
-                            <TextField label="Dirección" value={this.state.user.address} onChange={this.handleAddressChange}></TextField>
-                            <TextField label="Correo electrónico" value={this.state.user.mail} onChange={this.handleMailChange}></TextField>
-                            <TextField label="Teléfono" value={this.state.user.telephone} onChange={this.handleTelChange}></TextField>
-                            <TextField label="Celular" value={this.state.user.cellphone} onChange={this.handleCelChange} ></TextField>
-                            <TextField label="Contraseña" value={this.state.user.password} onChange={this.handlePasswordChange}></TextField>
+                            <FormControl>
+                                <InputLabel shrink>Plan</InputLabel>
+                                <Select name="Plan" value={this.state.PlanValue} onChange={this.handleSelectChange} displayEmpty >
+                                    <MenuItem value="">{this.state.PlanLoaded.planName}</MenuItem>
+                                    {this.state.PlanList && this.state.PlanList.map((option, index) => (
+                                        <MenuItem key={option.id} value={option.id}>{option.planName}</MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                            <FormControl>
+                                <InputLabel shrink>Ciudad</InputLabel>
+                                <Select name="City" value={this.state.CityValue} onChange={this.handleSelectChange} displayEmpty >
+                                    <MenuItem value="">{this.state.CityLoaded.name}</MenuItem>
+                                    {this.state.CityList && this.state.CityList.map((option, index) => (
+                                        <MenuItem key={option.id} value={option.id}>{option.name}</MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                            <TextField name="address" label="Dirección" value={this.state.user.address} onChange={this.handleTextChange}></TextField>
+                            <TextField name="mail" label="Correo electrónico" value={this.state.user.mail} onChange={this.handleTextChange}></TextField>
+                            <TextField name="phone" label="Teléfono" value={this.state.user.phone} onChange={this.handleTextChange}></TextField>
+                            <TextField name="cellphone" label="Celular" value={this.state.user.cellphone} onChange={this.handleTextChange} ></TextField>
+                            <TextField name="password" label="Contraseña" value={this.state.user.password} onChange={this.handleTextChange}></TextField>
                         </div>
                         <div className="MyAccountButton"><Button variant="contained" color="primary" type="submit">Guardar</Button></div>
                     </form>
