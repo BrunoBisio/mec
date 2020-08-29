@@ -6,7 +6,6 @@ import MaterialTable from "material-table";
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import '../css/styles/UserAppointment.scss';
 import RelativeLink from './RelativeLink.js';
-// import {get, remove} from '../services/AppointmentRepository.js';
 import { getPendingDeletes, deleteUser } from '../services/UserRepository.js';
 
 class PendingDeleteUsers extends React.Component {
@@ -23,9 +22,11 @@ class PendingDeleteUsers extends React.Component {
   }
 
   removeUser(row) {
-    getPendingDeletes().then((response) => {
-      this.setState({ data: response.data.results });
-    })
+    deleteUser(row).then(() => {
+      getPendingDeletes().then((response) => {
+        this.setState({ data: response.data.results });
+      });
+    });
   }
 
   render() {
@@ -33,7 +34,7 @@ class PendingDeleteUsers extends React.Component {
       <Grid container xs={12} className="AppointmentGrid1">
         <MaterialTable title="Solicitudes de baja pendientes"
           columns={[
-            { title: "Tipo de documento", field: "docType.docTypeCode" },
+            { title: "Tipo de documento", field: "DocType.docTypeCode" },
             { title: "Numero de documento", field: "docNumber" }
           ]}
           localization={{
