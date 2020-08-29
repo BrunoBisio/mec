@@ -32,14 +32,14 @@ class CheckPatient extends React.Component {
     }
 
     columns = [
-        { title: "Tipo de documento", field: "tipoDoc" },
-        { title: "Documento", field: "doc" },
+        { title: "Tipo de documento", field: "DocType.docTypeCode" },
+        { title: "Documento", field: "docNumber" },
         { title: "Nombre", field: "name" },
         { title: "Apellido", field: "lastName" },
-        { title: "Fecha de Nacimiento", field: "bDay", type: "date" },
-        { title: "Plan", field: "plan" },
+        { title: "Fecha de Nacimiento", field: "birthdate", type: "date" },
+        { title: "Plan", field: "Plan.planName" },
         { title: "Mail", field: "mail" },
-        { title: "Telefono", field: "telefono" }
+        { title: "Telefono", field: "phone" }
     ]
 
     openMedicalHistory = (event, rowData) => {
@@ -49,8 +49,8 @@ class CheckPatient extends React.Component {
         });
     }
     componentDidMount () {
-        getPatients().then(data=> {
-            this.setState({patients: data.data.data.results})
+        getPatients().then((resposne) => {
+            this.setState({patients: resposne.data.results});
         })
     }
     closeMedicalHistory = () => {
