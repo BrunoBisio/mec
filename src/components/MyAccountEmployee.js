@@ -22,6 +22,7 @@ class MyAccountEmployee extends React.Component {
         const cityId = event.target.value;
         this.setState((state, props) => {
             state.user.City =  cityId ? state.cities.find((city) => { return city.id == cityId }) : state.cityLoaded;
+            state.user.CityId = cityId ? state.user.City.id : state.cityLoaded.id;
             state.cityValue = event.target.value;
             return state;
         });
