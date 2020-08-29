@@ -59,7 +59,7 @@ class AddEmploye extends React.Component {
 
     handleMailChange = (event, value) => { this.setState({ mail: event.target.value }); };
     
-    handleTelChange = (event, value) => { this.setState({ telephone: event.target.value }); };
+    handleTelChange = (event, value) => { this.setState({ phone: event.target.value }); };
     
     handleCelChange = (event, value) => { this.setState({ cellphone: event.target.value }); };
 
@@ -103,7 +103,7 @@ class AddEmploye extends React.Component {
                         </TextField>
                         <TextField label="Dirección" value={this.state.user.address} onChange={this.handleAddressChange}></TextField>
                         <TextField label="Correo electronico" value={this.state.user.mail} onChange={this.handleMailChange}></TextField>
-                        <TextField label="Telefono" value={this.state.user.telephone} onChange={this.handleTelChange}></TextField>
+                        <TextField label="Telefono" value={this.state.user.phone} onChange={this.handleTelChange}></TextField>
                         <TextField label="Celular" value={this.state.user.cellphone} onChange={this.handleCelChange} ></TextField>
                         <TextField label="Contraseña" value={this.state.user.password} onChange={this.handlePasswordChange}></TextField>
                     </div>

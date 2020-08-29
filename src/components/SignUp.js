@@ -5,8 +5,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
+import {Select} from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -15,6 +15,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { getPlans, getDocTypes, getCities, getRaces } from '../services/DropDownRepositories.js';
 import '../css/styles/Signup.scss';
+import {add} from '../services/UserRepository'
+import {
+  useHistory,
+  useLocation,
+  Link
+} from "react-router-dom";
 
 function Copyright() {
   return (
@@ -51,9 +57,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
-  
+
+  let history = useHistory();
+  let location = useLocation();
+  let { from } = location.state || { from: { pathname: "/" } };
   const [docType, setDocType] = React.useState();
   const [docNumber, setDocNumber] = React.useState();
+  const [password, setPassword] = React.useState();
   const [name, setName] = React.useState();
   const [lastName, setLastName] = React.useState();
   const [birthday, setBirthday] = React.useState();
@@ -64,9 +74,46 @@ export default function SignUp() {
   const [telephone, setTelephone] = React.useState();
   const [cellphone, setCellphone] = React.useState();
 
-  const plans = getPlans();
-  const docTypes = getDocTypes();
-  const cities = getCities();
+
+  const [plans, setPlans] = React.useState();
+  const [docTypes, setDocTypes] = React.useState();
+  const [cities, setCities] = React.useState();
+
+  React.useEffect(()  => {
+    getPlans().then((data)=>
+    {
+      setPlans(data.data)
+    });
+  getDocTypes().then((data)=>
+  {
+    setDocTypes(data.data)
+  });
+    getCities().then((data)=>
+  {
+    setCities(data.data)
+  });
+  }, []);
+
+  const buildUser= () => {
+    const user = {
+      DocTypeId: docType.id,
+      docNumber: docNumber,
+      name: name,
+      lastName: lastName,
+      birthday: birthday,
+      PlanId: plan.id,
+      CityId: city.id,
+      address: address,
+      mail: mail,
+      phone: telephone,
+      cellphone: cellphone,
+      RoleId: 4
+    }
+    add(user).then(()=> {
+      from.pathname += "user"
+      history.replace(from);
+    })
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -80,42 +127,44 @@ export default function SignUp() {
         </Typography>
         <form className={classes.form} noValidate className="SignupForm">
           <Grid container spacing={2}>
-            <TextField label="Tipo de documento" value={docType} >
-            {docTypes.map((option, index) => (
-               <MenuItem key={index} value={option.codigo}>{option.codigo}</MenuItem>
+            <Select label="Tipo de documento" select value={docType} onChange={(event) => setDocType(event.target.value)}>
+            {docTypes && docTypes.map((option, index) => (
+               <MenuItem key={index} value={option}>{option.docTypeCode}</MenuItem>
               ))}
-            </TextField>
-            <TextField label="Número de documento" value={docNumber}></TextField>
-            <TextField label="Nombre" value={name} ></TextField>
-            <TextField label="Apellido" value={lastName} ></TextField>
-            <TextField label="Fecha de nacimiento" value={birthday} ></TextField>
-            <TextField label="Plan" select value={plan}  >
-              {plans.map((option, index) => (
-               <MenuItem key={index} value={option.name}>{option.name}</MenuItem>
+            </Select>
+            <TextField label="Número de documento" value={docNumber} onChange={(event) => setDocNumber(event.target.value)}></TextField>
+            <TextField label="password" value={password} type="password" onChange={(event) => setPassword(event.target.value)}></TextField>
+            <TextField label="Nombre" value={name} onChange={(event) => setName(event.target.value)}></TextField>
+            <TextField label="Apellido" value={lastName} onChange={(event) => setLastName(event.target.value)}></TextField>
+            <TextField label="Fecha de nacimiento" value={birthday} onChange={(event) => setBirthday(event.target.value)}></TextField>
+            <Select label="Plan" select value={plan}  onChange={(event) => setPlan(event.target.value)}>
+              {plans && plans.map((option, index) => (
+               <MenuItem key={index} value={option}>{option.planCode}</MenuItem>
               ))}
-            </TextField>
-            <TextField label="Ciudad" select value={city}  >
-              {cities.map((option, index) => (
-                <MenuItem key={index} value={option.name}>{option.name}</MenuItem>
+            </Select>
+            <Select label="Ciudad" select value={city}  onChange={(event) => setCity(event.target.value)}>
+              {cities && cities.map((option, index) => (
+                <MenuItem key={index} value={option}>{option.name}</MenuItem>
               ))}
-            </TextField>
-            <TextField label="Dirección" value={address} ></TextField>
-            <TextField label="Correo electronico" value={mail} ></TextField>
-            <TextField label="Teléfono" value={telephone} ></TextField>
-            <TextField label="Celular" value={cellphone}  ></TextField>
+            </Select>
+            <TextField label="Dirección" value={address} onChange={(event) => setAddress(event.target.value)}></TextField>
+            <TextField label="Correo electronico" value={mail} onChange={(event) => setMail(event.target.value)}></TextField>
+            <TextField label="Teléfono" value={telephone} onChange={(event) => setTelephone(event.target.value)}></TextField>
+            <TextField label="Celular" value={cellphone}  onChange={(event) => setCellphone(event.target.value)}></TextField>
           </Grid>
           <Button
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={()=>{buildUser()}}
           >
             Sign Up
           </Button>
           <Grid container justify="flex-end" xs={12}>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/login" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>
