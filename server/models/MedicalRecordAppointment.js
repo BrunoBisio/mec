@@ -30,6 +30,7 @@ const MedicalRecordAppointment = db.define('MedicalRecordAppointment', {
 });
 
 MedicalRecordAppointment.belongsTo(medicalRecord);
+medicalRecord.hasMany(MedicalRecordAppointment);
 MedicalRecordAppointment.belongsTo(medicDetail);
 medicDetail.hasMany(MedicalRecordAppointment);
 

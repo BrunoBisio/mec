@@ -6,5 +6,5 @@ export function createMedRecApp(MedRecApp) {
 }
 
 export function getPatientHistoryAppointmentById(id) {
-    return RestService.get('/medicalRecordAppointment/' + id);
+    // return RestService.get('/medicalRecordAppointment/' + id);
 }

@@ -210,16 +210,14 @@ class MedicalHistory extends React.Component {
     componentDidMount() {
       getPatientHistoryById(this.state.user.id).then((response) => {
         const medicalRecord = response.data;
-        getPatientHistoryAppointmentById(medicalRecord.id).then((response) => {
-          const medicalRecordApps = response.data;
-          const fullName = this.getFullName();
-          const age = this.getAge();
-          this.setState({ 
-            medicalRecord:medicalRecord, 
-            medicalRecordApps:medicalRecordApps,
-            fullName: fullName,
-            age: age
-          });
+        const medicalRecordApps = response.data;
+        const fullName = this.getFullName();
+        const age = this.getAge();
+        this.setState({ 
+          medicalRecord:medicalRecord, 
+          medicalRecordApps:medicalRecordApps,
+          fullName: fullName,
+          age: age
         });
       });
     }
@@ -277,15 +275,15 @@ class MedicalHistory extends React.Component {
               <div><NotPatologicalRow text="Drogas" frequency="drugsFreq" comment="drugsComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecordField(obj)}}></NotPatologicalRow></div>
               <div><NotPatologicalRow text="Otros" frequency="otherFreq" comment="otherComment" object={this.state.medicalRecord} onChange={(obj) => {this.updateMedRecordField(obj)}}></NotPatologicalRow></div>
             </Grid>}
-            <Grid item xs={12} className="">
+            {/*<Grid item xs={12} className="">
               <div className="MedicNotes"><Typography variant="h4">Consultas Medicas</Typography></div>
               <div>
                   <Grid container xs={12} className="MedicNotesColumnsTitle">
                     <Grid item xs={3} className="colHeader">
                         <Typography variant="h5">Fecha de consulta</Typography>
-                        {/*<MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        {<MuiPickersUtilsProvider utils={DateFnsUtils}>
                         <KeyboardDatePicker label="Fecha" disableToolbar variant="inline" format="dd/MM/yyyy" margin="normal" value={this.state.filterDate} onChange={this.onDateChange}></KeyboardDatePicker>
-                        </MuiPickersUtilsProvider>*/}
+                        </MuiPickersUtilsProvider>}
                     </Grid>
                     <Grid item xs={3} className="colHeader">
                         <Typography variant="h5">Especialidad</Typography>
@@ -309,7 +307,7 @@ class MedicalHistory extends React.Component {
                       )
                   })}
               </div>
-            </Grid>
+            </Grid>*/}
           </Grid>}
           </div>
         )
