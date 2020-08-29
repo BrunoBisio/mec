@@ -50,14 +50,20 @@ class InnerAppointment extends React.Component {
     }
 
     loadAppointments() {
+        this._isMounted = true;
+
+
         getAppointmentsWithUser().then(res => {
-            console.log(res)
-          this.setState({ data: res.data.results })
+            if( this._isMounted)
+                this.setState({ data: res.data.results })
         })
       }
     
       componentDidMount() {
         this.loadAppointments()
+      }
+      componentWillUnmount() {
+        this._isMounted = false;
       }
     checkAppointment = (row, event) => {
         const appointmentSelected = row; 
@@ -65,14 +71,14 @@ class InnerAppointment extends React.Component {
         const showHideMedicalHistory = true;
         const newMedicRecApp = {
             date: row.date,
-            medicDetail: row.medicDetail,
+            medicDetail: row.MedicDetail,
             comment: ''
         }
         this.setState({ 
-            appointmentSelected, 
-            showHideAppointmentGrid, 
-            showHideMedicalHistory,
-            newMedicRecApp
+            appointmentSelected: appointmentSelected, 
+            showHideAppointmentGrid: showHideAppointmentGrid, 
+            showHideMedicalHistory: showHideMedicalHistory,
+            newMedicRecApp: newMedicRecApp
         });
     }
 
@@ -143,12 +149,12 @@ class InnerAppointment extends React.Component {
                         <div className="ButtonContainer"><Button variant="contained" color="primary" onClick={()=> this.handleNewAppointment(true)}>Agendar Turno</Button></div>
                 </Grid>
             </div>}
-            { this.state.showHideMedicalHistory && <div>
-                <MedicalHistory userId={this.state.appointmentSelected.patient.id}></MedicalHistory>
+            { this.state.showHideMedicalHistory && this.state.appointmentSelected && this.state.appointmentSelected.User && <div>
+                <MedicalHistory user={this.state.appointmentSelected.User}></MedicalHistory>
                 <Grid container xs={9} className="MedicalHistoryContainer">
                     <Grid item xs={12} className="NewMedicNoteContainer">
                         <Grid item xs={3}><TextField disabled={true} value={this.state.newMedicRecApp.date} variant="outlined" className="MedicNotesDate"></TextField></Grid>
-                        <Grid item xs={3}><TextField disabled={true} value={this.state.newMedicRecApp.medicDetail.specialty.name} variant="outlined" className="MedicNotesSpecialty"></TextField></Grid>
+                        <Grid item xs={3}><TextField disabled={true} value={this.state.newMedicRecApp.medicDetail.Specialty.name} variant="outlined" className="MedicNotesSpecialty"></TextField></Grid>
                         <Grid item xs={5}><TextField value={this.state.newMedicRecApp.comment} variant="outlined" className="MedicNotesComment" multiline rows={6}></TextField></Grid>
                         <Grid item xs={1}><IconButton onClick={this.openWarningDialog}><CheckIcon /></IconButton></Grid>
                     </Grid>

@@ -95,7 +95,7 @@ class ABMRole extends React.Component {
               { title: "Id", field: "id" },
               { title: "Nombre", field: "nameRole" },
               { title: "Actualizar", field: "" ,
-              render: rowData =>  <div><IconButton onClick= {()=> this.openModal(rowData, true)}><CreateIcon/></IconButton><Modal open={rowData.open && this.state.editRole} onClose={()=>{this.openModal(rowData, false)}}><InternalModal data={rowData} onChange={(role) => {this.updateRole(role)}} onClose={()=>{this.openModal(rowData, false)}}/></Modal></div>},
+              render: rowData =>  <div><IconButton onClick= {()=> this.openModal(rowData, true)}><CreateIcon/></IconButton><Modal open={!!rowData.open && !!this.state.editRole} onClose={()=>{this.openModal(rowData, false)}}><InternalModal data={rowData} onChange={(role) => {this.updateRole(role)}} onClose={()=>{this.openModal(rowData, false)}}/></Modal></div>},
               { title: "Borrar", field: "",
               render: rowData =>  <div><IconButton onClick= {()=> this.openDeleteModal(rowData, true)}><DeleteIcon/></IconButton><Modal open={rowData.open && this.state.deleteRole} onClose={()=>{this.openDeleteModal(rowData, false)}}><InternalDeleteModal data={rowData} confirm={(role) => {this.deleteRole(role)}} onClose={()=>{this.openDeleteModal(rowData, false)}}/></Modal></div>}, 
             

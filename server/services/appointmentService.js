@@ -25,7 +25,7 @@ exports.getAppointmentsWithoutUser = function (condition) {
 
 exports.getAppointmentsWithUser = function (condition) {
     condition.where = { UserId: { [Op.not]: null } }
-    condition.include = [User]
+    condition.include = [User, {model: MedicDetail, include: {model: Specialty}}]
     return Appointment.findAndCountAll(condition);
 }
 

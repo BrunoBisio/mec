@@ -48,7 +48,8 @@ class Prescription extends React.Component {
     confirmPrescription() {
       this.onFileUpload().then(()=> {
         this.setState((state,props)=> {
-          updatePrescription(this.state.data).then(()=>{
+          state.data.approved = 1;
+          updatePrescription(state.data).then(()=>{
             this.state.close()
           })
         })
