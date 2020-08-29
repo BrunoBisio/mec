@@ -7,6 +7,7 @@ import { getPatientHistoryById, updatePatientHistory } from '../services/Medical
 import { MuiPickersUtilsProvider, KeyboardDatePicker, KeyboardTimePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import CheckIcon from '@material-ui/icons/Check';
+import {getPatientHistoryAppointmentById} from '../services/medicalRecordAppointmentRepository'
 
 class PatologicalRow extends React.Component {
 
