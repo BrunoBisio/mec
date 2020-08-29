@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Typography, TextField, Paper, Button, MenuItem, FormControl, InputLabel, Select } from '@material-ui/core';
+import {Typography, TextField, Paper, Button, MenuItem, FormControl, InputLabel, Select, FilledInput } from '@material-ui/core';
 import '../css/styles/MyAccount.scss';
 import axios from 'axios'
 import { getLoggedUser } from '../services/RolRepository.js';
@@ -18,45 +18,53 @@ class MyAccountEmployee extends React.Component {
         }
     }
 
-    handleCityChange = (event) => { 
-        // const user = this.state.user;
-        // user.city = event.target.value ? obj.props.value : this.state.cityLoaded;
-        // const cityValue = event.target.value;
-        // this.setState({ user, cityValue });
+    handleCityChange = (event, obj) => { 
+        const cityId = event.target.value;
         this.setState((state, props) => {
-            // state.user.city =  event.target.value ? obj.props.value : this.state.cityLoaded;
+            state.user.City =  cityId ? state.cities.find((city) => { return city.id == cityId }) : state.cityLoaded;
             state.cityValue = event.target.value;
+            return state;
         });
     };
 
     handleAddressChange = (event, value) => { 
-        const user = this.state.user;
-        user.address = event.target.value;
-        this.setState({ user });
+        const textValue = event.target.value;
+        this.setState((state, props) => { 
+            state.user.address = textValue; 
+            return state;
+        });
     };
 
-    handleMailChange = (event, value) => { 
-        const user = this.state.user;
-        user.mail = event.target.value
-        this.setState({ user }); 
+    handleMailChange = (event, value) => {
+        const textValue = event.target.value;
+        this.setState((state, props) => { 
+            state.user.mail = textValue; 
+            return state; 
+        });
     };
     
-    handleTelChange = (event, value) => { 
-        const user = this.state.user;
-        user.telephone = event.target.value
-        this.setState({ user });
+    handleTelChange = (event, value) => {
+        const textValue = event.target.value;
+        this.setState((state, props) => { 
+            state.user.telephone = textValue; 
+            return state;
+        });
     };
     
     handleCelChange = (event, value) => {
-        const user = this.state.user;
-        user.cellphone = event.target.value
-        this.setState({ user }); 
+        const textValue = event.target.value;
+        this.setState((state, props) => { 
+            state.user.cellphone = textValue; 
+            return state;
+        });
     };
 
     handlePasswordChange = (event, value) => {
-        const user = this.state.user;
-        user.password = event.target.value
-        this.setState({ user });
+        const textValue = event.target.value;
+        this.setState((state, props) => { 
+            state.user.password = textValue; 
+            return state;
+        });
     };
 
     componentDidMount() {
@@ -64,7 +72,6 @@ class MyAccountEmployee extends React.Component {
             getCities(),
             getLoggedUser()
         ]).then((res) => {
-            console.log(res);
             const user = res[1];
             const cityLoaded = res[1].City ? res[1].City : {};
             const cities = res[0].data.filter((city) => { return city.id !== cityLoaded.id });
@@ -80,7 +87,7 @@ class MyAccountEmployee extends React.Component {
         event.preventDefault();
         const user = this.state.user;
         updateUser(user.id, user).then((resp) => {
-            console.log(resp);
+            alert("Los cambios se guardaron satisfactoriamente");
         });
     }
 
@@ -103,14 +110,8 @@ class MyAccountEmployee extends React.Component {
                     <div className="MyAccountCol ColRight">
                         <TextField label="Rol" value={this.state.user.Role.nameRole} disabled={true}></TextField>
                         <FormControl>
-                            <InputLabel shrink id="demo-simple-select-placeholder-label-label">Ciudad</InputLabel>
-                            <Select 
-                                labelId="demo-simple-select-placeholder-label-label"
-                                id="demo-simple-select-placeholder-label"
-                                value={this.state.cityValue}
-                                onChange={this.handleCityChange}
-                                displayEmpty
-                            >
+                            <InputLabel shrink>Ciudad</InputLabel>
+                            <Select value={this.state.cityValue} onChange={this.handleCityChange} displayEmpty >
                                 <MenuItem value="">{this.state.cityLoaded.name}</MenuItem>
                                 {this.state.cities && this.state.cities.map((option, index) => (
                                     <MenuItem key={option.id} value={option.id}>{option.name}</MenuItem>
@@ -119,7 +120,7 @@ class MyAccountEmployee extends React.Component {
                         </FormControl>
                         <TextField label="Dirección" value={this.state.user.address} onChange={this.handleAddressChange}></TextField>
                         <TextField label="Correo electrónico" value={this.state.user.mail} onChange={this.handleMailChange}></TextField>
-                        <TextField label="Teléfono" value={this.state.user.telephone} onChange={this.handleTelChange}></TextField>
+                        <TextField label="Teléfono" value={this.state.user.phone} onChange={this.handleTelChange}></TextField>
                         <TextField label="Celular" value={this.state.user.cellphone} onChange={this.handleCelChange} ></TextField>
                         <TextField label="Contraseña" value={this.state.user.password} onChange={this.handlePasswordChange} defaultValue=""></TextField>
                     </div>
