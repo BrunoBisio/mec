@@ -21,6 +21,7 @@ exports.getPrescriptions = function ( condition) {
 
 exports.getPrescriptionsByState = function (state, condition) {
     condition.where = { approved: state }
+    condition.include = [{model: User}]
     return Prescription.findAndCountAll(condition);
 }
 

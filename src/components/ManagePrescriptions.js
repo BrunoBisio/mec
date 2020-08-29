@@ -66,8 +66,8 @@ class ManagePrescriptions extends React.Component {
   }
   */
  componentDidMount() {
-    getPendingPrescriptions().then(data => {
-      this.setState({data: data.data.results})
+    getPendingPrescriptions().then(response => {
+      this.setState({data: response.data.results})
     })
   }
 
@@ -90,8 +90,8 @@ closePrescription = () => {
           <MaterialTable title="Recetas"
             columns={[
               { title: "Fecha", field: "date", type: "date" },
-              { title: "Paciente", field: "name" },
-              { title: "Descripcion", field: "description" }
+              { title: "Paciente", field: "User.name" },
+              { title: "Descripcion", field: "comment" }
             ]}
             localization={{ header: { actions: 'Detalle' }, }}
             data={this.state.data}
