@@ -98,6 +98,7 @@ export default function SignUp() {
     const user = {
       DocTypeId: docType.id,
       docNumber: docNumber,
+      password: password,
       name: name,
       lastName: lastName,
       birthday: birthday,
