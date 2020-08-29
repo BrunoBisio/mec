@@ -154,7 +154,7 @@ class AddApointment extends React.Component {
                 <Grid item xs={12} sm={6} className="LeftPanel">
                     {!this.state.isUser && <div className="FilterRow">
                         <TextField fullWidth select variant="outlined" value={this.state.filterDocType} onChange={this.onDocTypeChange} label="Tipo de documento">
-                            {this.state.listDocTypes.map((option, index) => (
+                            {this.state.listDocTypes && this.state.listDocTypes.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.docTypeCode}</MenuItem>
                             ))}
                         </TextField>
@@ -164,21 +164,21 @@ class AddApointment extends React.Component {
                     </div>}
                     <div className="FilterRow">
                         <TextField fullWidth select variant="outlined" value={this.state.filterSpeciality} onChange={this.onSpecialtyChange} label="Especialidad" >
-                            {this.state.listSpecialities.map((option, index) => (
+                            {this.state.listSpecialities && this.state.listSpecialities.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.name}</MenuItem>
                             ))}
                         </TextField>
                     </div>
                     {this.state.filterSpeciality && this.state.filterSpeciality.id > 0 && this.state.filterSpeciality.Clinics && <div className="FilterRow">
                         <TextField fullWidth select variant="outlined" value={this.state.filterClinic} onChange={this.onClinicChange} label="Clínica" >
-                            {this.state.filterSpeciality.Clinics.map((option, index) => (
+                            {this.state.filterSpeciality.Clinics && this.state.filterSpeciality.Clinics.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.name}</MenuItem>
                             ))}
                         </TextField>
                     </div>}
                     {this.state.filterClinic && this.state.filterClinic.id > 0 && this.state.filterClinic.Users && <div className="FilterRow">
                         <TextField fullWidth select variant="outlined" value={this.state.filterMedic} onChange={this.onMedicChange} label="Médico" >
-                            {this.state.filterClinic.Users.map((option, index) => (
+                            {this.state.filterClinic.Users && this.state.filterClinic.Users.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.name}</MenuItem>
                             ))}
                         </TextField>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { getAppointments } from '../services/AppointmentRepository.js';
+import { getAppointmentsWithUser } from '../services/AppointmentRepository.js';
 import { Grid, TextField, Button, Modal, Typography, IconButton, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@material-ui/core';
 import MaterialTable from 'material-table';
 import MoveAppointment from './MoveAppointment';
@@ -32,7 +32,6 @@ class InnerAppointment extends React.Component {
     
     constructor (props) {
         super(props);
-
         this.state = {
             data: [],
             movingAppointment: false,
@@ -50,6 +49,16 @@ class InnerAppointment extends React.Component {
         }
     }
 
+    loadAppointments() {
+        getAppointmentsWithUser().then(res => {
+            console.log(res)
+          this.setState({ data: res.data.results })
+        })
+      }
+    
+      componentDidMount() {
+        this.loadAppointments()
+      }
     checkAppointment = (row, event) => {
         const appointmentSelected = row; 
         const showHideAppointmentGrid = false; 
@@ -105,14 +114,6 @@ class InnerAppointment extends React.Component {
 
     handleNewAppointment = (val) => {
         this.setState({ openNewAppointment: val });
-    }
-
-    componentDidMount() {
-        /*
-            getAppointments().then((appointments) => {
-                this.setState({ data });
-            });
-        */
     }
 
     render() {

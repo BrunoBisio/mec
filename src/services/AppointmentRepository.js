@@ -2,25 +2,28 @@ import React from 'react';
 import RestService from './RestService';
 
 export function getAppointments() {
-    return RestService.get('/appointments');
+    return RestService.get('/appointment');
+}
+export function getAppointmentsWithUser() {
+    return RestService.get('/appointment/user');
 }
 
 export function getAppointmentsByMedic(id) {
-    return RestService.get('/appointments/medic/' + id);
+    return RestService.get('/appointment/medic/' + id);
 }
 
 export function getAppointmentsByUser(id) {
-    return RestService.get('/appointments/patient/' + id);
+    return RestService.get('/appointment/patient/' + id);
 }
 
 export function updateAppointment(appointments) {
-    return RestService.put('/appointments/' + appointments.id, appointments);
+    return RestService.put('/appointment/' + appointments.id, appointments);
 }
 
 export function createAppointments(appointment) {
-    return RestService.post('/appointments', appointment);
+    return RestService.post('/appointment', appointment);
 }
 
 export function remove(appointmentId) {
-    return RestService.delete('/appointments/' + appointmentId);
+    return RestService.delete('/appointment/' + appointmentId);
 }
