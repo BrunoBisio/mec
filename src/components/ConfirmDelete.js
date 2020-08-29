@@ -23,6 +23,12 @@ class ConfirmDeletePatient extends React.Component {
                 title: props.title
             }
         }
+        this.state.close = props.onClose
+    }
+    close() {
+        this.setState((state,props) => {
+            state.close()
+        })
     }
 
     render() {
@@ -37,8 +43,8 @@ class ConfirmDeletePatient extends React.Component {
             </div>
             <Typography variant="h4" component="h4">Esta accion no se podra deshacer</Typography>
             <div className="buttonContainer">
-                <Button className="cancelButton" variant="contained" color="primary">Cancelar</Button>
-                <Button className="deleteButton" variant="contained" color="primary">Eliminar</Button>
+                <Button className="cancelButton" variant="contained" color="primary" onClick={()=>{this.close()}}>Cancelar</Button>
+                <Button className="deleteButton" variant="contained" color="primary" onClick={()=>{this.close()}}>Eliminar</Button>
             </div>
         </div>)
     }

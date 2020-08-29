@@ -34,8 +34,14 @@ class AddEmployee extends React.Component {
             role: props.data || { id: 0, name: '', access: [] },
             accesses: accesses,
             accessesTotal: 8,
-            accessesPerRow: 4
+            accessesPerRow: 4,
+            close: props.onClose
         }
+    }
+    closeModal(){
+        this.setState((state,props)=>{
+            state.close()
+        })
     }
 
     handleChange = (event) => {
@@ -91,7 +97,7 @@ class AddEmployee extends React.Component {
                         }
                     </Grid>
                 </div>
-                <div className="ButtonContainer"><Button variant="contained" color="primary">Guardar</Button></div>
+                <div className="ButtonContainer"><Button variant="contained" color="primary" onClick={()=>{this.closeModal()}}>Guardar</Button></div>
             </div>
         );
     }

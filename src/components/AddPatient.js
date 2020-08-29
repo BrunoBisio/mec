@@ -12,8 +12,15 @@ class AddPatient extends React.Component {
             races: [],
             cities: [],
             plans: [],
-            user: props.data ? props.data : {}
+            user: props.data ? props.data : {},
+            close: props.onClose
         }
+    }
+
+    closeModal() {
+        this.setState((state,props) => {
+            state.close()
+        })
     }
 
     componentDidMount() {
@@ -99,7 +106,7 @@ class AddPatient extends React.Component {
                         <TextField label="Celular" value={this.state.user.cellphone} onChange={this.handleCelChange} ></TextField>
                         <TextField label="Contraseña" value={this.state.user.password} onChange={this.handlePasswordChange}></TextField>
                     </div>
-                    <div className="MyAccountButton"><Button variant="contained" color="primary" type="submit">Guardar</Button></div>
+                    <div className="MyAccountButton"><Button variant="contained" color="primary" type="button" onClick={()=>{this.closeModal()}}>Guardar</Button></div>
                 </form>
             </Paper>
         );
