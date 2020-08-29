@@ -1,6 +1,7 @@
 const MedicalRecordAppointment = require('../models/MedicalRecordAppointment');
 
 exports.getMedicalRecordAppointment = function (patientId) {
+    const condition = {};
     condition.where = { UserId: patientId};
     condition.attributes = { exclude: ['createdAt', 'updatedAt', 'deletedAt'] };
     return MedicalRecordAppointment.findAndCountAll(condition);

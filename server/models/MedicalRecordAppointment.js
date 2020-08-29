@@ -1,6 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../database');
 const medicDetail = require('./MedicDetail');
+const medicalRecord = require('./MedicalRecord');
 
 const MedicalRecordAppointment = db.define('MedicalRecordAppointment', {
     id: {
@@ -28,6 +29,7 @@ const MedicalRecordAppointment = db.define('MedicalRecordAppointment', {
     paranoid: true
 });
 
+MedicalRecordAppointment.belongsTo(medicalRecord);
 MedicalRecordAppointment.belongsTo(medicDetail);
 medicDetail.hasMany(MedicalRecordAppointment);
 
