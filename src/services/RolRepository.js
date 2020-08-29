@@ -27,6 +27,8 @@ import MyAccountEmployee from '../components/MyAccountEmployee';
 import EmployeeWelcome from '../components/EmployeeWelcome';
 import RestService from './RestService.js';
 import { saveToken, deleteToken } from './RestService.js'
+
+
 export let accesses = [
   {
     id: 1,
@@ -120,7 +122,7 @@ export let accesses = [
     component: InnerAppointment
   },
   {
-    id: 4,
+    id: 19,
     title: 'Mis Recetas', //Recetas de paciente
     visible: true,
     route: 'patiente/prescriptions',
@@ -142,10 +144,17 @@ export let accesses = [
     component: PatientMedicalHistory//FALTA (copiar MedicalHistory)
   },
   {
-    id: 26,
+    id: 15,
     title: 'Agenda',
     route: 'agenda',
     component: Calendar,
+    visible: true
+  },
+  {
+    id: 22,
+    title: 'Agenda',
+    route: 'agenda',
+    component: CalendarMedic,
     visible: true
   },
   {
