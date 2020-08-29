@@ -1,13 +1,23 @@
 import React from 'react';
-import { Button } from '@material-ui/core';
+import { Grid, TextField, Button, Modal, Typography, IconButton, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@material-ui/core';
 import '../css/styles/Header.scss'
-import Grid from '@material-ui/core/Grid';
 import MaterialTable from "material-table";
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import '../css/styles/UserAppointment.scss';
 import RelativeLink from './RelativeLink.js';
 import {getAppointmentsByUser, remove} from '../services/AppointmentRepository.js';
 import { getLoggedUser } from '../services/RolRepository';
+import AddAppointment from './AddAppointment.js';
+
+
+function NewAppointmentModal(props) {
+  return (
+      <div className="modal">
+          <div><AddAppointment/></div>
+          <div><Button  variant="contained" color="primary" onClick={()=> props.closeFunc(false)}>Cerrar</Button></div>
+      </div>
+  )
+}
 
 class UserAppointment extends React.Component {
   constructor(props){
@@ -15,7 +25,8 @@ class UserAppointment extends React.Component {
     
     this.state = { 
       data: [],
-      user: props.user 
+      user: props.user ,
+      openNewAppointment: false
     };
   }
 
@@ -43,6 +54,10 @@ class UserAppointment extends React.Component {
       });
     });
   }
+  handleNewAppointment = (val) => {
+    this.setState({ openNewAppointment: val });
+}
+
 
   render() {
     return (
@@ -70,7 +85,8 @@ class UserAppointment extends React.Component {
           </MaterialTable>
         </Grid>
         <Grid item xs={6}>
-          <RelativeLink route="add"><Button variant="contained" color="primary" className ="NewAppointment">Nuevo Turno</Button></RelativeLink>
+        <Modal open={this.state.openNewAppointment} onClose={()=>{this.handleNewAppointment(false)}}><NewAppointmentModal closeFunc={this.handleNewAppointment}/></Modal>
+          <Button variant="contained" color="primary" className ="NewAppointment" onClick={()=> this.handleNewAppointment(true)}>Nuevo Turno</Button>
         </Grid>
       </Grid>
     )
