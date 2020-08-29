@@ -8,11 +8,12 @@ const cors = require('cors');
 // routes
 const usersRouter = require('./routes/users');
 const appointmentsRouter = require('./routes/appointments');
+const medicalRecordRouterAppointment = require('./routes/medicalRecordsAppointment');
 const specialtyRouter = require('./routes/specialties');
 const prescriptionRouter = require('./routes/prescriptions');
 const clinicRouter = require('./routes/clinics');
 const medicalRecordRouter = require('./routes/medicalRecords');
-const medicalRecordRouterAppointment = require('./routes/medicalRecordsAppointment');
+
 const docTypeRouter = require('./routes/docTypes');
 const emailRouter = require('./routes/email');
 const medicDetailRouter = require('./routes/medicDetails');
