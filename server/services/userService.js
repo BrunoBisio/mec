@@ -64,7 +64,9 @@ exports.createUser = function (user) {
 }
 
 exports.updateUser = function (userId, userUpdated) {
-    userUpdated.password = createHash(userUpdated.password)
+    if(user.password) {
+        userUpdated.password = createHash(userUpdated.password)
+    }
     return User.update(userUpdated, { where: { id: userId } });
 }
 
