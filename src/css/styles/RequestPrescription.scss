@@ -18,11 +18,8 @@
 
         .DetailsContainer {
             width: 50%;
-            
-            .MuiTextField-root {
-                width: 30vw;
-                margin: 10px;
-            }
+            display: grid;
+            margin-left: 10px;
         }
         
         .CommentContainer {
