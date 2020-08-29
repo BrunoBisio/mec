@@ -126,7 +126,7 @@ class InnerAppointment extends React.Component {
                                 title="Turnos pendientes"
                                 columns={[
                                     { title: "Fecha", field: "date", type: "datetime", cellStyle: { minWidth: 'fit-content'} },
-                                    { title: "Paciente", field: "patient.name", cellStyle: { minWidth: 'fit-content'} },
+                                    { title: "Paciente", field: "User.name", cellStyle: { minWidth: 'fit-content'} },
                                     { title: "", field: "", cellStyle: { minWidth: 'fit-content'} , 
                                         render: rowData =>  <div><Button variant="contained" color="primary" onClick= {()=> this.moveAppointment(rowData, true)}>Reprogramar Turno</Button><Modal open={!!rowData.open && this.state.movingAppointment} onClose={()=>{this.moveAppointment(rowData, false)}}><MoveAppointmentModal data={rowData} /></Modal></div>
                                     },

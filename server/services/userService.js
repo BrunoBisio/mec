@@ -60,8 +60,7 @@ exports.getEmployees = function (condition) {
 
 exports.getUserByRoleId = function (roleId, condition) {
     condition.where = { RoleId: roleId }
-    condition.attributes =  {exclude: ['password']}
-    return User.findAndCountAll(condition);
+    return User.findAndCountAll(condition,{attributes:  {exclude: ['password']}});
 }
 
 exports.createUser = function (user) {
@@ -87,8 +86,7 @@ exports.getUserForDelete = function(condition) {
         { model: Race },
         { model: Plan }
     ]
-      condition.attributes =  {exclude: ['password']}
-    return User.findAndCountAll(condition);
+    return User.findAndCountAll(condition,{attributes:  {exclude: ['password']}});
 }
 
 exports.deleteUser = function(userId) {
