@@ -1,11 +1,15 @@
 const Appointment = require('../models/Appointment');
 const MedicDetail = require('../models/MedicDetail');
 const User = require('../models/User');
+const Specialty = require('../models/Specialty');
 const { Op } = require("sequelize");
 
 exports.getAppointmentsByUser = function (userId, condition) {
     condition.where = { UserId: userId }
-    condition.include = [User]
+    condition.include = [
+        { model: User },
+        { model: MedicDetail, include: [ {model: User}, {model: Specialty} ] }
+    ]
     return Appointment.findAndCountAll(condition);
 }
 

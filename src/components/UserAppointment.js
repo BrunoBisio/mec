@@ -6,17 +6,30 @@ import MaterialTable from "material-table";
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import '../css/styles/UserAppointment.scss';
 import RelativeLink from './RelativeLink.js';
-import {getAppointments, remove} from '../services/AppointmentRepository.js';
+import {getAppointmentsByUser, remove} from '../services/AppointmentRepository.js';
 
 class UserAppointment extends React.Component {
   constructor(props){
     super(props);
-    this.state = { data:getAppointments() };
+    
+    this.state = { 
+      data: [],
+      user: props.user 
+    };
+  }
+
+  componentDidMount() {
+    getAppointmentsByUser(this.state.user.id).then((response) => {
+      this.setState({ data: response.data.results });
+    })
   }
 
   removeAppointment(row) {
-    remove(row);
-      this.setState((state,props) => state.data = getAppointments());
+    remove(row.id).then(() => {
+      getAppointmentsByUser(this.state.user.id).then((response) => {
+        this.setState({ data: response.data.results });
+      });
+    });
   }
 
   render() {
@@ -26,8 +39,8 @@ class UserAppointment extends React.Component {
           <MaterialTable title="Turnos"
             columns={[
               { title: "Fecha", field: "date", type: "datetime" },
-              { title: "Especialidad", field: "specialty" },
-              { title: "Medico", field: "doctor" },
+              { title: "Especialidad", field: "MedicDetail.Specialty.name" },
+              { title: "Medico", field: "MedicDetail.User.name" },
             ]}
             localization={{
               header: {
