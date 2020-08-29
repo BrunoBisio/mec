@@ -5,7 +5,7 @@ import RelativeLink from './RelativeLink.js';
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { getEmployees } from '../services/EmployeeRepository';
-import { remove } from '../services/UserRepository';
+import { remove, updateUser, add } from '../services/UserRepository';
 import AddEmploye from './AddEmploye';
 import ConfirmDelete from './ConfirmDelete';
 
@@ -34,6 +34,18 @@ class ABMPatients extends React.Component {
       editPatient: false,
       newData: null
     };
+  }
+
+
+  updateUser(user){
+    updateUser(user.id, user).then(()=>{
+      this.loadPatients()
+    })
+  }
+  addUser(user){
+    add(user).then(()=>{
+      this.loadPatients()
+    })
   }
 
   componentDidMount() {
@@ -90,11 +102,11 @@ class ABMPatients extends React.Component {
               { title: "Apellido", field: "lastName" },
               {
                 title: "Actualizar", field: "",
-                render: rowData => <div><IconButton onClick={() => this.openEditModal(rowData, true)}><CreateIcon /></IconButton><Modal open={!!rowData.open && this.state.editPatient} onClose={() => { this.openEditModal(rowData, false) }}><InternalModal data={rowData} onClose={() => { this.openEditModal(rowData, false) }}/></Modal></div>
+                render: rowData => <div><IconButton onClick={() => this.openEditModal(rowData, true)}><CreateIcon /></IconButton><Modal open={!!rowData.open && this.state.editPatient} onClose={() => { this.openEditModal(rowData, false) }}><InternalModal data={rowData} onClose={() => { this.openEditModal(rowData, false) }} onChange={(user) => {this.updateUser(user)}}/></Modal></div>
               },
               {
                 title: "Borrar", field: "",
-                render: rowData => <div><IconButton onClick={() => this.openDeleteModal(rowData, true)}><DeleteIcon /></IconButton><Modal open={!!rowData.open && this.state.deletePatient} onClose={() => { this.openDeleteModal(rowData, false) }}><InternalDeleteModal data={rowData} onClose={() => { this.openDeleteModal(rowData, false) }}/></Modal></div>
+                render: rowData => <div><IconButton onClick={() => this.openDeleteModal(rowData, true)}><DeleteIcon /></IconButton><Modal open={!!rowData.open && this.state.deletePatient} onClose={() => { this.openDeleteModal(rowData, false) }}><InternalDeleteModal data={rowData} onClose={() => { this.openDeleteModal(rowData, false) }} confirm={(user) => {this.removeUser(user)}} /></Modal></div>
               },
             ]}
             data={this.state.data}>
@@ -102,7 +114,7 @@ class ABMPatients extends React.Component {
         </Grid>
         <Grid xs={4}>
           <Button variant="contained" color="primary" onClick={() => this.openNewModal(true)} className="NewAppointment">Nuevo empleado</Button>
-          <Modal open={this.state.newPatient} onClose={() => { this.openNewModal(false) }}><InternalModal data={this.state.newData} onClose={() => { this.openNewModal(false) }}/></Modal>
+          <Modal open={this.state.newPatient} onClose={() => { this.openNewModal(false) }}><InternalModal data={this.state.newData} onClose={() => { this.openNewModal(false) }} onChange={(user) => {this.addUser(user)}}/></Modal>
         </Grid>
       </Grid>
     )

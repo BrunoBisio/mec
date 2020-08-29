@@ -4,6 +4,13 @@ import RestService from './RestService';
 export function getAppointments() {
     return RestService.get('/appointment');
 }
+
+
+export function getAppointmentUnnasigned() {
+    return RestService.get('/appointment/unnasigned');
+}
+
+
 export function getAppointmentsWithUser() {
     return RestService.get('/appointment/user');
 }

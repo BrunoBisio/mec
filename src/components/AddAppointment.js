@@ -7,7 +7,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import MaterialTable from "material-table";
 import AddIcon from '@material-ui/icons/Add';
 import '../css/styles/AddAppointment.scss';
-import { getAppointments, updateAppointment } from '../services/AppointmentRepository.js';
+import { getAppointmentUnnasigned, updateAppointment } from '../services/AppointmentRepository.js';
 import Axios from 'axios';
 import { getLoggedUser } from '../services/RolRepository.js';
 import { getDocTypesWithPatients, getSpecialtiesWithClinicsWithMedics } from '../services/DropDownRepositories.js';
@@ -16,7 +16,7 @@ const matTableOpt = {
     columns: [
         { title: "Dia", field: "date", type: "date" },
         { title: "Horario", field: "startHour", type: "time" },
-        { title: "Medico", field: "medicDetail.medic.name" }
+        { title: "Medico", field: "medicDetail.user.name" }
     ],
     localization: { header: { actions: 'Acciones' } },
     options: { actionsColumnIndex: -1 }
@@ -73,7 +73,6 @@ class AddApointment extends React.Component {
     addAppointment(row) {
         let user = this.state.loggedUser;
         if (user.role !== 4) {
-            debugger
             if(!this.state.filterDocType.Users) {
                 alert("Selecciona un tipo de documento")
                 return
@@ -85,8 +84,10 @@ class AddApointment extends React.Component {
             user = findUser(this.state.filterDocType.Users, this.state.filterDocNumber);
         }
         row.UserId = user.id;
-        updateAppointment(row);
-        this.updateListAppointments();
+        updateAppointment(row).then(()=>{
+            this.updateListAppointments();
+        })
+        
         
     }
 
@@ -128,7 +129,6 @@ class AddApointment extends React.Component {
     }
 
     filterList = () => {
-
         const listAppointments = this.state.listAppointments.filter((appointment) => {
             // check if it filters by speciality
             if (this.state.filterSpeciality && this.state.filterSpeciality.id > 0) {
@@ -156,7 +156,7 @@ class AddApointment extends React.Component {
             getLoggedUser(),
             getDocTypesWithPatients(),
             getSpecialtiesWithClinicsWithMedics(),
-            getAppointments()
+            getAppointmentUnnasigned()
         ]).then((responses) => {
             const loggedUser = responses[0];
             const listDocTypes = responses[1].data;
@@ -167,8 +167,8 @@ class AddApointment extends React.Component {
     }
 
     updateListAppointments() {
-        getAppointments().then(data=> {
-            this.setState({ listAppointments: data.results }, this.filterList);
+        getAppointmentUnnasigned().then(data=> {
+            this.setState({ listAppointments: data.data.results }, this.filterList);
         })
     }
 
