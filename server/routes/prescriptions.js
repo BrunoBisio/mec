@@ -14,6 +14,6 @@ router.get('/approved/:state', Middleware.paginationMiddleware, PrescriptionCont
 router.get('/user/:userId', Middleware.paginationMiddleware, PrescriptionController.getPrescriptionsByUser);
 router.get('/medic/:medicId', Middleware.paginationMiddleware, PrescriptionController.getPrescriptionByMedic);
 router.get('/specialty/:specialtyId', Middleware.paginationMiddleware, PrescriptionController.getPrescriptionBySpecialty);
-router.delete('/prescriptionId', PrescriptionController.deletePrescription);
+router.delete('/:prescriptionId', PrescriptionController.deletePrescription);
 
 module.exports = router;

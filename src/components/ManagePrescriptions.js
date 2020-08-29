@@ -3,7 +3,7 @@ import { Button, Modal, Paper, TextField } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import MaterialTable from "material-table";
 import SaveAltIcon from '@material-ui/icons/SaveAlt';
-import { getPendingPrescriptions, deletePrescription } from '../services/PrescriptionsRepository.js';
+import { getPendingPrescriptions, deletePrescription, uploadPrescription, updatePrescription } from '../services/PrescriptionsRepository.js';
 import RelativeLink from './RelativeLink.js';
 import '../css/styles/Header.scss'
 import '../css/styles/ManagePrescription.scss'
@@ -12,7 +12,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 function PrescriptionModal(props) {
     return (
         <div className="modal">
-            <Prescription data={props.data}></Prescription>
+            <Prescription data={props.data} onClose={props.onClose}></Prescription>
         </div>
     )
 }
@@ -21,17 +21,46 @@ class Prescription extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-          data: props.data
+          data: props.data,
+          close: props.onClose
         };
     }
+    onFileChange(event) {
+     
+        // Update the state 
+        this.setState({ selectedFile: event.target.files[0] }); 
+       
+    }
+    onFileUpload() { 
+     
+      // Create an object of formData 
+      const formData = new FormData(); 
+     
+      // Update the formData object 
+      formData.append( 
+        "file", 
+        this.state.selectedFile
+      ); 
+     
+      return uploadPrescription(this.state.data.id, formData);
+    }; 
 
+    confirmPrescription() {
+      this.onFileUpload().then(()=> {
+        this.setState((state,props)=> {
+          updatePrescription(this.state.data).then(()=>{
+            this.state.close()
+          })
+        })
+      })
+    }
     getFullName() {
         return this.state.data.User.name + " " + this.state.data.User.lastName
     }
 
     remove() {
       deletePrescription(this.state.data).then(() => {
-        alert("La receta fue rechazada satisfactoriamente");
+        this.state.close()
       })
     }
 
@@ -46,11 +75,12 @@ class Prescription extends React.Component {
                     </div>
                     <div className="PrescriptionColumn">
                         <TextField label="Comentario" disabled={true} value={this.state.data.comment} multiline rows={6} variant="outlined"></TextField>
+                        <input type="file" onChange={(event)=>{this.onFileChange(event)}} /> 
                     </div>
                 </div>
                 <div className="PrescriptionButtonContainer">
-                    <Button variant="contained" color="primary">Aceptar</Button>
-                    <Button variant="contained" color="primary" onClick={this.deletePrescription}>Rechazar</Button>
+                    <Button variant="contained" color="primary" onClick={()=>{this.confirmPrescription()}}>Aceptar</Button>
+                    <Button variant="contained" color="primary" onClick={()=>{this.remove()}}>Rechazar</Button>
                 </div>
             </Paper>
         )
@@ -110,7 +140,7 @@ closePrescription = () => {
               actionsColumnIndex: -1
             }}>
           </MaterialTable>
-          <Modal open={this.state.open} onClose={()=>{this.closePrescription()}}><PrescriptionModal data={this.state.selectedRow}></PrescriptionModal></Modal>
+          <Modal open={this.state.open} onClose={()=>{this.closePrescription()}}><PrescriptionModal data={this.state.selectedRow} onClose={()=>{this.closePrescription()}}></PrescriptionModal></Modal>
       </Grid>
     )
   }

@@ -22,6 +22,7 @@ exports.getPrescriptions = function ( condition) {
 exports.getPrescriptionsByState = function (state, condition) {
     condition.where = { approved: state }
     condition.include = [{model: User}]
+    condition.attributes = { exclude: ['filename', 'file']}
     return Prescription.findAndCountAll(condition);
 }
 

@@ -28,3 +28,7 @@ export function getPrescriptionBySpecialty(specialtyId) {
 export function deletePrescription(prescription) {
     return RestService.delete('/prescription/' + prescription.id);
 }
+
+export function uploadPrescription(id, file) {
+    return RestService.post('/prescription/' + id + "/file", file);
+}
