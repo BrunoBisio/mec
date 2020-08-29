@@ -8,7 +8,7 @@ import '../css/styles/UDEmployee.scss';
 import RelativeLink from './RelativeLink.js';
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
-import {getRoles, removeRoles} from '../services/RolRepository' ;
+import {getRoles, removeRoles, createRole, updateRole} from '../services/RolRepository' ;
 import IconButton from '@material-ui/core/IconButton';
 import AddRole from './AddRole';
 import Modal from '@material-ui/core/Modal';
@@ -18,13 +18,13 @@ import ConfirmDeleteRole from './ConfirmDeleteRole';
 
 function InternalModal(props) {
   return  <div  className="modal">
-            <AddRole data={props.data} onClose={props.onClose}/>
+            <AddRole data={props.data} onClose={props.onClose} onChange={props.onChange}/>
           </div>
 }
 
 function InternalDeleteModal(props) {
   return  <div  className="deleteModal">
-            <ConfirmDeleteRole data={props.data} onClose={props.onClose}/>
+            <ConfirmDeleteRole data={props.data} onClose={props.onClose} confirm={props.confirm}/>
           </div>
 }
 
@@ -35,10 +35,26 @@ class ABMRole extends React.Component {
     newRole: false,
     newData: null};
   }
-  componentDidMount() {
-    getRoles().then(data => {
-      this.setState({data: data.data})
+
+
+  updateRole(role){
+    updateRole(role.id, role).then(()=>{
+      this.loadRoles()
     })
+  }
+  addRole(role){
+    createRole(role).then(()=>{
+      this.loadRoles()
+    })
+  }
+  loadRoles() {
+    getRoles().then(res => {
+      this.setState({ data: res.data })
+    })
+  }
+
+  componentDidMount() {
+    this.loadRoles()
   }
   openModal(row, newVal) {
     const newData = this.state.data;
@@ -65,9 +81,9 @@ class ABMRole extends React.Component {
   openNew(val) {
     this.setState((state,props) => state.newRole = val)
   }
-  removeUser(row) {
-    removeRoles(row);
-    this.setState((state,props) => state.data = getRoles());
+  remove(row) {
+    removeRoles(row).then(()=>{this.loadRoles()})
+    
   }
 
   render() {
@@ -77,11 +93,11 @@ class ABMRole extends React.Component {
           <MaterialTable title="Roles"
             columns={[
               { title: "Id", field: "id" },
-              { title: "Nombre", field: "name" },
+              { title: "Nombre", field: "nameRole" },
               { title: "Actualizar", field: "" ,
-              render: rowData =>  <div><IconButton onClick= {()=> this.openModal(rowData, true)}><CreateIcon/></IconButton><Modal open={rowData.open && this.state.editRole} onClose={()=>{this.openModal(rowData, false)}}><InternalModal data={rowData} onClose={()=>{this.openModal(rowData, false)}}/></Modal></div>},
+              render: rowData =>  <div><IconButton onClick= {()=> this.openModal(rowData, true)}><CreateIcon/></IconButton><Modal open={rowData.open && this.state.editRole} onClose={()=>{this.openModal(rowData, false)}}><InternalModal data={rowData} onChange={(role) => {this.updateRole(role)}} onClose={()=>{this.openModal(rowData, false)}}/></Modal></div>},
               { title: "Borrar", field: "",
-              render: rowData =>  <div><IconButton onClick= {()=> this.openDeleteModal(rowData, true)}><DeleteIcon/></IconButton><Modal open={rowData.open && this.state.deleteRole} onClose={()=>{this.openDeleteModal(rowData, false)}}><InternalDeleteModal data={rowData} onClose={()=>{this.openDeleteModal(rowData, false)}}/></Modal></div>}, 
+              render: rowData =>  <div><IconButton onClick= {()=> this.openDeleteModal(rowData, true)}><DeleteIcon/></IconButton><Modal open={rowData.open && this.state.deleteRole} onClose={()=>{this.openDeleteModal(rowData, false)}}><InternalDeleteModal data={rowData} confirm={(role) => {this.deleteRole(role)}} onClose={()=>{this.openDeleteModal(rowData, false)}}/></Modal></div>}, 
             
             ]}
             data={this.state.data}>
@@ -89,7 +105,7 @@ class ABMRole extends React.Component {
         </Grid>
         <Grid xs={4}>
         <Button variant="contained" color="primary" onClick= {()=>this.openNew(true)} className ="NewAppointment">Nuevo rol</Button>
-        <Modal open={this.state.newRole} onClose={()=>{this.openNew(false)}}><InternalModal data={this.state.newData} onClose={()=>{this.openNew(false)}}/></Modal>
+        <Modal open={this.state.newRole} onClose={()=>{this.openNew(false)}}><InternalModal onChange={(role) => {this.addRole(role)}} data={this.state.newData} onClose={()=>{this.openNew(false)}}/></Modal>
         </Grid>
       </Grid>
     )

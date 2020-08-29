@@ -254,12 +254,12 @@ export const defaultView = ['', {
   route: 'admin/welcome',
   component: AdminWelcome
 }, {
-    id: 24,
-    title: 'Bienvenida', //Bienvenida de secre
-    visible: true,
-    route: 'secre/welcome',
-    component: EmployeeWelcome
-  }, {
+  id: 20,
+  title: 'Bienvenida', //Bienvenida de medico
+  visible: true,
+  route: 'medic/welcome',
+  component: MedicWelcome
+},{
     id: 24,
     title: 'Bienvenida', //Bienvenida de secre
     visible: true,
