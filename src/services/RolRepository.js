@@ -122,7 +122,7 @@ export let accesses = [
     component: InnerAppointment
   },
   {
-    id: 19,
+    id: 4,
     title: 'Mis Recetas', //Recetas de paciente
     visible: true,
     route: 'patiente/prescriptions',
