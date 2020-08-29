@@ -20,6 +20,7 @@ exports.getAppointments = function (condition) {
 
 exports.getAppointmentsWithoutUser = function (condition) {
     condition.where = { UserId: null }
+    condition.include = [MedicDetail]
     return Appointment.findAndCountAll(condition);
 }
 
