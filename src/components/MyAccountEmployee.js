@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Typography, TextField, Paper, Button, MenuItem } from '@material-ui/core';
+import {Typography, TextField, Paper, Button, MenuItem, FormControl, InputLabel, Select } from '@material-ui/core';
 import '../css/styles/MyAccount.scss';
 import axios from 'axios'
 import { getLoggedUser } from '../services/RolRepository.js';
@@ -13,31 +13,66 @@ class MyAccountEmployee extends React.Component {
         this.state = {
             user: { DocType: {}, Race: {}, Role: {}, City: {} },
             cities: [],
+            cityLoaded: {},
             cityValue: ''
         }
     }
 
-    handleCityChange = (event, obj) => { this.setState({ city: obj.props.value, cityValue: obj.props.value.name }); };
+    handleCityChange = (event) => { 
+        // const user = this.state.user;
+        // user.city = event.target.value ? obj.props.value : this.state.cityLoaded;
+        // const cityValue = event.target.value;
+        // this.setState({ user, cityValue });
+        this.setState((state, props) => {
+            // state.user.city =  event.target.value ? obj.props.value : this.state.cityLoaded;
+            state.cityValue = event.target.value;
+        });
+    };
 
-    handleAddressChange = (event, value) => { this.setState({ address: event.target.value }); };
+    handleAddressChange = (event, value) => { 
+        const user = this.state.user;
+        user.address = event.target.value;
+        this.setState({ user });
+    };
 
-    handleMailChange = (event, value) => { this.setState({ mail: event.target.value }); };
+    handleMailChange = (event, value) => { 
+        const user = this.state.user;
+        user.mail = event.target.value
+        this.setState({ user }); 
+    };
     
-    handleTelChange = (event, value) => { this.setState({ telephone: event.target.value }); };
+    handleTelChange = (event, value) => { 
+        const user = this.state.user;
+        user.telephone = event.target.value
+        this.setState({ user });
+    };
     
-    handleCelChange = (event, value) => { this.setState({ cellphone: event.target.value }); };
+    handleCelChange = (event, value) => {
+        const user = this.state.user;
+        user.cellphone = event.target.value
+        this.setState({ user }); 
+    };
 
-    handlePasswordChange = (event, value) => { this.setState({ password: event.target.value }); };
+    handlePasswordChange = (event, value) => {
+        const user = this.state.user;
+        user.password = event.target.value
+        this.setState({ user });
+    };
 
     componentDidMount() {
         axios.all([
             getCities(),
             getLoggedUser()
         ]).then((res) => {
-            const cities = res[0].data;
+            console.log(res);
             const user = res[1];
-            const cityValue = res[1].City ? res[1].City.name : '';
-            this.setState({ cities, user, cityValue });
+            const cityLoaded = res[1].City ? res[1].City : {};
+            const cities = res[0].data.filter((city) => { return city.id !== cityLoaded.id });
+            this.setState({ 
+                cities: cities, 
+                user: user, 
+                cityLoaded: cityLoaded
+            });
         });
     }
 
@@ -45,6 +80,7 @@ class MyAccountEmployee extends React.Component {
         event.preventDefault();
         const user = this.state.user;
         updateUser(user.id, user).then((resp) => {
+            console.log(resp);
         });
     }
 
@@ -66,16 +102,26 @@ class MyAccountEmployee extends React.Component {
                     </div>
                     <div className="MyAccountCol ColRight">
                         <TextField label="Rol" value={this.state.user.Role.nameRole} disabled={true}></TextField>
-                        <TextField label="Ciudad" select value={this.state.cityValue} onChange={this.handleCityChange} inputProps={{ name: "name", id: "id" }}>
-                            {this.state.cities && this.state.cities.map((option, index) => (
-                                <MenuItem key={option.id} value={option}>{option.name}</MenuItem>
-                            ))}
-                        </TextField>
+                        <FormControl>
+                            <InputLabel shrink id="demo-simple-select-placeholder-label-label">Ciudad</InputLabel>
+                            <Select 
+                                labelId="demo-simple-select-placeholder-label-label"
+                                id="demo-simple-select-placeholder-label"
+                                value={this.state.cityValue}
+                                onChange={this.handleCityChange}
+                                displayEmpty
+                            >
+                                <MenuItem value="">{this.state.cityLoaded.name}</MenuItem>
+                                {this.state.cities && this.state.cities.map((option, index) => (
+                                    <MenuItem key={option.id} value={option.id}>{option.name}</MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
                         <TextField label="Dirección" value={this.state.user.address} onChange={this.handleAddressChange}></TextField>
                         <TextField label="Correo electrónico" value={this.state.user.mail} onChange={this.handleMailChange}></TextField>
                         <TextField label="Teléfono" value={this.state.user.telephone} onChange={this.handleTelChange}></TextField>
                         <TextField label="Celular" value={this.state.user.cellphone} onChange={this.handleCelChange} ></TextField>
-                        <TextField label="Contraseña" value={this.state.user.password} onChange={this.handlePasswordChange}></TextField>
+                        <TextField label="Contraseña" value={this.state.user.password} onChange={this.handlePasswordChange} defaultValue=""></TextField>
                     </div>
                     <div className="MyAccountButton"><Button variant="contained" color="primary" type="submit">Guardar</Button></div>
                 </form>
