@@ -16,7 +16,7 @@ const matTableOpt = {
     columns: [
         { title: "Dia", field: "date", type: "date" },
         { title: "Horario", field: "startHour", type: "time" },
-        { title: "Medico", field: "medicDetail.user.name" }
+        { title: "Medico", field: "MedicDetail.UserId" }
     ],
     localization: { header: { actions: 'Acciones' } },
     options: { actionsColumnIndex: -1 }
@@ -72,7 +72,8 @@ class AddApointment extends React.Component {
 
     addAppointment(row) {
         let user = this.state.loggedUser;
-        if (user.role !== 4) {
+        console.log(user)
+        if (user.RoleId !== 4) {
             if(!this.state.filterDocType.Users) {
                 alert("Selecciona un tipo de documento")
                 return
@@ -176,14 +177,14 @@ class AddApointment extends React.Component {
         return (
             <Grid container direction="row" className="AddAppointmentGrid">
                 <Grid item xs={12} sm={6} className="LeftPanel">
-                    {!this.state.isUser && <div className="FilterRow">
+                    {!this.state.isUser && this.state.loggedUser.RoleId !== 4 && <div className="FilterRow">
                         <TextField fullWidth select variant="outlined" value={this.state.filterDocType} onChange={this.onDocTypeChange} label="Tipo de documento">
                             {this.state.listDocTypes && this.state.listDocTypes.map((option, index) => (
                                 <MenuItem key={index} value={option}>{option.docTypeCode}</MenuItem>
                             ))}
                         </TextField>
                     </div>}
-                    {!this.state.isUser && this.state.filterDocType && this.state.filterDocType.id > 0 && <div className="FilterRow">
+                    {!this.state.isUser && this.state.loggedUser.RoleId !== 4 && this.state.filterDocType && this.state.filterDocType.id > 0 && <div className="FilterRow">
                         <TextField fullWidth variant="outlined" value={this.state.filterDocNumber} onChange={this.onUserChange} label="Número de documento"></TextField>
                     </div>}
                     <div className="FilterRow">
